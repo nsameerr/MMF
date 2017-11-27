@@ -1,0 +1,257 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>Manage My Fortune</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="images/favicon.ico">
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="css/custom.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="css/jquery.toast.min.css" />
+<link rel="stylesheet" href="css/spinner.css" />
+
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/vendor/angular.min.js"></script>
+        <script src="js/vendor/moment.js"></script>
+        <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
+        <script src="js/vendor/jquery.toast.min.js"></script>
+        <script src="js/constants.js"></script>
+        <script src="js/main.js"></script>
+        <script src= "js/spinner.js"></script>
+        <script src= "js/clevertap.js"></script>
+		
+		<!-- Facebook Pixel Code -->
+		<script>
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+		n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t,s)}(window,document,'script',
+		'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '395130707546730');
+		//fbq('track', 'PageView');
+		</script>
+		<noscript>
+		<img height="1" width="1" src="https://www.facebook.com/tr?id=395130707546730&ev=PageView&noscript=1"/>
+		</noscript>
+		<!-- End Facebook Pixel Code -->
+
+</head>
+
+<script type="text/javascript">
+	fbq('trackCustom', 'advisorSignup');
+</script>
+<body ng-app="appMMF" ng-controller="Home">
+<mmf-header-new></mmf-header-new>
+
+<!-- Start Google Tag Manager -->
+		<noscript>
+		  <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+		          height="0" width="0" style="display:none;visibility:hidden">
+		    </iframe>
+		</noscript>
+		<script>
+		  (function(w, d, s, l, i) {
+		      w[l] = w[l] || [];
+		      w[l].push({'gtm.start':
+		      new Date().getTime(), event: 'gtm.js'});
+		      var f = d.getElementsByTagName(s)[0],
+		      j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+		      j.async = true;
+		      j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+		      f.parentNode.insertBefore(j, f);
+		  })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+		</script>
+		
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+<!-- End Google Tag Manager -->
+
+<style>
+		.submitLogin {
+		height: 36px;
+		line-height: 36px;
+		color: #ffffff;
+		text-transform: uppercase;
+		font-family: 'ProximaNova-Semibold';
+		border-radius: 5px;
+		border: 1px solid #999999;
+		border-top: 0;
+		background: #ff7e00;
+		padding: 0px 30px;
+		transition: all 0.3s ease 0s;
+		font-size: 14px;
+		margin: 6px 0px 6px 0px;
+		width: 100%;
+		cursor: pointer;
+		-webkit-appearance: button;
+		box-sizing: border-box;
+		align-items: flex-start;
+		text-align: center;
+		-webkit-rtl-ordering: logical;
+		text-indent: 0px;
+		text-shadow: none;
+		display: inline-block;
+		-webkit-writing-mode: horizontal-tb;
+		}
+	</style>
+		  <div id="loadingOverlay" style="display:none">
+		    <div class="rippleSpinner">
+		    	 <img src="img/gears.svg"/> 
+		    </div>
+		  </div>
+<div class="body_bg advisor_brand">
+<div class="container-fluid login_pattern advisor_brand"> 
+	<div class="container"> 
+    	<div class="login-main">
+        	<div class="login_bg">
+                <div class="login-c1 login-c1-pad"> 
+					<h2>Welcome </h2> Lets start with creating an account for you on ManageMyFortune. Please fill up the sign up form with correct details.              
+				</div>
+                <div class="login-c2" >
+                	<div class="login-c2-pad">
+						<div class="mobile_login_bg">
+                    	
+						<h3>Create an Advisor Account
+						</h3>
+						<form name="adv_loginfrm" id="formAdvisorRegistration" action="/faces/register" method="post">
+								<input type="text" name="fullName" id="fullName" placeholder="Full Name" class="field_username alphaOnly" maxlength="50"> <br> 
+								<!-- onblur="javascript:splitFullName();" -->
+								<!--MMF:SM:31-01-2017 Below created three separate fields for first middle and last name of the inbvestor MMF:SM:31-01-2017 -->
+								<input type="hidden" name="firstName" id="firstName" placeholder="First Name" class="field_username alphaOnly" maxlength="12" > 
+								<input type="hidden" name="middleName" id="middleName" placeholder="Middle Name" class="field_username alphaOnly" maxlength="12"> 
+								<input type="hidden" name="lastName" id="lastName" placeholder="Last Name" class="field_username alphaOnly" maxlength="12">
+								<input type="hidden" id="advisor" name="advisor" value="true" placeholder="advisor">
+								<input type="text" name="phone" id="phone" placeholder="Mobile No" class="field_phone numericOnly" maxlength="10"> <br>
+								<input type="text" name="email" id="email" placeholder="Email" class="field_email" onblur="javascript:validateEmail(this);"> <br>
+								<input type="password" name="password" id="password" placeholder="Password" class="field_password" ><br>
+								<!--
+								onchange="javascript:togglePasswordType(this);" 
+								onfocus="javascript:togglePasswordType(this);"
+								onblur="javascript:togglePasswordType(this);" 
+								onclick="javascript:togglePasswordType(this);"
+								-->
+								<input type="password" name="rePassword" id="rePassword" placeholder="Re-enter Password" class="field_password" onblur="javascript:validateAdvPassword(this);" > <br>
+								<!--
+								onchange="javascript:togglePasswordType(this);" 
+								onfocus="javascript:togglePasswordType(this);" 
+								onclick="javascript:togglePasswordType(this);"
+								togglePasswordType(this);
+								-->
+								<div class="terms">By clicking the Sign Up button, I agree to the <a id="anchorTerms">terms and conditions</a> and privacy policy.</div>
+								<!-- Signup button-->
+								<div class="login-row">
+									<a href="javascript:advisorRegistration()">
+										<div class="pull-right">
+											<input type="button"  name="login" id="login" value="Sign up" class="submitLogin">
+										</div>
+									</a>
+								</div>
+
+						</form>
+						</div>
+                        <div class="new-account"><a href="login.htm">Already have an Account ? Login</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+</div>
+<mmf-footer-new></mmf-footer-new>
+
+</div>
+		<script>
+			setTimeout(function(){ 
+				//Get Full Year
+				var now = new Date();
+				var d=now.getFullYear();
+				//console.log(new Date().getFullYear());
+				$("#copyYear").text(new Date().getFullYear()); 
+				//On Hover Show SignUp Options
+				$('ul.nav li.dropdown').hover(function() {
+				  	$(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+					}, function() {
+				  	$(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+				});
+		
+		    }, 100);
+
+			$( '.js-float-label-wrapper' ).FloatLabel();
+			togglePasswordType = function(obj){
+				if(obj.value==''){
+					obj.setAttribute('type', 'text');
+				}
+				else{
+					obj.setAttribute('type', 'password');
+				}
+				return;
+			}
+			$(".alphaOnly").keypress(function (event) {
+				var regex = new   RegExp("^[a-zA-Z \b]+$");// RegExp("^[a-zA-Z\b]+$");
+			    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+			    if (!regex.test(key)) {
+			       event.preventDefault();
+			       return false;
+			    }
+			});
+
+			$(".numericOnly").keypress(function (e) {
+			    if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+			});
+		
+			$(".advLoginKeyUpEnter").keyup(function(event){
+			    if(event.keyCode == 13){
+			      javascript:advisorLogin();
+			    }
+			});
+
+
+			$(".advRegKeyUpEnter").keyup(function(event){
+			    if(event.keyCode == 13){
+			      javascript:advisorRegistration();
+			    }
+			});
+
+			$(".invRegKeyUpEnter").keyup(function(event){
+			    if(event.keyCode == 13){
+			      javascript:investorRegistration();
+			    }
+			});
+
+			$(".invLoginKeyUpEnter").keyup(function(event){
+			    if(event.keyCode == 13){
+			     javascript:investorLogin();
+			    }
+			});
+
+			$('#anchorTerms').click(function(event){
+		 		$(this).attr('target','_blank');
+		 		$(this).attr('href',openPageInNewTab('/faces/pages/terms_and_conditions.xhtml'));
+		 		
+		 	});
+		 	//href="javascript: return " target="_blank"
+		 	openPageInNewTab = function(myUrl) {
+				return _gc_url_baseUrl + myUrl;
+			}
+		</script>
+        <script src="js/app.js"></script>
+    
+        <!-- Controllers -->
+        <script src="js/controllers/Home.js?v=3" charset="UTF-8"></script>
+        <script src="js/directives/home.js" charset="UTF-8"></script>
+        <script src="js/directives/headerFooter.js" charset="UTF-8"></script> 
+</body>
+</html>

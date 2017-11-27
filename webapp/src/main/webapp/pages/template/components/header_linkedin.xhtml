@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <title></title>
+        <script src="#{request.contextPath}/pages/v2/js/clevertap.js"></script>
+    </head>
+    <body>
+        <ui:composition>
+            <h:form id="frm_header">
+                <div class="navbar navbar-inverse">
+                    <div class="navbar-inner">
+                        <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <ul class="nav pull-right">
+                            <li class="hidden-phone">
+                          
+                            </li>
+                            <li class="notification-dropdown hidden-phone">
+
+                            </li>
+                            <li class="dropdown">
+
+                            </li>
+                            <li class="settings hidden-phone dropdown">
+
+                            </li>
+                            <li class="settings" style="cursor: pointer;">
+                                <h:commandLink id="anchor-Logout" action="#{headerController.logout}">
+                                    <i class="icon-share-alt"></i>
+                                </h:commandLink>
+                                <script type="text/javascript">
+                                		$('#frm_header\\:anchor-Logout').click(function () { 
+											clevertap.logout();
+											console.log('Clicked Logout...');
+										});
+								</script>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </h:form>
+        </ui:composition>
+    </body>
+</html>

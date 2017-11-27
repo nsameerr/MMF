@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+
+    </head>
+    <body>
+        <ui:composition>
+            <h:form>
+                <p:remoteCommand name="redirectHome" action="#{sidebarUserController.onClickHome()}"
+                                 onstart="javascript:startSpinner();"/>
+                <p:remoteCommand name="redirectNetwork" action="#{sidebarUserController.onClickNetwork()}"
+                                 onstart="javascript:startSpinner();"/>
+                <p:remoteCommand name="redirectPayment" action="#{sidebarUserController.onClickPayment()}"
+                                 onstart="javascript:startSpinner();"/>
+                <p:remoteCommand name="redirectPortfolio" action="#{sidebarUserController.onRedirectPortfolio()}"
+                                 />
+                <p:remoteCommand name="redirectSearchPortfolio" action="#{sidebarUserController.onRedirectSearchPortfolio()}"
+                                 />
+                <p:remoteCommand name="redirectFinancialPlanner" action="#{sidebarUserController.onRedirectFinancialPlanner()}"/>
+                <script type="text/javascript">
+                    function startSpinner() {
+                        $("#dashboard-menu li:eq(3) a").attr("style", "cursor : wait;");
+                        $("#dashboard-menu li:eq(3) a").attr("onclick", "false");
+                        $("#dashboard-menu li:eq(3)").attr("class", "spinner-blackbg");
+                        startPageSpinner();
+                    }
+                    function stopSpinner() {
+                        $("#dashboard-menu li:eq(3) a").attr("style", "cursor : pointer;");
+                        $("#dashboard-menu li:eq(3) a").attr("onclick", "redirectNetwork();");
+                        $("#dashboard-menu li:eq(3) a").attr("class", "");
+                    }
+                </script>
+                <style type="text/css">
+                    .spinner-blackbg{
+                        background: url("../img/select2/spiffygif_30x30.gif")no-repeat;
+                        background-position: center;
+                    }
+
+                    #portfolios_list ul { 
+                        position: absolute;                    
+                        width: 100%; 
+                        margin: 0;
+                        padding: 0;                       
+                        display: none;
+                        color:red;
+                    }
+
+                    #portfolios_list ul li { 
+                        text-align: left;
+                        width: 100%;  
+                        padding-left: 20px;
+                    }
+
+                    #portfolios_list ul a { color:rgb(190, 190, 190);}
+                    #portfolios_list:hover ul { display: block;}
+                    #portfolios_list:hover ul li:hover{background: #000000;color: #FFFFFF}
+
+                </style>
+                <div id="sidebar-nav">
+                    <div class="beta-tag"></div>
+                    <ul id="dashboard-menu">
+                        <li>
+                            <a class="brand" href="#"><img src="#{request.contextPath}/img/logo.png" class="hidden-tablet"/></a>
+                            <a class="brand-tablet" href="#">
+                                <img src="#{request.contextPath}/img/tablet-logo.png" class="hidden-phone hidden-desktop visible-tablet"/></a>
+                        </li>
+                        <li class="active">
+                            <div class="pointer">
+                                <div class="arrow"></div>
+                                <div class="arrow_border"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a onclick="redirectHome();" style="cursor: pointer;">
+                                <i class="home-icon"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a onclick="redirectNetwork();" style="cursor: pointer;">
+                                <i class="network-icon"></i>
+                                <span>Network</span>
+                            </a>
+                        </li>
+                        <h:panelGroup rendered="#{sidebarUserController.userType == 'INVESTOR'}">
+                            <li>
+                                <a onclick="redirectPortfolio();" style="cursor: pointer;">
+                                    <i class="portfolio-icon"></i>
+                                    <span>Portfolio</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a onclick="redirectSearchPortfolio();" style="cursor: pointer;">
+                                    <i class="research-icon"></i>
+                                    <span>Search Portfolio</span>
+                                </a>
+                            </li>
+                             <li>
+                                <a onclick="redirectFinancialPlanner();" style="cursor: pointer;">
+                                    <i class="report-icon"></i>
+                                    <span>Financial Planner</span>
+                                </a>
+                            </li>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{sidebarUserController.userType == 'ADVISOR'}">
+
+                            <li id="portfolios_list">
+                                <a style="cursor: pointer;margin-bottom:0px;padding-bottom: 0px">
+                                    <i class="portfolio-icon"></i>
+                                    <span>Portfolios</span> 
+                                    <ul style="list-style-type: none;line-height: 10px;">
+                                        <li title="Create">                                            
+                                            <h:commandLink style="text-decoration: none;"
+                                                           actionListener="#{sidebarUserController.onClickCreatePortfolio()}"
+                                                           action="#{sidebarUserController.redirectURL()}"
+                                                           onclick="javascript:startSpinner();">
+                                                <img src="#{request.contextPath}/img/ico-table-new.png"></img>
+                                                <span style="margin-left: 2px;">Create</span>
+                                            </h:commandLink>
+                                        </li>
+                                        <li title="Edit">
+                                            <h:commandLink style="text-decoration: none;"
+                                                           actionListener="#{sidebarUserController.onClickEditPortfolio()}"
+                                                           action="#{sidebarUserController.redirectURL()}"
+                                                           onclick="javascript:startSpinner();">
+                                                <img src="#{request.contextPath}/img/ico-table-edit.png"></img>
+                                                <span style="margin-left: 2px;">Edit</span>
+                                            </h:commandLink>
+                                        </li>
+                                    </ul>
+                                </a>
+                            </li> 
+                        </h:panelGroup>
+                        <li style="margin-top:30px">
+                            <a href="#">
+                                <i class="help-icon"></i>
+                                <span>Help</span>
+                            </a>
+                        </li>                     
+                    </ul>
+                </div> 
+            </h:form>  
+        </ui:composition>
+    </body>
+</html>

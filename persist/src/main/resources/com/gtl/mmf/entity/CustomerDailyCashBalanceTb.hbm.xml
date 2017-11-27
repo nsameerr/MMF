@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26 Jun, 2014 9:27:49 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerDailyCashBalanceTb" table="customer_daily_cash_balance_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="masterCustomerTb" class="com.gtl.mmf.entity.MasterCustomerTb" fetch="select">
+            <column name="customer_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customerPortfolioTb" class="com.gtl.mmf.entity.CustomerPortfolioTb" fetch="select">
+            <column name="customer_portfolio_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="portfolioTb" class="com.gtl.mmf.entity.PortfolioTb" fetch="select">
+            <column name="portfolio_id" not-null="true" />
+        </many-to-one>
+        <property name="omsLoginId" type="string">
+            <column name="omsLoginId" length="16" />
+        </property>
+        <property name="ledgerbalanec" type="big_decimal">
+            <column name="ledgerbalanec" precision="15" />
+        </property>
+        <property name="tradedate" type="timestamp">
+            <column name="tradedate" length="19" />
+        </property>
+        <property name="lastupdatedon" type="timestamp">
+            <column name="lastupdatedon" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

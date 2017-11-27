@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 19, 2015 1:54:13 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.MasterAdvisorQualificationTb" table="master_advisor_qualification_tb" catalog="mmfdb">
+        <id name="advId" type="java.lang.Integer">
+            <column name="adv_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="masterApplicantTb" class="com.gtl.mmf.entity.MasterApplicantTb" fetch="select">
+            <column name="master_appl_id" not-null="true" />
+        </many-to-one>
+        <property name="registrationId" type="string">
+            <column name="registration_id" length="50" not-null="true" />
+        </property>
+        <property name="primaryQualificationDegree" type="string">
+            <column name="primary_qualification_degree" length="20" />
+        </property>
+        <property name="primaryQualificationInstitute" type="string">
+            <column name="primary_qualification_institute" length="50" />
+        </property>
+        <property name="primaryQualificationYear" type="string">
+            <column name="primary_qualification_year" length="5" />
+        </property>
+        <property name="primaryQualificationId" type="string">
+            <column name="primary_qualification_id" length="20" />
+        </property>
+        <property name="secondaryQualificationDegree" type="string">
+            <column name="secondary_qualification_degree" length="20" />
+        </property>
+        <property name="secondaryQualificationInstitute" type="string">
+            <column name="secondary_qualification_institute" length="50" />
+        </property>
+        <property name="secondaryQualificationYear" type="string">
+            <column name="secondary_qualification_year" length="5" />
+        </property>
+        <property name="secondaryQualificationId" type="string">
+            <column name="secondary_qualification_id" length="20" />
+        </property>
+        <property name="tertiaryQualificationDegree" type="string">
+            <column name="tertiary_qualification_degree" length="20" />
+        </property>
+        <property name="tertiaryQualificationInstitute" type="string">
+            <column name="tertiary_qualification_institute" length="50" />
+        </property>
+        <property name="tertiaryQualificationYear" type="string">
+            <column name="tertiary_qualification_year" length="5" />
+        </property>
+        <property name="tertiaryQualificationId" type="string">
+            <column name="`tertiary _qualification_id`" length="20" />
+        </property>
+        <property name="validitySebiCertificate" type="date">
+            <column name="validity_sebi_certificate" length="10" />
+        </property>
+        <property name="sebiCertificatePath" type="string">
+            <column name="sebi_certificate_path" length="15" />
+        </property>
+                <property name="advPicPath" type="string">
+        	<column name="advPicPath" length="100"></column>
+        </property>
+        <property name="oneLineDesc" type="string">
+        	<column name="oneLineDesc" length="100"></column>
+        </property>
+        <property name="aboutMe" type="string">
+        	<column name="aboutMe" length="200"></column>
+        </property>
+        <property name="myInvestmentStrategy" type="string">
+        	<column name="myInvestmentStrategy" length="200"></column>
+        </property>
+    </class>
+</hibernate-mapping>

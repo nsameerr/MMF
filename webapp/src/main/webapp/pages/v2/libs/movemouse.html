@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Moving Div to mouse Cursor </title>
+
+    <script type="text/javascript">
+    
+    function moveDivs(event)
+    {
+        x=event.screenX;
+        y=event.screenY;
+        
+        document.getElementById("floatdiv").style.left=x+"px";
+        document.getElementById("floatdiv").style.top=y+"px";
+    }
+    
+    </script>
+
+</head>
+<body onmousemove="moveDivs(event)">
+    <div id="floatdiv" style="background-color: Red; position: absolute">
+        This is the floating div.
+    </div>
+    <div id="main">
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+        Main Content goes here <br />
+    </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\FLIP_INTG_JARs\OMSAPI\OMSFrontEndAPI-Channel-MMF\OMSFrontEndAPI-3.8.0.jar -DgroupId=com.git.oms.api -DartifactId=OMSFrontEndAPI -Dversion=3.8.0 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\FLIP_INTG_JARs\OMSAPI\OMSCommon-3.8.0.jar -DgroupId=com.git.oms.common -DartifactId=OMSCommon -Dversion=3.8.0 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\apache_commons\org.apache.commons.net_2.2.0.jar -DgroupId=org.apache.commons.net -DartifactId=ApacheCommons -Dversion=2.2.0 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\FLIP_INTG_JARs\7Zip-GTPL-Build.jar -DgroupId=sevenzip.compression.lzma.decoder   -DartifactId=sevenzip -Dversion=1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\FLIP_INTG_JARs\RVFrameWork-1.5.jar -DgroupId=com.git.framework.rv -DartifactId=RVFrameWork -Dversion=1.5 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\FLIP_INTG_JARs\MDSCore4.2.1.jar -DgroupId=com.git.mds.core -DartifactId=MDSCore4 -Dversion=4.2.1 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\FLIP_INTG_JARs\MDSCommon4.2.2.jar -DgroupId=com.git.mds.common -DartifactId=MDSCommon -Dversion=4.2.2 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\FLIP_INTG_JARs\jaxen-1.1-beta-5.jar -DgroupId=org.jaxen -DartifactId=jaxen -Dversion=1.1-beta-5 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\FLIP_INTG_JARs\HubInterfaceRv-4.2.1.jar -DgroupId=com.git.mds.requester.rv -DartifactId=HubInterfaceRv -Dversion=4.2.1 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\FLIP_INTG_JARs\Config-1.0.jar -DgroupId=com.git.oms.cfg -DartifactId=Config -Dversion=1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\FLIP_INTG_JARs\HubInterface-4.2.7.jar -DgroupId=com.git.mds -DartifactId=HubInterface -Dversion=4.2.7 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\FLIP_INTG_JARs\tibrvj_8.0.4\tibrvj.jar -DgroupId=com.tibco.tibrv -DartifactId=tibrvj -Dversion=1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\JCaptcha\captcha-1.0.jar -DgroupId=com.octo.captchaservice -DartifactId=captcha -Dversion=1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\gson\gson-2.2.4.jar -DgroupId=com.google.code.gson -DartifactId=gson -Dversion=2.2.4 -Dpackaging=jar
+mvn install:install-file -Dfile=<FOLDER LOCATION>\MMFMavenJars\FLIP_INTG_JARs\Flair\MdsClientAPI.jar -DgroupId=com.git.mds.client -DartifactId=MdsClientAPI -Dversion=2.0.2 -Dpackaging=jar

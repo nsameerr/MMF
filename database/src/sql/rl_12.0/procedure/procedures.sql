@@ -1,0 +1,5 @@
+\. rl_12.0/procedure/UPDATE_CUSTOMER_POSITION_DETAILS.sql
+SELECT "rl_12.0/procedure/UPDATE_CUSTOMER_POSITION_DETAILS.sql completed" AS "";
+\. rl_12.0/procedure/EOD_CLIENT_PORTFOLIO_RETURNS_SP.sql
+SELECT "rl_12.0/procedure/EOD_CLIENT_PORTFOLIO_RETURNS_SP.sql completed" AS "";
+

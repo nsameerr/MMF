@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 26, 2016 6:44:40 PM by Hibernate Tools 5.1.0.Beta1 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.RiskprofileOptionWeightsTb" table="riskprofile_option_weights_tb" catalog="mmfdb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="QId" type="int">
+            <column name="q_id" not-null="true" />
+        </property>
+        <property name="AId" type="int">
+            <column name="a_id" not-null="true" />
+        </property>
+        <property name="weight" type="int">
+            <column name="weight" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

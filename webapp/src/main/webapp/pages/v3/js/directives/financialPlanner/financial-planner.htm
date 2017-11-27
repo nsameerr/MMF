@@ -1,0 +1,35 @@
+       
+    <div class="content_box_finance"> 
+        <div class="content_box_finance_hd"><h2>Personal Information <br> </h2> </div>
+        
+        <div class="content_box_finance_row">        
+            <div class="content_box_finance_c1"> <h3> What's your Gender?</h3> <br>
+                <div class="gender">           
+                    <div class="gender-column male">
+                      <input type="radio" id="radio01" name="gender" value="male" ng-model="userFpData.gender" ng-cloak/> <!--checked-->
+                      <label for="radio01"><span>Male</span></label> 
+                    </div>
+                    <div class="gender-column female">
+                     <input type="radio" id="radio02" name="gender" value="female" ng-model="userFpData.gender" ng-cloak/>
+                     <label for="radio02"><span>Female</span></label>
+                    </div>
+                </div>
+            </div>                          
+            <div class="content_box_finance_c1"> <h3> What's your relationship status?</h3> <br>             
+                <div class="gender">                  
+                    <div class="gender-column married">
+                      <input type="radio" id="married" name="relationship" value="married" ng-model="userFpData.relationStatus" ng-cloak/> <!-- checked-->
+                      <label for="married"><span>Married</span></label> 
+                    </div>
+                    <div class="gender-column single">
+                     <input type="radio" id="single" name="relationship" value="single" ng-model="userFpData.relationStatus" ng-cloak/>
+                     <label for="single"><span>Single</span></label>
+                    </div>
+                </div>                               
+            </div>        
+        </div>
+        
+        <div class="registration_row content_box_finance_row text-center">  
+            <input type="button" class="buttonFpNext btnNext" value="NEXT" ng-click="gotoNext()">             
+        </div>     
+    </div>

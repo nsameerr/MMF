@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <link type="text/css" href="#{request.contextPath}/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'/>
+        <link type="text/css" href="#{request.contextPath}/css/main.css" rel="stylesheet"/>
+        <link type="text/css" href="#{request.contextPath}/css/main_footer_style.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/custom.css" type="text/css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/style.css" type="text/css" rel="stylesheet" />
+        <script src="#{request.contextPath}/js/bootstrap.min.js"></script>
+        <script src="#{request.contextPath}/pages/v2/js/mixpanel.js"></script>
+        <script src="#{request.contextPath}/pages/v2/js/clevertap.js"></script>
+        <style type="text/css"></style>
+        <title>MMF</title>
+    </h:head>
+    <body>
+        <ui:insert name="static_header">
+            <ui:include src="/pages/template/components/static_header.xhtml" />
+        </ui:insert>
+        <ui:insert name="static_content_area">
+            <ui:include src="/pages/template/components/static_content_area.xhtml" />
+        </ui:insert>
+        <ui:insert name="static_footer">
+            <ui:include src="/pages/template/components/static_footer.xhtml" />
+        </ui:insert>
+    </body>
+</html>

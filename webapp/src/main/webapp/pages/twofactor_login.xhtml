@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title></title>
+
+        <!-- bootstrap -->
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet"/>
+
+
+        <!-- global styles -->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/layout.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/elements.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/icons.css"/>
+
+        <!-- libraries -->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/lib/font-awesome.css"/>
+
+        <!-- this page specific styles -->
+        <link rel="stylesheet" href="#{request.contextPath}/css/compiled/signup.css" type="text/css" media="screen"/>
+
+        <!-- open sans font -->
+        <link
+            href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800'
+            rel='stylesheet' type='text/css'/>
+
+    </h:head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <div class="header">
+            <h:commandLink action="/index" immediate="true">
+                <h:graphicImage url="/img/logo.png" class="logo"/>
+            </h:commandLink>
+        </div>
+        <ui:composition template="/pages/template/login_layout.xhtml">
+            <ui:define name="title">Login | ManageMyFortune.com</ui:define>
+            <ui:define name="login_body">
+                <h:form id="frm_login" onkeypress="if (event.keyCode === 13) {
+                            document.getElementById('frm_login:login_btn').click();
+                            return false;}">               
+                    <style>
+                        .radio{
+                            margin: 0px auto;
+                            width: 210px;
+                            margin-left: 85px;
+                            margin-bottom: 7px;
+                        }
+                        .radio td:nth-child(2) input{
+                            margin-left: 15px;
+                        }
+                        .action a{
+                            width: 55px;
+                        }
+                        form{
+                            margin: 0px;
+                        }
+                        p{
+                            font-size: 13px;
+                        }
+                        .err_message{
+                            font-size: 14px;
+                            color: red;
+                        }
+                        .dob{                            
+                            width: 300px;
+                        }
+                    </style>
+
+                    <div class="row-fluid login-wrapper">
+                        <div class="box">
+                            <div class="content-wrap">
+                                <h6>Two-Factor Log In</h6>
+                                <label style="float: left;margin-left: 56px;"> Enter Date of Birth </label>
+                                <div class="datepicker_box span8">
+                                    <h:inputText id="dob" maxlength="14"  required="true"
+                                                 requiredMessage="Please select date of birth"
+                                                 converterMessage="Invalid DOB format (Eg: 10-06-2015)"
+                                                 class="span12 datepicker no_lft_margin" value="#{loginController.dob}" autocomplete="off">
+                                        <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                    </h:inputText>												 
+                                    <i class="icon-calendar"></i>
+                                </div>
+                                <p:watermark for="dob" value="DD-MM-YYYY"/> 
+                                <div><h:message for="dob" styleClass="err_message"></h:message></div>
+                                <script src="#{request.contextPath}/js/bootstrap.datepicker.js"></script>
+                                <script type="text/javascript">
+                                    $(".datepicker_box .icon-calendar").click(function() {
+                                        $(this).prev(".datepicker").trigger("click").trigger("focus");
+                                    });
+                                    $('.datepicker').datepicker({
+                                        format: 'dd-mm-yyyy'
+                                    }).on('changeDate', function(ev) {
+                                        $(this).datepicker('hide');
+
+                                    });
+                                </script>
+                                <div class="datepicker datepicker-dropdown dropdown-menu" style="display: none; top: 553px; left: 708px; z-index: 10;"><div class="datepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">April 2014</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">30</td><td class="day old">31</td><td class="day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td><td class="day">5</td></tr><tr><td class="day">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td><td class="day">11</td><td class="day">12</td></tr><tr><td class="day">13</td><td class="day">14</td><td class="day">15</td><td class="day">16</td><td class="day">17</td><td class="day">18</td><td class="day">19</td></tr><tr><td class="day">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td><td class="day">24</td><td class="day">25</td><td class="day">26</td></tr><tr><td class="day">27</td><td class="day">28</td><td class="day">29</td><td class="day">30</td><td class="day new">1</td><td class="day new">2</td><td class="day new">3</td></tr><tr><td class="day new">4</td><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td><td class="day new">9</td><td class="day new">10</td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">2014</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month active">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">2010-2019</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year active">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr></tfoot></table></div></div>
+
+                                <div class="g-recaptcha" data-sitekey="#{loginController.captchaKey}"></div>
+                                <h:message for="login_btn" styleClass="err_message"/>    
+                                <div id="err_msg" style="color: red"> </div>
+                                <div class="action">
+                                    <h:commandLink styleClass="btn-flat success" value="Log In" id="login_btn"
+                                                   actionListener="#{loginController.doActionTwoFactorLoginListner}"
+                                                   action="#{loginController.loginRedirect}" onclick="return validateform();"> 
+                                    </h:commandLink>                                 
+                                </div>
+                                <script type="text/javascript">
+                                    function validateform() {
+                                        var captcha_response = grecaptcha.getResponse();
+                                        if (captcha_response.length === 0) {
+                                            // Captcha is not Passed
+                                            $("#err_msg").html('Please verify captcha');
+                                            return false;
+                                        }
+                                        else {
+                                            // Captcha is Passed
+                                            return true;
+                                        }
+                                    }
+                                </script>
+                            </div>
+                        </div>                     
+                    </div>
+                </h:form> 
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

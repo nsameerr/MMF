@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21 Sep, 2015 6:02:52 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.KitAllocationTb" table="kit_allocation_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="fromValue" type="java.lang.Integer">
+            <column name="fromValue" not-null="true" />
+        </property>
+        <property name="toValue" type="java.lang.Integer">
+            <column name="toValue" not-null="true" />
+        </property>
+        <property name="allocationDate" type="date">
+            <column name="allocation_date" length="10" />
+        </property>
+        <property name="kitStatus" type="string">
+            <column name="kit_status" length="15" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

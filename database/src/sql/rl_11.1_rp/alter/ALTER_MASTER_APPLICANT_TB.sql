@@ -1,0 +1,1 @@
+ALTER TABLE `master_applicant_tb` ADD `motherName` VARCHAR(100) NULL DEFAULT NULL ;

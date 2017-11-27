@@ -1,0 +1,94 @@
+<style>
+	.txtRupee{
+		background-image: url('img/icon_rupee.png');
+		background-repeat: no-repeat;
+		background-position: left center; 
+		background-size: auto 20px;
+		padding-left: 25px !important;
+		padding-bottom: 30px;
+	}
+	.calender{
+		background-image: url('img/icon_calender.png');
+		background-repeat: no-repeat;
+		background-position: right center; 
+		background-size: auto 20px;
+		padding-right: 25px !important;
+		padding-bottom: 30px;
+	}
+	
+	.icheckbox_square-green{
+		top: -7px;
+	    right: -15px;
+	}
+	    
+
+
+			
+</style>
+<div class="row-fluid">
+	<h2 class="page-title"> Sign In</h2>
+</div>
+
+<div id="divContent">
+	<h1>&nbsp;</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-4">
+				<h3>Investor</h3>
+				<h6>Select Free system recommended investment advisoryservice OR Find trusted and skilled SEBI registered Investment Advisors<br><br></h6>
+				<button type="button" class="btn-flat success">INVESTOR SIGN IN &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
+			</div>
+			<div class="col-md-1"></div>
+			<div class="col-md-4">
+				<h3>Advisor</h3>
+				<h6>Grow your business exponentially at zero cost targeting awider audience<br><br><br></h6>
+				<button type="button" class="btn-flat success">ADVISOR SIGN IN &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel"></h4>
+				</div>
+				<div class="modal-body">
+					this is modalbody
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+$( '.js-float-label-wrapper' ).FloatLabel();
+togglePasswordType = function(obj){
+	if(obj.value==''){
+		obj.setAttribute('type', 'text');
+	}
+	else{
+		obj.setAttribute('type', 'password');
+	}
+	return;
+}
+
+$(':input').each(function(){
+   	//console.log('hi');
+    var self = $(this);
+    label = self.next();
+    label_text = label.text();
+    //label.remove();
+    self.iCheck({
+    checkboxClass: 'icheckbox_square-green',
+    radioClass: 'iradio_square-green'
+    });
+       
+});
+</script>

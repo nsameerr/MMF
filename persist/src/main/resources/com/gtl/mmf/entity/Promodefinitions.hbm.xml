@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 13, 2015 10:58:19 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.Promodefinitions" table="promodefinitions" catalog="mmfdb">
+        <id name="promoId" type="int">
+            <column name="promoID" />
+            <generator class="assigned" />
+        </id>
+        <property name="promoName" type="string">
+            <column name="promoName" length="100" />
+        </property>
+        <set name="customerAdvisorMappingTbs" inverse="true">
+            <key>
+                <column name="promoId" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerAdvisorMappingTb" />
+        </set>
+        <set name="customerAdvisorMappingTbs_1" inverse="true">
+            <key>
+                <column name="promoId" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerAdvisorMappingTb" />
+        </set>
+        <set name="tieredpromocommissionmatrixes" inverse="true">
+            <key>
+                <column name="promoID" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.Tieredpromocommissionmatrix" />
+        </set>
+        <set name="advisorbucketwisepayoutses" inverse="true">
+            <key>
+                <column name="promoID" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.Advisorbucketwisepayouts" />
+        </set>
+        <set name="masterCustomerTbs" inverse="true">
+            <key>
+                <column name="promoId" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.MasterCustomerTb" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 15, 2016 5:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.FpTempLifeGoalsUserInputTb" table="fp_temp_life_goals_user_input_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="customerId" type="string">
+            <column name="customer_id" length="50" />
+        </property>
+        <property name="goalId" type="java.lang.Integer">
+            <column name="goal_id" />
+        </property>
+        <property name="goalDescription" type="string">
+            <column name="goal_description" length="40" />
+        </property>
+        <property name="yearOfRealization" type="java.lang.Integer">
+            <column name="year_of_realization" />
+        </property>
+        <property name="recurringFrequencyId" type="java.lang.Integer">
+            <column name="recurring_frequency_id" />
+        </property>
+        <property name="wantLoanYesNo" type="string">
+            <column name="want_loan_yes_no" length="5" />
+        </property>
+        <property name="estimatedAmountAsPerCurrentPrices" type="java.lang.Integer">
+            <column name="estimated_amount_as_per_current_prices" />
+        </property>
+    </class>
+</hibernate-mapping>

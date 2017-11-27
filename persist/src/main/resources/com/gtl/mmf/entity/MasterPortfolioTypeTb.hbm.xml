@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3 May, 2016 4:34:47 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.MasterPortfolioTypeTb" table="master_portfolio_type_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="masterPortfolioSizeTb" class="com.gtl.mmf.entity.MasterPortfolioSizeTb" fetch="select">
+            <column name="portfolio_size_id" />
+        </many-to-one>
+        <many-to-one name="masterPortfolioStyleTb" class="com.gtl.mmf.entity.MasterPortfolioStyleTb" fetch="select">
+            <column name="portfolio_style_id" />
+        </many-to-one>
+        <property name="cash" type="java.lang.Integer">
+            <column name="cash" />
+        </property>
+        <property name="gold" type="java.lang.Integer">
+            <column name="gold" />
+        </property>
+        <property name="debt" type="java.lang.Integer">
+            <column name="debt" />
+        </property>
+        <property name="equitiesIndex" type="java.lang.Integer">
+            <column name="equities_index" />
+        </property>
+        <property name="equitiesBluechip" type="java.lang.Integer">
+            <column name="equities_bluechip" />
+        </property>
+        <property name="equitiesMidcap" type="java.lang.Integer">
+            <column name="equities_midcap" />
+        </property>
+        <property name="equitiesSmallCap" type="java.lang.Integer">
+            <column name="equities_small_cap" />
+        </property>
+        <property name="fando" type="java.lang.Integer">
+            <column name="fando" />
+        </property>
+        <property name="international" type="java.lang.Integer">
+            <column name="international" />
+        </property>
+        <property name="commodities" type="java.lang.Integer">
+            <column name="commodities" />
+        </property>
+        <property name="mutualFunds" type="java.lang.Integer">
+            <column name="mutual_funds" />
+        </property>
+        <property name="rangeMinEquity" type="java.lang.Integer">
+            <column name="range_min__equity" />
+        </property>
+        <property name="rangeMinCash" type="java.lang.Integer">
+            <column name="range_min_cash" />
+        </property>
+        <property name="rangeMinGold" type="java.lang.Integer">
+            <column name="range_min_gold" />
+        </property>
+        <property name="rangeMinDebt" type="java.lang.Integer">
+            <column name="range_min_debt" />
+        </property>
+        <property name="rangeMinInternational" type="java.lang.Integer">
+            <column name="range_min_international" />
+        </property>
+        <property name="rangeMinFo" type="java.lang.Integer">
+            <column name="range_min_fo" />
+        </property>
+        <property name="rangeMinMutualFunds" type="java.lang.Integer">
+            <column name="range_min_mutual_funds" />
+        </property>
+        <property name="rangeMaxEquity" type="java.lang.Integer">
+            <column name="range_max_equity" />
+        </property>
+        <property name="rangeMaxCash" type="java.lang.Integer">
+            <column name="range_max_cash" />
+        </property>
+        <property name="rangeMaxGold" type="java.lang.Integer">
+            <column name="range_max_gold" />
+        </property>
+        <property name="rangeMaxDebt" type="java.lang.Integer">
+            <column name="range_max_debt" />
+        </property>
+        <property name="rangeMaxFo" type="java.lang.Integer">
+            <column name="range_max_fo" />
+        </property>
+        <property name="rangeMaxInternational" type="java.lang.Integer">
+            <column name="range_max_international" />
+        </property>
+        <property name="rangeMaxMutualFunds" type="java.lang.Integer">
+            <column name="range_max_mutual_funds" />
+        </property>
+        <property name="equityDiverisied" type="java.lang.Integer">
+            <column name="equity_diverisied" />
+        </property>
+        <property name="rangeMinEquityDiverisied" type="java.lang.Integer">
+            <column name="range_min_equity_diverisied" />
+        </property>
+        <property name="rangeMaxEquityDiverisied" type="java.lang.Integer">
+            <column name="range_max_equity_diverisied" />
+        </property>
+        <property name="midcap" type="java.lang.Integer">
+            <column name="midcap" />
+        </property>
+        <property name="rangeMinMicap" type="java.lang.Integer">
+            <column name="range_min_micap" />
+        </property>
+        <property name="rangeMaxMidcap" type="java.lang.Integer">
+            <column name="range_max_midcap" />
+        </property>
+        <property name="balanced" type="java.lang.Integer">
+            <column name="balanced" />
+        </property>
+        <property name="rangeMinBalanced" type="java.lang.Integer">
+            <column name="range_min_balanced" />
+        </property>
+        <property name="rangeMaxBalanced" type="java.lang.Integer">
+            <column name="range_max_balanced" />
+        </property>
+        <property name="debtLiquid" type="java.lang.Integer">
+            <column name="debt_liquid" />
+        </property>
+        <property name="rangeMinDebtLiquid" type="java.lang.Integer">
+            <column name="range_min_debt_liquid" />
+        </property>
+        <property name="rangeMaxDebtLiquid" type="java.lang.Integer">
+            <column name="range_max_debt_liquid" />
+        </property>
+        <property name="tax_planning" type="java.lang.Integer">
+            <column name="tax_planning" />
+        </property>
+        <property name="min_tax_planning" type="java.lang.Integer">
+            <column name="min_tax_planning" />
+        </property>
+        <property name="max_tax_planning" type="java.lang.Integer">
+            <column name="max_tax_planning" />
+        </property>
+        <set name="portfolioTbs" table="portfolio_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="portfolio_style" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.PortfolioTb" />
+        </set>
+        <set name="customerRiskProfileTbsForPortfolioStyle" table="customer_risk_profile_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="portfolio_style" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerRiskProfileTb" />
+        </set>
+        <set name="customerRiskProfileTbsForInitialPortfolioStyle" table="customer_risk_profile_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="initial_portfolio_style" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerRiskProfileTb" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,52 @@
+{
+  "publications": [
+    {
+      "name": "book 1",
+      "link": "https://platform/book"
+    },
+    {
+      "name": "book 2",
+      "link": "https://platform/book"
+    },
+    {
+      "name": "book 3",
+      "link": "https://platform/book"
+    },
+    {
+      "name": "book 4",
+      "link": "https://platform/book"
+    },
+    {
+      "name": "book 5",
+      "link": "https://platform/book"
+    },
+    {
+      "name": "book 6",
+      "link": "https://platform/book"
+    },
+    {
+      "name": "book 7",
+      "link": "https://platform/book"
+    },
+    {
+      "name": "book 8",
+      "link": "https://platform/book"
+    },
+    {
+      "name": "book 9",
+      "link": "https://platform/book"
+    },
+    {
+      "name": "book 10",
+      "link": "https://platform/book"
+    },
+    {
+      "name": "book 11",
+      "link": "https://platform/book"
+    },
+    {
+      "name": "book 12",
+      "link": "https://platform/book"
+    }
+  ]
+}

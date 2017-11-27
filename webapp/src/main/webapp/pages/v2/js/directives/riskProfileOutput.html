@@ -1,0 +1,212 @@
+<style>
+lable{
+	margin-left: 12px !important;
+}
+#divRiskProfile{
+	background-image:url('img/riskometer_bg.png');
+	background-size: 500px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#rsSalarySavingsRate .rs-handle  {
+    background-color: transparent;
+    border: 8px solid transparent;
+    border-right-color: black;
+    margin: -6px 0px 0px 14px !important;
+    border-width: 6px 104px 6px 4px;
+}
+#rsSalarySavingsRate .rs-handle:before  {
+    display: block;
+    content: " ";
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    background: black;
+    right: -11px;
+    bottom: -11px;
+    border-radius: 100px;
+}
+#rsSalarySavingsRate .rs-tooltip  {
+    top: 120%;
+    font-size: 20px;
+}
+#rsSalarySavingsRate .rs-tooltip div  {
+    text-align: center;
+    background: orange;
+    color: white;
+    border-radius: 4px;
+    padding: 1px 5px 2px;
+    margin-top: 4px;
+}
+#rsSalarySavingsRate .rs-range-color  {
+    background-color: #DB5959;
+}
+#rsSalarySavingsRate .rs-path-color  {
+    background-color: #F0C5C5;
+}
+
+#rsSalarySavingsRate{
+	margin-top:9px;
+}
+
+.rs-range-color{
+	background-color: #7BDB7B !important;
+}
+.rs-path-color{
+	background-color: #ECECEC !important;
+}
+
+.rs-control{
+	display: inline-block;
+}
+
+.rs-inner {
+display:none !important;
+	border:0px !important;
+}
+
+.rs-container{
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-inne{
+
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+.rs-block{
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-path{
+
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-handle{
+	margin-top: 20px !important
+}
+
+.rs-seperator{
+	border: 0px;
+}
+
+</style>
+<div class="row-fluid">
+	<!-- <h2 class="page-title"> Risk Profile --> 
+<!-- 		<div class="pull-right">
+			<a href="javascript:window.location.href='/pages/investordashboard.xhtml?faces-redirect=true'" class="btn-flat success" style="width:100%; text-align: center; padding:10px; color:#ffffff">
+				<< Back to dashboard
+			</a>
+		</div>
+		<div class="pull-right">
+			<a href="javascript:window.location.href='userProfile.html'" class="btn-flat success" style="width:100%; text-align: center; padding:10px; color:#ffffff">
+				>> PLAN YOUR GOALS , Update our financial planner >>
+			</a>
+		</div> -->
+	<!-- </h2> -->
+	<div class="col-md-8">
+		<h2 class="page-title"> Risk Profile</h2>
+	</div>
+	<div class="col-md-4" style="padding-top: 3%">
+		<a id="btnHeaderDashboard" href="javascript:window.location.href='/faces/pages/investordashboard.xhtml?faces-redirect=true'" class="btn-flat success" style=" text-align: center;float:right">
+				Dashboard
+		</a>
+		<a id ="btnNext" href="javascript:next()" class="btn-flat success" style=" text-align: center;float:right;display:none;">
+				Update your Financial Planner
+		</a>
+	</div>
+</div>
+<div id="divLoading"  style="display:none">Loading...</div>
+<div id="divContent">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<b>Your Risk Score</b>
+				</div>
+				<div class="panel-body">
+					<div id="divRiskProfile" style="height: 300px; padding-top: 100px; width: 100%; text-align: center; margin-top:-50px">
+						<div id="rsSalarySavingsRate" style="height: 320px !important; width:500px !important; "></div>
+						<div style="margin-top:20px; font-size: 20px"><b>Your Risk Score : <span id="spanRiskScore" style="background-color: #2E709F !important; color: #ffffff; border-radius: 25px;height: 50px; width: 50px;padding:10px">00</span></b></div>
+					</div>				    
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-default ">
+				<div class="panel-heading">
+					<b>Recommended Portfolio</b>
+				</div>
+				<div class="panel-body" style="padding: 0px">
+					<div id="divIRecommendedPortfolio" style="width: 500px; height: 280px; margin: auto; padding: 0px"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<b>Description</b>
+				</div>
+				<div class="panel-body" id="riskProfileDescription">
+					Loading...
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6" style="display:none;">
+			<a href="/pages/v2/riskProfile.jsp?faces-redirect=true" class="btn-flat inverse" style="width:100%; text-align: center; height:96px; padding-top: 23px">
+				<h4 style="color:#ffffff">Change your response</h4>
+			</a>
+		</div>
+		<div class="col-md-12">
+			<a id="btnFooterDashboard" class="btn-flat success" style="width:100%; text-align: center; height:96px; padding-top: 23px">
+				<!-- <div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-6"> -->
+						 <h4 style="color:#ffffff">Back To Dashboard</h4>
+						<!--Try our financial planner -->
+					<!-- 	
+					</div>
+					 <div class="col-md-2"><img alt="" src="img/cta.png"  style="height: 70px"></div> 
+					<div class="col-md-2"></div>
+				</div> -->
+			</a>
+			<script>
+				$('#btnFooterDashboard').click(function(event){
+					//href="javascript:window.location.href='/faces/pages/investordashboard.xhtml?faces-redirect=true'" 
+			  		$(this).attr('href',_gc_url_baseUrl + "/faces/pages/investordashboard.xhtml?faces-redirect=true");  		
+			  	}); 
+			</script>
+		</div>
+	</div>
+	
+	
+	<!-- Modal -->
+	<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel"></h4>
+	      </div>
+	      <div class="modal-body">
+	        this is modalbody
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
+<script>
+
+updateCharts();
+</script>
+

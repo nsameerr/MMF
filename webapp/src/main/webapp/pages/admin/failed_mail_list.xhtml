@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    </h:head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout_admin.xhtml">
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_admin.xhtml" />
+            </ui:define>
+            <ui:define name="title">
+                <h:outputText value="Send Mail Failed List - MMF"/>
+            </ui:define>
+            <ui:define name="content">
+                <style>
+                    .label-success{
+                        background-color: #81BD82;
+                    }
+                    .col1,.col2,.col3,.col4,.col5,.col6{
+                        padding: 8px;
+                    }
+                    .table,.table-hover{
+                        margin-bottom: 0px;
+                    }
+                    .table_content{
+                        font-family: 'Open Sans', sans-serif;
+                        font-size: 12px;
+                    }
+                    .col1{
+                        width: 16.5%;
+                    }
+                    .col2{
+                        width: 16.5%;
+                    }
+                    .col3{
+                        width: 16.5%;
+                    }
+                    .col4{
+                        width: 16.5%;
+                    }
+                    .col5{
+                        width: 16.5%;
+                    }
+                    .col6{
+                        width: 16.5%;
+                    }
+                </style>
+                <div class="container-fluid">
+                    <h:form id="frm_sendmail_failed_list" >
+                        <div id="pad-wrapper" style="margin-left: 14.3%;">
+                            <h2 class="page-title">Failed Mail List</h2>
+
+                            <div class="row-fluid filter-block">
+                                <div class="pull-left">
+                                    Search users <h:inputText styleClass="search"
+                                                              value="#{failedMailListController.searchText}"
+                                                              valueChangeListener="#{failedMailListController.searchTextChangeListener}"
+                                                              onchange="submit()"/>
+                                </div>
+
+                                <div class="pull-right">
+                                    Sort By:
+                                    <div class="ui-select">
+                                        <h:selectOneMenu value="#{failedMailListController.mailTypeSelected}" style="width:180px" id="mailType"> 
+                                            <f:selectItems value="#{failedMailListController.mailTypeList}" var="mailType" >
+                                            </f:selectItems>
+                                            <f:ajax listener="#{failedMailListController.mailTypeChangeListener}" event="change" execute="pagination selectAll emptymsg messageArea"
+                                                    render="emptymsg messageArea pagination "/> 
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <div class="align_center">
+                                <h:message  for="frm_sendmail_failed_list" style="color: red" />
+                            </div>
+                            <div class="row-fluid">
+                                <div class="table-wrapper">
+                                    <div class="row-fluid">
+                                        <h:panelGroup id="pagination">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="span1">
+                                                            <h:selectBooleanCheckbox id="selectAll" value="#{failedMailListController.selectAllFlag}" >
+                                                                <p:ajax update="regenerateAll pagination" listener="#{failedMailListController.selectAllChangeListener}"/> 
+                                                            </h:selectBooleanCheckbox>
+                                                        </th>
+                                                        <th class="span3">
+                                                            <span class="line"></span>Registration Number
+                                                        </th>
+                                                        <th class="span3">
+                                                            <span class="line"></span>Email
+                                                        </th>
+                                                        <th class="span3">
+                                                            <span class="line"></span>Purpose of Mail
+                                                        </th>
+                                                        <th class="span3">
+                                                            <span class="line"></span>Mail Send Status
+                                                        </th>
+
+                                                        <th class="span3">
+                                                            <span class="line"></span>Send Mail
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <ui:repeat var="failedMail" value="#{failedMailListController.failedMailmodel}">
+                                                        <p:remoteCommand name="selectUserRemote" actionListener="#{failedMailListController.onUserSelect()}" 
+                                                                         action="#{failedMailListController.getRedirectionUrl()}" update="@form"/>
+                                                        <tr onclick="selectUserRemote([{name: 'index', value: '#{failedMailListController.failedMailmodel.indexOf(failedMail)}'}]);" 
+                                                            style="cursor: pointer;">
+                                                            <td><h:selectBooleanCheckbox value="#{failedMail.checked}" onchange="submit()"
+                                                                                         valueChangeListener="#{failedMailListController.mailSelectChangeListener(failedMail)}">
+                                                                </h:selectBooleanCheckbox></td>
+                                                            <td>#{failedMail.regId}</td>
+                                                            <td>#{failedMail.email}</td>
+                                                            <td>#{failedMail.email_purpose}</td>
+                                                            <td><div class="#{failedMail.mailStatusStyle}" >#{failedMail.mailStatusText}</div></td>
+                                                            <td> 
+                                                                <h:commandLink  styleClass="#{!failedMailListController.multipleSelect?'btn-flat success':'btn-flat inverse'}"  
+                                                                                   style="width: 120px; height: 25px;text-align: initial; padding: 0px 0px 0px 3px;margin-left: 50px;text-decoration: none;" 
+                                                                                   value="Regenerate Mail" id="regenerate_mail_btn" immediate="true"
+                                                                                   disabled="#{failedMailListController.multipleSelect}"
+                                                                                   actionListener="#{failedMailListController.reSendFailedMail(failedMail)}" 
+                                                                                   action="#{failedMailListController.updateFailedMailDetails()}">
+                                                                </h:commandLink>
+                                                            </td>
+                                                        </tr>
+                                                    </ui:repeat>
+                                                    <tr>
+                                                        <td colspan="8" style="padding-left: 40%;">
+                                                            <h:panelGroup id="regenerateAll"  rendered="#{failedMailListController.multipleSelect and !(failedMailListController.failedMailDetails.isEmpty())}">
+                                                                <div>
+                                                                    <h:commandButton styleClass="btn-flat success"  value="Regenerate" 
+                                                                                     actionListener="#{failedMailListController.resendMultipleFailedMail()}"
+                                                                                     action="#{failedMailListController.updateFailedMailDetails()}" >
+                                                                    </h:commandButton>
+                                                                </div>
+                                                            </h:panelGroup>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div style="float: right;">
+                                                <h:commandButton value="Previous" action="#{failedMailListController.prev}"
+                                                                 styleClass="paging_button" 
+                                                                 rendered="#{failedMailListController.allowPrevious}"/>
+                                                <h:commandButton value="Next" action="#{failedMailListController.next}"
+                                                                 styleClass="paging_button"
+                                                                 rendered="#{failedMailListController.allowNext}"/>
+                                                <h:inputHidden value="#{failedMailListController.pageIndex}"/>
+
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup id="emptymsg">
+                                            <h:panelGroup rendered="#{failedMailListController.failedMailDetails.isEmpty()}" id="messageArea">
+                                                <div>
+                                                    <Span style="color: red;padding-left: 40%">No items to display. </Span>
+                                                </div>
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>             
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

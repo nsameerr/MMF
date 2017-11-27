@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Aug, 2015 4:24:44 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.TempAdv" table="temp_adv" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="registrationId" type="string">
+            <column name="registration_id" length="50" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>
+        <property name="firstname" type="string">
+            <column name="firstname" length="100" />
+        </property>
+        <property name="middlename" type="string">
+            <column name="middlename" length="100" />
+        </property>
+        <property name="lastname" type="string">
+            <column name="lastname" length="100" />
+        </property>
+        <property name="sebi" type="string">
+            <column name="sebi" length="20" />
+        </property>
+        <property name="validityReg" type="timestamp">
+            <column name="validity_reg" length="19" />
+        </property>
+        <property name="pan" type="string">
+            <column name="pan" length="20" />
+        </property>
+        <property name="dob" type="date">
+            <column name="dob" length="19" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="100" />
+        </property>
+        <property name="pincode" type="string">
+            <column name="pincode" length="10" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" length="50" />
+        </property>
+        <property name="state" type="string">
+            <column name="state" length="50" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="50" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="15" />
+        </property>
+        <property name="residentialTel" type="string">
+            <column name="residential_tel" length="15" />
+        </property>
+        <property name="organisation" type="string">
+            <column name="organisation" length="100" />
+        </property>
+        <property name="jobtitle" type="string">
+            <column name="jobtitle" length="100" />
+        </property>
+        <property name="offcAddress" type="string">
+            <column name="offc_address" length="100" />
+        </property>
+        <property name="offcPincode" type="string">
+            <column name="offc_pincode" length="10" />
+        </property>
+        <property name="offcCountry" type="string">
+            <column name="offc_country" length="50" />
+        </property>
+        <property name="offcState" type="string">
+            <column name="offc_state" length="50" />
+        </property>
+        <property name="offcCity" type="string">
+            <column name="offc_city" length="50" />
+        </property>
+        <property name="offcMob" type="string">
+            <column name="offc_mob" length="15" />
+        </property>
+        <property name="offcEmail" type="string">
+            <column name="offc_email" length="100" />
+        </property>
+        <property name="offcTel" type="string">
+            <column name="offc_tel" length="20" />
+        </property>
+        <property name="correspondenceAddrs" type="string">
+            <column name="correspondence_addrs" length="100" />
+        </property>
+        <property name="bankName" type="string">
+            <column name="bank_name" length="100" />
+        </property>
+        <!--
+        <property name="branch" type="string">
+            <column name="branch" length="100" />
+        </property>
+        -->
+        <property name="accountType" type="string">
+            <column name="account_type" length="100" />
+        </property>
+        <property name="accountNmbr" type="string">
+            <column name="account_nmbr" length="40" />
+        </property>
+        <property name="reAccno" type="string">
+            <column name="re_accno" length="40" />
+        </property>
+        <property name="ifsc" type="string">
+            <column name="ifsc" length="20" />
+        </property>
+        <property name="micr" type="string">
+            <column name="micr" length="20" />
+        </property>
+        <property name="bankAddrs" type="string">
+            <column name="bank_addrs" length="100" />
+        </property>
+        <property name="bankPincode" type="string">
+            <column name="bank_pincode" length="10" />
+        </property>
+        <property name="bankCountry" type="string">
+            <column name="bank_country" length="50" />
+        </property>
+        <property name="bankState" type="string">
+            <column name="bank_state" length="50" />
+        </property>
+        <property name="bankCity" type="string">
+            <column name="bank_city" length="50" />
+        </property>
+        <property name="primaryQualificationDegree" type="string">
+            <column name="primary_qualification_degree" length="20" />
+        </property>
+        <property name="primaryQualificationInstitute" type="string">
+            <column name="primary_qualification_institute" length="50" />
+        </property>
+        <property name="primaryQualificationYear" type="string">
+            <column name="primary_qualification_year" length="5" />
+        </property>
+        <property name="primaryQualificationId" type="string">
+            <column name="primary_qualification_id" length="20" />
+        </property>
+        <property name="secondaryQualificationDegree" type="string">
+            <column name="secondary_qualification_degree" length="20" />
+        </property>
+        <property name="secondaryQualificationInstitute" type="string">
+            <column name="secondary_qualification_institute" length="50" />
+        </property>
+        <property name="secondaryQualificationYear" type="string">
+            <column name="secondary_qualification_year" length="5" />
+        </property>
+        <property name="secondaryQualificationId" type="string">
+            <column name="secondary_qualification_id" length="20" />
+        </property>
+        <property name="tertiaryQualificationDegree" type="string">
+            <column name="tertiary_qualification_degree" length="20" />
+        </property>
+        <property name="tertiaryQualificationInstitute" type="string">
+            <column name="tertiary_qualification_institute" length="50" />
+        </property>
+        <property name="tertiaryQualificationYear" type="string">
+            <column name="tertiary_qualification_year" length="5" />
+        </property>
+        <property name="tertiaryQualificationId" type="string">
+            <column name="tertiary_qualification_id" length="20" />
+        </property>
+        <property name="sebiPath" type="string">
+            <column name="sebi_path" length="100" />
+        </property>
+        <property name="resCityOther" type="string">
+            <column name="resCityOther" length="50" />
+        </property>
+        <property name="offCityOther" type="string">
+            <column name="offCityOther" length="50" />
+        </property>
+        <property name="bnkCityOther" type="string">
+            <column name="bnkCityOther" length="50" />
+        </property>
+        <property name="indvOrCprt" type="java.lang.Boolean">
+            <column name="indvOrCprt" />
+        </property>
+        <property name="advPicPath" type="string">
+        	<column name="advPicPath" length="100"></column>
+        </property>
+        <property name="oneLineDesc" type="string">
+        	<column name="oneLineDesc" length="100"></column>
+        </property>
+        <property name="aboutMe" type="string">
+        	<column name="aboutMe" length="200"></column>
+        </property>
+        <property name="myInvestmentStrategy" type="string">
+        	<column name="myInvestmentStrategy" length="200"></column>
+        </property>
+    </class>
+</hibernate-mapping>

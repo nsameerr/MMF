@@ -1,0 +1,5 @@
+\. rl_16.0/procedure/UPDATE_CUSTOMER_POSITION_DETAILS.sql
+SELECT "rl_16.0/procedure/UPDATE_CUSTOMER_POSITION_DETAILS.sql completed" AS "";
+
+
+

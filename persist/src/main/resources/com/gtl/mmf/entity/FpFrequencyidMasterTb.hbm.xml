@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 19, 2016 1:06:45 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.FpFrequencyidMasterTb" table="fp_frequencyid_master_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="frequencyId" type="java.lang.Integer">
+            <column name="frequency_id" />
+        </property>
+        <property name="frequencyDescription" type="string">
+            <column name="frequency_description" length="40" />
+        </property>
+    </class>
+</hibernate-mapping>

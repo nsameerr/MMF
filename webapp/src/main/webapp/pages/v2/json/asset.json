@@ -1,0 +1,25 @@
+{
+	"customerRegistrationId" : 123,
+	"riskScore" : 72,
+	"riskProfileDescription" : "blablabla",
+	"recommendedAssetAllocation" : [
+		{
+			"assetClassId" : 1,
+			"assetClassName" : "one",
+			"percentageAllocation" : 12,
+			"colourCode" : "#DDDD22"
+		},
+		{
+			"assetClassId" : 2,
+			"assetClassName" : "two",
+			"percentageAllocation" : 24,
+			"colourCode" : "#DD2222"
+		},
+		{
+			"assetClassId" : 3,
+			"assetClassName" : "three",
+			"percentageAllocation" : 36,
+			"colourCode" : "#222222"
+		}
+	]
+}

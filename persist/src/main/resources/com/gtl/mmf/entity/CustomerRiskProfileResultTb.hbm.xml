@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 1, 2016 4:15:48 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerRiskProfileResultTb" table="customer_risk_profile_result_tb" catalog="mmfdb">
+        <id name="responseSetId" type="java.lang.Integer">
+            <column name="response_set_id" />
+            <generator class="identity" />
+        </id>
+        <property name="customerRegistrationId" type="string">
+            <column name="customer_registration_id" length="50" />
+        </property>
+        <property name="dateTime" type="timestamp">
+            <column name="date_time" length="19" />
+        </property>
+        <property name="riskScore" type="java.lang.Integer">
+            <column name="risk_score" />
+        </property>
+        <property name="riskProfileGroupId" type="java.lang.Integer">
+            <column name="risk_profile_group_id" />
+        </property>
+        <property name="riskProfileRecommemdedPortfolioId" type="java.lang.Integer">
+            <column name="risk_profile_recommemded_portfolio_id" />
+        </property>
+    </class>
+</hibernate-mapping>

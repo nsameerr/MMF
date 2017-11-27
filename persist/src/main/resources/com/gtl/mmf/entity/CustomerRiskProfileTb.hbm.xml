@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6 May, 2016 9:22:56 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerRiskProfileTb" table="customer_risk_profile_tb" catalog="mmfdb">
+        <id name="riskProfileId" type="java.lang.Integer">
+            <column name="risk_profile_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="masterBenchmarkIndexTb" class="com.gtl.mmf.entity.MasterBenchmarkIndexTb" fetch="select">
+            <column name="benchmark" />
+        </many-to-one>
+        <many-to-one name="masterPortfolioTypeTb" class="com.gtl.mmf.entity.MasterPortfolioTypeTb" fetch="select">
+            <column name="portfolio_type" />
+        </many-to-one>
+        <many-to-one name="masterPortfolioSizeTbByPortfolioSize" class="com.gtl.mmf.entity.MasterPortfolioSizeTb" fetch="select">
+            <column name="portfolio_size" />
+        </many-to-one>
+        <many-to-one name="customerAdvisorMappingTb" class="com.gtl.mmf.entity.CustomerAdvisorMappingTb" fetch="select">
+            <column name="relation_id" unique="true" />
+        </many-to-one>
+        <many-to-one name="masterPortfolioStyleTbByPortfolioStyle" class="com.gtl.mmf.entity.MasterPortfolioStyleTb" fetch="select">
+            <column name="portfolio_style" />
+        </many-to-one>
+        <many-to-one name="masterPortfolioSizeTbByInitialPortfolioSize" class="com.gtl.mmf.entity.MasterPortfolioSizeTb" fetch="select">
+            <column name="initial_portfolio_size" />
+        </many-to-one>
+        <many-to-one name="masterPortfolioStyleTbByInitialPortfolioStyle" class="com.gtl.mmf.entity.MasterPortfolioStyleTb" fetch="select">
+            <column name="initial_portfolio_style" />
+        </many-to-one>
+        <property name="riskScore" type="java.lang.Integer">
+            <column name="risk_score" />
+        </property>
+        <property name="expReturn" type="java.lang.Float">
+            <column name="exp_return" precision="5" />
+        </property>
+        <property name="investHorizon" type="java.lang.Integer">
+            <column name="invest_horizon" />
+        </property>
+        <property name="liquidityReqd" type="java.lang.Float">
+            <column name="liquidity_reqd" precision="5" />
+        </property>
+        <property name="incomeReqd" type="java.lang.Float">
+            <column name="income_reqd" precision="5" />
+        </property>
+    </class>
+</hibernate-mapping>

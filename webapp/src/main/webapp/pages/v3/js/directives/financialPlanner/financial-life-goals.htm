@@ -1,0 +1,118 @@
+    <!--Financial Planner : Life Goals-->
+    <style type="text/css">
+      .other_input{
+        font-family: 'ProximaNova-Regular';
+        font-size: 14px;
+        outline: none;
+        background: none;
+      }
+    </style>
+    <div class="content_box_finance">     
+        <div class="life_goal_section lifegoal ">
+                <div class="content_box_finance_hd"> 
+                        <h2>Life Goals<br> </h2>
+                        <!-- <h2>What are your Life Goals? <br> </h2>  -->
+                </div>                        
+                <div class="goals_table">
+                  <div class="goals_row head">
+                      <div class="column column1">
+                          <h5>Life Goals</h5>
+                      </div>
+                      <div class="column column2">
+                          <h5>Frequency</h5>
+                      </div>
+                      <div class="column column3">
+                          <h5>Years of Realization</h5>
+                      </div>
+                      <div class="column column4">
+                          <h5>Current Estimated Amount</h5>
+                      </div>
+                      <div class="column column5">
+                          <h5>Source of Funds<!-- Loan --></h5>
+                      </div>
+                  </div>
+                  <div id="added_life_goal_row" class="goals_row body" ng-if="userFpData.lifeGoals.length == 0 && goalPageVisited" ng-cloak>
+                      <div class="column column1">
+                        <select id="select_life_goal_row_0" class="goal_select goalCol1 lifeGoalOption" ng-model="lifeGoal1" ng-init="lifeGoal1 = '5'">
+                            <option ng-repeat="lifeGoal in lifeGoalsList" value="{{lifeGoal.id}}">{{lifeGoal.name}}</option>
+                        </select>
+                        <input type="text" class="other_input alphaSpaceOnly" maxlength="25" autofocus ng-if="lifeGoal1 == '0'" ng-model="lifeGoalOther1" placeholder="Type Life Goal Here...">
+                      </div>
+                      <div class="column column2" >
+                          <select class="goal_select goalCol2" ng-model="lifeGoalFreq1" ng-init="lifeGoalFreq1 = '0'" ng-if="lifeGoal1 == '6' || lifeGoal1 == '7'">
+                            <option ng-repeat="lifeGoalsFrequency in lifeGoalsFrequencyList" value="{{lifeGoalsFrequency.id}}">{{lifeGoalsFrequency.name}}</option>
+                          </select>
+                      </div>
+                      <div class="column column3">
+                          <select class="goal_select goalCol3" ng-model="lifeGoalYear1" ng-init="lifeGoalYear1 = (''+yearStart)">
+                            <option ng-repeat="x in lifeGoalsYearList">{{x}}</option>
+                          </select>
+                      </div>
+                      <div class="column column4">
+                        <div class="edit_graph_row">
+                            <div class="edit_graph_data">
+                                <div class="age1">
+                                    <label for="lifeGoalPrice-0"><i class="fa fa-inr"></i></label><input class="estim_amt" type="text" id="lifeGoalPrice-0" readonly style="border:0;">
+                                    <div id="sliderprice-range-goal-estimate-amount-0" class="edit_graph_bar" ></div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="column column5">
+                          <div class="switch_tog">
+                            <div class="switch tab_controls">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab">Savings</a></li>
+                                    <li><a data-toggle="tab">Loan</a></li>
+                                </ul>
+                            </div>
+                          </div>
+                          <div class="ed_del uneditable">
+                              <span id="delete_row" class="delete"><a><i class="fa fa-times" aria-hidden="true"></i></a></span>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="add_row_blk">
+                    <a class="add_row" id="add_row_life_goal" ng-click="addNewLifeGoalRow()"> </a>
+                </div>
+
+        </div>
+        <div class="registration_row content_box_finance_row text-center">  
+            <input type="button" value="Back" class="buttonFpBack btnPrev" ng-click="gotoPrev()"> &nbsp; 
+            <input type="button" value="NEXT" class="buttonFpNext btnNext" ng-click="saveFpLifeGoal();gotoNext()"> 
+        </div>              
+    </div>    
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script>
+$(".checkbox").click(function(){
+    $(this).toggleClass('checked')
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  // $.getScript( "js/directives/financialPlanner/jquery-punch.js", function( data, textStatus, jqxhr ) {
+  //         eval(data);
+  //         // console.log( data ); // Data returned
+  //         // console.log( textStatus ); // Success
+  //         // console.log( jqxhr.status ); // 200
+  //         // console.log( "Load was performed." );
+  //       });
+
+  
+  $('#delete_row').click(function(){
+    $('#added_life_goal_row').remove();
+  });
+
+  
+  //Validate Input Field
+  $( document ).on( "keypress", ".alphaSpaceOnly", function(event) {
+      var regex = new RegExp("^[a-zA-Z\\-\\s]+$");
+      var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+      if (!regex.test(key)) {
+         event.preventDefault();
+         return false;
+      }
+  });
+});     
+</script>

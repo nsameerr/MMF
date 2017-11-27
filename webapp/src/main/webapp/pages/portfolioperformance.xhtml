@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout.xhtml">
+            <ui:define name="title">Assign Portfolio | ManageMyFortune.com</ui:define>
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_user.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            stopSpinner();
+                        });
+                    </script>
+                    <div class="content section portfolio_permf">
+                        <div id="pad-wrapper">
+                            <h2 class="page-title no-margin-bottom two-baseline-margin-bottom">Portfolio Performance</h2>
+                            <p:remoteCommand name="selectPortfolioPerformance" action="#{advisorDashBoardController.onClickPortfolioPerformance}"/>
+                            <div class="row-fluid two-baseline-margin-bottom table-wrapper orders-table scrollbox">
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th class="port_head" colspan="2">Returns</th>
+                                            <th class="port_head" colspan="2">Benchmark Returns</th>
+                                            <th class="align_center">Last Modified</th>
+                                            <th class="align_center">Number of Clients</th>
+                                        </tr>
+                                        <tr class="top-row">
+                                            <th class="align_center">Portfolio</th>
+                                            <th class="align_center">3 Months</th>
+                                            <th class="align_center">1 year</th>
+                                            <th class="align_center">3 Months</th>
+                                            <th class="align_center">1 year</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <ui:repeat value="#{advisorDashBoardController.portfolioPerformanceVOs}"
+                                                   var="pfPerformance" varStatus="status">
+                                            <tr onclick="selectPortfolioPerformance([{name: 'PotfolioId', value: '#{pfPerformance.portfolioId}'}]);"
+                                                style="cursor: pointer;">
+                                                <td>#{pfPerformance.portfolioName}</td>
+                                                <td class="align_right">#{pfPerformance.portfolio_90_day_returns}%</td>
+                                                <td class="align_right">#{pfPerformance.portfolio_1_year_returns}%</td>
+                                                <td class="align_right">#{pfPerformance.benchmark_90_days_returns}%</td>
+                                                <td class="align_right">#{pfPerformance.benchmark_1_year_returns}%</td>
+                                                <td class="align_right">#{pfPerformance.lastModified}</td>
+                                                <td class="align_right">#{pfPerformance.noOfClients}</td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

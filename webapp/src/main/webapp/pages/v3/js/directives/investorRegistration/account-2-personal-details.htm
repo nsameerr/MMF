@@ -1,0 +1,152 @@
+
+<div class="content_box">
+
+	<div class="account_open_row">
+		<h3>Personal Details</h3>
+	</div>
+    <div class="note">Note : Please ensure name matches your PAN </div>
+	<div class="accfrmsec">
+		<div class="accfrm_row mobile_block">
+			<h5>Take a photo or Upload an image of your PAN Card</h5>
+		</div>
+		<div class="accfrm_row upload_row">
+
+			<div class="accfrm_row_c1">
+				<!--camera start -->
+				<div class="camera-sec">
+					<span id="fileselector_camera"> 
+					<label class="upload_outer" ng-click="onLabelClick('personal');" for="panFilePathx">
+							<div class="camera_icon">&nbsp;</div> <input type="file" capture="camera" accept="image/*" id="panFilePath" name="panFilePath" style="display: none;" onchange="angular.element(this).scope().uploadPanCard('camicon')">
+							<div class="uploadtxt">
+								<span class="mobile_hide">Take a photo of your </span>PAN Card  
+
+							</div>
+
+					</label>
+
+					</span>
+
+					<div class="ortxt">or</div>
+				</div>
+				<!--camera end -->
+			</div>
+            
+			<div class="accfrm_row_c2">
+				<span id="fileselector"> <label class="upload_outer" for="panFilePathFU">
+						<div class="upload_icon">&nbsp;</div> <input id="panFilePathFU" type="file" onchange="angular.element(this).scope().uploadPanCard('uploadicon')" accept=".jpeg,.pdf,.PNG,.jpg,.PDF,.png,.JPEG,.JPG" style="display:none;">
+						<div class="uploadtxt">
+
+						Upload <span class="mobile_hide">an image of your PAN Card</span>
+						</div>
+				</label>
+				</span>
+			</div>
+			<div class="mobile_hide" style="width: 50%;margin-left: 275px;"><h5>OR</h5></div>
+		</div>
+		<div class="accfrm_row" ng-show="data.panFilePath!='' && data.panFilePath !=null && data.panFilePath != undefined">
+			<div class="tick">
+				<span class="glyphicon glyphicon-paperclip"></span>{{data.panFilePath.split('/')[data.panFilePath.split('/').length-1]}}
+			</div>
+		</div>	
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<h4>Please verify your information</h4>
+			</div>
+			<!-- <div class="accfrm_row_c2">
+				Edit Details Manually
+				<div class="chkbox">
+					<input type="radio" id="yes" name="pdedit"  ng-model="pdedit" ng-change="onChangePDedit()" value="yes" ng-checked="false"/>
+					<label for="yes">Yes</label>
+					<input type="radio" id="no" name="pdedit" ng-model="pdedit" ng-change="onChangePDedit()" value="no" ng-checked="true"/>
+					<label for="no">No</label>
+				</div>
+			</div> -->
+		</div>
+
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<div class="accfrm_row_c1">
+					<input type="text" id="firstname" name="first_name" placeholder="First Name" ng-model="data.firstname" maxlength="12" class="alphaWithSpace" ng-disabled="pdedit=='no'">
+				</div>
+				<div class="accfrm_row_c2">
+					<input type="text" id="middlename" name="middle_name" placeholder="Middle Name" ng-model="data.middlename" maxlength="12" class="alphaWithSpace" ng-disabled="pdedit=='no'">
+				</div>
+			</div>
+			<div class="accfrm_row_c2">
+				<input type="text" id="lastname" name="last_name" placeholder="Last Name" ng-model="data.lastname" maxlength="12" class="alphaWithSpace" ng-disabled="pdedit=='no'">
+			</div>
+		</div>
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<input type="text" id="fatherSpouse" name="fatherSpouse" placeholder="Father/ Spouse Name" ng-model="data.fatherSpouse" maxlength="40" class="alphaWithSpace" ng-disabled="pdedit=='no'">
+			</div>
+			<div class="accfrm_row_c2">
+				<input type="text" id="motherName" name="motherName" placeholder="Mothers Name" ng-model="data.motherName" maxlength="40" class="alphaWithSpace" ng-disabled="pdedit=='no'">
+			</div>
+		</div>
+
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<div class="col_in1">Date of Birth</div>
+				<div class="col_in2">
+					<input type="text" id="dob" name="calendar" class="calendar_icon my_calendar calendar" placeholder="" ng-model="data.dob" ng-disabled="pdedit=='no'">
+				</div>
+			</div>
+			<div class="accfrm_row_c2">
+				<select name="gender" id="gender" ng-model="data.gender" ng-disabled="pdedit=='no'">
+					<option value="" selected>Gender</option>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+				</select>
+			</div>
+		</div>
+
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<select name="nationality" id="nationality" ng-model="nationality" ng-options="item.name for item in globalCountryList track by item.value" ng-change="onChangeNation()" ng-disabled="true">
+					<option value="" >Select Nationality</option>
+					
+				</select>
+			</div>
+			<div class="accfrm_row_c2">
+				Marital status
+				<div class="chkbox">
+					<input type="radio" id="Single" name="relationship" ng-model="data.mstatus" value="Single" ng-disabled="pdedit=='no'" value="Single" ng-checked="true"/>
+					<label for="Single">Single</label>
+					<input type="radio" id="Married" name="relationship" ng-model="data.mstatus" value="Married" ng-disabled="pdedit=='no'" value="Married"/>
+					<label for="Married">Married</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<select name="Residential" id="Residential" ng-model="status" ng-options="item.name for item in globalResidential track by item.value" ng-disabled="true">
+					<option value="" >Select Residential</option>
+				</select>
+			</div>
+			<div class="accfrm_row_c2">
+				<input type="text" id="pan" name="pan" placeholder="PAN Number" ng-model="data.pan" maxlength="10" onblur="javascript:validatePanNumber(this);" ng-disabled="pdedit=='no'">
+			</div>
+		</div>
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<input type="text" id="uid" name="uid" placeholder="UID/Aadhaar Number" ng-model="data.uid" maxlength="12" class="numericOnly" ng-disabled="pdedit=='no'">
+			</div>
+		</div>
+
+	</div>
+
+	<div class="account_open_row text-center">
+		<br>
+		<input type="submit" name="back" id="back" value="Back" class="back btnPrev" ng-click="goPrev();">
+		&nbsp;
+		<input type="submit" name="next" id="next" value="Next" class="btnNext" ng-click="goNext();">
+	</div>
+
+
+</div>

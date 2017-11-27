@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    </h:head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/login_layout.xhtml">
+            <ui:define name="title">Register | ManageMyFortune.com</ui:define>
+            <ui:define name="login_body">
+                <style>
+                    .radio{
+                        margin: 0px auto;
+                        width: 210px;
+                        margin-left: 85px;
+                        margin-bottom: 7px;
+                    }
+                    .radio td:nth-child(2) input{
+                        margin-left: 15px;
+                    }
+                </style>
+                <div class="row-fluid login-wrapper">
+                    <h:form id="frm_init_reg" onkeypress="if (event.keyCode === 13) {
+                                document.getElementById('frm_init_reg:signup_btn').click();
+                                return false;
+                            }">
+                        <div class="box">
+                            <div class="content-wrap">
+                                <h6>Register</h6>
+
+                                <h:selectOneRadio styleClass="radio"  id="optionsRadios1" value="#{initUserRegistrationBean.advisor}"
+                                                  onchange="callRemoteValueChange();">
+                                    <f:selectItem  itemLabel="Investor" itemValue="#{false}"/>
+                                    <f:selectItem  itemLabel="Advisor" itemValue="#{true}"/>
+                                </h:selectOneRadio>
+                                <div class="field-box">
+                                    <h:inputText id="email" value="#{initUserRegistrationBean.email}" styleClass="span12" required="true"
+                                                 maxlength="50"
+                                                 requiredMessage="Please enter email" validatorMessage="Invalid email format">
+                                        <f:validateRegex
+                                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                    </h:inputText>
+                                    <p:watermark for="email" value="Enter Email"/>
+                                    <h:message for="email" styleClass="err_message"></h:message>
+                                </div>
+                                <div class="field-box">
+                                    <h:inputSecret id="newpassword" value="#{initUserRegistrationBean.newPassword}"
+                                                   redisplay ="true" styleClass="span12"
+                                                   validatorMessage="Password must have length at least 6-20 characters including number, characters and special characters."
+                                                   required="true" requiredMessage="Please enter new password">
+                                        <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[^\W]).{6,20})"/>
+                                    </h:inputSecret>
+                                    <p:watermark for="newpassword" value="Password"/>
+                                    <h:message for="newpassword" styleClass="err_message"></h:message>
+                                </div>
+                                <div class="field-box">
+                                    <h:inputSecret id="repassword" value="#{initUserRegistrationBean.confirmPassword}"
+                                                   redisplay ="true" styleClass="span12"
+                                                   required="true" requiredMessage="Please re-enter new password">
+                                    </h:inputSecret>
+                                    <p:watermark for="repassword" value="Re-enter new password"/>
+                                    <h:message for="repassword" styleClass="err_message"></h:message>
+                                </div>
+                                <div class="terms_conditions">
+                                    <label>
+                                        <label>
+                                            <h:selectBooleanCheckbox id="chk_box_agree"
+                                                                     value="#{initUserRegistrationBean.agreeTermsCondition}">
+                                            </h:selectBooleanCheckbox>
+                                        </label>
+                                        <span for="chk">I/We hereby agree ManageMyFortune.com
+                                            <a href="#{request.contextPath}/faces/pages/terms_and_conditions.xhtml"
+                                               target="_blank"> Terms and Conditions </a> 
+                                            and <a href="#{request.contextPath}/faces/pages/privacy_policy.xhtml"
+                                                   target="_blank">Privacy Policy</a></span>
+                                    </label>
+                                </div>
+                                <h:message for="chk_box_agree" styleClass="err_message"></h:message>
+                                <div class="action">
+                                    <h:commandLink styleClass="btn-flat success" value="Sign up" id="signup_btn"
+                                                   actionListener="#{initUserRegistrationBean.doActionSignUp}"
+                                                   action="#{initUserRegistrationBean.signUp}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="user_login_type" name="user_login_type" />
+                        <div class="span4 already">
+                            <p>Already have an account?</p>
+                            <h:commandLink value="Sign in" action="#{initUserRegistrationBean.signIn}" immediate="true"></h:commandLink>
+                        </div>
+                        <script type="text/javascript">
+                            function  callRemoteValueChange() {
+                                var value = document.getElementById('frm_init_reg:optionsRadios1:0').checked;
+                                document.getElementById("user_login_type").value = value;
+                            }
+
+                        </script>
+                    </h:form>
+                </div>
+                <style>
+                    #frm_init_reg:optionsRadios1{
+                        width: 100%;
+                    }
+                    #frm_init_reg:optionsRadios1 td input{
+                        float: left;
+                    }
+                </style>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,1 @@
+ALTER TABLE `temp_inv` ADD `motherName` VARCHAR(50) NULL DEFAULT NULL ;

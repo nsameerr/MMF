@@ -1,0 +1,22 @@
+create table `mmf_daily_transactionsummary` (
+	`SlNo` int (11) NOT NULL AUTO_INCREMENT,
+	`TranDate` datetime ,
+	`TradeCode` varchar (48),
+	`ClientId` varchar (45),
+	`OrderNo` varchar (192),
+	`Product` varchar (96),
+	`Security` varchar (96),
+	`Instrument` varchar (96),
+	`Contract` varchar (96),
+	`BuySell` char (3),
+	`Quantity` Decimal (11),
+	`Price` Decimal (12),
+	`Units` Decimal (11),
+	`Volume` Decimal (12),
+	`Brokerage` Decimal (12),
+	`OtherCharges` Decimal (12),
+	`Channel` varchar (96),
+	`venue_script_code` varchar (96),
+	`Euser` varchar (48),
+	`lastUpdatedOn` datetime 
+); 

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+    </h:head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout_admin.xhtml">
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_admin.xhtml" />
+            </ui:define>
+            <ui:define name="title">
+                <h:outputText value="Allocate Registration Kit - MMF"/>
+            </ui:define>
+            <ui:define name="content">
+                <style>
+                    .label-success{
+                        background-color: #81BD82;
+                    }
+                    .table,.table-hover{
+                        margin-bottom: 0px;
+                    }
+                    .table_content{
+                        font-family: 'Open Sans', sans-serif;
+                        font-size: 12px;
+                        text-align: center !important;
+                    }
+                    
+                    .btn-flat {
+                        width: 100px;
+                        margin-right: 12px;
+                        text-align: center;
+                        margin-top: 12px;
+                    }
+                    .container {
+                        display: table-cell;
+                        text-align: center;
+                        vertical-align: left;
+                    }
+                    .info_message{
+                                font-weight: bolder;
+                                color: green;
+                    }
+                </style>
+                <div class="container-fluid">
+                    <h:form id="frm_kit_list" >
+                        <div id="pad-wrapper" style="margin-left: 14.3%;">
+                            <h2 class="page-title">Client Registration Kit Allocation</h2>
+                            <div class="row-fluid" style="margin-left: 18%;">
+                                <div class="span2">
+                                    From: <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                       id="from" required="true" requiredMessage="Please enter start value"
+                                                       value="#{KitAllocationController.startValue}"
+                                                       maxlength="10" />
+                                    <br/>
+                                    <h:message for="from" styleClass="err_message"/>
+                                </div>
+                                <div class="span2">
+                                    To:
+                                    <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                 id="to" required="true" requiredMessage="Please enter end value"
+                                                 value="#{KitAllocationController.endValue}"
+                                                 maxlength="10" />
+                                    <br/>
+                                    <h:message for="to" styleClass="err_message"/>
+                                </div>
+
+                                <div class="span2">
+                                   <h:commandLink styleClass="btn-flat success" value="Add" id="add_btn"
+                                                  actionListener="#{KitAllocationController.saveNewAllocation}"
+                                                  action="#{KitAllocationController.getredirectPage()}"/>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <div class="align_center">
+                                <h:messages globalOnly="true" layout="table" errorClass="err_message" infoClass="info_message"/> 
+                            </div>
+                            <br/><br/>
+                            <div class="row-fluid">
+                                <div class="table-wrapper">
+                                    <div class="row-fluid">
+                                        <h:panelGroup id="pagination">
+                                            <table class="table" style="max-width: 50%;margin-left: 18%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="span3">
+                                                            Date Of Allocation
+                                                        </th>
+                                                        <th class="span3">
+                                                            From
+                                                        </th>
+                                                        <th class="span3">
+                                                            To
+                                                        </th>
+                                                        <th class="span3 align_center">
+                                                            Balance Unit
+                                                        </th>
+                                                        <th class="span3 align_center">
+                                                            Status
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                  
+                                                    <ui:repeat var="alloctnlist" value="#{KitAllocationController.regKitmModel}">
+                                                        <tr style="cursor: pointer;">
+                                                            
+                                                            <td>#{alloctnlist.allocationDate}</td>
+                                                            <td>#{alloctnlist.from}</td>
+                                                            <td>#{alloctnlist.to}</td>
+                                                            <td class="align_center">#{alloctnlist.balance}</td>
+                                                            <td class="#{alloctnlist.styleClass}"><b>#{alloctnlist.status}</b></td>
+                                                        </tr>
+                                                    </ui:repeat>
+                                                </tbody>
+                                                   
+                                            </table>
+                                            <div class="container">
+                                                <h:commandButton value="Previous" action="#{KitAllocationController.prev}"
+                                                                 styleClass="paging_button" immediate="true"
+                                                                 rendered="#{KitAllocationController.allowPrevious}"/>
+                                                <h:commandButton value="Next" action="#{KitAllocationController.next}"
+                                                                 styleClass="paging_button" immediate="true"
+                                                                 rendered="#{KitAllocationController.allowNext}"/>
+                                                <h:inputHidden value="#{KitAllocationController.pageIndex}"/>
+
+                                            </div>
+                                        </h:panelGroup>
+                                        
+                                        <h:panelGroup id="emptymsg">
+                                            <h:panelGroup rendered="#{KitAllocationController.allocationList.isEmpty()}" id="messageArea">
+                                                <br/><br/>
+                                                <div>
+                                                    <Span style="color: red;padding-left: 40%">No Client Registration Kit Available.</Span>
+                                                </div>
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                        <h:message for="frm_kit_list" styleClass="err_message"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>             
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 Jul, 2014 3:17:58 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerPortfolioDetailsAuditTb" table="customer_portfolio_details_audit_tb" catalog="mmfdb">
+        <id name="customerPortfolioDetailsAuditId" type="java.lang.Integer">
+            <column name="customer_portfolio_details_auditId" />
+            <generator class="identity" />
+        </id>
+        <property name="customerPortfolioDetailsId" type="java.lang.Integer">
+            <column name="customer_portfolio_details_id" />
+        </property>
+        <property name="customerPortfolioId" type="java.lang.Integer">
+            <column name="customer_portfolio_id" />
+        </property>
+        <property name="assetClassId" type="java.lang.Short">
+            <column name="asset_class_id" />
+        </property>
+        <property name="rangeFrom" type="java.lang.Float">
+            <column name="range_from" precision="5" />
+        </property>
+        <property name="rangeTo" type="java.lang.Float">
+            <column name="range_to" precision="5" />
+        </property>
+        <property name="portfolioId" type="java.lang.Integer">
+            <column name="portfolio_id" />
+        </property>
+        <property name="portfolioDetailsId" type="java.lang.Integer">
+            <column name="portfolio_details_id" />
+        </property>
+        <property name="currentWeight" type="java.lang.Float">
+            <column name="current_weight" precision="5" />
+        </property>
+        <property name="newAllocation" type="java.lang.Float">
+            <column name="new_allocation" precision="5" />
+        </property>
+        <property name="currentAllocation" type="java.lang.Float">
+            <column name="current_allocation" precision="5" />
+        </property>
+        <property name="lastUpdateOn" type="timestamp">
+            <column name="last_update_on" length="19" />
+        </property>
+        <property name="activityType" type="string">
+            <column name="activity_type" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

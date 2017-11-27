@@ -1,0 +1,84 @@
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manage My Fortune</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/highcharts.js"></script>
+    <script src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="shortcut icon" href="images/favicon.ico">
+</head>
+
+<body>
+<div class="body_bg investor_brand">
+    <div class="container-fluid middle-section content_bg_shade"> 
+        <div id="content_column"> 
+            <div class="content_column_in ">
+            	<div class="pgh"> <img src="images/icon-financial.png" alt=""> Financial Planner </div>
+-->                
+                <div class="content_box_finance">
+                    <div class="content_box_finance_hd"><h2>Personal Information <br> </h2> </div>
+                   
+                    <div class="content_box_finance_row minheight">
+                        <div class="content_box_finance_c1 content_box_finance_full"> <h3> What's your age? </h3> <br>
+                            <!--Age one slider design start -->
+                            <div class="agecolumn"> 
+                            	<div class="agecolumn_photo"> <img src="images/male-off.png" alt=""> </div>
+                                <div class="agecolumn_data"> 
+                                    <div class="age1">
+                                        <div class="agerow"> <input type="text" id="ageMale" readonly style="border:0;"> <label for="ageMale">Years</label> </div>
+                                        <div id="slider-range-min-ageMale" class="agebar" ></div>
+                                    </div>    	
+                                </div>
+                            </div>
+                            <!--Age slider design end  -->
+                         </div>          
+                    </div>
+                   
+                    <div class="registration_row content_box_finance_row text-center">   
+                        <input type="button" name="back" id="btnPrev" value="Back" class="buttonFpBack btnPrev"> &nbsp; 
+                        <input type="button" name="next" id="btnNext" value="NEXT" class="buttonFpNext btnNext"> 
+                    </div>  
+                </div>
+<!--                
+            </div>
+        </div>    
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/custom_scripts.js"></script>
+-->
+<!--age slider script start-->
+<link rel="stylesheet" href="css/jquery-ui.css">
+<script src="js/jquery-ui.js"></script>
+ <script>
+  $( function() {
+    $( "#slider-range-min-ageMale" ).slider({
+      range: "min",
+      value:46,
+      min:1,
+      max:100,
+      slide: function( event, ui ) {
+        $( "#ageMale" ).val( "" + ui.value );
+      }
+    });
+    $( "#ageMale" ).val( "" + $( "#slider-range-min-ageMale" ).slider( "value" ) );
+  } );
+  </script>
+<!--age slider script end -->
+<!--
+</body>
+</html>
+-->

@@ -1,0 +1,1270 @@
+			<style>
+	lable{
+		margin-left: 12px !important;
+	}
+	item{
+		padding-top:10px;
+	}
+	
+	.breadcrumb{
+		padding:2px !important;
+		padding-left:5px  !important;
+	}
+	
+	.breadcrumb li{
+		font-weight: bold;
+		font-size: 18px;
+	}
+	
+	.txtRupee{
+		background-image: url('img/icon_rupee.png');
+		background-repeat: no-repeat;
+		background-position: left center; 
+		background-size: auto 20px;
+		padding-left: 25px !important;
+		padding-bottom: 30px;
+	}
+	.calender{
+		background-image: url('img/icon_calender.png');
+		background-repeat: no-repeat;
+		background-position: right center; 
+		background-size: auto 20px;
+		padding-right: 25px !important;
+		padding-bottom: 30px;
+	}
+	
+	a:hover{
+		color:#0C95BE;
+	}
+	
+	.required{
+	    background-image: url('img/required.png') !important;
+	    background-size: 0.5em 0.5em  !important;
+	    background-position: right top  !important;
+	    background-repeat: no-repeat  !important;
+	}
+	
+	
+	</style>
+	<div class="row-fluid">
+		<h2 class="page-title"> Registration </h2>
+	</div>
+	<div id="divLoading">Loading...</div>
+	<form id='frmFinalFormSubmit' method="post"></form>
+	<div id="divContent" style="display:block">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false" data-wrap="false">
+			<div class="carousel-inner" role="listbox">
+				<!-- Carousal item Q0 start -->
+				<div class="item active container-fluid">
+					<ol class="breadcrumb">
+						<li>Personal Details</li>
+					</ol>
+					<div class="row">
+						<div style="color: red;margin-left: 1%;">NOTE : Please Enter you Full Name EXACTLY as mentioned on PAN card<br><br></div>
+						<div class="form-group js-float-label-wrapper col-md-4">
+							<label for="" class="required">First Name</label>
+							<input id="firstname" type="text" class="form-control required alphaWithSpace" maxlength="12" placeholder=""  value="">
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4">
+							<label for="">Middle Name</label>
+							<input id="middlename" type="text" class="form-control alphaWithSpace" maxlength="12" placeholder="">
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4">
+							<label for="" class="required">Last Name</label>
+							<input id="lastname" type="text" class="form-control required alphaWithSpace" maxlength="12" placeholder="">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-4">
+							<label for="" class="">Father/Spouse Name</label>
+							<input id="fatherSpouse" type="text" class="form-control required alphaWithSpace" placeholder="">
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4 ">
+							<label for="" class="">Date Of Birth</label>
+							<span class="form-control-feedback" aria-hidden="true"></span>
+							<input id="dob" type="text" class="form-control  calender DD-MM-YYYY-P required" placeholder="Date of Birth" value="">
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="">Nationality</label>
+							<select id="nationality" class="form-control">
+							
+								<option value="IN" selected="selected">
+									Indian	
+								</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-4">
+							<label for="" class="">Mother Name</label>
+							<input id="motherName" type="text" class="form-control required alphaWithSpace" placeholder="">
+						</div>
+						
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="">Gender</label>
+							<select id="gender" class="form-control">
+								<option value="" selected="selected">
+									Select	
+								</option>
+								<option value="Male">
+									Male	
+								</option>
+								<option value="Female">
+									Female	
+								</option>
+							</select>
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="">Marital status</label>
+							<select id="mstatus" class="form-control required">
+								<option value="" selected="selected">
+									Select	
+								</option>
+								<option value="Single">
+									Single	
+								</option>
+								<option value="Married">
+									Married	
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="row"  style="margin-top: 20px">
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="">Status</label>
+							<select id="status" class="form-control" disabled="disabled">
+								<option value="">Select</option>
+								<option value="Foreign National">Foreign National</option>
+								<option value="Resident Individual" selected="selected">Resident Individual</option>
+								<option value="Non Resident">Non Resident</option>
+							</select>
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="" for="">PAN Number</label>
+						<input id="pan" type="text" class="form-control alphaNumericOnly required" maxlength="10" placeholder="" onblur="javascript:validatePanNumber(this);">
+						</div>
+						<div class="input-group  col-md-4">
+							<span class="input-group-btn">
+								<span class="btn btn-primary btn-file">
+								Attach File <input id="panFilePath" type="file" multiple="" onchange="javascript:uploadPanCard();" accept=".jpeg,.pdf,.PNG,.jpg,.PDF,.png,.JPEG,.JPG">
+								</span>
+							</span>
+							<input id="panFilePathName" type="text" class="form-control" readonly=""  style="margin-left: 10px;" placeholder="Upload Pan card">
+						</div>
+						
+						<div  class="  col-md-4">
+							<span id="panFilePathMsg"></span><br>
+							(Max allowable size is 2MB. Supported formats- jpeg, png and pdf)
+						</div>
+
+					</div>
+					<div class="row" style="margin-top: 20px">
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label for="">UID/Aadhaar Number</label>
+							<input id="uid" type="text" class="form-control numericOnly" maxlength="12" placeholder="" onchange="javascript:toggleAddressProofDoc();">
+						</div>
+					<div class="input-group  col-md-4" style="display:none;">
+							<span class="input-group-btn">
+								<span class="btn btn-primary btn-file">
+								Attach File <input id="uidFilePath" type="file" multiple="" onchange="javascript:uploadUID();" accept=".jpeg,.pdf,.PNG,.jpg,.PDF,.png,.JPEG,.JPG">
+								</span>
+							</span>
+							<input id="" type="text" class="form-control" readonly=""  style="margin-left: 10px;" placeholder="Upload UID/Aadhar Card" >
+						</div>
+						<div  class="  col-md-4" style="display:none;">
+							(Max allowable size is 2MB. Supported formats- jpeg, png and pdf)
+						</div>
+
+					</div>
+				</div>
+				<!-- Carousal item Q0 end -->
+				
+				
+				<!-- Carousal item Q1 start -->
+				<div class="item container-fluid" >
+					<ol class="breadcrumb">
+						<li>Correspondence Address & Contact Details</li>
+					</ol>
+					<div class="row">
+						<div style="color: red;margin-left: 1%;">NOTE : Please enter your address EXCATLY as mentioned in your Address Proof.<br><br></div>
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="" for="">Address line 1</label>
+							<input id="caddressline1" type="text" maxlength="37" class="form-control required" placeholder="">
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label for="">Address line 2</label>
+							<input id="caddressline2" type="text" maxlength="37" class="form-control" placeholder="">
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-2" >
+							<label class="" for="">PIN code</label>
+							<input id="cpincode" type="text" maxlength="6" class="form-control numericOnly required" placeholder="">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="">Country</label>
+							<select id="country" class="form-control required selectCountry" disabled="disabled"></select>
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="">State</label>
+						<select id="cstate" class="form-control required selectState" onchange="javascript:getStateWiseCites('#cstate','#ccity')">
+							<option value="" selected="selected">Select</option>
+						</select>
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-3" >
+							<label class="">City</label>
+						<select id="ccity" class="form-control required selectCity">
+							<option value="" selected="selected">Select</option>
+						</select>
+						</div>
+					</div>
+	
+					<div class="row" style="margin-top: 20px">
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="" for="">Proof of Address</label>
+							<select id="cproof" class="form-control required" onchange="javascript:toggleValidityVisibility('#cproof','#divValidityOne')">
+								<option value="" selected="selected">Select</option>
+								<option value="Aadhar">Aadhar</option>
+								<option value="Driving Licence">Driving Licence</option>
+								<option value="Latest Bank A/c Statement/Passbook (Not older than 3 months)">Latest Bank A/c Statement/Passbook</option>
+								<option value="Latest Electricity Bill(Not older than 3 months)">Latest Electricity Bill</option>
+								<option value="Latest Gas Bill(Not older than 3 months)">Latest Gas Bill</option>
+								<option value="Latest Telephone Bill (only Land Line - Not older than 3 months)">Latest Telephone Bill (only Land Line)</option>
+								<option value="Passport">Passport</option>
+								<option value="Ration Card">Ration Card</option>
+								<option value="Registered Lease/Sale Agreement of Residence">Registered Lease/Sale Agreement of Residence</option>
+								<option value="Voter Identity Card">Voter Identity Card</option>
+							</select>
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4" id="divValidityOne" style="display: none">
+							<label class="" for="">Validity Date</label>
+							<input id="cvalidity" type="text" class="form-control calender DD-MM-YYYY" placeholder="Validity Date">
+						</div>
+						<div class="input-group  col-md-4">
+							<span class="input-group-btn">
+								<span class="btn btn-primary btn-file ">
+								Attach File <input id="corsFilePath" type="file" multiple="" onChange="javascript:uploadCorsAdress();" accept=".jpeg,.pdf,.PNG,.jpg,.PDF,.png,.JPEG,.JPG">
+								</span>
+							</span>
+							<input id="corsFilePathName" type="text" class="form-control" readonly=""  style="margin-left: 10px;" placeholder="Upload Address Proof">
+						</div>
+						<div  class="col-md-4">
+							<span id="corsFilePathMsg"></span><br>
+							(Max allowable size is 2MB. Supported formats- jpeg, png and pdf)
+						</div>
+					</div>
+					
+					<h1></h1><h1></h1>
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="" for="">Mobile Number</label>
+							<input id="mobile" type="text" maxlength="10" class="form-control required numericOnly" placeholder="">
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-3" >
+							<label class="" for="">Email</label>
+							<input id="email" type="text"  class="form-control required" placeholder="Email" disabled="disabled">
+						</div>
+						<div class="col-md-3">
+							<table>
+								<tr>
+									<td style="width:20%">
+										<div class="form-group js-float-label-wrapper" >
+											<label for="" style="left:0px">ISD</label>
+											<input id="histd" type="text" maxlength="5" class="form-control numericOnly"  placeholder="">
+										</div>
+									</td>
+									<td>&nbsp;</td>
+									<td>
+										<div class="form-group js-float-label-wrapper" >
+											<label for="" style="left:0px">STD</label>
+											<input id="hstd" type="text" size="5" maxlength="5" class="form-control numericOnly"  placeholder="">
+										</div>
+									</td>
+									<td>&nbsp;</td>
+									<td>
+										<div class="form-group js-float-label-wrapper" >
+											<label for="" style="left:0px">Landline</label>
+											<input id="htelephone" type="text" maxlength="10" class="form-control numericOnly"  placeholder="">
+										</div>
+									</td>
+								</tr>
+							</table>
+							
+						</div>
+					</div>
+					
+					
+					<div class="row" style="margin-top:20px;">
+						<div class="form-group js-float-label-wrapper col-md-12" >
+							<h6>Do you have a different permanent address 
+							<input id="permenentAddress" type="checkbox" class="checkboxSwitch"  onchange="togglePermanantAddressVisibility();"></h6>
+						</div>
+					</div>
+					
+					
+					<div id="divPermanantAddress" style="display: none">
+						<ol class="breadcrumb">
+							<li>Permanent Address </li>
+						</ol>
+						<div class="row">
+							<div class="form-group js-float-label-wrapper col-md-4" >
+								<label class="" for="">Address line 1</label>
+								<input id="paddressline1" type="text" maxlength="37" class="form-control required" placeholder="Address line 1">
+							</div>
+							<div class="form-group js-float-label-wrapper col-md-4" >
+								<label for="">Address line 2</label>
+								<input id="paddressline2" type="text" maxlength="37" class="form-control" placeholder="Address line 2">
+							</div>
+							<div class="form-group js-float-label-wrapper col-md-2" >
+								<label class="" for="">PIN code</label>
+								<input id="ppin" type="text" maxlength="6" class="form-control numericOnly required" placeholder="PIN code">
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group js-float-label-wrapper col-md-4" >
+								<label class="">Country</label>
+								<select id="pcountry" class="form-control required selectCountry" disabled="disabled"></select>
+							</div>
+							<div class="form-group js-float-label-wrapper col-md-4" >
+								<label class="">State</label>
+							<select id="pstate" class="form-control required selectState" onchange="javascript:getStateWiseCites('#pstate','#pcity')">
+								<option value="" selected="selected">Select</option>
+							</select>
+							</div>
+							<div class="form-group js-float-label-wrapper col-md-3" >
+								<label class="">City</label>
+							<select id="pcity" class="form-control required selectCity">
+								<option value="" selected="selected">Select</option>
+							</select>
+							</div>
+						</div>
+						<div class="row" style="margin-top: 20px">
+							<div class="form-group js-float-label-wrapper col-md-4" >
+								<label class="" for="">Proof of Address</label>
+								<select id="pproof" class="form-control" onchange="javascript:toggleValidityVisibility('#pproof','#divValidityTwo')">
+									<option value="" selected="selected">Select</option>
+									<option value="Aadhar">Aadhar</option>
+									<option value="Driving Licence">Driving Licence</option>
+									<option value="Latest Bank A/c Statement/Passbook (Not older than 3 months)">Latest Bank A/c Statement/Passbook</option>
+									<option value="Latest Electricity Bill(Not older than 3 months)">Latest Electricity Bill</option>
+									<option value="Latest Gas Bill(Not older than 3 months)">Latest Gas Bill</option>
+									<option value="Latest Telephone Bill (only Land Line - Not older than 3 months)">Latest Telephone Bill (only Land Line)</option>
+									<option value="Passport">Passport</option>
+									<option value="Ration Card">Ration Card</option>
+									<option value="Registered Lease/Sale Agreement of Residence">Registered Lease/Sale Agreement of Residence</option>
+									<option value="Voter Identity Card">Voter Identity Card</option>
+								</select>
+							</div>
+							<div class="form-group js-float-label-wrapper col-md-4" id="divValidityTwo" style="display: none">
+								<label class="" for="">Validity Date</label>
+								<input id="pvalidity" type="text" class="form-control calender DD-MM-YYYY" placeholder="Validity Date">
+							</div>
+							<div class="input-group  col-md-4">
+								<span class="input-group-btn">
+									<span class="btn btn-primary btn-file">
+									Attach File <input id="prmntFilePath" type="file" multiple="" onChange="javascript:uploadPrmntAdress();" accept=".jpeg,.pdf,.PNG,.jpg,.PDF,.png,.JPEG,.JPG">
+									</span>
+								</span>
+								<input id="prmntFilePathName" type="text" class="form-control" readonly=""  style="margin-left: 10px;" placeholder="Upload Address Proof" >
+							</div>
+							<div  class="col-md-4">
+								<span id="prmntFilePathMsg"></span><br>
+								(Max allowable size is 2MB. Supported formats- jpeg, png and pdf)
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<!-- Carousal item Q1 end -->
+				
+				
+				<!-- Carousal item Q2 start -->
+				<div class="item container-fluid" >
+					<ol class="breadcrumb">
+						<li>Background Details</li>
+					</ol>
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="" for="">Occupation</label>
+							<select id="fstHldrOccup" class="form-control" onchange="javascript:toggleEmployerData();">
+								<option value=""  selected="selected">Select</option>
+								<option value="Student">Student</option>
+								<option value="Professional">Professional</option>
+								<option value="Government Service">Government Service</option>
+								<option value="Public Sector">Public Sector</option>
+								<option value="Private Sector">Private Sector</option>
+								<option value="Housewife">Housewife</option>
+								<option value="Business">Business</option>
+								<option value="Agriculturist">Agriculturist</option>
+								<option value="Retired">Retired</option>
+							</select>
+						</div>
+						<div id="divEmployeerName" class="form-group js-float-label-wrapper col-md-4" style="display: none">
+							<label for="">Name of your Employer/Company</label>
+							<input id="fstHldrOrg" type="text" class="form-control required" placeholder="Name of your Employer/Company">
+						</div>
+						<div id="divDesignation" class="form-group js-float-label-wrapper col-md-4" style="display: none">
+							<label for="">Designation</label>
+							<input id="fstHldrDesig" type="text" class="form-control required" placeholder="Designation">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label for="">Income range per annum</label>
+							<select id="fstHldrIncome" class="form-control">
+								<option value="">Select</option>
+								<option value="Below Rs 1 Lac">Below Rs 1 Lac</option>
+								<option value="1-5 Lac">1-5 Lac</option>
+								<option value="5-10 Lac">5-10 Lac</option>
+								<option value="10-25 Lac">10-25 Lac</option>
+								<option value="25-50 Lac">25-50 Lac</option>
+								<option value="50 Lac - 1 Crore">50 Lac - 1 Crore</option>
+								<option value="1-5 Crore">1-5 Crore</option>
+								<option value="5-10 Crore">5-10 Crore</option>
+								<option value="> 10 Crore">&gt; 10 Crore</option>
+							</select>
+						</div>
+						<div class=" col-md-1 " style="text-align: center;">OR</div>
+						<div class="form-group js-float-label-wrapper col-md-2" >
+							<label for="">Networth as on</label>
+							<input id="fstHldrNet" type="text" class="form-control calender DD-MM-YYYY" placeholder="" >
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-2" >
+							<label for="">Networth</label>
+							<input id="fstHldrAmt" type="text" class="form-control currency txtRupee" placeholder="Networth" value="0">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label for="">Number of years of investment/Trading Experience</label>
+							<input id="experience" type="text" maxlength="2" class="form-control numericOnly" placeholder="Number of years of investment/Trading Experience" value="0">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-3" >
+							<h6>Politically exposed person 
+								<img src="./img/info_128x128.png" style="width: 20px;height: 20px;" 
+								title="Accounts of Politically Exposed Persons: (PEPs)
+
+Politically exposed persons are individuals who are or have been entrusted with prominent public functions in a foreign country, e.g.,
+Heads of States or of Governments, senior politicians, senior government/judicial/military officers, senior executives of state-owned corporations, 
+important political party officials, etc. "></img> :</h6>
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-1" >
+							<h6>  
+							<input id="pep" type="checkbox" class="checkboxSwitch"  name="my-checkbox">
+							</h6>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-3" >
+							<h6>Related to politically exposed person :</h6>
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-1" >
+							<h6><input id="rpep" type="checkbox" class="checkboxSwitch"  name="my-checkbox"></h6>
+						</div>					
+					</div>					
+					<div class="row" style="display:none;">
+						<div class="col-md-4">
+							If you have provided mobile number/email address of another person, please specify the relationship and PAN of the mobile number/email address owner.
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-3" style="margin-top: -10px">
+							<label></label>
+							<select id="relationship" class="form-control">
+								<option value="">
+									Select
+								</option>
+							<option value="Self" selected="selected">
+									Self
+								</option>
+								<option value="">
+									Spouse
+								</option>
+								<option value="">
+									Dependent Child
+								</option>
+								<option value="">
+									Dependent Parent
+								</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-2">
+							<h6>Add Nomination :   
+							<input id="nomineeExist" type="checkbox" class="checkboxSwitch nomineeExist"  name="my-checkbox" onchange="javascript:toggleNomination();"></h6>
+						</div>
+						<div id="divCheckMinorExist" class="form-group js-float-label-wrapper col-md-2" style="display: none">
+							<h6>Is nominee Minor? 
+							 <input id="minorExist" type="checkbox" class="checkboxSwitch"  name="my-checkbox"  onchange="javascript:toggleGuardianData();"></h6>
+							<br>
+						</div>
+					</div>
+					
+					<div class="container-fluid" id="divNomination"  style="display:none">
+							<ol class="breadcrumb"><li>Nomination Details</li></ol>
+							<div class="row">
+								<div class="form-group js-float-label-wrapper col-md-4" >
+									<label class="required" for="">Name of Nominee</label>
+									<input id="nameNominee" type="text" class="form-control  required alphaWithSpace" placeholder="Name of Nominee">
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-4" >
+									<label class="required" for="">Relationship</label>
+									<input id="nomineeRelation" type="text" class="form-control required" placeholder="Relationship">
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-3" >
+									<label class="required" for="">Date of Birth</label>
+									<input id="nomineeDob" type="text" class="form-control required calender DD-MM-YYYY-P" placeholder="Date of Birth" onblur="javascript:checkIfNomineeIsMinor(this)">
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group js-float-label-wrapper col-md-4" >
+									<label class="required" for="">Address Line1</label>
+									<input id="nomineeAdrs1" type="text" class="form-control required" maxlength="37" placeholder="Address Line1">
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-4" >
+									<label class="" for="">Address Line2</label>
+									<input id="nomineeAdrs2" type="text" class="form-control" maxlength="37" placeholder="Address Line2">
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-3" >
+									<label class="required" for="">Pin Code</label>
+									<input id="nomineePincode" type="text" class="form-control required numericOnly" placeholder="Pin Code">
+								</div>
+								
+							</div>	
+							<div class="row">
+								<div class="form-group js-float-label-wrapper col-md-4" >
+									<label class="">Country</label>
+									<select id="nomCountry" class="form-control  selectCountry" disabled="disabled"></select>
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-4" >
+									<label class="">State</label>
+								<select id="nomState" class="form-control  selectState" onchange="javascript:getStateWiseCites('#nomState','#nomCity')">
+									<option value="" selected="selected">Select</option>
+								</select>
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-3" >
+									<label class="">City</label>
+									<select id="nomCity" class="form-control  selectCity">
+										<option value="" selected="selected">Select</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group js-float-label-wrapper col-md-4" >
+									<label class="required" for="">Proof of Identification</label>
+									<select id="nomineeProof" class="form-control " onChange="javascript:nomineeProffToggle();">
+										<option value="" selected="selected">Select</option>
+										<option value="Photograh & Signature">Photograh & Signature on Printed Form</option>
+										<option value="PAN">Pan Card</option>
+										<option value="Aadhar">Aadhar</option>
+									</select>
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-4" id="divNomineePan" style="display:none">
+									<label class="" for="">PAN Number</label>
+									<input id="nominePan" type="text" class="form-control alphaNumericOnly required" maxlength="10" placeholder="PAN Number">
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-4" id="divNomineeAdhaar" style="display:none">
+									<label for="">UID/Aadhaar Number</label>
+									<input id="nomineAadhar" type="text" class="form-control numericOnly required" maxlength="12" placeholder="" onchange="javascript:toggleAddressProofDoc();">
+								</div>							
+							</div>
+							<div class="row">
+								
+								<div class="input-group  col-md-4" style="display:none">
+									<span class="input-group-btn">
+										<span class="btn btn-primary btn-file">
+											Attach File... <input id="panFilePath" type="file" multiple="">
+										</span>
+									</span>
+									<input id="" type="text" class="form-control" readonly=""  style="margin-left: 10px;" placeholder="Upload Pan card">
+								</div>
+								<div  class="  col-md-4" style="display:none">
+									
+									(Max allowable size is 2MB. Supported formats- jpeg, png and pdf)
+								</div>
+							</div>
+							<div class="row" >
+								
+								<div class="input-group  col-md-4" style="display:none">
+									<span class="input-group-btn">
+										<span class="btn btn-primary btn-file">
+											Attach File... <input id="uidFilePath" type="file" multiple="">
+										</span>
+									</span>
+									<input id="nomineAadharx" type="text" class="form-control" readonly=""  style="margin-left: 10px;" placeholder="Upload UID/Aadhar Card">
+								</div>
+								<div  class="  col-md-4" style="display:none">
+									
+									(Max allowable size is 2MB. Supported formats- jpeg, png and pdf)
+								</div>
+							</div>
+							<script>
+
+								function nomineeProffToggle(){
+									if($('#nomineeProof').val() == "PAN"){
+										$('#divNomineeAdhaar').css('display', 'none');
+										$('#divNomineePan').css('display', 'block');
+									}else if ($('#nomineeProof').val() == "Aadhar"){
+										$('#divNomineeAdhaar').css('display', 'block');
+										$('#divNomineePan').css('display', 'none');
+									}else{
+										$('#divNomineeAdhaar').css('display', 'none');
+										$('#divNomineePan').css('display', 'none');
+									}
+								}
+							</script>
+
+
+							<div class="row">
+								<div class="form-group js-float-label-wrapper col-md-4" >
+									<label class="" for="">Mobile</label>
+									<input id="nomMobile" type="text" class="form-control required numericOnly" placeholder="Mobile" maxlength="10">
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-4" >
+									<label class="" for="">Email</label>
+									<input id="nomEmail" type="text" class="form-control required" placeholder="Email">
+								</div>
+							</div>
+							
+							
+							<div id="divGuardianData" class="container-fluid" style="padding: 0px; padding-top:10px; display: none">
+								<ol class="breadcrumb"><li>Guardian Details</li></ol>
+								<div class="row">
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="" for="">Name of Guardian</label>
+										<input id="minorGuard" type="text" class="form-control required alphaWithSpace" placeholder="Name of Guardian">
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="" for="">Relationship with Guardian</label>
+										<input id="mnrReltn" type="text" class="form-control required" placeholder="Relationship with Guardian">
+									</div>
+									
+								</div>
+								<div class="row">
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="required" for="">Address Line1</label>
+										<input id="mnrAdrs1" type="text" class="form-control required" maxlength="37" placeholder="Address Line1">
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="" for="">Address Line2</label>
+										<input id="mnrAdrs2" type="text" class="form-control"  maxlength="37" placeholder="Address Line2">
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-3" >
+										<label class="required" for="">Pin Code</label>
+										<input id="mnrPincode" type="text" class="form-control required numericOnly" maxlength="6" placeholder="Pin Code">
+									</div>
+									
+								</div>
+								<div class="row">
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="">Country</label>
+										<select id="mnrCountry" class="form-control  selectCountry" disabled="disabled"></select>
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="">State</label>
+										<select id="mnrState" class="form-control  selectState" onchange="javascript:getStateWiseCites('#mnrState','#mnrCity')">
+										<option value="" selected="selected">Select</option>
+										</select>
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-3" >
+										<label class="">City</label>
+										<select id="mnrCity" class="form-control  selectCity">
+											<option value="" selected="selected">Select</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="" for="">Proof of Identification</label>
+										<select id="mnrProof" class="form-control " onChange="javascript:mnrProffToggle();">
+											<option value="" selected="selected">Select</option>
+											<option value="Photograph and Signature">Photograph and Signature</option>
+											<option value="PAN">Pan Card</option>
+											<option value="Aadhar">Aadhar</option>
+										</select>
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-4" id="divMnrPan" style="display:none">
+										<label class="" for="">PAN Number</label>
+										<input id="mnrPan" type="text" class="form-control alphaNumericOnly required" maxlength="10" placeholder="">
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-4" id="divMnrAdhaar" style="display:none">
+										<label for="">UID/Aadhaar Number</label>
+										<input id="mnrAadhar" type="text" class="form-control numericOnly required" maxlength="12" placeholder="" onchange="javascript:toggleAddressProofDoc();">
+									</div>									
+								</div>
+								<div class="row">
+									 <div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="" for="">Mobile</label>
+										<input id="mnrMob" type="text" class="form-control required numericOnly" maxlength="10" placeholder="Mobile">
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="" for="">Email</label>
+										<input id="mnrEmail" type="text" class="form-control required" placeholder="Email">
+									</div>
+								</div>
+								<div class="row" >
+									<div class="input-group  col-md-4"  style="display:none">
+										<span class="input-group-btn">
+											<span class="btn btn-primary btn-file">
+												Attach File... <input id="panFilePath" type="file" multiple="">
+											</span>
+										</span>
+										<input id="" type="text" class="form-control" readonly=""  style="margin-left: 10px;" placeholder="Upload Pan card">
+									</div>
+									<div  class="col-md-4" style="display:none;">
+										(Max allowable size is 2MB. Supported formats- jpeg, png and pdf)
+									</div>
+								</div>
+								<div class="row" >
+									
+									<div class="input-group  col-md-4"  style="display:none">
+										<span class="input-group-btn">
+											<span class="btn btn-primary btn-file">
+												Attach File ... <input id="uidFilePath" type="file" multiple="">
+											</span>
+										</span>
+										<input id="mnrAadharx" type="text" class="form-control" readonly=""  style="margin-left: 10px;" placeholder="Upload UID/Aadhar Card">
+									</div>
+									<div  class="col-md-4" style="display:none;">
+										(Max allowable size is 2MB. Supported formats- jpeg, png and pdf)
+									</div>
+								</div>
+							<script>
+								function mnrProffToggle(){
+									if($('#mnrProof').val() == "PAN"){
+										$('#divMnrAdhaar').css('display', 'none');
+										$('#divMnrPan').css('display', 'block');
+									}else if ($('#mnrProof').val() == "Aadhar"){
+										$('#divMnrAdhaar').css('display', 'block');
+										$('#divMnrPan').css('display', 'none');
+									}else{
+										$('#divMnrAdhaar').css('display', 'none');
+										$('#divMnrPan').css('display', 'none');
+									}
+								}
+							</script>
+							</div>
+						</div>
+					
+					
+				</div>
+				<!-- Carousal item Q2 end -->
+				
+				
+				<!-- Carousal item Q3 start -->
+				<div class="item container-fluid">
+					<ol class="breadcrumb">
+						<li>Bank Details</li>
+					</ol>
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="required">Bank</label>
+							<select id="bankname" class="form-control selectBank">
+							<option value="" selected="selected">Select</option>
+							</select>
+							
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="required">Account Type</label>
+							<select id="accountType" class="form-control">
+								<option value="">Select</option>
+								<option value="Savings Account" selected="selected">Savings Account</option>
+								<option value="Current Account">Current Account</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label  class="required" for="">Bank Account Number</label>
+							<input id="accno" type="text" class="form-control password numericOnly" placeholder=""  maxlength="20"  onchange="javascript:togglePasswordType(this);" onfocus="javascript:togglePasswordType(this);" onblur="javascript:togglePasswordType(this);" onclick="javascript:togglePasswordType(this);">
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label  class="required" for="">Re enter Bank Account Number</label>
+						<input id="reAccno" type="text" class="form-control required numericOnly" maxlength="20" placeholder="" onblur="javascript:reValidateAccno(this);">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="required" for="">IFSC No.</label>
+						<input id="bifsc" type="text" class="form-control required alphaNumericOnly" maxlength="11" placeholder="" onblur="javascript:validateIFSC(this);">
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="" for="">MICR No.</label>
+							<input id="bmicr" type="text" class="form-control required numericOnly" maxlength="9" placeholder="">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label  class="" for="">Address line 1</label>
+							<input id="baddressline1" type="text" maxlength="37" class="form-control required" placeholder="">
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label for="">Address line 2</label>
+							<input id="baddressline2" type="text" maxlength="37" class="form-control" placeholder="">
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-2" >
+							<label class="" for="">PIN code</label>
+							<input id="bpincode" type="text" maxlength="6" class="form-control numericOnly required" placeholder="">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="required">Country</label>
+							<select id="bcountry" class="form-control required selectCountry" disabled="disabled"></select>
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-4" >
+							<label class="required">State</label>
+						<select id="bstate" class="form-control required selectState" onchange="javascript:getStateWiseCites('#bstate','#bcity')">
+							<option value="" selected="selected">Select</option>
+						</select>
+						</div>
+						<div class="form-group js-float-label-wrapper col-md-3" >
+							<label class="required">City</label>
+						<select id="bcity" class="form-control required selectCity">
+							<option value="" selected="selected">Select</option>
+						</select>
+						</div>
+					</div>
+				</div>
+				<!-- Carousal item Q3 end -->
+				
+				
+				
+				
+				
+				
+				
+				<!-- Carousal item Q4 start -->
+				<div class="item container-fluid" >
+					<ol class="breadcrumb">
+						<li>FACTA Questionnaire for determining US status</li>
+					</ol>
+					<table>
+						<tr>
+							<td><h6>Are you an US National :</h6></td>
+							<td><h6><input id="usNational" type="checkbox" class="checkboxSwitch"  name="my-checkbox"></h6></td>
+							<td style="width:20px"></td>
+							<td><h6>Are you an US Resident :</h6></td>
+							<td><h6><input id="usResident" type="checkbox" class="checkboxSwitch"  name="my-checkbox"></h6></td>
+						</tr>
+						<tr>
+							<td><h6>Born in US :</h6></td>
+							<td><h6><input id="usBorn" type="checkbox" class="checkboxSwitch"  name="my-checkbox"></h6></td>
+							<td></td>
+							<td><h6>US Address :</h6></td>
+							<td><h6><input id="usAddress" type="checkbox" class="checkboxSwitch"  name="my-checkbox"></h6></td>
+						</tr>
+						<tr>
+							<td><h6>US Telephone number :</h6></td>
+							<td><h6><input id="usTelephone" type="checkbox" class="checkboxSwitch"  name="my-checkbox"></h6></td>
+							<td></td>
+							<td><h6>Standing instruction to transfer money<br>to an account with US address :</h6></td>
+							<td><h6><input id="usStandingInstruction" type="checkbox" class="checkboxSwitch"  name="my-checkbox"></h6></td>
+						</tr>
+						<tr>
+							<td><h6>Power of attorney or signature authority&nbsp;&nbsp;<br>in favour of a person with US address :&nbsp;&nbsp;</h6></td>
+							<td><h6><input id="usPoa" type="checkbox" class="checkboxSwitch"  name="my-checkbox"></h6></td>
+							<td></td>
+							<td><h6>In care of or hold mail address as the only resident :&nbsp;&nbsp;</h6></td>
+							<td><h6><input id="usMailAddress" type="checkbox" class="checkboxSwitch"  name="my-checkbox"></h6></td>
+						</tr>
+					</table>
+					
+					<div class="panel panel-default container-fluid" style="display: none">
+						<div class="panel-heading row">
+							<div class="col-md-11">Additional Details</div>
+							<div class="col-md-1  pull-right"  style="width:52px;!important"><a href="javascript:toggleCollaps('#iconAditionalDetails','#divAditionalDetails');" class="btn btn-success"><span id="iconAditionalDetails" class="glyphicon glyphicon-chevron-down pull-right" style="right:0px"></span></a></div>
+						</div>
+						<div class="panel-body container-fluid" id="divAditionalDetails"  style="display:none">
+							<div class="row">
+								<div class="col-md-4">
+									Whether you wish to receive Electronic or physical Contract Notes
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-3" style="margin-top: -10px">
+									<label></label>
+									<select id="contractNote" class="form-control" disabled="disabled">
+									
+										<option value="" selected="selected">
+											Electronic Contact Note	
+										</option>
+										<option value="" >
+											Physical Contact Note	
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group js-float-label-wrapper col-md-4" >
+									Whether you wish to avail the facility of internet trading
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-4" style="margin-top: -10px">
+									<h6><input id="intrntTrading" type="checkbox" class="checkboxSwitch"  name="my-checkbox" checked disabled="disabled"></h6>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									Mode of alerts to investors by stock
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-3" style="margin-top: -10px">
+									<label></label>
+									<select id="alert" class="form-control">
+									
+										<option value="" selected="selected">
+											Both
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									If an existing mobile number/email address is used, please specify the relationship and PAN of the email address/mobile number owner*
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-3" style="margin-top: -10px">
+									<label></label>
+									<select id="relationship" class="form-control">
+<!-- 									<option value="">
+										Select
+									</option> -->
+									<option value="Self" selected="selected">
+											Self
+										</option>
+<!-- 									<option value="">
+										Spouse
+									</option>
+									<option value="">
+										Dependent Child
+									</option>
+									<option value="">
+										Dependent Parent
+									</option> -->
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">&nbsp;</div>
+								<div class="form-group js-float-label-wrapper col-md-12" >
+									<label for="">Any other information</label>
+									<input id="otherInformation" type="text" class="form-control " placeholder="Any other information">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+	
+				
+							
+							
+				<!-- Carousal item Q4 end -->
+				
+				
+			</div>
+		 </div>
+		 
+		<style>
+			.stepProgress .bar {
+				width: 20px;
+			}
+		</style>
+	
+		<div style="position: fixed;bottom:5px; width:100%; background-color: #ffffff">
+			
+			<div style="margin-right: 20px; background-color: #F5F5F5; padding:10px;border-radius: 10px;">
+				<div class="stepProgress">
+					<div id="spc0" class="circle active">
+						<a><span class="label">1</span></a>
+					</div>
+					<span class="bar"></span>
+					<div id="spc1" class="circle">
+						<a><span class="label">2</span></a>
+					</div>
+					<span class="bar"></span>
+					<div id="spc2" class="circle">
+						<a><span class="label">3</span></a>
+					</div>
+					<span class="bar"></span>
+					<div id="spc3" class="circle">
+						<a><span class="label">4</span></a>
+					</div>
+					<!--  <span class="bar"></span>
+					<div id="spc4" class="circle">
+						<a><span class="label">5</span></a>
+					</div> -->
+				</div>
+				
+				<div style="margin-top: 36px; width: 500px;    height: 35px; margin: auto;">
+					<h6>&nbsp;
+						<span id="divAggrement" style="margin-top: -15px; display: none; text-align: center;display:none;">
+							<input id="cbSubscriberAgreement" type="checkbox"  name="my-checkbox"> 
+						I/We hereby Accept ManageMyFortune.com <a href="http://managemyfortune.com/faces/pages/subscriber_agreement.xhtml" target="_blank">Subscriber Agreement </a>
+						</span>
+					</h6>
+				</div>
+				<div class="text-right"  style="margin-right:0px !important; ">
+					<div class="text-right"  style="margin-right:10px !important;margin-top: -45px; ">
+			   			<button type="button" id="btnPrev" class="btn-flat inverse large" href="#myCarousel" role="button" data-slide="prev" style="display:none;">Previous</button>
+				        <button type="button" id="btnNext" class="btn-flat inverse large" href="#myCarousel" role="button" >Next</button>
+				   		<button type="button" id="btnSubmitxx" style="display: none" class="btn-flat success large" href='javascript:$("#modalShowSubmit").modal()' onclick='javascript:$("#modalShowSubmit").modal()' style="display: none">Submit</button>
+				   		<button type="button" id="btnSubmitx" class="btn-flat success large" href='javascript:finalSubmit()' onclick='javascript:finalSubmit();' style="display:none">Submit</button>
+				    </div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel"></h4>
+		      </div>
+		      <div class="modal-body">
+		        this is modalbody
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="button" class="btn-flat inverse" data-dismiss="modal" href="javascript:uploadPanCard();" onclick="javascript:uploadPanCard();" style="display:none">OK</button>
+				<button type="button" class="btn-flat inverse" data-dismiss="modal" href="javascript:makeSubmit;" onclick="javascript:makeSubmit();">OK</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<div class="modal fade" id="modalShowSubmit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel1"></h4>
+		      </div>
+		      <div class="modal-body">
+		        <div id="divReferanceCode">
+		        	<div class="container">
+		        		<div class="form-group js-float-label-wrapper" style="width:200px">
+							<label class="" for="" style="margin-left: -15px;">Reference Code</label>
+							<input id="" type="text" class="form-control required numericOnly" placeholder="Reference Code">
+						</div>
+		        	</div>
+		        </div>
+		        
+				
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="button" class="btn-flat inverse" data-dismiss="modal" href="javascript:makeSubmit();" onclick="javascript:makeSubmit();">OK</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	
+	
+	<script>
+		initSelectBox();
+		
+		$( '.js-float-label-wrapper' ).FloatLabel();
+		togglePasswordType = function(obj){
+			if(obj.value==''){
+				obj.setAttribute('type', 'text');
+			}
+			else{
+				obj.setAttribute('type', 'password');
+			}
+			return;
+		}
+	
+		$(document).on('change', '.btn-file :file', function () {
+			var input = $(this), numFiles = input.get(0).files ? input.get(0).files.length : 1, label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+			input.trigger('fileselect', [
+				numFiles,
+				label
+			]);
+		});
+		
+		$(document).ready(function () {
+			$('.btn-file :file').on('fileselect', function (event, numFiles, label) {
+				var input = $(this).parents('.input-group').find(':text'), log = numFiles > 1 ? numFiles + ' files selected' : label;
+				if (input.length) {
+					input.val(log);
+				} else {
+					if (log)
+						alert(log);
+				}
+			});
+		});
+		
+		$(".checkboxSwitch").bootstrapSwitch({
+			'size':'mini',
+			'onText':'Yes',
+			'offText':'No'
+		});
+		
+		$('#cbSubscriberAgreement').each(function(){
+	           var self = $(this);
+	           label = self.next();
+	           label_text = label.text();
+	           //label.remove();
+	           self.iCheck({
+	           checkboxClass: 'icheckbox_square-green',
+	           //radioClass: 'iradio_square-green'
+	           });
+	           
+	       });
+		
+		//$('#cbSubscriberAgreement').bootstrapSwitch('destroy');
+	
+		$( ".datepicker" ).datepicker();
+		
+		function togglePermanantAddressVisibility(){
+			if ($('#permenentAddress').is(":checked"))
+			{
+				$('#divPermanantAddress').css('display','block');
+			}
+			else{
+				$('#divPermanantAddress').css('display','none');
+				
+			}
+		}
+		
+		$(".numericOnly").keypress(function (e) {
+		    if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+		});
+	
+		$(".alphaNumericOnly").keypress(function (event) {
+			var regex = new RegExp("^[a-zA-Z0-9\b]+$");
+		    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+		    if (!regex.test(key)) {
+		       event.preventDefault();
+		       return false;
+		    }
+		});
+		
+		$(".alphaOnly").keypress(function (event) {
+			var regex = new RegExp("^[a-zA-Z\b]+$");
+		    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+		    if (!regex.test(key)) {
+		       event.preventDefault();
+		       return false;
+		    }
+		});
+		
+	
+		$(".alphaWithSpace").keypress(function (e) {
+			var regex = new RegExp("^[a-zA-Z\\-\\s]+$");
+		    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+		    if (!regex.test(key)) {
+		       event.preventDefault();
+		       return false;
+		    }
+		});
+		
+		$('.calender.YYYY').datetimepicker({
+	    	viewMode: 'years',
+	    	format: 'YYYY'
+	    });
+		
+		$('.calender.MMDDYYYY').datetimepicker({
+	    	//viewMode: 'yea',
+	    	format: 'MM-DD-YYYY'
+	    });
+	
+		$('.calender.MMDDYYYYP').datetimepicker({
+	    	//viewMode: 'yea',
+	    	format: 'DD-MM-YYYY',
+	    	maxDate: moment()
+	    });
+		$('.calender.DD-MM-YYYY').datetimepicker({
+	    	//viewMode: 'yea',
+	    	format: 'DD-MM-YYYY',
+	    	minDate: moment(),
+	    	widgetPositioning: {
+            	horizontal: 'right',
+            	vertical: 'bottom'
+        	}
+	    });
+		
+		$('.calender.DD-MM-YYYY-P').datetimepicker({
+	    	//viewMode: 'yea',
+	    	format: 'DD-MM-YYYY',
+	    	maxDate: moment(),
+	    	widgetPositioning: {
+            	horizontal: 'right',
+            	vertical: 'bottom'
+        	}
+	    });
+		
+		$('.calender').css('cursor','pointer');
+		
+		$('.txtRupee').autoNumeric('init',{vMin: '0',vMax: '99999999999'}); 
+		
+		$('#txtNetworth').val(moment().format('MM-DD-YYYY'));
+		
+		$('#cbSubscriberAgreement').bootstrapSwitch('destroy');
+		
+		//$('.mobileNumber').mask("+99 9999-999-999");
+		
+		function toggleValidityVisibility(selectBox, validityDiv){
+			console.log($(selectBox).val());
+			if($(selectBox).val() == "Driving Licence" || $(selectBox).val() == "Passport" || $(selectBox).val() == "Registered Lease/Sale Agreement of Residence" ){
+				$(validityDiv).css('display','block');
+			}else{
+				$(validityDiv).css('display','none');
+			}
+		}
+		
+		function toggleEmployerData(){
+			if($('#fstHldrOccup').val() == 'Student' || $('#fstHldrOccup').val() == 'Retired' || $('#fstHldrOccup').val() == 'Housewife' || $('#fstHldrOccup').val() == 'Agriculturist'){
+				$('#divEmployeerName').css('display', 'none');
+				$('#divDesignation').css('display', 'none');
+			}
+			else{
+				$('#divEmployeerName').css('display', 'block');
+				$('#divDesignation').css('display', 'block');
+			}
+		}
+		
+		function toggleNomination(){
+			if($('#nomineeExist').is(":checked")){
+				$('#divNomination').show(400);
+				$('#divCheckMinorExist').show(400);
+				toggleGuardianData();
+			}
+			else{
+				$('#divNomination').hide(400);
+				$('#divGuardianData').hide(400);
+				$('#divCheckMinorExist').hide(400);
+				$('#minorExist').bootstrapSwitch('state', false, true);
+			}
+			var currentSlide = $("#myCarousel").find('.active').index();
+			if (currentSlide == 2)
+				$('html,body').animate({scrollTop: document.body.scrollHeight});
+		}
+		
+		function toggleGuardianData(){
+			if($('#minorExist').is(":checked")){
+				//$('#divGuardianData').css('display', 'block');
+				$('#divGuardianData').show(400);
+			}
+			else{
+				//$('#divGuardianData').css('display', 'none');
+				$('#divGuardianData').hide(400);
+			}
+			var currentSlide = $("#myCarousel").find('.active').index();
+			if (currentSlide == 2)
+				$('html,body').animate({scrollTop: document.body.scrollHeight});
+		}
+		
+		function toggleAddressProofDoc(){
+			if(!$('#pdUIDNumber').val() == ""){
+				$('#addressProofOne').val('Aadhar');
+			}
+			else{
+				$('#addressProofOne').val('');
+			}
+		}
+		 $('html,body').scrollTop(0);
+	</script>			
+				
+	 
+				

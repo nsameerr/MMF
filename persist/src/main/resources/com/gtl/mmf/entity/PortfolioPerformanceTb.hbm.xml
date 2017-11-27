@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 11, 2014 3:19:30 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.PortfolioPerformanceTb" table="portfolio_performance_tb" catalog="mmfdb">
+        <id name="portfolioPerformanceId" type="java.lang.Integer">
+            <column name="portfolio_performance_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="portfolioTb" class="com.gtl.mmf.entity.PortfolioTb" fetch="select">
+            <column name="portfolio_id" not-null="true" />
+        </many-to-one>
+        <property name="datetime" type="timestamp">
+            <column name="datetime" length="19" />
+        </property>
+        <property name="closingValue" type="big_decimal">
+            <column name="closing_value" precision="12" />
+        </property>
+        <property name="marketValue" type="big_decimal">
+            <column name="market_value" precision="12" />
+        </property>
+        <property name="marketValueAfterCashFlow" type="big_decimal">
+            <column name="market_value_after_cash_flow" precision="12">
+                <comment>Cash flow will be zero for all times.</comment>
+            </column>
+        </property>
+        <property name="subPeriodReturn" type="big_decimal">
+            <column name="sub_period_return" precision="12" />
+        </property>
+    </class>
+</hibernate-mapping>

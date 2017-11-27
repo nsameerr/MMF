@@ -1,0 +1,1023 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+
+    </head>
+
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout_admin.xhtml">
+            <f name="title">Advisor Registration</f>
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_admin.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+
+                <style>
+                    .form-page .form-wrapper label {
+                        width: 250px;
+                    }
+                    input[type="text"] {
+                        width: 220px !important;
+                    }
+                    textarea{
+                        width: 400px;
+                    }
+                    .ui-select span6{
+                        margin-left: 0px;
+                        width: 400px;
+                    }
+                    .span6{
+                        width: 400px;
+                    }
+                    select{
+                        width: 400px;
+                    }
+                    .content{
+                        padding-bottom: 0px;
+                    }
+                    .field-box{
+                        width: 169px;
+                    }
+                    .msghidden {
+                        display:none;
+                    }
+                    .msgvisible {
+                        font-size: 13px;
+                        color: #fff;
+                        display: block;
+                        width: 15em;
+                        margin-top:5px;
+                        margin-left:45px;
+                        position:absolute;
+                        background-color:#696d73;
+                        border-radius: 4px;
+                    }
+                    .err_message {
+                        color: red;
+                        padding-left: 0px;
+                    }
+                    .margin_style {
+                        margin-left: 25px;
+                    }
+                    .standing_instruction_select {
+                        width: 7%;
+                    }
+                    .standing_address_select {
+                        width: 18%;
+                    }
+                    @media screen{
+                        .form-page .form-wrapper{
+                            margin-bottom: 0px;
+                        }
+                        .err_message{
+                            padding-left: 0px;
+                        }
+                        .span8{
+                            width: 73%;
+                        }
+                        .button-row {
+                            padding-left: 18%;
+                        }
+                        .row-fluid .span3 {
+                            width: 31%;
+                        }
+                    }
+                    @media (max-width: 767px){
+                        .row-fluid .span3{
+                            width: 70%;
+                        }
+                        .margin_style{
+                            margin-left: 0px;
+                        }
+                        .standing_instruction_select {
+                            width: 19%;
+                        }
+                        .standing_address_select {
+                            width: 40%;
+                        }
+                    }
+                    @media (max-width: 979px)and (min-width: 768px){
+                        .row-fluid .span3 {
+                            width: 55%;
+                            margin-left: 0px;
+                        }
+                        .margin_style {
+                            margin-left: 0px;
+                        }
+                    }
+                    @media (min-width: 1200px){
+                        .row-fluid .span3 {
+                            width: 23%;
+                        }
+                    }
+                    .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+                        border: 1px solid #D0E788;
+                        background: #D0E788;
+                    }
+                </style>
+
+                <div class="content">
+                    <div class="container-fluid">
+                        <div id="pad-wrapper" class="form-page">
+                            <h:form id="partial_adv_form" enctype="multipart/form-data" >
+                                <div class="row-fluid form-wrapper">
+                                    <div id="pad-wrapper" style="padding-left: 0px">
+                                        <h2 class="page-title two-baseline-margin-bottom" style="font-weight: bold;">
+                                            Advisor Registration
+                                        </h2>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <h:selectOneRadio  styleClass="radio" class="individualOrCprt" id="individualOrCprt" value="#{partialRegistrationBean.advisorRegistrationVo.individualOrCoprt}">
+                                        <f:selectItem  itemLabel="Individual" itemValue="#{true}"/>
+                                        <f:selectItem  itemLabel="Corporate" itemValue="#{false}"/>
+                                        <f:ajax  render="pan_group individual corporate corporate_phn ofc_individual ofc_corporate"/> 
+                                    </h:selectOneRadio>
+                                </div>
+
+                                <h4 class="title" style="margin-top: 25px;">Personal</h4>
+                                <div class="row-fluid form-wrapper">
+                                    <div class="span3">
+                                        <label>First Name<span class="fname" style="color:red">*</span></label>
+                                        <h:inputText id="name" 
+                                                     required="#{partialRegistrationBean.advisorRegistrationVo.individualOrCoprt}"
+                                                     maxlength="50"
+                                                     requiredMessage="Please enter First Name"
+                                                     validatorMessage="Please enter valid first name(special charecters,numbers not allowed)"
+                                                     styleClass="span6" value="#{partialRegistrationBean.advisorRegistrationVo.fname}">
+                                            <f:validateRegex pattern="[a-zA-Z\s.]*"/>
+                                        </h:inputText><br></br>
+                                        <h:message for="name" styleClass="err_message"></h:message> 
+                                    </div>
+                                    <div class="span3">
+                                        <label>Middle Name</label>
+                                        <h:inputText id="mname" maxlength="50"                                                     
+                                                     validatorMessage="Please enter valid middle name(special charecters,numbers not allowed)"
+                                                     styleClass="span6" value="#{partialRegistrationBean.advisorRegistrationVo.middle_name}">
+                                            <f:validateRegex pattern="[a-zA-Z\s.]*"/>
+                                        </h:inputText><br></br>
+                                        <h:message for="mname" styleClass="err_message"></h:message> 
+                                    </div>
+                                    <div class="span3">
+                                        <label>Last Name<span class="lname" style="color:red">*</span></label>
+                                        <h:inputText id="lname" maxlength="50" required="#{partialRegistrationBean.advisorRegistrationVo.individualOrCoprt}"
+                                                     validatorMessage="Please enter valid last name(special charecters,numbers not allowed)"
+                                                     requiredMessage="Please enter Last Name"
+                                                     styleClass="span4" value="#{partialRegistrationBean.advisorRegistrationVo.last_name}">
+                                            <f:validateRegex pattern="[a-zA-Z\s.]*"/>
+                                        </h:inputText><br></br>
+                                        <h:message for="lname" styleClass="err_message"></h:message> 
+                                    </div>
+                                </div>
+
+                                <div class="row-fluid form-wrapper">
+                                    <div class="span3">
+                                        <label>Organization<span class="org"  style="color:red">*</span></label>
+                                        <h:inputText id="org_name" value="#{partialRegistrationBean.advisorRegistrationVo.organization}"
+                                                     styleClass="span6" maxlength="50" 
+                                                     required="#{!partialRegistrationBean.advisorRegistrationVo.individualOrCoprt}" 
+                                                     requiredMessage="Please specify Organization" 
+                                                     validatorMessage="Please specify valid Organization"> 
+                                        </h:inputText><br></br>
+                                        <h:message for="org_name" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3">
+                                        <label>SEBI Investment Advisor Registration No<span style="color:red">*</span></label>
+                                        <p:inputText id="sebiregno" placeholder="(combination of a-z,A-Z,0-9 characters only)"
+                                                     maxlength="20" required="true"
+                                                     requiredMessage="Please enter SEBI Registration No"
+                                                     styleClass="span6" style="width: 195px;font-weight:normal"
+                                                     validatorMessage="Please enter valid registration number"
+                                                     value="#{partialRegistrationBean.advisorRegistrationVo.sebi_regno}">
+                                        </p:inputText><br></br>
+                                        <h:message for="sebiregno" styleClass="err_message"></h:message>
+                                    </div>
+                                    <div class="span3">
+                                        <label>Validity of Registration </label>
+                                        <div class="datepicker_box">
+                                            <p:inputText id="validity" maxlength="20" required="true"  
+                                                         requiredMessage="Please select Validity" placeholder = "DD-MM-YYYY"
+                                                         styleClass="span6 datepicker no_lft_margin" 
+                                                         value="#{partialRegistrationBean.advisorRegistrationVo.sebi_validity}"  
+                                                         autocomplete="off"
+                                                         converterMessage="Invalid format ( Eg:06-5-2014 )">
+                                                <f:convertDateTime pattern="dd-MM-yyyy"/> 
+                                            </p:inputText><i class="icon-calendar"></i></div><br></br>
+                                        <h:message for="validity" styleClass="err_message"></h:message>
+                                    </div>
+                                </div>	
+
+                                <h:panelGroup id="pan_group">
+                                    <div class="row-fluid form-wrapper">
+                                        <div  class="span3">
+                                            <h:panelGroup id="individual" rendered="#{partialRegistrationBean.advisorRegistrationVo.individualOrCoprt}">
+                                                <label>Individual PAN Card Number<span style="color:red">*</span></label>
+                                            </h:panelGroup>
+                                            <h:panelGroup id="corporate" rendered="#{!partialRegistrationBean.advisorRegistrationVo.individualOrCoprt}">
+                                                <label>Corporate PAN Card Number<span style="color:red">*</span></label>
+                                            </h:panelGroup>
+                                            <h:inputText value="#{partialRegistrationBean.advisorRegistrationVo.pan}"
+                                                         required="true"
+                                                         requiredMessage="Please enter PAN"
+                                                         validatorMessage="Please enter valid PAN(Eg:AOFBP6688A)"
+                                                         styleClass="span6" maxlength="10" id="panno_in">
+                                                <f:validateRegex pattern="^$|[A-Za-z]{3}(p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G)[\w][\d]{4}[A-Za-z]"/>
+                                            </h:inputText><br></br>
+                                            <h:message for="panno_in" styleClass="err_message"/>    
+                                        </div> 
+                                        <div class="span3">
+                                            <label>Date of Birth <span style="color:red">*</span> </label>
+                                            <div class="datepicker_box">
+                                                <p:inputText id="dob" maxlength="20" required="true"  
+                                                             requiredMessage="Please select Date of Birth" placeholder = "DD-MM-YYYY"
+                                                             styleClass="span6 datepicker picker no_lft_margin" 
+                                                             value="#{partialRegistrationBean.advisorRegistrationVo.dob}"  autocomplete="off"
+                                                             converterMessage="Invalid format ( Eg:06-5-2014 )">
+                                                    <f:convertDateTime pattern="dd-MM-yyyy"/> 
+                                                </p:inputText><i class="icon-calendar"></i>
+                                                <script type="text/javascript">
+                                                    $(".datepicker_box .icon-calendar").click(function(){
+                                                        $(this).prev(".datepicker").trigger("click").trigger("focus");
+                                                    });
+                                                    
+                                                    $('.picker').datepicker({
+                                                        format: 'dd-mm-yyyy'
+                                                    }).on('changeDate', function(ev) {
+                                                        $(this).datepicker('hide');
+                                                        var input = $(this);
+                                                        var id = $(this).attr('id');
+                                                        if (id == 'partial_adv_form:dob'){
+                                                            var date = new Date();
+                                                            var a = Date.parse(date.toDateString());
+                                                            var b = new Date(a).getTime();
+                                                            var exampleDate = input.val().toString();
+                                                            var parts = exampleDate.split('-');
+                                                            var psdt = new Date(parts[2], parts[1] - 1, parts[0]).getTime();
+                                                            if (psdt > b) {
+                                                                $(input).val("");
+                                                                alert('future date cannot be selected');
+                                                            }
+                                                        }
+                                                    });
+                                                                                                    
+                                                </script>
+                                            </div><br></br>
+                                            <h:message for="dob" styleClass="err_message"></h:message>
+                                        </div>
+                                        <h:panelGroup id="file_upload">
+                                            <div class="span3">
+                                                <label>Upload Scanned Copy of SEBI Investment Advisor Certification</label>
+                                                <div class="upload_btn ">
+                                                    <span class="btn-flat default">
+                                                        <h:inputFile id="file" onchange="showfile()" 
+                                                                     value="#{partialRegistrationBean.filepart}">
+                                                            <p:ajax update="@form file_upload" event="change"  listener="#{partialRegistrationBean.getFileUploaddetails(event)}" /> 
+                                                        </h:inputFile>Browse
+                                                    </span>
+                                                </div> 
+                                                <div id="file_name"> </div><br/>
+                                                <h:message  for="file" styleClass="err_message" />   
+                                            </div>	
+                                        </h:panelGroup>
+                                        <div class="span3">
+                                            <span><br/><br/>Maximum allowable size 2MB.<br/>Supported formats(pdf, jpeg, png files only)</span>    
+                                        </div>
+                                    </div>
+                                </h:panelGroup>    
+
+                                <h4 class="title" style="margin-top: 25px;">Office Details</h4>
+
+                                <div class="row-fluid form-wrapper">
+                                    <div class="span3">
+                                        <label class="block_ele">Job Title<span style="color:red">*</span></label>
+                                        <h:inputText id="job_title" value="#{partialRegistrationBean.advisorRegistrationVo.jobTitle}"
+                                                     styleClass="span6" maxlength="50" required="true"  requiredMessage="Please specify Job Title"
+                                                     validatorMessage="Please specify valid Job Title">
+                                            <f:validateRegex pattern="^$|^[a-zA-Z]+[A-Za-z\s]*$"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="job_title" styleClass="err_message"/>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row-fluid form-wrapper">
+
+                                    <div class="span3" style="width: 443px;">
+                                        <label>Address Line1<span style="color:red">*</span> </label>
+                                        <h:inputText id="officeaddress_line1" value="#{partialRegistrationBean.advisorRegistrationVo.oaddressLine1}"                                                         
+                                                     styleClass="span4" required="true" maxlength="37"
+                                                     requiredMessage="Please enter Office Address " 
+                                                     validatorMessage="Please enter valid Resident address" style="width: 460px!important;">
+                                            <!-- <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#\:]*"/> -->
+                                        </h:inputText><br></br>
+                                        <h:message for="officeaddress_line1" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3" style="width: 449px;">
+                                        <label>Address Line2</label>
+                                        <h:inputText id="officeaddress_line2" value="#{partialRegistrationBean.advisorRegistrationVo.oaddressLine2}"                                                         
+                                                     styleClass="span6" required="false" maxlength="37"
+                                                     requiredMessage="Please enter Address Line 2 "
+                                                     validatorMessage="Please enter Address Line 2" style="width: 460px!important;">
+                                        </h:inputText><br></br>
+                                        <h:message for="officeaddress_line2" styleClass="err_message"/>
+                                    </div>
+                                    <!--
+                                    <div class="span3">
+                                        <label>Landmark</label>
+                                        <h:inputText id="officeaddress_landmark" value="{partialRegistrationBean.advisorRegistrationVo.olandMark}"                                                         
+                                                     styleClass="span6" required="false" maxlength="20"
+                                                     requiredMessage="Please enter Landmark "
+                                                     validatorMessage="Please enter valid Landmark">
+                                        </h:inputText><br></br>
+                                        <h:message for="officeaddress_landmark" styleClass="err_message"/>
+                                    </div>
+                                    --> 
+                                </div>
+                                <div class="row-fluid form-wrapper">
+
+                                    <div class="span3">
+                                        <label>Country<span style="color:red">*</span></label>
+                                        <div class="ui-select">
+                                            <h:selectOneMenu value="#{partialRegistrationBean.advisorRegistrationVo.ocountry}" style="width: 100%;"
+                                                             id="office_country" >
+                                                <f:selectItems value="#{partialRegistrationBean.countryList.entrySet()}" 
+                                                               var="countryList2" 
+                                                               itemLabel="#{countryList2.value}" itemValue="#{countryList2.key}"/>
+                                                <p:ajax event="change" listener="#{partialRegistrationBean.onChnageCountry2()}" update="officestate_panel_group officecity_panel_group"/> 
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <h:panelGroup id="officestate_panel_group">
+                                        <div class="span3">
+                                            <label>State <span style="color:red">*</span></label>
+                                            <h:inputText id="officestate_text" maxlength="50"
+                                                         required="true"
+                                                         requiredMessage="Please enter State" style="width: 208px!important;"
+                                                         value="#{partialRegistrationBean.advisorRegistrationVo.ostate}"
+                                                         rendered="#{partialRegistrationBean.stateList2Editable}"
+                                                         validatorMessage="Please enter valid State">
+                                                <f:validateRegex pattern="^$|[a-zA-Z\s]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:panelGroup rendered="#{!partialRegistrationBean.stateList2Editable}">
+                                                <div class="ui-select">
+                                                    <h:selectOneMenu value="#{partialRegistrationBean.advisorRegistrationVo.ostate}" id="officestate_list" 
+                                                                     required="true" requiredMessage="Please select State"
+                                                                     style="width: 100%;">
+                                                        <p:ajax event="change" listener="#{partialRegistrationBean.onChangeState(partialRegistrationBean.advisorRegistrationVo.ostate,2)}" update="officecity_panel_group"/> 
+                                                        <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                        <f:selectItems value="#{partialRegistrationBean.stateList2.entrySet()}" 
+                                                                       var="stateList2" itemLabel="#{stateList2.value}" itemValue="#{stateList2.value}"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                                <br></br>
+                                            </h:panelGroup>
+                                            <h:message for="officestate_text" styleClass="err_message"></h:message> 
+                                            <h:message for="officestate_list" styleClass="err_message"></h:message> 
+                                        </div>
+                                    </h:panelGroup>
+
+                                    <h:panelGroup id="officecity_panel_group">
+                                        <div class="span3">
+                                            <label>City <span style="color:red">*</span></label>
+                                            <h:inputText id="officecity_text" maxlength="50"
+                                                         required="true"
+                                                         requiredMessage="Please enter City" style="width: 208px!important;"
+                                                         value="#{partialRegistrationBean.advisorRegistrationVo.ocity}"
+                                                         rendered="#{partialRegistrationBean.cityList2Editable}"
+                                                         validatorMessage="Please enter valid City">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:panelGroup rendered="#{!partialRegistrationBean.cityList2Editable}">
+                                                <div class="ui-select">
+                                                    <h:selectOneMenu value="#{partialRegistrationBean.advisorRegistrationVo.ocity}" id="officecity_list" 
+                                                                     required="true" requiredMessage="Please select City"
+                                                                     style="width: 100%;">
+                                                        <p:ajax event="change" update="other_offgroup other_ocity"/> 
+                                                        <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                        <f:selectItems value="#{partialRegistrationBean.cityList2.entrySet()}" 
+                                                                       var="cityList2" itemLabel="#{cityList2.value}" itemValue="#{cityList2.value}"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                                <br></br>
+                                            </h:panelGroup>
+                                            <h:message for="officecity_text" styleClass="err_message"></h:message> 
+                                            <h:message for="officecity_list" styleClass="err_message"></h:message> 
+                                        </div>
+                                    </h:panelGroup>
+
+
+                                    <h:panelGroup id="other_offgroup">
+                                        <h:panelGroup id="other_ocity" rendered="#{partialRegistrationBean.advisorRegistrationVo.ocity eq 'Other'}">
+                                            <div class="span3">
+                                                <label>City Other <span style="color:red">*</span></label>
+                                                <h:inputText id="off_city" maxlength="50"
+                                                             required="true" styleClass="span6"
+                                                             requiredMessage="Please enter City" 
+                                                             value="#{partialRegistrationBean.advisorRegistrationVo.off_city_other}"
+                                                             validatorMessage="Please enter valid City">
+                                                    <f:validateRegex pattern="^$|[a-zA-Z\s.,\-\\\/\#]*"/> 
+                                                </h:inputText>
+                                            </div><br></br>
+                                            <h:message for="off_city" styleClass="err_message"></h:message> 
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                    <div class="span3">
+                                        <label>Pin Code <span style="color:red">*</span> </label>
+                                        <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                     id="officepincode" required="true"
+                                                     maxlength="6" style="width: 197px;"
+                                                     requiredMessage="Please enter Pin Code"
+                                                     validatorMessage="Please enter valid Pin Code"
+                                                     styleClass="span6" value="#{partialRegistrationBean.advisorRegistrationVo.opincode}">
+                                            <f:validateRegex pattern="^$|^([\d]+)?$"/>
+                                        </h:inputText><br></br>
+                                        <h:message for="officepincode" styleClass="err_message"></h:message>
+                                    </div>
+                                </div>
+                                <h:panelGroup id="corporate_phn">
+                                <div class="row-fluid form-wrapper">
+                                    <div class="span3">
+                                        <label>Mobile <span style="color:red">*</span> </label>
+                                        <div class="clearfix inputgrp mobile">
+                                            <h:inputText value="+ 91" readonly="true" />
+                                            <span>&#32;</span>
+                                            <p:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         id="office_mobile" required="true" placeholder="(Eg:8622334455)"
+                                                         maxlength="10"  style="font-weight:normal"
+                                                         requiredMessage="Please Mobile mobile number" styleClass="span6" 
+                                                         value="#{partialRegistrationBean.advisorRegistrationVo.omobile}"
+                                                         validatorMessage="Please enter  valid Mobile number">
+                                                <f:validateRegex pattern="^$|^\d{10}$"/>
+                                            </p:inputText>
+                                        </div><br></br>
+                                        <h:message for="office_mobile" styleClass="err_message"></h:message>
+                                    </div>
+                                    <div  class="span3">
+                                        <label>Email<span style="color:red">*</span></label>
+                                        <h:inputText value="#{partialRegistrationBean.advisorRegistrationVo.oemail}"
+                                                     required="true" requiredMessage="Please enter Email" readonly="true"
+                                                     styleClass="span6" maxlength="50" id="office_email-in"
+                                                     validatorMessage="Invalid Email format">
+                                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </h:inputText><br></br>
+                                        <h:message for="office_email-in" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3">
+                                        <h:panelGroup id="ofc_corporate" rendered="#{!partialRegistrationBean.advisorRegistrationVo.individualOrCoprt}">
+                                            <label>Office<span style="color:red">*</span></label>
+                                        </h:panelGroup>
+                                        <h:panelGroup id="ofc_individual" rendered="#{partialRegistrationBean.advisorRegistrationVo.individualOrCoprt}">
+                                            <label>Office</label>
+                                        </h:panelGroup>
+                                        <div class="clearfix inputgrp tel">
+                                            <p:inputText value="#{partialRegistrationBean.advisorRegistrationVo.oisd}" 
+                                                         placeholder="ISD" maxlength="3" id="off_isd" style="font-weight:normal"
+                                                         onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
+                                            <p:inputText value="#{partialRegistrationBean.advisorRegistrationVo.ostd}" 
+                                                         placeholder="STD" maxlength="4" id="off_std" style="font-weight:normal"
+                                                         onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
+                                            <p:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         id="office_telephone-number" 
+                                                         required="#{!partialRegistrationBean.advisorRegistrationVo.individualOrCoprt}" 
+                                                         maxlength="8" styleClass="span6" style="font-weight:normal"
+                                                         requiredMessage="Please enter Office number" 
+                                                         validatorMessage="Please enter valid Office number(Eg:04842758595,02222758595)"
+                                                         value="#{partialRegistrationBean.advisorRegistrationVo.otnumber}">
+                                                <f:validateRegex pattern="^$|^([\d]+)?$"/>
+                                            </p:inputText>
+                                        </div><br></br>
+                                        <h:message for="office_telephone-number" styleClass="err_message"></h:message> 
+                                    </div>
+                                </div>
+                                </h:panelGroup> 
+                                
+                                <h4 class="title " id="investor_trddata" style="margin-top: 25px;">Bank Details</h4>
+                                <div class="row-fluid form-wrapper bank_det_copy ">
+                                    <div class="span3">
+                                        <label style="width: 291px">Bank<span style="color:red">*</span></label>
+                                        <div class="ui-select">
+                                            <h:selectOneMenu value="#{partialRegistrationBean.advisorRegistrationVo.bankName}" id="Bank_list" 
+                                                             required="true" requiredMessage="Please select Bank"
+                                                             style="width: 100%;">
+                                                <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                <f:selectItems value="#{partialRegistrationBean.bankList.entrySet()}" 
+                                                               var="bankList" itemLabel="#{bankList.value}" itemValue="#{bankList.value}"/>
+                                            </h:selectOneMenu>
+                                        </div><br></br>
+                                        <h:message for="Bank_list" styleClass="err_message"/>
+                                    </div>
+
+                                    <div class="span3">
+                                        <label>Account Type<span style="color:red">*</span></label>
+                                        <div class="ui-select">
+                                            <h:selectOneMenu  value="#{partialRegistrationBean.advisorRegistrationVo.accountType}" required="true"
+                                                              requiredMessage="Please select Account Type"  style="margin-left: 0px;width:100%" 
+                                                              id="aSubtype">
+                                                <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                <f:selectItems value="#{partialRegistrationBean.bankSubTypeData.entrySet()}" 
+                                                               var="bankSubTypeData" 
+                                                               itemLabel="#{bankSubTypeData.key}" itemValue="#{bankSubTypeData.key}"/>
+                                            </h:selectOneMenu>
+                                        </div><br></br>
+                                        <h:message for="aSubtype" styleClass="err_message"/>
+                                    </div>
+
+                                    <div class="span3">
+                                        <label>Bank Account No:<span style="color:red">*</span></label>
+                                        <h:inputSecret redisplay="true" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                       maxlength="20" required="true"   id="acno" 
+                                                       requiredMessage="Please enter Account Number" styleClass="span4"
+                                                       value="#{partialRegistrationBean.advisorRegistrationVo.accountNumber}"  
+                                                       validatorMessage="Please enter valid Account Number">
+                                            <f:validateRegex pattern="^([\d]+)?$"/> 
+                                        </h:inputSecret><br></br>
+                                        <h:message for="acno" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3">
+                                        <label>Re-enter Bank Account No:<span style="color:red">*</span></label>
+                                        <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                     maxlength="20" required="true"   id="re-acno"
+                                                     onmousedown="DisableRightClick(event)" 
+                                                     onkeydown="return DisableCtrlKey(event)"
+                                                     requiredMessage="Please Re-enter Bank Account No:" styleClass="span4"
+                                                     value="#{partialRegistrationBean.advisorRegistrationVo.raccountNumber}"  
+                                                     validatorMessage="Please enter valid Account Number">
+                                            <f:validateRegex pattern="^([\d]+)?$"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="re-acno" styleClass="err_message"/>
+                                    </div>
+                                </div>						 
+
+                                <div class="row-fluid form-wrapper">
+                                    <div class="span3">
+                                        <label>IFSC No.<span style="color:red">*</span></label>
+                                        <h:inputText  id="ifcs_code" value="#{partialRegistrationBean.advisorRegistrationVo.ifscNo}"
+                                                      styleClass="span6" maxlength="11"  required="true"                                                    
+                                                      validatorMessage="Please enter valid IFSC(Eg:SBIN0002806)"
+                                                      requiredMessage="Please enter IFSC Number" >
+                                            <f:validateRegex pattern="^$|[A-Z|a-z]{4}[0][\d]{6}$"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="ifcs_code" styleClass="err_message"/>
+                                    </div>
+
+                                    <div class="span3">
+                                        <label>MICR No.<span style="color:red">*</span></label>
+                                        <h:inputText  onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                      maxlength="9" id="micr" required="true" requiredMessage="Please enter MICR Number "
+                                                      styleClass="span4" value="#{partialRegistrationBean.advisorRegistrationVo.micrNo}" 
+                                                      validatorMessage="Please enter valid MICR Number"  >
+                                            <f:validateRegex pattern="^$|^[0-9]{9}$"/>
+                                        </h:inputText><br></br>
+                                        <h:message for="micr" styleClass="err_message"/>
+                                    </div>
+                                </div>								
+
+
+                                <div class="row-fluid form-wrapper">
+                                    <div class="span3">
+                                        <label>Address Line1<span style="color:red">*</span> </label>
+                                        <h:inputText id="bankaddress_line1" value="#{partialRegistrationBean.advisorRegistrationVo.baddressLine1}"                                                         
+                                                     styleClass="span4" required="true" maxlength="50"
+                                                     requiredMessage="Please enter Bank Address "
+                                                     validatorMessage="Please enter valid Resident address"> 
+                                        </h:inputText><br></br>
+                                        <h:message for="bankaddress_line1" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3">
+                                        <label>Address Line2</label>
+                                        <h:inputText id="bankaddress_line2" value="#{partialRegistrationBean.advisorRegistrationVo.baddressLine2}"                                                         
+                                                     styleClass="span6" required="false" maxlength="20"
+                                                     requiredMessage="Please enter Address Line 2 "
+                                                     validatorMessage="Please enter Address Line 2">
+                                        </h:inputText><br></br>
+                                        <h:message for="bankaddress_line2" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3">
+                                        <label>Landmark</label>
+                                        <h:inputText id="bankaddress_landmark" value="#{partialRegistrationBean.advisorRegistrationVo.blandMark}"                                                         
+                                                     styleClass="span6" required="false" maxlength="50"
+                                                     requiredMessage="Please enter Landmark "
+                                                     validatorMessage="Please enter valid Landmark">
+                                        </h:inputText><br></br>
+                                        <h:message for="bankaddress_landmark" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3">
+                                        <label>Pin Code <span style="color:red">*</span> </label>
+                                        <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                     id="bankAddrpincode" required="true"
+                                                     maxlength="6" style="width: 197px;"
+                                                     requiredMessage="Please enter Pin Code"
+                                                     validatorMessage="Please enter valid Pin Code"
+                                                     styleClass="span6" value="#{partialRegistrationBean.advisorRegistrationVo.bpincode}">
+                                            <f:validateRegex pattern="^$|^([\d]+)?$"/>
+                                        </h:inputText><br></br>
+                                        <h:message for="bankAddrpincode" styleClass="err_message"></h:message>
+                                    </div> 
+                                </div>
+
+                                <div class="row-fluid form-wrapper">
+                                    <div class="span3">
+                                        <label>Country<span style="color:red">*</span></label>
+                                        <div class="ui-select">
+                                            <h:selectOneMenu value="#{partialRegistrationBean.advisorRegistrationVo.bcountry}" style="width: 100%;"
+                                                             id="bank_country">
+                                                <f:selectItems value="#{partialRegistrationBean.countryList.entrySet()}" 
+                                                               var="bcountryList" 
+                                                               itemLabel="#{bcountryList.value}" itemValue="#{bcountryList.key}"/>
+                                                <p:ajax event="change" listener="#{partialRegistrationBean.onChnageCountryBank()}" update="bankstate_panel_group bankcity_panel_group"/> 
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <h:panelGroup id="bankstate_panel_group">
+                                        <div class="span3">
+                                            <label>State<span style="color:red">*</span></label>
+                                            <h:inputText id="bankstate_text" maxlength="50"
+                                                         required="true" 
+                                                         requiredMessage="Please enter State" style="width: 208px!important;"
+                                                         value="#{partialRegistrationBean.advisorRegistrationVo.bstate}"
+                                                         rendered="#{partialRegistrationBean.stateListBank2Editable}"
+                                                         validatorMessage="Please enter valid State">
+                                                <f:validateRegex pattern="^$|[a-zA-Z\s]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:panelGroup rendered="#{!partialRegistrationBean.stateListBank2Editable}">
+                                                <div class="ui-select">
+                                                    <h:selectOneMenu value="#{partialRegistrationBean.advisorRegistrationVo.bstate}" id="bankstate_list" 
+                                                                     required="true" requiredMessage="Please select State"
+                                                                     style="width: 100%;">
+                                                        <p:ajax event="change" listener="#{partialRegistrationBean.onChangeState(partialRegistrationBean.advisorRegistrationVo.bstate,3)}" update="bankcity_panel_group"/> 
+                                                        <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                        <f:selectItems value="#{partialRegistrationBean.stateListBank2.entrySet()}" 
+                                                                       var="bstateList" itemLabel="#{bstateList.value}" itemValue="#{bstateList.value}"/>
+                                                    </h:selectOneMenu>
+                                                    <br></br>
+                                                </div>
+                                            </h:panelGroup><br></br>
+                                            <h:message for="bankstate_text" styleClass="err_message"></h:message> 
+                                            <h:message for="bankstate_list" styleClass="err_message"></h:message> 
+                                        </div>
+                                    </h:panelGroup>
+
+                                    <h:panelGroup id="bankcity_panel_group">
+                                        <div class="span3">
+                                            <label>City<span style="color:red">*</span></label>
+                                            <h:inputText id="bank_text" maxlength="50"
+                                                         required="true" 
+                                                         requiredMessage="Please enter City" style="width: 208px!important;"
+                                                         value="#{partialRegistrationBean.advisorRegistrationVo.bcity}"
+                                                         rendered="#{partialRegistrationBean.cityListBank2Editable}"
+                                                         validatorMessage="Please enter valid City">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:panelGroup rendered="#{!partialRegistrationBean.cityListBank2Editable}">
+                                                <div class="ui-select">
+                                                    <h:selectOneMenu value="#{partialRegistrationBean.advisorRegistrationVo.bcity}" id="bcityList" 
+                                                                     required="true" requiredMessage="Please select City"
+                                                                     style="width: 100%;">
+                                                        <p:ajax event="change" update="other_bnkgroup other_bnkcity"/> 
+                                                        <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                        <f:selectItems value="#{partialRegistrationBean.cityListBank2.entrySet()}" 
+                                                                       var="bcityList" itemLabel="#{bcityList.value}" itemValue="#{bcityList.value}"/>
+                                                    </h:selectOneMenu>
+                                                    <br></br>
+                                                </div>
+                                            </h:panelGroup><br></br>
+                                            <h:message for="bank_text" styleClass="err_message"></h:message> 
+                                            <h:message for="bcityList" styleClass="err_message"></h:message> 
+                                        </div>
+                                    </h:panelGroup>
+                                    <h:panelGroup id="other_bnkgroup">
+                                        <h:panelGroup id="other_bnkcity" rendered="#{partialRegistrationBean.advisorRegistrationVo.bcity eq 'Other'}">
+                                            <div class="span3">
+                                                <label>City Other <span style="color:red">*</span></label>
+                                                <h:inputText id="bnk_city" maxlength="50"
+                                                             required="true" styleClass="span6"
+                                                             requiredMessage="Please enter City" 
+                                                             value="#{partialRegistrationBean.advisorRegistrationVo.bnk_city_other}"
+                                                             validatorMessage="Please enter valid City">
+                                                    <f:validateRegex pattern="^$|[a-zA-Z\s.,\-\\\/\#]*"/> 
+                                                </h:inputText>
+                                            </div><br></br>
+                                            <h:message for="bnk_city" styleClass="err_message"></h:message> 
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                </div>
+                                
+                                <h4 class="title" style="margin-top: 25px;"> Qualification Information</h4>	
+                                <div class="row-fluid qualification">
+                                    <div class="span3" style="width: 23%!important;margin-left: 6px !important;">
+                                        <label style="display : block;">Qualification</label>
+                                    </div>
+                                    <div class="span3" style="width: 23%!important;">
+                                        <label style="display : block;">Institute</label>
+                                    </div>
+                                    <div class="span3" style="width: 23%!important;">
+                                        <label style="display : block;">Year</label>
+                                    </div>
+                                </div>
+                                <div class="row-fluid qualification">
+                                    <div class="span3" style="width: 23%!important;">
+                                        <h:inputText id="qualification" value="#{partialRegistrationBean.advisorRegistrationVo.pqualification}" class="span6 text_select" maxlength="20"                                                        
+                                                     styleClass="span6" required="false"
+                                                     requiredMessage="Please enter Qualificaiton "
+                                                     validatorMessage="Please enter valid Entry">
+                                            <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="qualification" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3" style="width: 23%!important;">
+                                        <h:inputText id="Institute" value="#{partialRegistrationBean.advisorRegistrationVo.pinsititute}"  
+                                                     class="span6 text_select"    maxlength="50"                                                   
+                                                     styleClass="span6" required="false"
+                                                     requiredMessage="Please enter Institute "
+                                                     validatorMessage="Please enter valid Entry">
+                                            <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="Institute" styleClass="err_message"/>
+                                    </div> 
+                                    <div class="span3" style="width: 13%!important;">
+                                        <div class="field-box">
+                                            <div class="ui-select" style="float: left;clear: left;width: 85%!important;">
+                                                <h:selectOneMenu   value="#{partialRegistrationBean.advisorRegistrationVo.pyear}" id="pyear">
+                                                    <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue="-1" />
+                                                    <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                    <f:selectItems value="#{partialRegistrationBean.yearList.entrySet()}" 
+                                                                   var="yearList" itemLabel="#{yearList.value}" itemValue="#{yearList.value}"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--    Qualification id is commented according to the client request
+                                    <div class="span3" style="width: 23%!important;">
+                                        <label style="display : block;">Qualification ID</label>
+                                        <div class="field-box">
+                                            <h:inputText id="InstituteId" value="{partialRegistrationBean.advisorRegistrationVo.pqualificationId}" 
+                                                         maxlength="10"                                                        
+                                                         styleClass="span6 text_select" required="false"
+                                                         requiredMessage="Please enter Institute Id "
+                                                         validatorMessage="Please enter valid Entry">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:message for="InstituteId" styleClass="err_message"/>
+                                        </div>
+                                    </div> 
+                                    -->
+                                </div>	
+
+                                <div class="row-fluid qualification">
+                                    <div class="span3" style="width: 23%!important;">
+                                        <h:inputText id="qualification2" value="#{partialRegistrationBean.advisorRegistrationVo.squalification}" class="span6 text_select" maxlength="20"                                                        
+                                                     styleClass="span6" required="false"
+                                                     requiredMessage="Please enter Qualificaiton "
+                                                     validatorMessage="Please enter valid Entry">
+                                            <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="qualification2" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3" style="width: 23%!important;">
+                                        <h:inputText id="Institute2" value="#{partialRegistrationBean.advisorRegistrationVo.sinsititute}"  class="span6 text_select"    maxlength="50"                                                   
+                                                     styleClass="span6" required="false"
+                                                     requiredMessage="Please enter Institute "
+                                                     validatorMessage="Please enter valid Entry">
+                                            <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="Institute2" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3" style="width: 13%!important;">
+                                        <div class="field-box">
+                                            <div class="ui-select" style="float: left;clear: left;width: 85%!important;">
+                                                <h:selectOneMenu   value="#{partialRegistrationBean.advisorRegistrationVo.syear}" id="syear">
+                                                    <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                    <f:selectItems value="#{partialRegistrationBean.yearList.entrySet()}" 
+                                                                   var="syearList" itemLabel="#{syearList.value}" itemValue="#{syearList.value}"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--    Qualification id is commented according to the client request
+                                    <div class="span3" style="width: 23%!important;">
+                                        <div class="field-box">
+                                            <h:inputText id="InstituteId2" value="{partialRegistrationBean.advisorRegistrationVo.squalificationId}" maxlength="10"                                                        
+                                                         styleClass="span6 text_select" required="false"
+                                                         requiredMessage="Please enter Institute Id "
+                                                         validatorMessage="Please enter valid Entry">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:message for="InstituteId2" styleClass="err_message"/>
+                                        </div>
+                                    </div>  
+                                    -->
+                                </div>
+
+
+
+
+                                <div class="row-fluid qualification">
+                                    <div class="span3" style="width: 23%!important;">
+                                        <h:inputText id="qualification3" value="#{partialRegistrationBean.advisorRegistrationVo.tqualification}" class="span6 text_select" maxlength="20"                                                        
+                                                     styleClass="span6" required="false"
+                                                     requiredMessage="Please enter Qualificaiton "
+                                                     validatorMessage="Please enter valid Entry">
+                                            <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="qualification3" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3" style="width: 23%!important;">
+                                        <h:inputText id="Institute3" value="#{partialRegistrationBean.advisorRegistrationVo.tinsititute}"  class="span6 text_select"    maxlength="50"                                                   
+                                                     styleClass="span6" required="false"
+                                                     requiredMessage="Please enter Institute "
+                                                     validatorMessage="Please enter valid Entry">
+                                            <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="Institute3" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3" style="width: 13%!important;">
+                                        <div class="field-box">
+                                            <div class="ui-select" style="float: left;clear: left;width: 85%!important;">
+                                                <h:selectOneMenu   value="#{partialRegistrationBean.advisorRegistrationVo.tyear}" id="tyear">
+                                                    <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                    <f:selectItems value="#{partialRegistrationBean.yearList.entrySet()}" 
+                                                                   var="tyearList" itemLabel="#{tyearList.value}" itemValue="#{tyearList.value}"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--    Qualification id is commented according to the client request
+                                    <div class="span3" style="width: 23%!important;">
+                                        <div class="field-box">
+                                            <h:inputText id="InstituteId3" value="{partialRegistrationBean.advisorRegistrationVo.tqualificationId}" maxlength="10"                                                        
+                                                         styleClass="span6 text_select" required="false"
+                                                         requiredMessage="Please enter Institute Id "
+                                                         validatorMessage="Please enter valid Entry">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:message for="InstituteId3" styleClass="err_message"/>
+                                        </div>
+                                    </div>  
+                                    -->
+                                </div>
+
+                                <script src="#{request.contextPath}/js/bootstrap.datepicker.js"></script>
+                                <script type="text/javascript">
+                                    $(".datepicker_box .icon-calendar").click(function(){
+                                        $(this).prev(".datepicker").trigger("click").trigger("focus");
+                                    });
+                                    
+                                    $('.datepicker').datepicker({
+                                        format: 'dd-mm-yyyy'
+                                    }).on('changeDate', function(ev) {
+                                        $(this).datepicker('hide');
+                                        var input = $(this);
+                                        var id = $(this).attr('id');
+                                        if (id == 'partial_adv_form:dob'){
+                                            var date = new Date();
+                                            var a = Date.parse(date.toDateString());
+                                            var b = new Date(a).getTime();
+                                            var exampleDate = input.val().toString();
+                                            var parts = exampleDate.split('-');
+                                            var psdt = new Date(parts[2], parts[1] - 1, parts[0]).getTime();
+                                            if (psdt > b) {
+                                                $(input).val("");
+                                                alert('Future date cannot be selected');
+                                            }
+                                        }
+                                        if (id == 'partial_adv_form:validity'){
+                                            var date1 = new Date();
+                                            var a1 = Date.parse(date1.toDateString());
+                                            var b1 = new Date(a1).getTime();
+                                            var exampleDate1 = input.val().toString();
+                                            var parts1 = exampleDate1.split('-');
+                                            var psdt1 = new Date(parts1[2], parts1[1] - 1, parts1[0]).getTime();
+                                            if (b1 > psdt1){
+                                                $(input).val("");
+                                                alert('Past date cannot be selected');
+                                            }
+                                        }
+                                        });
+                                                                            
+                                </script>
+
+                                <div class="datepicker datepicker-dropdown dropdown-menu" style="display: none; top: 553px; left: 708px; z-index: 10;"><div class="datepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">April 2014</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">30</td><td class="day old">31</td><td class="day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td><td class="day">5</td></tr><tr><td class="day">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td><td class="day">11</td><td class="day">12</td></tr><tr><td class="day">13</td><td class="day">14</td><td class="day">15</td><td class="day">16</td><td class="day">17</td><td class="day">18</td><td class="day">19</td></tr><tr><td class="day">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td><td class="day">24</td><td class="day">25</td><td class="day">26</td></tr><tr><td class="day">27</td><td class="day">28</td><td class="day">29</td><td class="day">30</td><td class="day new">1</td><td class="day new">2</td><td class="day new">3</td></tr><tr><td class="day new">4</td><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td><td class="day new">9</td><td class="day new">10</td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">2014</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month active">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">2010-2019</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year active">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr></tfoot></table></div></div>
+                                <div class="button-row" style="padding: 16px 50px 16px 50px;margin-top: 20px;">
+                                    <h:inputHidden value="#{partialRegistrationBean.advisorRegistrationVo.remail}"></h:inputHidden>
+                                    <h:inputHidden value="#{partialRegistrationBean.advisor}"></h:inputHidden>
+                                    <h:commandLink  value="Save" id="submitt" styleClass="btn-flat success"
+                                                    onclick="return saveConfirm();"
+                                                    actionListener="#{partialRegistrationBean.saveAdvisor}"
+                                                    action="#{partialRegistrationBean.save()}"/>
+
+                                    <h:commandLink styleClass="btn-flat success" 
+                                                   value="Cancel" id="cancel" action="#{partialRegistrationBean.redirectBack()}"
+                                                   immediate="true"/>
+                                </div>
+                                <script type="text/javascript">
+
+                                    function startSpinner() {
+                                        startPageSpinner();
+                                    }
+
+                                    function DisableRightClick(event){
+                                    //For mouse right click 
+                                        if (event.button == 2){
+                                            alert("Please Re-enter Account Number");
+                                        }
+                                    }
+
+                                    function DisableCtrlKey(e){
+                                        var code = (document.all) ? event.keyCode:e.which;
+                                        var message = "Please Re-enter Account Number";
+                                        // look for CTRL key press
+                                        if (parseInt(code) == 17) {
+                                            alert(message);
+                                            window.event.returnValue = false;
+                                        }
+                                    }
+
+                                    function showfile(){
+                                        var filename = $('input[type=file]').val().split('\\').pop();
+                                        $("#file_name").html(filename);
+                                    }
+
+                                    $('.individualOrCprt').click(function () {
+                                        if (document.getElementById('partial_adv_form:individualOrCprt:0').checked){
+                                            $(".org").hide();
+                                            $(".fname").show();
+                                            $(".lname").show();
+                                        } else{
+                                            $(".org").show();
+                                            $(".fname").hide();
+                                            $(".lname").hide();
+                                        }
+                                    });
+                                    
+                                    $(document).ready(function(){
+                                        if (document.getElementById('partial_adv_form:individualOrCprt:0').checked){
+                                            $(".org").hide();
+                                            $(".fname").show();
+                                            $(".lname").show();
+                                        } else{
+                                            $(".org").show();
+                                            $(".fname").hide();
+                                            $(".lname").hide();
+                                        }
+                                    });
+                                    
+                                    function saveConfirm() {
+                                        var ret = confirm("Do you want to save the data?");
+                                        if (ret) {
+                                            startPageSpinner();
+                                        } else {
+                                            stopPageSpinner();
+                                        }
+                                        return ret;
+                                    }
+                                    
+                                    var sebiFile = '#{partialRegistrationBean.advisorRegistrationVo.sebiPath eq null || 
+                                                    partialRegistrationBean.advisorRegistrationVo.sebiPath eq ''? 'No file chosen'
+                                                    : partialRegistrationBean.advisorRegistrationVo.sebiPath }';
+                                    $("#file_name").html(sebiFile);
+                                    //  This code is for positioning bank ifsc autocomplete panel
+                                    window.onload = function(){
+                                        newdiv();
+                                    }
+                                    function newdiv() {
+                                        $('#partial_adv_form\\:auto_ifsc_panel').appendTo('#span_auto');
+                                    }
+                                </script>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

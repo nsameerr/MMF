@@ -1,0 +1,65 @@
+				<!-- Financial Planner : returns and risk -->                  
+                <div class="content_box_finance">
+                    <div class="content_box_finance_hd"><h2>Returns &amp; Risk <br> </h2> </div>           
+                    <div class="content_box_finance_row minheight"> 
+                        <div class="content_box_finance_c1 content_box_finance_full"> <h3> What kind of returns you expect &amp; risks are you willing to tolerate? </h3> <br>
+                        <!-- Return Risk design start -->
+                        <div class="returnrisk-sec">
+                            <div class="returnrisk-c1">    
+                                <div class="rrisk">
+                                   <div class="rriskc1">  
+                                        <ul>
+                                            <li class="high temp riskType">High</li>
+                                            <li class="moderate_high temp riskType">Moderate High</li>
+                                            <li class="moderate temp riskType">Moderate </li>
+                                            <li class="moderate_low temp riskType">Moderate Low</li>
+                                            <li class="low temp riskType">Low</li>
+                                        </ul>
+                                         <input type="hidden" id="riskScoreId"><!--readonly style="border:0;" hidden=""-->      
+                                	</div>
+                                    <div id="slider-vertical"  class="rriskbar" style="height:170px;"></div>
+                                </div>    
+                            </div>
+                            <div class="returnrisk-c2">
+                                <ul>
+                                    <li>16% </li><!-- <li>30% </li> -->
+                                    <li>15% </li><!-- <li>25% </li> -->
+                                    <li>14% </li><!-- <li>20% </li> -->
+                                    <li>13% </li><!-- <li>15% </li> -->
+                                    <li>11% </li><!-- <li>10% </li> -->
+                                </ul>
+                                Average Returns
+                            </div>
+                            <div class="returnrisk-c2">
+                                <ul class="losses">
+                                    <li>-37% </li><!-- <li>-35% </li> -->
+                                    <li>-33% </li><!-- <li>-23% </li> -->
+                                    <li>-24% </li><!-- <li>-22% </li> -->
+                                    <li>-19% </li><!-- <li>-17% </li> -->
+                                    <li>-13% </li><!-- <li>-12% </li> -->
+                                </ul>
+                                Interim Losses
+                            </div>
+                        </div>
+                        <!-- Return Risk design end  -->
+                    </div>          
+                    </div>
+                    <div class="registration_row content_box_finance_row text-center">   
+                        <input type="button" value="Back" class="buttonFpBack btnPrev" ng-click="gotoPrev()"> &nbsp; 
+                        <input type="submit" name="next" id="btnFpSubmit" value="SUBMIT" ng-click="submitFpData()">   
+                    </div>
+                </div>   
+<!--                     
+            </div>
+        </div>    
+    </div>
+</div>
+-->
+
+<link rel="stylesheet" href="css/jquery-ui.css">
+<script src="js/jquery-ui.js"></script>
+
+
+<!--
+</body>
+</html>

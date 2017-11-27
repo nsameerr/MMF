@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 13, 2015 10:58:19 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerAdvisorMappingTb" table="customer_advisor_mapping_tb" catalog="mmfdb">
+        <id name="relationId" type="java.lang.Integer">
+            <column name="relation_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="masterAdvisorTb" class="com.gtl.mmf.entity.MasterAdvisorTb" fetch="select">
+            <column name="advisor_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="promodefinitions" class="com.gtl.mmf.entity.Promodefinitions" fetch="select">
+            <column name="promoId" />
+        </many-to-one>
+        <many-to-one name="masterCustomerTb" class="com.gtl.mmf.entity.MasterCustomerTb" fetch="select">
+            <column name="customer_id" not-null="true" />
+        </many-to-one>
+        <property name="relationStatus" type="short">
+            <column name="relation_status" not-null="true" />
+        </property>
+        <property name="statusDate" type="timestamp">
+            <column name="status_date" length="19" not-null="true" />
+        </property>
+        <property name="allocatedFunds" type="java.lang.Double">
+            <column name="allocated_funds" precision="22" scale="0" />
+        </property>
+        <property name="pendingFees" type="java.lang.Double">
+            <column name="pending_fees" precision="22" scale="0" />
+        </property>
+        <property name="contractStart" type="timestamp">
+            <column name="contract_start" length="19" />
+        </property>
+        <property name="contractEnd" type="timestamp">
+            <column name="contract_end" length="19" />
+        </property>
+        <property name="mgmtFeeTypeVariable" type="java.lang.Boolean">
+            <column name="mgmt_fee_type_variable" />
+        </property>
+        <property name="mgmtFeeFreq" type="java.lang.Short">
+            <column name="mgmt_fee_freq" />
+        </property>
+        <property name="perfFeePercent" type="big_decimal">
+            <column name="perf_fee_percent" precision="5" />
+        </property>
+        <property name="perfFeeThreshold" type="big_decimal">
+            <column name="perf_fee_threshold" precision="5" />
+        </property>
+        <property name="perfFeeFreq" type="java.lang.Integer">
+            <column name="perf_fee_freq" />
+        </property>
+        <property name="commentFreq" type="java.lang.Short">
+            <column name="comment_freq" />
+        </property>
+        <property name="ratingOverall" type="java.lang.Short">
+            <column name="rating_overall" />
+        </property>
+        <property name="ratingSubQuality" type="java.lang.Short">
+            <column name="rating_sub_quality" />
+        </property>
+        <property name="ratingSubFreq" type="java.lang.Short">
+            <column name="rating_sub_freq" />
+        </property>
+        <property name="ratingSubResponse" type="java.lang.Short">
+            <column name="rating_sub_response" />
+        </property>
+        <property name="advisorRequest" type="java.lang.Boolean">
+            <column name="advisor_request" />
+        </property>
+        <property name="managementFeeVariable" type="big_decimal">
+            <column name="management_fee_variable" precision="5" />
+        </property>
+        <property name="managementFeeFixed" type="java.lang.Integer">
+            <column name="management_fee_fixed" />
+        </property>
+        <property name="durationCount" type="java.lang.Integer">
+            <column name="duration_count" />
+        </property>
+        <property name="durationFrequencyMonth" type="java.lang.Integer">
+            <column name="duration_frequency_month" />
+        </property>
+        <property name="noRelationStatus" type="java.lang.Integer">
+            <column name="no_relation_status" />
+        </property>
+        <property name="customerReview" type="string">
+            <column name="customer_review" length="65535" />
+        </property>
+        <property name="coomentFreequency" type="java.lang.Integer">
+            <column name="cooment_freequency" />
+        </property>
+        <property name="reviewFreq" type="java.lang.Integer">
+            <column name="review_freq" />
+        </property>
+        <property name="rateAdvisorLastDate" type="timestamp">
+            <column name="rate_advisor_last_date" length="19" />
+        </property>
+        <property name="rateAdvisorDate" type="timestamp">
+            <column name="rate_advisor_date" length="19" />
+        </property>
+        <property name="mgmtFeeLastCalculated" type="timestamp">
+            <column name="mgmt_fee_last_calculated" length="19" />
+        </property>
+        <property name="perfFeeLastCalculated" type="timestamp">
+            <column name="perf_fee_last_calculated" length="19" />
+        </property>
+        <property name="mgmtFeeAmt" type="big_decimal">
+            <column name="mgmt_fee_amt" precision="12" />
+        </property>
+        <property name="perfFeeAmt" type="big_decimal">
+            <column name="perf_fee_amt" precision="12" />
+        </property>
+        <property name="rateAdvisorFlag" type="java.lang.Boolean">
+            <column name="rate_advisor_flag" />
+        </property>
+        <property name="advisorViewed" type="java.lang.Boolean">
+            <column name="advisor_viewed" />
+        </property>
+        <property name="investorViewed" type="java.lang.Boolean">
+            <column name="investor_viewed" />
+        </property>
+        <property name="rateAdvisorViewed" type="java.lang.Boolean">
+            <column name="rateAdvisor_viewed" />
+        </property>
+         <property name="contractTerminateStatus" type="java.lang.Boolean">
+            <column name="contract_terminate_status" />
+        </property>
+        <property name="contractTerminateDate" type="timestamp">
+            <column name="actual_contract_end_date" length="19" />
+        </property>
+        <set name="performancefeecalculations" inverse="true">
+            <key>
+                <column name="relation_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.Performancefeecalculation" />
+        </set>
+        <set name="customerPerformanceFeeTbs" inverse="true">
+            <key>
+                <column name="relation_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerPerformanceFeeTb" />
+        </set>
+        <set name="customerQuestionResponseSetTbs" inverse="true">
+            <key>
+                <column name="relation_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerQuestionResponseSetTb" />
+        </set>
+        <set name="customerManagementFeeTbs" inverse="true">
+            <key>
+                <column name="relation_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerManagementFeeTb" />
+        </set>
+        <set name="customerRiskProfileTbs" inverse="true">
+            <key>
+                <column name="relation_id" unique="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerRiskProfileTb" />
+        </set>
+        <set name="customerPortfolioTbs" inverse="true">
+            <key>
+                <column name="relation_id" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerPortfolioTb" />
+        </set>
+    </class>
+</hibernate-mapping>

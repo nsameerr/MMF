@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 2, 2015 11:31:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.MasterCustomerTb" table="master_customer_tb" catalog="mmfdb">
+        <id name="customerId" type="java.lang.Integer">
+            <column name="customer_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="masterApplicantTb" class="com.gtl.mmf.entity.MasterApplicantTb" fetch="select">
+            <column name="master_appl_id" not-null="true" />
+        </many-to-one>
+        <property name="registrationId" type="string">
+            <column name="registration_id" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" unique="true" />
+        </property>
+        <property name="status" type="java.lang.Short">
+            <column name="status" />
+        </property>
+        <property name="statusDate" type="timestamp">
+            <column name="status_date" length="19" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="first_name" length="50" />
+        </property>
+        <property name="middleName" type="string">
+            <column name="middle_name" length="50" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="50" />
+        </property>
+        <property name="panNo" type="string">
+            <column name="pan_no" length="50" unique="true" />
+        </property>
+        <property name="age" type="string">
+            <column name="age" length="5" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="5" />
+        </property>
+        <property name="homeAddress1" type="string">
+            <column name="home_address1" length="200" />
+        </property>
+        <property name="homeAddress2" type="string">
+            <column name="home_address2" length="100" />
+        </property>
+        <property name="homeAddressCity" type="string">
+            <column name="home_address_city" length="50" />
+        </property>
+        <property name="homeAddressPincode" type="string">
+            <column name="home_address_pincode" length="10" />
+        </property>
+        <property name="homeAddressCountry" type="string">
+            <column name="home_address_country" length="50" />
+        </property>
+        <property name="homeTelephone" type="string">
+            <column name="home_telephone" length="15" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="15" />
+        </property>
+        <property name="workOrganization" type="string">
+            <column name="work_organization" length="200" />
+        </property>
+        <property name="jobTitle" type="string">
+            <column name="job_title" length="200" />
+        </property>
+        <property name="workAddress1" type="string">
+            <column name="work_address1" length="200" />
+        </property>
+        <property name="workAddress2" type="string">
+            <column name="work_address2" length="100" />
+        </property>
+        <property name="workAddressCity" type="string">
+            <column name="work_address_city" length="50" />
+        </property>
+        <property name="workAddressPincode" type="string">
+            <column name="work_address_pincode" length="10" />
+        </property>
+        <property name="workAddressCountry" type="string">
+            <column name="work_address_country" length="50" />
+        </property>
+        <property name="workTelephone" type="string">
+            <column name="work_telephone" length="15" />
+        </property>
+        <property name="ifscCode" type="string">
+            <column name="ifsc_code" length="15" />
+        </property>
+        <property name="bankAccountNo" type="string">
+            <column name="bank_account_no" length="20" />
+        </property>
+        <property name="bankBalance" type="string">
+            <column name="bank_balance" length="20" />
+        </property>
+        <property name="linkedinUser" type="string">
+            <column name="linkedin_user" length="50" />
+        </property>
+        <property name="linkedinPassword" type="string">
+            <column name="linkedin_password" length="50" />
+        </property>
+        <property name="linkedinMemberId" type="string">
+            <column name="linkedin_member_id" length="50" />
+        </property>
+        <property name="brokerName" type="string">
+            <column name="broker_name" length="50" />
+        </property>
+        <property name="brokerAccountNo" type="string">
+            <column name="broker_account_no" length="20" />
+        </property>
+        <property name="bankName" type="string">
+            <column name="bank_name" length="50" />
+        </property>
+        <property name="totalFunds" type="java.lang.Double">
+            <column name="total_funds" precision="22" scale="0" />
+        </property>
+        <property name="totalAllocatedFunds" type="java.lang.Double">
+            <column name="total_allocated_funds" precision="22" scale="0" />
+        </property>
+        <property name="totalAvailableFunds" type="java.lang.Double">
+            <column name="total_available_funds" precision="22" scale="0" />
+        </property>
+        <property name="documentStatus" type="string">
+            <column name="document_status" length="50" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="50" />
+        </property>
+        <property name="initLogin" type="java.lang.Integer">
+            <column name="init_login" />
+        </property>
+        <property name="loggedIn" type="java.lang.Boolean">
+            <column name="logged_in" />
+        </property>
+        <property name="amount" type="java.lang.Double">
+            <column name="amount" precision="22" scale="0" />
+        </property>
+        <property name="workMobile" type="string">
+            <column name="work_mobile" length="15" />
+        </property>
+        <property name="dob" type="date">
+            <column name="dob" length="10" />
+        </property>
+        <property name="isActiveUser" type="boolean">
+            <column name="is_active_user" not-null="true">
+                <comment>Status for user deleted or not</comment>
+            </column>
+        </property>
+        <property name="formCourieredClient" type="java.lang.Boolean">
+            <column name="form_couriered_Client" />
+        </property>
+        <property name="formReceivedClient" type="java.lang.Boolean">
+            <column name="form_received_client" />
+        </property>
+        <property name="formValidated" type="java.lang.Boolean">
+            <column name="form_Validated" />
+        </property>
+        <property name="rejectionReason" type="string">
+            <column name="rejection_Reason" length="200" />
+        </property>
+        <property name="accepted" type="java.lang.Boolean">
+            <column name="accepted" />
+        </property>
+        <property name="rejected" type="java.lang.Boolean">
+            <column name="rejected" />
+        </property>
+        <property name="rejectionResolved" type="java.lang.Boolean">
+            <column name="rejection_Resolved" />
+        </property>
+        <property name="uccCreated" type="java.lang.Boolean">
+            <column name="uCC_created" />
+        </property>
+        <property name="onlineDetailsubmites" type="java.lang.Boolean">
+            <column name="online_detailsubmites" />
+        </property>
+        <property name="accountActivated" type="java.lang.Boolean">
+            <column name="account_activated" />
+        </property>
+        <property name="omsLoginId" type="string">
+            <column name="oms_login_id" length="40" />
+        </property>
+        <property name="promoId" type="java.lang.Integer">
+            <column name="promoId" />
+        </property>
+        <property name="ecsSendOrResend" type="boolean">
+            <column name="ecs_send_or_resend" not-null="true"/>
+        </property>
+        <set name="customerTransactionOrderDetailsTbs" inverse="true">
+            <key>
+                <column name="customer_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerTransactionOrderDetailsTb" />
+        </set>
+        <set name="customerPortfolioLogTbs" inverse="true">
+            <key>
+                <column name="customer_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerPortfolioLogTb" />
+        </set>
+        <set name="customerDailyCashBalanceTbs" inverse="true">
+            <key>
+                <column name="customer_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerDailyCashBalanceTb" />
+        </set>
+        <set name="customerAdvisorMappingTbs" inverse="true">
+            <key>
+                <column name="customer_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerAdvisorMappingTb" />
+        </set>
+        <set name="customerPortfolioTbs" inverse="true">
+            <key>
+                <column name="customer_id" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerPortfolioTb" />
+        </set>
+        <set name="customerTransactionExecutionDetailsTbs" inverse="true">
+            <key>
+                <column name="customer_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerTransactionExecutionDetailsTb" />
+        </set>
+    </class>
+</hibernate-mapping>

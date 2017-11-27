@@ -1,0 +1,80 @@
+<style>
+lable{
+	margin-left: 12px !important;
+}
+</style>
+<div class="row-fluid">
+	<h2 class="page-title">Login</h2>
+</div>
+<div id="divContent">
+	
+	<div class="row">
+		<div class="form-group js-float-label-wrapper col-md-2" >
+			<label for="">Name</label>
+			<input class="form-control" type="text">
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group js-float-label-wrapper col-md-2" >
+			<label for="">Email</label>
+			<input class="form-control" type="email">
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group js-float-label-wrapper col-md-2" >
+			<label for="">Mobile Number</label>
+			<input class="form-control" type="text">
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group js-float-label-wrapper col-md-2" >
+			<label for="">Password</label>
+			<input class="form-control password" type="text" onchange="javascript:togglePasswordType(this);" onfocus="javascript:togglePasswordType(this);" onblur="javascript:togglePasswordType(this);" onclick="javascript:togglePasswordType(this);">
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group js-float-label-wrapper col-md-2" >
+			<label for="">Re-enter Password</label>
+			<input class="form-control" type="text" placeholder="Re-enter Password"  onchange="javascript:togglePasswordType(this);" onfocus="javascript:togglePasswordType(this);" onblur="javascript:togglePasswordType(this);" onclick="javascript:togglePasswordType(this);">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			<a href="javascript:alert('Goto next page')" class="btn btn-success btn-xs btn-block">
+				<h6 style="color:#ffffff">Signup</h6>
+			</a>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel"></h4>
+	      </div>
+	      <div class="modal-body">
+	        this is modalbody
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+
+<script>
+$( '.js-float-label-wrapper' ).FloatLabel();
+togglePasswordType = function(obj){
+	if(obj.value==''){
+		obj.setAttribute('type', 'text');
+	}
+	else{
+		obj.setAttribute('type', 'password');
+	}
+	return;
+}
+</script>

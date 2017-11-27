@@ -1,0 +1,3 @@
+ALTER TABLE `master_advisor_qualification_tb` ADD `advPicPath` VARCHAR(300) NOT NULL , ADD `oneLineDesc` VARCHAR(150) NOT NULL , ADD `aboutMe` VARCHAR(300) NOT NULL , ADD `myInvestmentStrategy` VARCHAR(300) NOT NULL ;
+
+ALTER TABLE `master_advisor_qualification_tb` CHANGE `advPicPath` `advPicPath` VARCHAR(300) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL, CHANGE `oneLineDesc` `oneLineDesc` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL, CHANGE `aboutMe` `aboutMe` VARCHAR(300) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL, CHANGE `myInvestmentStrategy` `myInvestmentStrategy` VARCHAR(300) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;

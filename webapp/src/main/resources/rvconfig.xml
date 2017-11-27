@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : rvconfig.xml
+    Created on : February 25, 2008, 4:41 PM
+    Author     : sunil
+    Description:
+        Purpose of the document follows.
+-->
+
+<root>
+    <!--NATIVE/JAVA-->
+    <rvimplementation>NATIVE</rvimplementation>
+     <service>
+        <servicename>mdsrequester</servicename>  
+        <!-- for development/UAT -->
+        <!--      
+        <transport>
+            <transport_type>RV</transport_type>
+            <rvservice>7601</rvservice>
+            <rvnetwork>;224.5.5.9</rvnetwork>
+            <rvdaemon>tcp:192.168.69.21:40000</rvdaemon>
+        </transport> 
+        -->  
+        <!-- for Pre-production -->
+        <!--
+        <transport>
+            <transport_type>RV</transport_type>
+            <rvservice>8100</rvservice>
+            <rvnetwork>;224.5.5.4</rvnetwork>
+            <rvdaemon>tcp:192.168.11.11:40000</rvdaemon>
+        </transport>   
+        -->
+		<!--
+		<transport>
+            <transport_type>RV</transport_type>
+            <rvservice>7600</rvservice>
+            <rvnetwork>;224.5.5.6</rvnetwork>
+            <rvdaemon>tcp: 192.168.248.76:40000</rvdaemon>
+        </transport> -->
+        <!-- for Production -->
+        <transport>
+            <transport_type>RV</transport_type>
+            <rvservice>7600</rvservice>
+            <rvnetwork>;224.5.5.6</rvnetwork>
+            <rvdaemon>tcp:192.168.8.15:40000</rvdaemon>
+        </transport>  
+        <queuetype>LOCAL</queuetype>
+        <dist_servicename>localservice</dist_servicename>
+        <cmconfig>
+            <cmname>mdscm</cmname>
+            <ledgername>ledger1</ledgername>		
+            <explicitconfirm>yes</explicitconfirm>	
+        </cmconfig>
+    </service>
+</root>

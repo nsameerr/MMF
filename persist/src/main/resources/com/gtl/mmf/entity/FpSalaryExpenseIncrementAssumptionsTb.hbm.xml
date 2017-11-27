@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 15, 2016 5:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.FpSalaryExpenseIncrementAssumptionsTb" table="fp_salary_expense_increment_assumptions_tb" catalog="mmfdb">
+        <id name="incrementAssumptionId" type="java.lang.Integer">
+            <column name="increment_assumption_id" />
+            <generator class="identity" />
+        </id>
+        <property name="assumptionId" type="java.lang.Integer">
+            <column name="assumption_id" />
+        </property>
+        <property name="customerId" type="string">
+            <column name="customer_id" length="50" />
+        </property>
+        <property name="lowerLimitAge" type="java.lang.Integer">
+            <column name="lower_limit_age" />
+        </property>
+        <property name="upperLimitAge" type="java.lang.Integer">
+            <column name="upper_limit_age" />
+        </property>
+        <property name="selfSalaryIncreaseRate" type="java.lang.Float">
+            <column name="self_salary_increase_rate" precision="12" scale="0" />
+        </property>
+        <property name="spouseSalaryIncreaseRate" type="java.lang.Float">
+            <column name="spouse_salary_increase_rate" precision="12" scale="0" />
+        </property>
+        <property name="expenseIncreaseRate" type="java.lang.Float">
+            <column name="expense_increase_rate" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

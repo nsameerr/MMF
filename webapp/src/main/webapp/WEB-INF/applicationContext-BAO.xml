@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="createUserBAO"  class="com.gtl.mmf.bao.impl.CreateUserBAOImpl"/>
+    <bean id="updateUserBAO"  class="com.gtl.mmf.bao.impl.UpdateUserBAOImpl"/>
+    <bean id="lookupDataLoaderBAO"  class="com.gtl.mmf.bao.impl.LookupDataLoaderBAOImpl"/>
+    <bean id="userProfileBAO"  class="com.gtl.mmf.bao.impl.UserProfileBAOImpl"/>
+    <bean id="userLoginBAO"  class="com.gtl.mmf.bao.impl.UserLoginBAOImpl"/>
+    <bean id="userLogoutBAO" class="com.gtl.mmf.bao.impl.UserLogoutBAOImpl"></bean>
+    <bean id="advisorNetworkViewBAO" class="com.gtl.mmf.bao.impl.AdvisorNetworkViewBAOImpl"></bean>
+    <bean id="advisorMappingBAO" class="com.gtl.mmf.bao.impl.AdvisorMappingBAOImpl"></bean>
+    <bean id="investorNetworkViewBAO" class="com.gtl.mmf.bao.impl.InvestorNetworkViewBAOImpl"></bean>
+    <bean id="investorMappingBAO" class="com.gtl.mmf.bao.impl.InvestorMappingBAOImpl"></bean>
+    <bean id="advisoryServiceContractBAO" class="com.gtl.mmf.bao.impl.AdvisoryServiceContractBAOImpl"></bean>
+    <bean id="advisorDashBoardBAO" class="com.gtl.mmf.bao.impl.AdvisorDashBoardBAOImpl"></bean>
+    <bean id="investorDashBoardBAO" class="com.gtl.mmf.bao.impl.InvestorDashBoardBAOImpl"></bean>
+    <bean id="investmentAdvProfileBAO" class="com.gtl.mmf.bao.impl.InvestmentAdvProfileBAOImpl"></bean>
+    <bean id="userForgotPwdBAO" class="com.gtl.mmf.bao.impl.UserForgotPwdBAOImpl"></bean>
+    <bean id="createEditPortfolioBAO" class="com.gtl.mmf.bao.impl.CreateEditPortfolioBAOImpl"></bean>
+    <bean id="rateAdvisorBAO" class="com.gtl.mmf.bao.impl.RateAdvisorBAOImpl "></bean>
+    <bean id="investmentPolicyStmtBAO" class="com.gtl.mmf.bao.impl.InvestmentPolicyStmtBAOImpl"></bean>
+    <bean id="investorPortfolioBAO" class="com.gtl.mmf.bao.impl.InvestorPortfolioBAOImpl"></bean>
+    <bean id="iAuditBAO" class="com.gtl.mmf.bao.impl.AuditBAOImpl"></bean>
+    <bean id="rebalancePortfolioBAO" class="com.gtl.mmf.bao.impl.RebalancePortfolioBAOImpl"></bean>
+    <bean id="portfolioRebalanceBAO" class="com.gtl.mmf.bao.impl.PortfolioRebalanceBAOImpl"></bean>
+    <bean id="addRedeemFundsBAO" class="com.gtl.mmf.bao.impl.AddRedeemFundsBAOImpl"></bean>
+    <bean id="eodPortfolioReturnsBAO" class="com.gtl.mmf.bao.impl.EODPortfolioReturnsBAOImpl"></bean>
+    <bean id="benchmarkDetailsBAO" class="com.gtl.mmf.bao.impl.BenchmarkDetailsBAOImpl"></bean>
+    <bean id="portfolioDetailsBAO" class="com.gtl.mmf.bao.impl.PortfolioDetailsBAOImpl"></bean>
+    <bean id="clientInvestmentPerformanceBAO" class="com.gtl.mmf.bao.impl.ClientInvestmentPerformanceBAOImpl"></bean>
+    <bean id="boDataLoaderBAO" class="com.gtl.mmf.bao.impl.BODataLoaderBAOImpl"></bean>
+    <bean id="exceptionLogBAO" class="com.gtl.mmf.bao.impl.ExceptionLogBAOImpl"></bean>
+    <bean id="eodTransactionTransferBAO" class="com.gtl.mmf.bao.impl.EODTrasactionTransferBAOImpl"></bean>
+    <bean id="eodAdvisorRatingBAO" class="com.gtl.mmf.bao.impl.EODAdvisorRatingBAOImpl"></bean>
+    <bean id="customerPortfolioAuditBAO" class="com.gtl.mmf.bao.impl.CustomerPortfolioAuditBAOImpl"></bean>
+    <bean id="billdeskTransactionProcessorBAO" class="com.gtl.mmf.bao.impl.BilldeskTransactionProcessor"></bean>
+    <bean id="registrationBAO" class="com.gtl.mmf.bao.impl.RegistrationBAOImpl"></bean>
+    <bean id="iMailStatusBAO" class="com.gtl.mmf.bao.impl.MailStatusBAOImpl"></bean>    
+    <bean id="iECSTransactionProcessingBAO" class="com.gtl.mmf.bao.impl.ECSTransactionProcessingBAOImpl"></bean> 
+    <bean id="iUpdateCashFlowBAO" class="com.gtl.mmf.bao.impl.IUpdateCashFlowBAOImpl"></bean>
+    <bean id="iFeeCalculationBAO" class="com.gtl.mmf.bao.impl.FeeCalculationBAOImpl"></bean>   
+    <bean id="iKitAllocationBAO" class="com.gtl.mmf.bao.impl.KitAllocationBAOImpl"></bean> 
+    <bean id="eodUpdateHolidayCalenderBAO" class="com.gtl.mmf.bao.impl.EODUpdateHolidayCalenderBAOImpl"></bean>
+    <bean id="uploadBenchmarkBAO" class="com.gtl.mmf.bao.impl.UploadBenchmarkBAOImpl"></bean>
+    
+    <bean id="FploansBAO" class="com.gtl.mmf.bao.impl.FploansBAOImpl"></bean>
+    <bean id="FpMainCalculationBAO" class="com.gtl.mmf.bao.impl.FpMainCalculationBAOImpl"></bean>
+	<bean id="FpSetAssumptionsBAO" class="com.gtl.mmf.bao.impl.FpSetAssumptionsBAOImpl"></bean>
+	<bean id="IFpSaveAndFetchDataForFpBAO" class="com.gtl.mmf.bao.impl.FpSaveAndFetchDataForFpBAOImpl"></bean>
+	
+	<bean id="RiskProfilBAO" class="com.gtl.mmf.bao.impl.RiskProfileBAOImpl"></bean>
+	<bean id="RoboAdvisorBAO" class="com.gtl.mmf.bao.impl.RoboAdvisorBAOImpl"></bean>
+	
+	<bean id="RoboAdvisorTestBAO" class="com.gtl.mmf.servlet.RoboAdvisorServlet"></bean>
+	<bean id="PortfolioSearchBAO" class="com.gtl.mmf.bao.impl.PortfolioSearchBAOImpl"></bean>
+	<bean id="userProfileV2BAO" class="com.gtl.mmf.bao.impl.UserProfileV2BAOImpl"></bean>
+	
+	<bean id="LinkedInDetailsBAO" class="com.gtl.mmf.bao.impl.LinkedInDetailsBAOImpl"></bean>
+	<bean id="portfolioAllocationBAO" class="com.gtl.mmf.bao.impl.PortfolioAllocationBAOImpl"></bean>
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
+	
+	<bean id="advisorPayoutBAO" class="com.gtl.mmf.bao.impl.AdvisorPayoutBAOImpl"/>
+</beans>

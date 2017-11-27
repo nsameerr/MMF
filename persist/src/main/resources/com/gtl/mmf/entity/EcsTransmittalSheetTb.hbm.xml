@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22 Feb, 2016 11:43:52 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.EcsTransmittalSheetTb" table="ecs_transmittal_sheet_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="registrationId" type="string">
+            <column name="registration_id" length="20" />
+        </property>
+        <property name="serialNo" type="string">
+            <column name="serial_no" length="5" />
+        </property>
+        <property name="lotno" type="string">
+            <column name="lotno" length="20" />
+        </property>
+        <property name="debitType" type="string">
+            <column name="debit_type" length="20" />
+        </property>
+        <property name="amount" type="string">
+            <column name="amount" length="20" />
+        </property>
+        <property name="frequency" type="string">
+            <column name="frequency" length="25" />
+        </property>
+        <property name="startDate" type="string">
+            <column name="start_date" length="20" />
+        </property>
+        <property name="endDate" type="string">
+            <column name="end_date" length="20" />
+        </property>
+        <property name="acHolderName" type="string">
+            <column name="ac_holder_name" length="150" />
+        </property>
+        <property name="bankName" type="string">
+            <column name="bank_name" length="100" />
+        </property>
+        <property name="acType" type="string">
+            <column name="ac_type" length="20" />
+        </property>
+        <property name="acno" type="string">
+            <column name="acno" length="30" />
+        </property>
+        <property name="micr" type="string">
+            <column name="micr" length="30" />
+        </property>
+        <property name="ifsc" type="string">
+            <column name="ifsc" length="30" />
+        </property>
+        <property name="ecsSend" type="java.lang.Boolean">
+            <column name="ecs_send" />
+        </property>
+        <property name="verified" type="java.lang.Boolean">
+            <column name="verified" />
+        </property>
+        <property name="rejected" type="java.lang.Boolean">
+            <column name="rejected" />
+        </property>
+        <property name="remark" type="string">
+            <column name="remark" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

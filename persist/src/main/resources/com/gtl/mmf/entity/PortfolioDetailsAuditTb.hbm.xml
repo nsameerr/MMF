@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 14, 2014 4:37:58 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.PortfolioDetailsAuditTb" table="portfolio_details_audit_tb" catalog="mmfdb">
+        <id name="portfolioDetailsAuditId" type="java.lang.Integer">
+            <column name="portfolio_details_audit_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="portfolioAuditTb" class="com.gtl.mmf.entity.PortfolioAuditTb" fetch="select">
+            <column name="portfolio_audit_id" />
+        </many-to-one>
+        <property name="portfolioDetailsId" type="java.lang.Integer">
+            <column name="portfolio_details_id" />
+        </property>
+        <property name="portfolioId" type="java.lang.Integer">
+            <column name="portfolio_id" />
+        </property>
+        <property name="assetClassId" type="java.lang.Short">
+            <column name="asset_class_id" />
+        </property>
+        <property name="rangeFrom" type="big_decimal">
+            <column name="range_from" precision="5" />
+        </property>
+        <property name="rangeTo" type="big_decimal">
+            <column name="range_to" precision="5" />
+        </property>
+        <property name="newWeight" type="big_decimal">
+            <column name="new_weight" precision="5" />
+        </property>
+        <property name="currentWeight" type="big_decimal">
+            <column name="current_weight" precision="5" />
+        </property>
+        <property name="initialWeight" type="big_decimal">
+            <column name="initial_weight" precision="5" />
+        </property>
+        <property name="rebalanceRequired" type="java.lang.Boolean">
+            <column name="rebalance_required" />
+        </property>
+        <property name="rebalanceReqdDate" type="timestamp">
+            <column name="rebalance_reqd_date" length="19" />
+        </property>
+        <property name="currentValue" type="big_decimal">
+            <column name="current_value" precision="12" />
+        </property>
+        <property name="newAllocation" type="big_decimal">
+            <column name="new_allocation" precision="5" />
+        </property>
+        <property name="lastUpdateon" type="timestamp">
+            <column name="last_updateon" length="19" />
+        </property>
+        <property name="activityType" type="string">
+            <column name="activity_type" length="200" />
+        </property>
+        <set name="portfolioSecuritiesAuditTbs" inverse="true">
+            <key>
+                <column name="portfolio_details_audit_id" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.PortfolioSecuritiesAuditTb" />
+        </set>
+    </class>
+</hibernate-mapping>

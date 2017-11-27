@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout_admin.xhtml">
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_admin.xhtml" />
+            </ui:define>
+            <ui:define name="title">
+                <h:outputText value="Research – Watch List, Global Macros, News &#38; Search | ManageMyFortune.com"/>
+            </ui:define>
+           <ui:define name="content">
+            <style type="text/css">
+
+            .box {
+            border: 1px solid #eee;
+            padding: 20px 0 20px 20px;
+            margin-bottom: 24px;
+            }
+
+            .large-box {
+            height: 500px;
+            }
+
+            label {
+            display: block;
+            }
+
+            .btn-flat{
+            margin-top: 9px;
+            }
+
+            .next{
+            display: none;
+            }
+            </style> 
+            <h:form id="report-form">
+            <div class="content section">
+                <div id="pad-wrapper">
+                <h2 class="page-title no-margin-bottom two-baseline-margin-bottom">
+                    Reports - Search
+                </h2>
+
+                <div class="row-fluid two-baseline-margin-bottom">
+                    <div class="span2">
+                        <label for="">Client ID *</label>
+                        <h:inputText style="width: 150px;" required="true"
+                                     value="#{clienreportjasperbean.clientPortfolioReportSummaryVO.clientId}"/>
+                    </div>
+                    <div class="span2">
+                        <label for="">Client Name </label>
+                        <h:inputText style="width: 150px;" value="#{clienreportjasperbean.clientPortfolioReportSummaryVO.clientName}"/>
+                    </div>
+                    <div class="span2">
+                        <label for="">Start date </label>
+                        <h:inputText id="start-date" style="width: 150px;" styleClass="datepicker"
+                                     value="#{clienreportjasperbean.clientPortfolioReportSummaryVO.startDate}" required="true"/>
+                    </div>
+                    <div class="span2">
+                        <label for="">End date </label>
+                        <h:inputText id="end-date" style="width: 150px;" styleClass="datepicker"
+                                     value="#{clienreportjasperbean.clientPortfolioReportSummaryVO.endDate}" required="true"/>
+                    </div>
+                    <div class="span2">
+                        <h:commandLink value="Generate Report" styleClass="btn-flat success"
+                                       actionListener="#{clienreportjasperbean.generteReport}"/>
+                        
+                    </div>
+                </div>
+                <div><h:messages for="report-form" styleClass="err_message"/></div>
+                <div class="row-fluid box large-box">
+                    <h3>Generated Report</h3>
+                </div>
+                </div>
+            </div>
+            </h:form>
+            <!-- scripts for this page -->
+            <script src="#{request.contextPath}/js/jquery.js"></script>
+            <script src="#{request.contextPath}/js/bootstrap.min.js"></script>
+            <!-- use of 'bootstrap.min.js' will block menu drop down feature -->
+            <!-- below script is added as a remedy  to override the  'bootstrap.min.js' blocking -->
+            <script type="text/javascript">
+                $(function() {
+                    $('.dropdown-toggle').dropdown();
+                });
+                var $menu = $("#sidebar-nav");
+                $("#menu-toggler").click(function(e) {
+                    e.stopPropagation();
+                    $menu.toggleClass("display");
+                });
+            </script>
+            <!-- end of script -->
+            <script src="#{request.contextPath}/js/jquery-ui-1.10.2.custom.min.js"></script>
+            <script src="#{request.contextPath}/js/bootstrap.datepicker.js"></script>
+            <!-- call all plugins -->
+            <script src="#{request.contextPath}/js/theme.js"></script>
+            <script type="text/javascript">
+            $(".datepicker").datepicker({
+                    format: 'd M, yyyy',
+                    inline: true,
+                    showWeek: true,
+                    firstDay: 1
+                });
+            $("#start-date, #end-date").datepicker();
+            </script>
+           </ui:define>
+        </ui:composition>
+    </body>
+</html>

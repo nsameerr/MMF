@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+
+    </head>
+    <body>
+        <ui:composition>
+            <h:form>
+                <p:remoteCommand name="redirectHome" action="#{sidebarAdminController.onClickHome()}"/>
+                <p:remoteCommand name="redirectReport" action="#{sidebarAdminController.onClickReport()}"/>
+                <p:remoteCommand name="redirectFailedMails" action="#{sidebarAdminController.onClickFailedMails()}"/>
+                <div id="sidebar-nav">
+                    <div class="beta-tag"></div>
+                    <ul id="dashboard-menu">
+                        <li>
+                            <a class="brand" href="#"><img src="#{request.contextPath}/img/logo.png" class="hidden-tablet"/></a>
+                            <a class="brand-tablet" href="#">
+                                <img src="#{request.contextPath}/img/tablet-logo.png" class="hidden-phone hidden-desktop visible-tablet"/></a>
+                        </li>
+                        <li class="active">
+                            <div class="pointer">
+                                <div class="arrow"></div>
+                                <div class="arrow_border"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" onclick="redirectHome();">
+                                <i class="home-icon"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="network-icon"></i>
+                                <span>Network</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="research-icon"></i>
+                                <span>Research</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="redirectReport()">
+                                <i class="report-icon"></i>
+                                <span>Reports</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="redirectFailedMails()">
+                                <i class="report-icon"></i>
+                                <span>Mail List</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="help-icon"></i>
+                                <span>Help</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </h:form>
+        </ui:composition>
+    </body>
+</html>

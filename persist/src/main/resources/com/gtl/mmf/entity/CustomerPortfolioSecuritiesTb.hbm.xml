@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Dec, 2015 1:20:59 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerPortfolioSecuritiesTb" table="customer_portfolio_securities_tb" catalog="mmfdb">
+        <id name="customerPortfolioSecuritiesId" type="java.lang.Integer">
+            <column name="customer_portfolio_securities_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="customerPortfolioDetailsTb" class="com.gtl.mmf.entity.CustomerPortfolioDetailsTb" fetch="select">
+            <column name="customer_portfolio_details_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="portfolioDetailsTb" class="com.gtl.mmf.entity.PortfolioDetailsTb" fetch="select">
+            <column name="portfolio_details_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="portfolioSecuritiesTb" class="com.gtl.mmf.entity.PortfolioSecuritiesTb" fetch="select">
+            <column name="portfolio_securities_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="masterAssetTb" class="com.gtl.mmf.entity.MasterAssetTb" fetch="select">
+            <column name="asset_class_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customerPortfolioTb" class="com.gtl.mmf.entity.CustomerPortfolioTb" fetch="select">
+            <column name="customer_portfolio_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="portfolioTb" class="com.gtl.mmf.entity.PortfolioTb" fetch="select">
+            <column name="portfolio_id" not-null="true" />
+        </many-to-one>
+        <property name="securityId" type="string">
+            <column name="security_id" length="65535" not-null="true" />
+        </property>
+        <property name="currentUnits" type="java.lang.Integer">
+            <column name="current_units" />
+        </property>
+        <property name="currentPrice" type="java.lang.Float">
+            <column name="current_price" precision="14" scale="4"/>
+        </property>
+        <property name="currentValue" type="java.lang.Float">
+            <column name="current_value" precision="10" />
+        </property>
+        <property name="currentWeight" type="java.lang.Float">
+            <column name="current_weight" precision="5" />
+        </property>
+        <property name="exeUnits" type="big_decimal">
+            <column name="exe_units" precision="14" scale="4"/>
+        </property>
+        <property name="recommentedPrice" type="java.lang.Float">
+            <column name="recommented_price" precision="14" scale="4"/>
+        </property>
+        <property name="avgAcquisitionPrice" type="java.lang.Float">
+            <column name="avg_acquisition_price" precision="10" />
+        </property>
+        <property name="initialValue" type="java.lang.Float">
+            <column name="initial_value" precision="10" />
+        </property>
+        <property name="initialWeight" type="java.lang.Float">
+            <column name="initial_weight" precision="5" />
+        </property>
+        <property name="requiredValue" type="java.lang.Float">
+            <column name="required_value" precision="10" />
+        </property>
+        <property name="requiredUnits" type="big_decimal">
+            <column name="required_units" precision="11" />
+        </property>
+        <property name="rebalanceRequired" type="java.lang.Boolean">
+            <column name="rebalance_required" />
+        </property>
+        <property name="rebalanceReqdDate" type="timestamp">
+            <column name="rebalance_reqd_date" length="19" />
+        </property>
+        <property name="newAllocation" type="java.lang.Float">
+            <column name="new_allocation" precision="5" />
+        </property>
+        <property name="securityDescription" type="string">
+            <column name="security_description" length="100" />
+        </property>
+        <property name="newToleranceNegativeRange" type="java.lang.Integer">
+            <column name="new_tolerance_negative_range" />
+        </property>
+        <property name="newTolerancePositiveRange" type="java.lang.Integer">
+            <column name="new_tolerance_positive_range" />
+        </property>
+        <property name="venueCode" type="string">
+            <column name="venueCode" length="100" />
+        </property>
+        <property name="venueScriptCode" type="string">
+            <column name="venueScriptCode" length="100" />
+        </property>
+        <property name="securityCode" type="string">
+            <column name="security_code" length="50" />
+        </property>
+        <property name="status" type="java.lang.Boolean">
+            <column name="status" />
+        </property>
+        <property name="instrumentType" type="string">
+            <column name="instrument_type" length="50" />
+        </property>
+        <property name="expirationDate" type="timestamp">
+            <column name="expiration_date" length="19" />
+        </property>
+        <property name="strikePrice" type="big_decimal">
+            <column name="strike_price" precision="12" />
+        </property>
+        <property name="yesterDayUnitCount" type="big_decimal">
+            <column name="yesterDayUnitCount" precision="14" scale="4"/>
+        </property>
+        <property name="lastBoughtPrice" type="java.lang.Float">
+            <column name="lastBoughtPrice" precision="14" scale="4"/>
+        </property>
+        <property name="averageRate" type="java.lang.Float">
+            <column name="average_rate" precision="10" scale="4" />
+        </property>
+        <property name="blockCount" type="big_decimal">
+            <column name="blocked_count" precision="14" scale="4"/>
+        </property>
+        <set name="customerPortfolioSecuritiesPerformanceTbs" table="customer_portfolio_securities_performance_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_portfolio_securities_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerPortfolioSecuritiesPerformanceTb" />
+        </set>
+    </class>
+</hibernate-mapping>

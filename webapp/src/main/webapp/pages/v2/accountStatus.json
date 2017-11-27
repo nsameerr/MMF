@@ -1,0 +1,50 @@
+[
+
+        {
+	                      "process_label" : "Online Details Submitted",
+	                      "process_name" : "online_detailsubmites",
+	                      "process_status" : 0
+	               },
+	               {
+	                      "process_label" : "Form couriered to Client",
+	                      "process_name" : "form_couriered_Client",
+	                      "process_status" : 0
+	               },
+	               {
+
+	                      "process_label" : "Form received from client",
+	                      "process_name" : "form_received_client",
+	                      "process_status" : 0
+	               },
+	               {
+
+	                      "process_label" : "Form Validated",
+	                      "process_name" : "form_Validated",
+	                      "process_status" : 0
+	               },
+	               {
+	                      "process_label" : "Accepted",
+	                      "process_name" : "accepted",
+	                      "process_status" : 0
+	               },
+	               {
+	                      "process_label" : "Rejected",
+	                      "process_name" : "rejected",
+	                      "process_status" : 1,
+	                      "rejection_Reason" : "some reason",
+	                      "rejection_Resolved" :0
+	               },
+	               {
+	                      "process_label" : "Trading & Demat Activated",
+	                      "process_name" : "account_activated",
+	                      "process_status" : 0,
+
+	                      "rejection_Resolved" :1
+	               },
+	               {
+	                      "process_label" : "UCC created",
+	                      "process_name" : "uCC_created",
+	                      "process_status" : 0,
+	                      "rejection_Resolved" :1
+	               }
+]

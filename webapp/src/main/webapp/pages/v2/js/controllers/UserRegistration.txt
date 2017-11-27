@@ -1,0 +1,587 @@
+app.controller('UserRegistration', ['$scope', function($scope) {
+	//$scope.riskProfileQuestions = data;
+	$scope.errorTitle= "Error";
+	$scope.errorBody="Please answer the following questions";
+	
+	var totalSlides = 12;
+    var arrVisitedSlids = [];
+	
+    setTimeout(function(){ 
+    	for(ind=0;ind<totalSlides;ind++)
+		{
+			arrVisitedSlids[ind]=false;
+		}
+    	
+     	arrVisitedSlids[0]=true;
+
+     	$('#spc0').on('click', function () {$('#myCarousel').carousel(0);});
+     	$('#spc1').on('click', function () {$('#myCarousel').carousel(1);});
+     	$('#spc2').on('click', function () {$('#myCarousel').carousel(2);});
+     	$('#spc3').on('click', function () {$('#myCarousel').carousel(3);});
+     	$('#spc4').on('click', function () {$('#myCarousel').carousel(4);});
+     	$('#spc5').on('click', function () {$('#myCarousel').carousel(5);});
+     	$('#spc6').on('click', function () {$('#myCarousel').carousel(6);});
+     	$('#spc7').on('click', function () {$('#myCarousel').carousel(7);});
+     	$('#spc8').on('click', function () {$('#myCarousel').carousel(8);});
+     	$('#spc9').on('click', function () {$('#myCarousel').carousel(9);});
+     	$('#spc10').on('click', function () {$('#myCarousel').carousel(10);});
+     	$('#spc11').on('click', function () {$('#myCarousel').carousel(11);});
+     	
+         
+         $("#myCarousel").on('slid.bs.carousel', function () {
+             //console.log($("#myCarousel").find('.active').index());
+             
+             curSlide = $("#myCarousel").find('.active');
+             if(curSlide.index()==4){
+            	 $('#divAggrement').css('display','block');
+             }
+             else{
+            	 $('#divAggrement').css('display','none');
+             }
+             arrVisitedSlids[curSlide.index()] = true;
+             
+
+             if(curSlide.is( ':first-child' )) {
+                $('#btnPrev').hide();
+             } else {
+                $('#btnPrev').show();   
+             }
+             if (curSlide.is( ':last-child' )) {
+                $('#btnNext').hide();
+             } else {
+                $('#btnNext').show();      
+             }
+             
+             $('.circle').removeClass('active');
+             $('.circle').removeClass('done');
+             
+            for(i=0;i<totalSlides;i++)
+     		{
+            	if($('input[name=Q'+i+']').attr('type')=='radio')
+            	{
+            		if($('input[name=Q'+i+']:checked').val() > -1)
+         			{
+            			$('#spc'+i).addClass('done');
+         			}
+     	    		else
+         			{
+     	    			
+         			}
+            	}
+            	else if(arrVisitedSlids[i])
+            	{
+            		$('#spc'+i).addClass('done');
+            	}
+     		}
+             
+             $('#spc'+curSlide.index()).addClass('active');
+             
+             //$('.circle')[curSlide.index()*2].addClass('active');
+             
+             $('.circle').each(function () {
+            	    //console.log($(this).index());
+            	    
+			 });
+             
+         });
+         
+         $('.carousel').each(function(){
+             $(this).carousel({
+                 interval: false
+             });
+         });
+    	
+    	$(':radio').each(function(){
+        	//console.log('hi');
+            var self = $(this);
+            label = self.next();
+            label_text = label.text();
+            //label.remove();
+            self.iCheck({
+            //checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green'
+            });
+            
+        });
+    	
+    	var riskoMeterPointer;
+		var riskoMeterChart;
+		$(function () {
+		    $('#divRiskoMeter').highcharts({
+		    	credits: {
+			          enabled: false
+			        },
+			        exporting: {
+			          enabled: false
+			        },
+			        chart: {
+			            type: 'gauge',
+			            plotBorderWidth: 0,
+			            plotBackgroundImage : 'img/riskometer_bg.png',
+			            backgroundColor : 'rgba(0, 0, 0, 0)'
+			        },
+
+			        title: {
+			            text: '',
+			          enabled: false
+			        },
+			        
+			        pane: [{
+			            startAngle: -90,
+			            endAngle: 90,
+			            background: null,
+			            center: ['50%', '207'],
+			            size: 220
+			        }],
+
+			        tooltip: {
+			            enabled: false
+			        },
+			        
+  			    plotOptions: {
+  		            series: {
+  		                dataLabels: {
+  		                    enabled: false,
+  		                    backgroundColor: 'rgba(0, 0, 0, 0)',
+  		                    borderWidth: 0,
+  		                  	format: ''
+  		                }
+  		            }
+  		        },
+
+			        yAxis: [{
+			            visible : false,
+			            min: 0,
+			            max: 100
+			        }],
+			        series: [{
+			            name: 'Channel A',
+			            data: [50],
+			            yAxis: 0
+			        }]
+
+		    },
+		    // Add some life
+		    function (chart) {
+		        riskoMeterChart = chart;
+		    });
+		});
+		var rangeSalarySpouse = $("#range_score");
+		rangeSalarySpouse.ionRangeSlider({
+	         min:0,
+	         max:100,
+	         from:50,
+	         grid: true,
+	         grid_num: 5,
+	         onChange: function(data){
+	        	 riskoMeterChart.series[0].points[0].update(data.from);
+	         },
+	         onFinish: function(data){
+	        	 riskoMeterChart.series[0].points[0].update(data.from);
+	         }
+	     });
+	     sliderSalarySpouse = rangeSalarySpouse.data("ionRangeSlider");
+	     $(".irs-single").css("display","block");
+	     
+	     
+    	
+    	$(':radio').on('ifChecked', function(event){
+            //$('#myCarousel').carousel("next");
+            
+            if (!$("#myCarousel").find('.active').is( ':last-child' )) 
+         	{
+         		$('#myCarousel').carousel("next");
+            }
+         	else
+       		{
+       			//console.log('else');
+       		}
+        });
+    	
+    	
+    	$('#btnSubmit').on('click', function(event){
+	    	unansweredQuestions = "";
+	    	
+	    	
+	    	for(i=0;i<totalSlides;i++)
+     		{
+            	if($('input[name=Q'+i+']').attr('type')=='radio')
+            	{
+            		if($('input[name=Q'+i+']:checked').val() > -1)
+         			{
+            			
+         			}
+     	    		else
+         			{
+     	    			if(unansweredQuestions == "")
+        				{
+    	    				unansweredQuestions = "#" + (i+1) 
+        				}
+    	    			else
+        				{
+    	    				unansweredQuestions = unansweredQuestions + ", #" + (i+1);
+        				}
+         			}
+            	}
+            	else if(arrVisitedSlids[i])
+            	{
+            		//$('#spc'+i).addClass('done');
+            	}
+            	else{
+            		if(unansweredQuestions == "")
+    				{
+	    				unansweredQuestions = "#" + (i+1) 
+    				}
+	    			else
+    				{
+	    				unansweredQuestions = unansweredQuestions + ", #" + (i+1);
+    				}
+            	}
+     		}
+	    	
+	    	if(unansweredQuestions=="")
+    		{
+	    		window.location.href = 'riskProfileOutput.html';
+    		}
+	    	else
+	    	{
+	    		$('.modal-title')[0].innerHTML = "Error"
+    		    $('.modal-body')[0].innerHTML = "Please answer the following questions <br> " +unansweredQuestions;
+    	    	$('#modalShowError').modal('show');
+	    	}
+	    	
+	    });
+        
+        $('#divContent').css("display","block");
+        $('#divLoading').css("display","none");
+        //alert();
+        
+        toggleCollaps = function(iconID,divID){
+    		
+    		if($(divID).css('display') == 'none')
+    		{
+    			$(divID).css('display', 'block');
+    			$(iconID).removeClass('glyphicon-chevron-down');
+    			$(iconID).addClass('glyphicon-chevron-up');
+    		}
+    		else{
+    			$(divID).css('display', 'none');
+    			$(iconID).removeClass('glyphicon-chevron-up');
+    			$(iconID).addClass('glyphicon-chevron-down');
+    		}
+    	}
+        
+    }, 1000);
+    
+	initSelectBox = function(){
+		setSelectCountry();
+		setSelectState();
+		setSelectCity();
+		setSelectBank();
+	}
+    
+    setSelectCountry = function(){
+    	//var selectCountryOptions = ["Afghanistan","Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegowina","Botswana","Bouvet Island","Brazil","British Indian Ocean Territory","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central African Republic","Chad","Chile","China","Christmas Island","Cocos (Keeling) Islands","Colombia","Comoros","Congo","Congo, the Democratic Republic of the","Cook Islands","Costa Rica","Cote d'Ivoire","Croatia (Hrvatska)","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","East Timor","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands (Malvinas)","Faroe Islands","Fiji","Finland","France","France, Metropolitan","French Guiana","French Polynesia","French Southern Territories","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guadeloupe","Guam","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Heard and Mc Donald Islands","Holy See (Vatican City State)","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran (Islamic Republic of)","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Korea, Democratic People's Republic of","Korea, Republic of","Kuwait","Kyrgyzstan","Lao People's Democratic Republic","Latvia","Lebanon","Lesotho","Liberia","Libyan Arab Jamahiriya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia, The Former Yugoslav Republic of","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Martinique","Mauritania","Mauritius","Mayotte","Mexico","Micronesia, Federated States of","Moldova, Republic of","Monaco","Mongolia","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Niue","Norfolk Island","Northern Mariana Islands","Norway","Oman","Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Pitcairn","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russian Federation","Rwanda","Saint Kitts and Nevis","Saint LUCIA","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Seychelles","Sierra Leone","Singapore","Slovakia (Slovak Republic)","Slovenia","Solomon Islands","Somalia","South Africa","South Georgia and the South Sandwich Islands","Spain","Sri Lanka","St. Helena","St. Pierre and Miquelon","Sudan","Suriname","Svalbard and Jan Mayen Islands","Swaziland","Sweden","Switzerland","Syrian Arab Republic","Taiwan, Province of China","Tajikistan","Tanzania, United Republic of","Thailand","Togo","Tokelau","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Turks and Caicos Islands","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","United States Minor Outlying Islands","Uruguay","Uzbekistan","Vanuatu","Venezuela","Viet Nam","Virgin Islands (British)","Virgin Islands (U.S.)","Wallis and Futuna Islands","Western Sahara","Yemen","Yugoslavia","Zambia","Zimbabwe"];
+    	//var selectCountryValues = ["AF","AL","DZ","AS","AD","AO","AI","AQ","AG","AR","AM","AW","AU","AT","AZ","BS","BH","BD","BB","BY","BE","BZ","BJ","BM","BT","BO","BA","BW","BV","BR","IO","BN","BG","BF","BI","KH","CM","CA","CV","KY","CF","TD","CL","CN","CX","CC","CO","KM","CG","CD","CK","CR","CI","HR","CU","CY","CZ","DK","DJ","DM","DO","TP","EC","EG","SV","GQ","ER","EE","ET","FK","FO","FJ","FI","FR","FX","GF","PF","TF","GA","GM","GE","DE","GH","GI","GR","GL","GD","GP","GU","GT","GN","GW","GY","HT","HM","VA","HN","HK","HU","IS","IN","ID","IR","IQ","IE","IL","IT","JM","JP","JO","KZ","KE","KI","KP","KR","KW","KG","LA","LV","LB","LS","LR","LY","LI","LT","LU","MO","MK","MG","MW","MY","MV","ML","MT","MH","MQ","MR","MU","YT","MX","FM","MD","MC","MN","MS","MA","MZ","MM","NA","NR","NP","NL","AN","NC","NZ","NI","NE","NG","NU","NF","MP","NO","OM","PK","PW","PA","PG","PY","PE","PH","PN","PL","PT","PR","QA","RE","RO","RU","RW","KN","LC","VC","WS","SM","ST","SA","SN","SC","SL","SG","SK","SI","SB","SO","ZA","GS","ES","LK","SH","PM","SD","SR","SJ","SZ","SE","CH","SY","TW","TJ","TZ","TH","TG","TK","TO","TT","TN","TR","TM","TC","TV","UG","UA","AE","GB","US","UM","UY","UZ","VU","VE","VN","VG","VI","WF","EH","YE","YU","ZM","ZW"];
+    	
+    	var selectCountryOptions = ["India"];
+    	var selectCountryValues = ["IN"];
+    	
+    	$('.selectCountry').each(function(){
+    		for(index in selectCountryOptions) {
+    		    this.options[this.options.length] = new Option(selectCountryOptions[index], selectCountryValues[index]);
+    		}
+        });
+    }
+
+    setSelectState = function(){
+    	var selectStateOptions = ["Select","Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Orissa","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal"];
+    	var selectStateValues = [];
+    	
+    	$('.selectState').each(function(){
+    		for(index in selectStateOptions) {
+    		    this.options[this.options.length] = new Option(selectStateOptions[index], selectStateOptions[index]);
+    		}
+    	});
+    }
+    
+    setSelectCity = function(){
+    	var selectCityOptions = ["Select","Abhayapuri","Achabbal","Achhnera","Adalaj","Adari","Adilabad","Adityana","Adoni","Adoor","Adra, Purulia","Agartala","Agra","Ahiwara","Ahmedabad","Ahmedgarh","Ahmednagar","Aizawl","Ajmer","Akaltara","Akathiyoor","Akhnoor","Akola","Alang","Alappuzha","Aldona","Aligarh","Alipurduar","Allahabad","Almora","Along","Alwar","Amadalavalasa","Amalapuram","Amarpur","Ambagarh Chowki","Ambaji","Ambala","Ambaliyasan","Ambikapur","Amguri","Amlabad","Amli","Amravati","Amreli","Amritsar","Amroha","Anakapalle","Anand","Anandapur","Anandnagaar","Anantapur","Anantnag","Ancharakandy","Andada","Anjar","Anklav","Ankleshwar","Antaliya","Anugul","Ara","Arakkonam","Arambagh","Arambhada","Arang","Araria","Arasikere","Arcot","Areraj","Arki","Arnia","Aroor","Arrah","Aruppukkottai","Asankhurd","Asansol","Asarganj","Ashok Nagar","Ashtamichira","Asika","Asola","Assandh","Ateli","Attingal","Atul","Aurangabad","Avinissery","Awantipora","Azamgarh","Babiyal","Baddi","Bade Bacheli","Badepalle","Badharghat","Bagaha","Bahadurganj","Bahadurgarh","Baharampur","Bahraich","Bairgania","Bakhtiarpur","Balaghat","Balangir","Balasore","Baleshwar","Bali","Ballabhgarh","Ballia","Bally","Balod","Baloda Bazar","Balrampur","Balurghat","Bamra","Banda","Bandikui","Bandipore","Bangalore","Banganapalle","Banka","Bankura","Banmankhi Bazar","Banswara","Bapatla","Barahiya","Barakar","Baramati","Baramula","Baran","Barasat","Barauli","Barbigha","Barbil","Bardhaman","Bareilly","Bargarh","Barh","Baripada","Barmer","Barnala","Barpeta","Barpeta Road","Barughutu","Barwala","Basudebpur","Batala","Bathinda","Bazpur","Begusarai","Behea","Belgaum","Bellampalle","Bellary","Belpahar","Bemetra","Bethamcherla","Bettiah","Betul","Bhabua","Bhadrachalam","Bhadrak","Bhagalpur","Bhagha Purana","Bhainsa","Bharuch","Bhatapara","Bhavani","Bhavnagar","Bhawanipatna","Bheemunipatnam","Bhimavaram","Bhiwani","Bhongir","Bhopal","Bhuban","Bhubaneswar","Bhuj","Bidhan Nagar","Bihar Sharif","Bikaner","Bikramganj","Bilasipara","Bilaspur","Biramitrapur","Birgaon","Bobbili","Bodh Gaya","Bodhan","Bokaro Steel City","Bomdila","Bongaigaon","Brahmapur","Brajrajnagar","Budhlada","Burhanpur","Buxar","Byasanagar","Calcutta","Cambay","Chaibasa","Chakradharpur","Chalakudy","Chalisgaon","Chamba","Champa","Champhai","Chamrajnagar","Chandan Bara","Chandausi","Chandigarh","Chandrapura","Changanassery","Chanpatia","Charkhi Dadri","Chatra","Cheeka","Chendamangalam","Chengalpattu","Chengannur","Chennai","Cherthala","Cheruthazham","Chhapra","Chhatarpur","Chikkaballapur","Chikmagalur","Chilakaluripet","Chinchani","Chinna salem","Chinsura","Chintamani","Chirala","Chirkunda","Chirmiri","Chitradurga","Chittoor","Chittur-Thathamangalam","Chockli","Churi","Coimbatore","Colgong","Contai","Cooch Behar","Coonoor","Cuddalore","Cuddapah","Curchorem Cacora","Cuttack","Dabra","Dadri","Dahod","Dalhousie","Dalli-Rajhara","Dalsinghsarai","Daltonganj","Daman and Diu","Darbhanga","Darjeeling","Dasua","Datia","Daudnagar","Davanagere","Debagarh","Deesa","Dehradun","Dehri-on-Sone","Delhi","Deoghar","Deoria","Devarakonda","Devgarh","Dewas","Dhaka","Dhamtari","Dhanbad","Dhar","Dharampur, India","Dharamsala","Dharmanagar","Dharmapuri","Dharmavaram","Dharwad","Dhekiajuli","Dhenkanal","Dholka","Dhubri","Dhule","Dhuri","Dibrugarh","Digboi","Dighwara","Dimapur","Dinanagar","Dindigul","Diphu","Dipka","Dispur","Dombivli","Dongargarh","Dumka","Dumraon","Durg-Bhilai Nagar","Durgapur","Ellenabad 2","Eluru","Erattupetta","Erode","Etawah","Faridabad","Faridkot","Farooqnagar","Fatehabad","Fatehpur","Fatwah","Fazilka","Firozpur","Firozpur Cantt.","Forbesganj","Gadag","Gadwal","Ganaur","Gandhinagar","Gangtok","Garhwa","Gauripur","Gaya","Gharaunda","Ghatshila","Giddarbaha","Giridih","Goalpara","Gobindgarh","Gobranawapara","Godda","Godhra","Gogri Jamalpur","Gohana","Golaghat","Gomoh","Gooty","Gopalganj","Greater Noida","Gudalur","Gudivada","Gudur","Gulbarga","Gumia","Gumla","Gundlupet","Guntakal","Guntur","Gunupur","Gurdaspur","Gurgaon","Guruvayoor","Guwahati","Gwalior","Haflong","Haibat(Yamuna Nagar)","Hailakandi","Hajipur","Haldia","Haldwani","Hamirpur","Hansi","Hanuman Junction","Hardoi","Haridwar","Hassan","Hazaribag","Hilsa","Himatnagar","Hindupur","Hinjilicut","Hisar","Hisua","Hodal","Hojai","Hoshiarpur","Hospet","Howrah","Hubli","Hussainabad","Hyderabad","Ichalkaranji","Ichchapuram","Idar","Imphal","Indore","Indranagar","Irinjalakuda","Islampur","Itanagar","Itarsi","Jabalpur","Jagatsinghapur","Jagdalpur","Jagdispur","Jaggaiahpet","Jagraon","Jagtial","Jaipur","Jaisalmer","Jaitu","Jajapur","Jajmau","Jalalabad","Jalandhar","Jalandhar Cantt.","Jaleswar","Jalna","Jalore","Jamalpur","Jammalamadugu","Jammu","Jamnagar","Jamshedpur","Jamtara","Jamui","Jandiala","Jangaon","Janjgir","Jashpurnagar","Jaspur","Jatani","Jaunpur","Jehanabad","Jeypur","Jhajha","Jhajjar","Jhanjharpur","Jhansi","Jhargram","Jharsuguda","Jhumri Tilaiya","Jind","Joda","Jodhpur","Jogabani","Jogendranagar","Jorhat","Jowai","Junagadh","Kadapa","Kadi","Kadiri","Kadirur","Kagaznagar","Kailasahar","Kaithal","Kakching","Kakinada","Kalan Wali","Kalavad","Kalka","Kalliasseri","Kalol","Kalpetta","Kalpi","Kalyan","Kalyandurg","Kamareddy","Kanchipuram","Kandukur","Kanhangad","Kanjikkuzhi","Kanker","Kannur","Kanpur","Kantabanji","Kanti","Kapadvanj","Kapurthala","Karaikal","Karaikudi","Karanjia","Karimganj","Karimnagar","Karjan","Karkala","Karnal","Karoran","Kartarpur","Karungal","Karur","Karwar","Kasaragod","Kashipur","Kathua","Katihar","Katni","Kavali","Kavaratti","Kawardha","Kayamkulam","Kendrapara","Kendujhar","Keshod","Khagaria","Khambhalia","Khambhat","Khammam","Khanna","Kharagpur","Kharar","Kheda","Khedbrahma","Kheralu","Khordha","Khowai","Khunti","kichha","Kishanganj","Kochi","Kodinar","Kodungallur","Kohima","Kokrajhar","Kolar","Kolhapur","Kolkata","Kollam","Kollankodu","Kondagaon","Koothuparamba","Koraput","Koratla","Korba","Kot Kapura","Kota","Kotdwara","Kothagudem","Kothamangalam","Kothapeta","Kotma","Kottayam","Kovvur","Kozhikode","Kunnamkulam","Kurali","Kurnool","Kyathampalle","Lachhmangarh","Ladnu","Ladwa","Lahar","Laharpur","Lakheri","Lakhimpur","Lakhisarai","Lakshmeshwar","Lal Gopalganj Nindaura","Lalganj","Lalgudi","Lalitpur","Lalsot","Lanka","Lar","Lathi","Latur","Leh","Lilong","Limbdi","Lingsugur","Loha","Lohardaga","Lonar","Lonavla","Longowal","Loni","Losal","Lucknow","Ludhiana","Lumding","Lunawada","Lundi","Lunglei","Macherla","Machilipatnam","Madanapalle","Maddur","Madgaon","Madhepura","Madhubani","Madhugiri","Madhupur","Madikeri","Madurai","Magadi","Mahad","Mahalingpur","Maharajganj","Maharajpur","Mahasamund","Mahbubnagar","Mahe","Mahendragarh","Mahesana","Mahidpur","Mahnar Bazar","Mahuli","Mahuva","Maihar","Mainaguri","Makhdumpur","Makrana","Mal","Malajkhand","Malappuram","Malavalli","Malegaon","Malerkotla","Malkangiri","Malkapur","Malout","Malpura","Malur","Manasa","Manavadar","Manawar","Manchar","Mancherial","Mandalgarh","Mandamarri","Mandapeta","Mandawa","Mandi","Mandi Dabwali","Mandideep","Mandla","Mandsaur","Mandvi","Mandya","Maner","Mangaldoi","Mangalore","Mangalvedhe","Manglaur","Mangrol","Mangrulpir","Manihari","Manjlegaon","Mankachar","Manmad","Mansa","Manuguru","Manvi","Manwath","Mapusa","Margao","Margherita","Marhaura","Mariani","Marigaon","Markapur","Marmagao","Masaurhi","Mathabhanga","Mathura","Mattannur","Mauganj","Maur","Mavelikkara","Mavoor","Mayang Imphal","Medak","Medinipur","Meerut","Mehkar","Mehmedabad","Memari","Merta City","Mhaswad","Mhow Cantonment","Mhowgaon","Mihijam","Miraj","Mirganj","Miryalaguda","Modasa","Modinagar","Moga","Mogalthur","Mohali","Mokameh","Mokokchung","Monoharpur","Morena","Morinda","Morshi","Morvi","Motihari","Motipur","Mount Abu","Mudalgi","Mudbidri","Muddebihal","Mudhol","Mukerian","Mukhed","Muktsar","Mul","Mulbagal","Multai","Mumbai","Mundargi","Mungeli","Munger","Muradnagar","Murliganj","Murshidabad","Murtijapur","Murwara","Musabani","Mussoorie","Muvattupuzha","Muzaffarnagar","Muzaffarpur","Mysore","Nabadwip","Nabarangapur","Nabha","Nadbai","Nadiad","Nagaon","Nagapattinam","Nagar","Nagari","Nagarkurnool","Nagaur","Nagda","Nagercoil","Nagina","Nagla","Nagpur","Nahan","Naharlagun","Naihati","Naila Janjgir","Nainital","Nainpur","Najibabad","Nakodar","Nakur","Nalasopara","Nalbari","Namagiripettai","Namakkal","Nanded-Waghala","Nandgaon","Nandivaram-Guduvancheri","Nandura","Nandurbar","Nandyal","Nangal","Nanjangud","Nanjikottai","Nanpara","Narasapur","Narasaraopet","Naraura","Narayanpet","Nargund","Narkatiaganj","Narkhed","Narnaul","Narsinghgarh","Narsipatnam","Narwana","Nashik","Nasirabad","Natham","Nathdwara","Naugachhia","Naugawan Sadat","Nautanwa","Navalgund","Navi Mumbai","Navsari","Nawabganj","Nawada","Nawalgarh","Nawanshahr","Nawapur","Nedumangad","Neem-Ka-Thana","Neemuch","Nehtaur","Nelamangala","Nellikuppam","Nellore","Nepanagar","Neyveli","Neyyattinkara","Nidadavole","Nilanga","Nimbahera","Nipani","Nirmal","Niwai","Niwari","Nizamabad","Nohar","NOIDA","Nokha","Nongstoin","Noorpur","North Lakhimpur","Nowgong","Nowrozabad","Nuzvid","O Valley","Obra","Oddanchatram","Ongole","Orai","Osmanabad","Ottappalam","Ozar","P.N.Patti","Pachora","Pachore","Pacode","Padmanabhapuram","Padra","Padrauna","Paithan","Pakaur","Palacole","Palai","Palakkad","Palani","Palanpur","Palasa Kasibugga","Palghar","Pali","Palia Kalan","Palitana","Palladam","Pallapatti","Pallikonda","Palwal","Palwancha","Panagar","Panagudi","Panaji","Panchkula","Panchla","Pandharkaoda","Pandharpur","Pandhurna","Pandua","Panipat","Panna","Panniyannur","Panruti","Panvel","Pappinisseri","Paradip","Paramakudi","Parangipettai","Parasi","Paravoor","Parbhani","Pardi","Parlakhemundi","Parli","Parola","Partur","Parvathipuram","Pasan","Paschim Punropara","Pasighat","Patan","Pathanamthitta","Pathankot","Pathardi","Pathri","Patiala","Patna","Patran","Patratu","Pattamundai","Patti","Pattukkottai","Patur","Pauni","Pauri","Pavagada","Payyannur","Pedana","Peddapuram","Pehowa","Pen","Perambalur","Peravurani","Peringathur","Perinthalmanna","Periyakulam","Periyasemur","Pernampattu","Perumbavoor","Petlad","Phagwara","Phalodi","Phaltan","Phillaur","Phulabani","Phulera","Phulpur","Phusro","Pihani","Pilani","Pilibanga","Pilibhit","Pilkhuwa","Pindwara","Pinjore","Pipar City","Pipariya","Piro","Pithampur","Pithapuram","Pithoragarh","Pollachi","Polur","Pondicherry","Ponduru","Ponnani","Ponneri","Ponnur","Porbandar","Porsa","Port Blair","Powayan","Prantij","Pratapgarh","Prithvipur","Proddatur","Pudukkottai","Pudupattinam","Pukhrayan","Pulgaon","Puliyankudi","Punalur","Punch","Pune","Punganur","Punjaipugalur","Puranpur","Puri","Purna","Purnia","Purquazi","Purulia","Purwa","Pusad","Puttur","Qadian","Quilandy","Rabkavi Banhatti","Radhanpur","Rae Bareli","Rafiganj","Raghogarh-Vijaypur","Raghunathpur","Rahatgarh","Rahuri","Raichur","Raiganj","Raigarh","Raikot","Raipur","Rairangpur","Raisen","Raisinghnagar","Rajagangapur","Rajahmundry","Rajakhera","Rajaldesar","Rajam","Rajampet","Rajapalayam","Rajauri","Rajgarh","Rajgarh (Alwar)","Rajgarh (Churu","Rajgir","Rajkot","Rajnandgaon","Rajpipla","Rajpura","Rajsamand","Rajula","Rajura","Ramachandrapuram","Ramagundam","Ramanagaram","Ramanathapuram","Ramdurg","Rameshwaram","Ramganj Mandi","Ramnagar","Ramngarh","Rampur","Rampur Maniharan","Rampura Phul","Rampurhat","Ramtek","Ranaghat","Ranavav","Ranchi","Rangia","Rania","Ranibennur","Rapar","Rasipuram","Rasra","Ratangarh","Rath","Ratia","Ratlam","Ratnagiri","Rau","Raurkela","Raver","Rawatbhata","Rawatsar","Raxaul Bazar","Rayachoti","Rayadurg","Rayagada","Reengus","Rehli","Renigunta","Renukoot","Reoti","Repalle","Revelganj","Rewa","Rewari","Rishikesh","Risod","Robertsganj","Robertson Pet","Rohtak","Ron","Roorkee","Rosera","Rudauli","Rudrapur","Rupnagar","Sabalgarh","Sadabad","Sadalgi","Sadasivpet","Sadri","Sadulshahar","Safidon","Safipur","Sagar","Sagwara","Saharanpur","Saharsa","Sahaspur","Sahaswan","Sahawar","Sahibganj","Sahjanwa","Saidpur, Ghazipur","Saiha","Sailu","Sainthia","Sakleshpur","Sakti","Salaya","Salem","Salur","Samalkha","Samalkot","Samana","Samastipur","Sambalpur","Sambhal","Sambhar","Samdhan","Samthar","Sanand","Sanawad","Sanchore","Sandi","Sandila","Sandur","Sangamner","Sangareddy","Sangaria","Sangli","Sangole","Sangrur","Sankarankoil","Sankari","Sankeshwar","Santipur","Sarangpur","Sardarshahar","Sardhana","Sarni","Sasaram","Sasvad","Satana","Satara","Sathyamangalam","Satna","Sattenapalle","Sattur","Saunda","Saundatti-Yellamma","Sausar","Savanur","Savarkundla","Savner","Sawai Madhopur","Sawantwadi","Sedam","Sehore","Sendhwa","Seohara","Seoni","Seoni-Malwa","Shahabad","Shahabad, Hardoi","Shahabad, Rampur","Shahade","Shahbad","Shahdol","Shahganj","Shahjahanpur","Shahpur","Shahpura","Shajapur","Shamgarh","Shamli","Shamsabad, Agra","Shamsabad, Farrukhabad","Shegaon","Sheikhpura","Shendurjana","Shenkottai","Sheoganj","Sheohar","Sheopur","Sherghati","Sherkot","Shiggaon","Shikapur","Shikarpur, Bulandshahr","Shikohabad","Shillong","Shimla","Shimoga","Shirdi","Shirpur-Warwade","Shirur","Shishgarh","Shivpuri","Sholavandan","Sholingur","Shoranur","Shorapur","Shrigonda","Shrirampur","Shrirangapattana","Shujalpur","Siana","Sibsagar","Siddipet","Sidhi","Sidhpur","Sidlaghatta","Sihor","Sihora","Sikanderpur","Sikandra Rao","Sikandrabad","Sikar","Silao","Silapathar","Silchar","Siliguri","Sillod","Silvassa","Simdega","Sindgi","Sindhnur","Singapur","Singrauli","Sinnar","Sira","Sircilla","Sirhind Fatehgarh Sahib","Sirkali","Sirohi","Sironj","Sirsa","Sirsaganj","Sirsi","Siruguppa","Sitamarhi","Sitapur","Sitarganj","Sivaganga","Sivagiri","Sivakasi","Siwan","Sohagpur","Sohna","Sojat","Solan","Solapur","Sonamukhi","Sonepur","Songadh","Sonipat","Sopore","Soro","Soron","Soyagaon","Sri Madhopur","Srikakulam","Srikalahasti","Srinagar","Srinivaspur","Srirampore","Srivilliputhur","Suar","Sugauli","Sujangarh","Sujanpur","Sultanganj","Sultanpur","Sumerpur","Sunabeda","Sunam","Sundargarh","Sundarnagar","Supaul","Surandai","Surat","Suratgarh","Suri","Suriyampalayam","Suryapet","Tadepalligudem","Tadpatri","Taki","Talaja","Talcher","Talegaon Dabhade","Talikota","Taliparamba","Talode","Talwara","Tamluk","Tanda","Tandur","Tanuku","Tarakeswar","Tarana","Taranagar","Taraori","Tarikere","Tarn Taran","Tasgaon","Tehri","Tekkalakota","Tenali","Tenkasi","Tenu Dam-cum- Kathhara","Terdal","Tetri Bazar","Tezpur","Thakurdwara","Thammampatti","Thana Bhawan","Thanesar","Thangadh","Thanjavur","Tharad","Tharamangalam","Tharangambadi","Theni Allinagaram","Thirumangalam","Thirunindravur","Thiruparappu","Thirupuvanam","Thiruthuraipoondi","Thiruvalla","Thiruvallur","Thiruvananthapuram","Thiruvarur","Thodupuzha","Thoothukudi","Thoubal","Thrissur","Thuraiyur","Tikamgarh","Tilda Newra","Tilhar","Tindivanam","Tinsukia","Tiptur","Tirora","Tiruchendur","Tiruchengode","Tiruchirappalli","Tirukalukundram","Tirukkoyilur","Tirunelveli","Tirupathur","Tirupati","Tiruppur","Tirur","Tiruttani","Tiruvannamalai","Tiruvethipuram","Tirwaganj","Titlagarh","Tittakudi","Todabhim","Todaraisingh","Tohana","Tonk","Tuensang","Tuljapur","Tulsipur","Tumkur","Tumsar","Tundla","Tuni","Tura","Uchgaon","Udaipur","Udaipurwati","Udgir","Udhagamandalam","Udhampur","Udumalaipettai","Udupi","Ujhani","Ujjain","Umarga","Umaria","Umarkhed","Umarkote","Umbergaon","Umred","Umreth","Una","Unjha","Unnamalaikadai","Unnao","Upleta","Uran","Uran Islampur","Uravakonda","Urmar Tanda","Usilampatti","Uthamapalayam","Uthiramerur","Utraula","Vadakara","Vadakkuvalliyur","Vadalur","Vadgaon Kasba","Vadipatti","Vadnagar","Vadodara","Vaijapur","Vaikom","Valparai","Valsad","Vandavasi","Vaniyambadi","Vapi","Varanasi","Varkala","Vasai","Vedaranyam","Vellakoil","Vellore","Venkatagiri","Veraval","Vicarabad","Vidisha","Vijainagar","Vijapur","Vijayapura","Vijayawada","Vikramasingapuram","Viluppuram","Vinukonda","Viramgam","Virar","Virudhachalam","Virudhunagar","Visakhapatnam","Visnagar","Viswanatham","Vita","Vizianagaram","Vrindavan","Vyara","Wadgaon Road","Wadhwan","Wadi","Wai","Wanaparthy","Wani","Wankaner","Wara Seoni","Warangal","Wardha","Warhapur","Warisaliganj","Warora","Warud","Washim","Wokha","Yadgir","Yamunanagar","Yanam","Yavatmal","Yawal","Yellandu","Yemmiganur","Yerraguntla","Yevla","Zahirabad","Zaidpur","Zamania","Zira","Zirakpur","Zunheboto"];
+    	var selectCityValues = [];
+    	
+    	$('.selectCity').each(function(){
+    		for(index in selectCityOptions) {
+    		    this.options[this.options.length] = new Option(selectCityOptions[index], selectCityOptions[index]);
+    		}
+    	});
+    }
+
+    setSelectBank = function(){
+    	var selectBankOptions = ["Select","ABHYUDAYA CO-OP BANK LTD","ABU DHABI COMMERCIAL BANK","AKOLA DISTRICT CENTRAL CO-OPERATIVE BANK","AKOLA JANATA COMMERCIAL COOPERATIVE BANK","ALLAHABAD BANK","ALMORA URBAN CO-OPERATIVE BANK LTD","ANDHRA BANK","ANDHRA PRAGATHI GRAMEENA BANK","APNA SAHAKARI BANK LTD","AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED","AXIS BANK","BANK INTERNASIONAL INDONESIA","BANK OF AMERICA","BANK OF BAHRAIN AND KUWAIT","BANK OF BARODA","BANK OF INDIA","BANK OF CEYLON","BANK OF TOKYO-MITSUBISHI UFJ LTD","BANK OF MAHARASHTRA","BASSEIN CATHOLIC CO-OP BANK LTD","BARCLAYS BANK PLC","BNP PARIBAS","BHARATIYA MAHILA BANK LIMITED","CANARA BANK","CALYON BANK","CATHOLIC SYRIAN BANK LTD","CAPITAL LOCAL AREA BANK LTD","CHINATRUST COMMERCIAL BANK","CENTRAL BANK OF INDIA","CITIZENCREDIT CO-OPERATIVE BANK LTD","CITIBANK NA","CORPORATION BANK","CREDIT SUISSE AG","CITY UNION BANK LTD","COMMONWEALTH BANK OF AUSTRALIA","DEUTSCHE BANK","DEUTSCHE SECURITIES INDIA PRIVATE LIMITED","DBS BANK LTD","DENA BANK","DICGC","DOMBIVLI NAGARI SAHAKARI BANK LIMITED","DEVELOPMENT CREDIT BANK LIMITED","DHANLAXMI BANK LTD","GURGAON GRAMIN BANK","HDFC BANK LTD","FIRSTRAND BANK LIMITED","GOPINATH PATIL PARSIK JANATA SAHAKARI BANK LTD","IDRBT","IDBI BANK LTD","ICICI BANK LTD","HSBC","INDUSTRIAL AND COMMERCIAL BANK OF CHINA LIMITED","INDUSIND BANK LTD","INDIAN OVERSEAS BANK","INDIAN BANK","JANASEVA SAHAKARI BANK (BORIVLI) LTD","JANAKALYAN SAHAKARI BANK LTD","JALGAON JANATA SAHKARI BANK LTD","ING VYSYA BANK LTD","KALLAPPANNA AWADE ICH JANATA S BANK","JPMORGAN CHASE BANK N.A","JANATA SAHAKARI BANK LTD (PUNE)","JANASEVA SAHAKARI BANK LTD. PUNE","KOTAK MAHINDRA BANK","KURMANCHAL NAGAR SAHKARI BANK LTD","MAHANAGAR CO-OP BANK LTD","MAHARASHTRA STATE CO OPERATIVE BANK","KAPOL CO OP BANK","KARNATAKA BANK LTD","KARNATAKA VIKAS GRAMEENA BANK","KARUR VYSYA BANK","NATIONAL AUSTRALIA BANK","NEW INDIA CO-OPERATIVE BANK LTD","NKGSB CO-OP BANK LTD","NORTH MALABAR GRAMIN BANK","MASHREQBANK PSC","MIZUHO CORPORATE BANK LTD","MUMBAI DISTRICT CENTRAL CO-OP. BANK LTD","NAGPUR NAGRIK SAHAKARI BANK LTD","PRIME CO OPERATIVE BANK LTD","PRATHAMA BANK","PUNJAB AND SIND BANK","PUNJAB AND MAHARASHTRA CO-OP BANK LTD","OMAN INTERNATIONAL BANK SAOG","NUTAN NAGARIK SAHAKARI BANK LTD","PARSIK JANATA SAHAKARI BANK LTD","ORIENTAL BANK OF COMMERCE","SBERBANK","RESERVE BANK OF INDIA","SHRI CHHATRAPATI RAJARSHI SHAHU URBAN CO-OP BANK LTD","SHINHAN BANK","RABOBANK INTERNATIONAL (CCRB)","PUNJAB NATIONAL BANK","RAJKOT NAGARIK SAHAKARI BANK LTD","RAJGURUNAGAR SAHAKARI BANK LTD","STATE BANK OF INDIA","STATE BANK OF MAURITIUS LTD","STATE BANK OF BIKANER AND JAIPUR","STATE BANK OF HYDERABAD","SOUTH INDIAN BANK","STANDARD CHARTERED BANK","SOCIETE GENERALE","SOLAPUR JANATA SAHKARI BANK LTD.SOLAPUR","THANE BHARAT SAHAKARI BANK LTD","THE A.P. MAHESH CO-OP URBAN BANK LTD","SYNDICATE BANK","TAMILNAD MERCANTILE BANK LTD","STATE BANK OF TRAVANCORE","SUMITOMO MITSUI BANKING CORPORATION","STATE BANK OF MYSORE","STATE BANK OF PATIALA","THE FEDERAL BANK LTD","THE DELHI STATE COOPERATIVE BANK LTD","THE COSMOS CO-OPERATIVE BANK LTD","THE BHARAT CO-OPERATIVE BANK (MUMBAI) LTD","THE BANK OF RAJASTHAN LTD","THE BANK OF NOVA SCOTIA","THE ANDHRA PRADESH STATE COOP BANK LTD","THE AHMEDABAD MERCANTILE CO-OPERATIVE BANK LTD","THE KANGRA CENTRAL CO-OPERATIVE BANK LTD","THE KALYAN JANATA SAHAKARI BANK LTD","THE KALUPUR COMMERCIAL CO. OP. BANK LTD","THE JAMMU AND KASHMIR BANK LTD","THE JALGAON PEOPLES CO-OP BANK","THE GUJARAT STATE CO-OPERATIVE BANK LTD","THE GREATER BOMBAY CO-OP. BANK LTD","THE GADCHIROLI DISTRICT CENTRAL COOPERATIVE BANK LTD","THE RATNAKAR BANK LTD","THE RAJASTHAN STATE COOPERATIVE BANK LTD","THE SAHEBRAO DESHMUKH CO-OP. BANK LTD","THE ROYAL BANK OF SCOTLAND N.V","THE SEVA VIKAS CO-OPERATIVE BANK LTD (SVB)","THE SARASWAT CO-OPERATIVE BANK LTD","THE SURAT DISTRICT CO OPERATIVE BANK LTD","THE SHAMRAO VITHAL CO-OPERATIVE BANK LTD","THE KARAD URBAN CO-OP BANK LTD","THE KANGRA COOPERATIVE BANK LTD","THE LAKSHMI VILAS BANK LTD","THE KARNATAKA STATE APEX COOP. BANK LTD","THE MUNICIPAL CO OPERATIVE BANK LTD MUMBAI","THE MEHSANA URBAN COOPERATIVE BANK LTD","THE NASIK MERCHANTS CO-OP BANK LTD., NASHIK","THE NAINITAL BANK LIMITED","TJSB SAHAKARI BANK LTD","TUMKUR GRAIN MERCHANTS COOPERATIVE BANK LTD","UBS AG","UCO BANK","UNION BANK OF INDIA","UNITED BANK OF INDIA","UNITED OVERSEAS BANK","VASAI VIKAS SAHAKARI BANK LTD","THE SURAT PEOPLES CO-OP BANK LTD","THE SUTEX CO.OP. BANK LTD","THE TAMILNADU STATE APEX COOPERATIVE BANK LIMITED","THE THANE DISTRICT CENTRAL CO-OP BANK LTD","THE THANE JANATA SAHAKARI BANK LTD","THE VARACHHA CO-OP. BANK LTD","THE VISHWESHWAR SAHAKARI BANK LTD.,PUNE","THE WEST BENGAL STATE COOPERATIVE BANK LTD","WOORI BANK","WESTPAC BANKING CORPORATION","WEST BENGAL STATE COOPERATIVE BANK","VIJAYA BANK","ZILA SAHAKRI BANK LIMITED GHAZI","YES BANK","ZILA SAHKARI BANK LTD GHAZIABAD","YES BANK LTD"];
+    	var selectBankValues = [];
+    	
+    	$('.selectBank').each(function(){
+    		for(index in selectBankOptions ) {
+    		    this.options[this.options.length] = new Option(selectBankOptions[index], selectBankOptions[index]);
+    		}
+        });
+    }
+    
+    var sPanFilePath = '';
+    var sUidFilePath = '';
+    var sCorsFilePath = '';
+    var sPrmntFilePath = '';
+    
+    makePostJson = function(){
+    	postJson = '';
+    	postJson = postJson + '"regId" : null,';
+    	postJson = postJson + '"email" : "' +  $('#email').val() + '",';
+    	postJson = postJson + '"firstname" : "' +  $('#firstname').val() + '",';
+    	postJson = postJson + '"middlename" : "' +  $('#middlename').val() + '",';
+    	postJson = postJson + '"lastname" : "' +  $('#lastname').val() + '",';
+    	postJson = postJson + '"fatherSpouse" : "' +  $('#fatherSpouse').val() + '",';
+    	postJson = postJson + '"dob" : "' +  $('#dob').val() + '",';
+    	postJson = postJson + '"nationality" : "' +  $('#nationality').val() + '",';
+    	postJson = postJson + '"status" : "' +  $('#status').val() + '",';
+    	postJson = postJson + '"gender" : "' +  $('#gender').val() + '",';
+    	postJson = postJson + '"mstatus" : "' +  $('#mstatus').val() + '",';
+    	postJson = postJson + '"uid" : "' +  $('#uid').val() + '",';
+    	postJson = postJson + '"pan" : "' +  $('#pan').val() + '",';
+    	postJson = postJson + '"caddressline1" : "' +  $('#caddressline1').val() + '",';
+    	postJson = postJson + '"caddressline2" : "' +  $('#caddressline2').val() + '",';
+    	postJson = postJson + '"clandmark" : null,';
+    	postJson = postJson + '"cpincode" : "' +  $('#cpincode').val() + '",';
+    	postJson = postJson + '"country" : "IN",';
+    	postJson = postJson + '"cstate" : "' +  $('#cstate').val() + '",';
+    	postJson = postJson + '"ccity" : "' +  $('#ccity').val() + '",';
+    	postJson = postJson + '"cproof" : "' +  $('#cproof').val() + '",';
+    	postJson = postJson + '"cvalidity" : "' +  $('#cvalidity').val() + '",';
+    	postJson = postJson + '"permenentAddress" : "' +  $('#permenentAddress').is(':checked') + '",';
+    	postJson = postJson + '"paddressline1" : "' +  $('#paddressline1').val() + '",';
+    	postJson = postJson + '"paddressline2" : "' +  $('#paddressline2').val() + '",';
+    	postJson = postJson + '"plandmark" : "' +  $('#plandmark').val() + '",';
+    	postJson = postJson + '"ppin" : "' +  $('#ppin').val() + '",';
+    	postJson = postJson + '"pcountry" : "' +  $('#pcountry').val() + '",';
+    	postJson = postJson + '"pstate" : "' +  $('#pstate').val() + '",';
+    	postJson = postJson + '"pcity" : "' +  $('#pcity').val() + '",';
+    	postJson = postJson + '"pproof" : "' +  $('#pproof').val() + '",';
+    	postJson = postJson + '"pvalidity" : "' +  $('#pvalidity').val() + '",';
+    	postJson = postJson + '"mobile" : "' +  $('#mobile').val() + '",';
+    	postJson = postJson + '"histd" : "' +  $('#histd').val() + '",';
+    	postJson = postJson + '"hstd" : "' +  $('#hstd').val() + '",';
+    	postJson = postJson + '"htelephone" : "' +  $('#htelephone').val() + '",';
+    	postJson = postJson + '"risd" : "' +  $('#risd').val() + '",';
+    	postJson = postJson + '"rstd" : "' +  $('#rstd').val() + '",';
+    	postJson = postJson + '"rtelephone" : "' +  $('#rtelephone').val() + '",';
+    	postJson = postJson + '"fisd" : "' +  $('#fisd').val() + '",';
+    	postJson = postJson + '"fstd" : "' +  $('#fstd').val() + '",';
+    	postJson = postJson + '"ftelphone" : "' +  $('#ftelphone').val() + '",';
+    	postJson = postJson + '"bankname" : "' +  $('#bankname').val() + '",';
+    	postJson = postJson + '"accountType" : "' +  $('#accountType').val() + '",';
+    	postJson = postJson + '"accno" : "' +  $('#accno').val() + '",';
+    	postJson = postJson + '"reAccno" : "' +  $('#reAccno').val() + '",';
+    	postJson = postJson + '"bifsc" : "' +  $('#bifsc').val() + '",';
+    	postJson = postJson + '"bmicr" : "' +  $('#bmicr').val() + '",';
+    	postJson = postJson + '"baddressline1" : "' +  $('#baddressline1').val() + '",';
+    	postJson = postJson + '"baddressline2" : "' +  $('#baddressline2').val() + '",';
+    	postJson = postJson + '"blandmark" : "' +  $('#blandmark').val() + '",';
+    	postJson = postJson + '"bpincode" : "' +  $('#bpincode').val() + '",';
+    	postJson = postJson + '"bcountry" : "' +  $('#bcountry').val() + '",';
+    	postJson = postJson + '"bstate" : "' +  $('#bstate').val() + '",';
+    	postJson = postJson + '"bcity" : "' +  $('#bcity').val() + '",';
+    	postJson = postJson + '"cCityOther" : "' +  $('#cCityOther').val() + '",';
+    	postJson = postJson + '"pCityOther" : "' +  $('#pCityOther').val() + '",';
+    	postJson = postJson + '"bnkCityOther" : "' +  $('#bnkCityOther').val() + '",';
+    	postJson = postJson + '"panFilePath" : "' +  sPanFilePath + '",';
+    	postJson = postJson + '"corsFilePath" : "' +  sCorsFilePath + '",';
+    	postJson = postJson + '"prmntFilePath" : "' +  sPrmntFilePath + '",';
+    	postJson = postJson + '"openAccountType" : "Trading Account and NSDL Demat Account",';
+    	postJson = postJson + '"dp" : "' +  $('#dp').val() + '",';
+    	postJson = postJson + '"tradingtAccount" : "' +  $('#tradingtAccount').val() + '",';
+    	postJson = postJson + '"dematAccount" : "' +  $('#dematAccount').val() + '",';
+    	postJson = postJson + '"smsFacility" : "' +  $('#smsFacility').val() + '",';
+    	postJson = postJson + '"fstHldrOccup" : "' +  $('#fstHldrOccup').val() + '",';
+    	postJson = postJson + '"fstHldrOrg" : "' +  $('#fstHldrOrg').val() + '",';
+    	postJson = postJson + '"fstHldrDesig" : "' +  $('#fstHldrDesig').val() + '",';
+    	postJson = postJson + '"fstHldrIncome" : "' +  $('#fstHldrIncome').val() + '",';
+    	postJson = postJson + '"fstHldrNet" : "' +  $('#fstHldrNet').val() + '",';
+    	postJson = postJson + '"fstHldrAmt" : "' +  $('#fstHldrAmt').val() + '",';
+    	postJson = postJson + '"pep" : "' +  $('#pep').is(':checked') + '",';
+    	postJson = postJson + '"rpep" : "' +  $('#rpep').is(':checked') + '",';
+    	postJson = postJson + '"scndHldrExist" : "' +  $('#scndHldrExist').val() + '",';
+    	postJson = postJson + '"scndHldrName" : "' +  $('#scndHldrName').val() + '",';
+    	postJson = postJson + '"scndHldrOccup" : "' +  $('#scndHldrOccup').val() + '",';
+    	postJson = postJson + '"scndHldrOrg" : "' +  $('#scndHldrOrg').val() + '",';
+    	postJson = postJson + '"scndHldrDesig" : "' +  $('#scndHldrDesig').val() + '",';
+    	postJson = postJson + '"scndHldrSms" : "' +  $('#scndHldrSms').val() + '",';
+    	postJson = postJson + '"scndHldrIncome" : "' +  $('#scndHldrIncome').val() + '",';
+    	postJson = postJson + '"scndHldrNet" : "' +  $('#scndHldrNet').val() + '",';
+    	postJson = postJson + '"scndHldrAmt" : "' +  $('#scndHldrAmt').val() + '",';
+    	postJson = postJson + '"scndPep" : "' +  $('#scndPep').val() + '",';
+    	postJson = postJson + '"scndRpep" : "' +  $('#scndRpep').val() + '",';
+    	postJson = postJson + '"instrn1" : "' +  $('#instrn1').val() + '",';
+    	postJson = postJson + '"instrn2" : "' +  $('#instrn2').val() + '",';
+    	postJson = postJson + '"instrn3" : "' +  $('#instrn3').val() + '",';
+    	postJson = postJson + '"instrn4" : "' +  $('#instrn4').val() + '",';
+    	postJson = postJson + '"instrn5" : "' +  $('#instrn5').val() + '",';
+    	postJson = postJson + '"depoPartcpnt" : "' +  $('#depoPartcpnt').val() + '",';
+    	postJson = postJson + '"deponame" : "' +  $('#deponame').val() + '",';
+    	postJson = postJson + '"beneficiary" : "' +  $('#beneficiary').val() + '",';
+    	postJson = postJson + '"dpId" : "' +  $('#dpId').val() + '",';
+    	postJson = postJson + '"docEvdnc" : "' +  $('#docEvdnc').val() + '",';
+    	postJson = postJson + '"experience" : "' +  $('#experience').val() + '",';
+    	postJson = postJson + '"contractNote" : "' +  $('#contractNote').val() + '",';
+    	postJson = postJson + '"intrntTrading" : "' +  $('#intrntTrading').val() + '",';
+    	postJson = postJson + '"alert" : "' +  $('#alert').val() + '",';
+    	postJson = postJson + '"relationship" : "' +  $('#relationship').val() + '",';
+    	postJson = postJson + '"otherInformation" : "' +  $('#otherInformation').val() + '",';
+    	postJson = postJson + '"nomineeExist" : "' +  $('#nomineeExist').is(':checked') + '",';
+    	postJson = postJson + '"nameNominee" : "' +  $('#nameNominee').val() + '",';
+    	postJson = postJson + '"nomineeRelation" : "' +  $('#nomineeRelation').val() + '",';
+    	postJson = postJson + '"nomineeDob" : "' +  $('#nomineeDob').val() + '",';
+    	postJson = postJson + '"nominePan" : "' +  $('#nominePan').val() + '",';
+    	postJson = postJson + '"nomineeAdrs1" : "' +  $('#nomineeAdrs1').val() + '",';
+    	postJson = postJson + '"nomineeAdrs2" : "' +  $('#nomineeAdrs2').val() + '",';
+    	postJson = postJson + '"nomineeLnd" : "' +  $('#nomineeLnd').val() + '",';
+    	postJson = postJson + '"nomineePincode" : "' +  $('#nomineePincode').val() + '",';
+    	postJson = postJson + '"nomCountry" : "' +  $('#nomCountry').val() + '",';
+    	postJson = postJson + '"nomState" : "' +  $('#nomState').val() + '",';
+    	postJson = postJson + '"nomCity" : "' +  $('#nomCity').val() + '",';
+    	postJson = postJson + '"noisd" : "' +  $('#noisd').val() + '",';
+    	postJson = postJson + '"nostd" : "' +  $('#nostd').val() + '",';
+    	postJson = postJson + '"notelephone" : "' +  $('#notelephone').val() + '",';
+    	postJson = postJson + '"nrisd" : "' +  $('#nrisd').val() + '",';
+    	postJson = postJson + '"nrstd" : "' +  $('#nrstd').val() + '",';
+    	postJson = postJson + '"nRtelephone" : "' +  $('#nRtelephone').val() + '",';
+    	postJson = postJson + '"nfisd" : "' +  $('#nfisd').val() + '",';
+    	postJson = postJson + '"nfstd" : "' +  $('#nfstd').val() + '",';
+    	postJson = postJson + '"nomineeFax" : "' +  $('#nomineeFax').val() + '",';
+    	postJson = postJson + '"nomMobile" : "' +  $('#nomMobile').val() + '",';
+    	postJson = postJson + '"nomEmail" : "' +  $('#nomEmail').val() + '",';
+    	postJson = postJson + '"minorExist" : "' +  $('#minorExist').is(':checked') + '",';
+    	postJson = postJson + '"minorGuard" : "' +  $('#minorGuard').val() + '",';
+    	postJson = postJson + '"mnrReltn" : "' +  $('#mnrReltn').val() + '",';
+    	postJson = postJson + '"mnrDob" : "' +  $('#mnrDob').val() + '",';
+    	postJson = postJson + '"mnrAdrs1" : "' +  $('#mnrAdrs1').val() + '",';
+    	postJson = postJson + '"mnrAdrs2" : "' +  $('#mnrAdrs2').val() + '",';
+    	postJson = postJson + '"mnrLnd" : "' +  $('#mnrLnd').val() + '",';
+    	postJson = postJson + '"mnrCountry" : "' +  $('#mnrCountry').val() + '",';
+    	postJson = postJson + '"mnrState" : "' +  $('#mnrState').val() + '",';
+    	postJson = postJson + '"mnrCity" : "' +  $('#mnrCity').val() + '",';
+    	postJson = postJson + '"mnrPincode" : "' +  $('#mnrPincode').val() + '",';
+    	postJson = postJson + '"moisd" : "' +  $('#moisd').val() + '",';
+    	postJson = postJson + '"mostd" : "' +  $('#mostd').val() + '",';
+    	postJson = postJson + '"motel" : "' +  $('#motel').val() + '",';
+    	postJson = postJson + '"mrisd" : "' +  $('#mrisd').val() + '",';
+    	postJson = postJson + '"mrstd" : "' +  $('#mrstd').val() + '",';
+    	postJson = postJson + '"mrtel" : "' +  $('#mrtel').val() + '",';
+    	postJson = postJson + '"mfisd" : "' +  $('#mfisd').val() + '",';
+    	postJson = postJson + '"mfstd" : "' +  $('#mfstd').val() + '",';
+    	postJson = postJson + '"minorfax" : "' +  $('#minorfax').val() + '",';
+    	postJson = postJson + '"mnrMob" : "' +  $('#mnrMob').val() + '",';
+    	postJson = postJson + '"mnrEmail" : "' +  $('#mnrEmail').val() + '",';
+    	postJson = postJson + '"nomCityOther" : "' +  $('#nomCityOther').val() + '",';
+    	postJson = postJson + '"mnrCityOther" : "' +  $('#mnrCityOther').val() + '",';
+    	postJson = postJson + '"docFilePath" : "' +  $('#docFilePath').val() + '",';
+    	postJson = postJson + '"usNational" : "' +  $('#usNational').is(':checked') + '",';
+    	postJson = postJson + '"usResident" : "' +  $('#usResident').is(':checked') + '",';
+    	postJson = postJson + '"usBorn" : "' +  $('#usBorn').is(':checked') + '",';
+    	postJson = postJson + '"usAddress" : "' +  $('#usAddress').is(':checked') + '",';
+    	postJson = postJson + '"usTelephone" : "' +  $('#usTelephone').is(':checked') + '",';
+    	postJson = postJson + '"usStandingInstruction" : "' +  $('#usStandingInstruction').is(':checked') + '",';
+    	postJson = postJson + '"usPoa" : "' +  $('#usPoa').is(':checked') + '",';
+    	postJson = postJson + '"usMailAddress" : "' +  $('#usMailAddress').is(':checked') + '",';
+    	postJson = postJson + '"individualTaxIdntfcnNmbr" : "' +  $('#individualTaxIdntfcnNmbr').val() + '",';
+    	postJson = postJson + '"secondHldrPan" : "' +  $('#secondHldrPan').val() + '",';
+    	postJson = postJson + '"secondHldrDependentRelation" : "' +  $('#secondHldrDependentRelation').val() + '",';
+    	postJson = postJson + '"secondHldrDependentUsed" : "' +  $('#secondHldrDependentUsed').val() + '",';
+    	postJson = postJson + '"firstHldrDependentUsed" : "' +  $('#firstHldrDependentUsed').val() + '"';
+    	
+    	postJson = postJson.split('undefined').join('');
+    	
+    	postJson = '{' + postJson + '}';
+    	console.log();
+    	
+    	$.ajax({
+			  type: "POST",
+			  url: 'http://localhost:8080/service/mmfresource/autoSaveInvCompleteService',
+			  data: postJson,
+			  dataType: 'json',
+			  contentType:"application/json; charset=utf-8",
+			  success: function(data){
+				  console.log(data);
+			  }
+			});
+    }
+    
+    uploadPanCard = function(){
+    	uploadFileToServer(
+    			$('#panFilePath')[0].files[0],
+    			'',
+    			function(responseData){
+    				sPanFilePath = responseData;
+    				uploadUID();
+    			}
+    	);
+    }
+    
+    uploadUID = function(){
+    	uploadFileToServer(
+    			$('#uidFilePath')[0].files[0],
+    			'',
+    			function(responseData){
+    				sUidFilePath = responseData;
+    				uploadCorsAdress();
+    			}
+    	);
+    }
+    
+    uploadCorsAdress = function(){
+    	uploadFileToServer(
+    			$('#corsFilePath')[0].files[0],
+    			'',
+    			function(responseData){
+    				sCorsFilePath = responseData;
+    				uploadPrmntAdress();
+    			}
+    	);
+    }
+    
+    uploadPrmntAdress = function(){
+    	uploadFileToServer(
+    			$('#prmntFilePath')[0].files[0],
+    			'',
+    			function(responseData){
+    			    sPrmntFilePath = responseData;
+    				makePostJson();
+    			}
+    	);
+    }
+    
+    
+    var uploadFileToServer = function(filePath,url,callbackFunction){
+		var form = new FormData();
+		form.append("file", filePath);
+		form.append("regId", "123");
+
+		var settings = {
+		  "async": true,
+		  "crossDomain": true,
+		  "url": "http://localhost:8080/service/mmfresource/uploadPanFileV2",
+		  "method": "POST",
+		  "headers": {
+		    "cache-control": "no-cache",
+		    "Access-Control-Allow-Origin" : "*"
+		  },
+		  "processData": false,
+		  "contentType": false,
+		  "mimeType": "multipart/form-data",
+		  "data": form
+		}
+
+		$.ajax(settings).done(function (response) {
+			console.log(response);
+			callbackFunction(response);
+		});
+	}
+}]);

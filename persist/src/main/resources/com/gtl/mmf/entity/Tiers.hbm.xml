@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 13, 2015 10:58:19 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.Tiers" table="tiers" catalog="mmfdb">
+        <id name="tierId" type="java.lang.Integer">
+            <column name="tierID" />
+            <generator class="identity" />
+        </id>
+        <property name="tierName" type="string">
+            <column name="tierName" length="100" />
+        </property>
+        <property name="rangeStart" type="string">
+            <column name="rangeStart" length="15" />
+        </property>
+        <property name="rangeEnd" type="string">
+            <column name="rangeEnd" length="15" />
+        </property>
+        <set name="tieredpromocommissionmatrixes" inverse="true">
+            <key>
+                <column name="tierID" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.Tieredpromocommissionmatrix" />
+        </set>
+    </class>
+</hibernate-mapping>

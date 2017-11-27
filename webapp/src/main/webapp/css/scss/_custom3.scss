@@ -1,0 +1,131 @@
+.ui-select{
+	select{
+		-webkit-appearance: none;
+	   -moz-appearance:    none;
+	   appearance:         none;
+	}
+}
+select{
+		-webkit-appearance: none;
+	   -moz-appearance:    none;
+	   appearance:         none;
+	}
+.common{
+	p {
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 20px;
+    }
+    form{
+        margin: 0px;
+    }
+    .spinner-start{
+        width: 100%;
+        background-color: red;
+        height: 100%;
+        position: fixed;
+        z-index: 1;
+        background: url("../img/select2/spiffygif_180x180.gif")no-repeat;
+        background-position: center;
+    }
+    .spinner-stop{
+        width: 0%;
+        background-color: red;
+        height: 0%;
+        position: fixed;
+        z-index: 0;
+        background: url("")no-repeat;
+    }
+}
+.table{
+	margin-bottom:40px;
+}
+#btns, .button-row{
+	a:hover, a:focus{
+		color:#fff;
+	}
+}
+.button-row{
+	margin-top:10px;
+}
+.align_right{
+	text-align:right !important;
+}
+.align_center{
+	text-align:center !important;
+}
+.margin_left_20{
+	margin-left:20px !important;
+}
+.form-wrapper{
+	.agreement{
+		overflow:hidden;
+		clear:both;
+		label{
+			width: auto;
+			float: none;
+		}
+	}
+}
+.pos_relative{
+    position: relative;
+    display: inline-block;
+}
+.rupee_symbol {
+    display: inline-block;
+    font-size: 14px;
+    left: 0;
+    margin-top: -14px;
+    padding: 0 8px;
+    position: absolute;
+    top: 50%;
+}
+.rupee_symbol + input{
+    padding-left:20px;
+}
+.meter{
+    height: 50px;
+    position: relative;
+    top: -15px;
+    width: 100px;
+}
+.section_heading{
+    color: #fff;
+    font-size: 60px;
+    font-weight: 300;
+    text-align: center;
+}
+.inner_pages{
+    padding:50px 0;
+    p{
+        font-weight: 100;
+    }
+}
+.team, .directors{
+    padding-top: 60px;
+    overflow: hidden;
+    h2{
+        font-weight: 100;
+    }
+    .per_img{
+        background:#eeeeee;
+        height: 158px;
+        width:158px;
+        border-radius:50%;
+        margin:0 auto;
+    }
+    h4{
+        font-weight: 100;
+        color: #666666;
+        text-align: center;
+    }
+    .box{
+        margin-top:40px;
+    }
+}
+.radio input[type="radio"], .checkbox input[type="checkbox"]{
+    margin-left:0;
+}
+.cust_width{
+    width:65%;
+}

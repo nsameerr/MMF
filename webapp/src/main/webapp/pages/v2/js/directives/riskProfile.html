@@ -1,0 +1,854 @@
+<style>
+lable{
+	margin-left: 12px !important;
+}
+
+.answersList li{
+	margin-bottom: -10px;
+}
+
+.answersList li lable{
+	margin-top: 5px;
+}
+
+#divRiskProfile{
+	background-image:url('img/riskometer_bg.png');
+	background-size: 500px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#rsSalarySavingsRate .rs-handle  {
+    background-color: transparent;
+    border: 8px solid transparent;
+    border-right-color: black;
+    margin: -6px 0px 0px 14px !important;
+    border-width: 6px 104px 6px 4px;
+}
+#rsSalarySavingsRate .rs-handle:before  {
+    display: block;
+    content: " ";
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    background: black;
+    right: -11px;
+    bottom: -11px;
+    border-radius: 100px;
+}
+#rsSalarySavingsRate .rs-tooltip  {
+    top: 120%;
+    font-size: 20px;
+}
+#rsSalarySavingsRate .rs-tooltip div  {
+    text-align: center;
+    background: orange;
+    color: white;
+    border-radius: 4px;
+    padding: 1px 5px 2px;
+    margin-top: 4px;
+}
+#rsSalarySavingsRate .rs-range-color  {
+    background-color: #DB5959;
+}
+#rsSalarySavingsRate .rs-path-color  {
+    background-color: #F0C5C5;
+}
+
+#rsSalarySavingsRate{
+	margin-top:9px;
+}
+
+.rs-range-color{
+	background-color: #7BDB7B !important;
+}
+.rs-path-color{
+	background-color: #ECECEC !important;
+}
+
+.rs-control{
+	display: inline-block;
+}
+
+.rs-inner {
+display:none !important;
+	border:0px !important;
+}
+
+.rs-container{
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-inne{
+
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+.rs-block{
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-path{
+
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-handle{
+	margin-top: 20px !important
+}
+
+.rs-seperator{
+	border: 0px;
+}
+
+
+.skip{
+	border-bottom: 1px solid;
+    padding-bottom: 2px;
+    color:#0C95BE;
+}
+
+
+.skip:hover{
+	color:#0C95BE;
+}
+
+</style>
+<div class="row-fluid">
+	<h2 class="page-title"> Risk Profile Questionnaire <span class="pull-right"><h6><a class="skip" href="javascript:skip()" style="display:none;">skip</a></h6></span></h2>
+</div>
+<div id="divLoading">Loading...</div>
+<div id="divContent" style="display:none">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false" data-wrap="false">
+		<div class="carousel-inner" role="listbox">
+			<!-- Carousal item Q0 start -->
+			<div class="item active container-fluid">
+				<input id="slideVisited"  class="slideVisited" type="hidden">
+				<div class="row">
+					<div class="pull-left">
+						<span class="questionBullet ">01</span>
+					</div>
+					<div class="block">
+						<div class="question">I have knowledge of investing in the Stock market to generate adequate returns on my investments.<br></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="answerIndent pull-left"></div>
+					<div class="col-md-3">
+						<ul class="list answersList" style="list-style-type: none;">
+														<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A0" name="Q0" value="1"></span>
+									<label for="Q0A0"><h6>Strongly Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A1" name="Q0" value="2"></span>
+									<label for="Q0A1"><h6>Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A2" name="Q0" value="3"></span>
+									<label for="Q0A2"><h6>No Strong Opinion</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A3" name="Q0" value="4"></span>
+									<label for="Q0A3"><h6>Agree</h6></label>
+								</div>
+							</li>
+						
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A4" name="Q0" value="5"></span>
+									<label for="Q0A4"><h6>Strongly Agree</h6></label>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- Carousal item Q0 end -->
+			
+			<!-- Carousal item Q1 start -->
+			<div class="item container-fluid" >
+				<input id="slideVisited"  class="slideVisited" type="hidden">
+				<div class="row">
+					<div class="pull-left">
+						<span class="questionBullet ">02</span>
+					</div>
+					<div class="block">
+						<div class="question">Number of years before I reach retirement age of 60.<br></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="answerIndent pull-left">
+					</div>
+					<div class="col-md-3">
+						<ul class="list answersList" style="list-style-type: none;">
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q1A0" name="Q1" value="1"></span>
+									<label for="Q1A0"><h6>More than 30 years</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q1A1" name="Q1" value="2"></span>
+									<label for="Q1A1"><h6>21 to 30 years</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q1A2" name="Q1" value="3"></span>
+									<label for="Q1A2"><h6>11 to 20 years</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q1A3" name="Q1" value="4"></span>
+									<label for="Q1A3"><h6>Less than equal to 10 years</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q1A4" name="Q1" value="5"></span>
+									<label for="Q1A4"><h6>Already Retired</h6></label>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- Carousal item Q1 end -->
+			
+			<!-- Carousal item Q2 start -->
+			<div class="item container-fluid" >
+				<input id="slideVisited"  class="slideVisited" type="hidden">
+				<div class="row">
+					<div class="pull-left">
+						<span class="questionBullet ">03</span>
+					</div>
+					<div class="block">
+						<div class="question">My expected income growth may be adequate to cover all my future expenses.<br></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="answerIndent pull-left">
+					</div>
+					<div class="col-md-4">
+						<ul class="list answersList" style="list-style-type: none;">
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q2A0" name="Q2" value="1"></span>
+									<label for="Q2A0"><h6>Strongly Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q2A1" name="Q2" value="2"></span>
+									<label for="Q2A1"><h6>Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q2A2" name="Q2" value="3"></span>
+									<label for="Q2A2"><h6>No Strong Opinion</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q2A3" name="Q2" value="4"></span>
+									<label for="Q2A3"><h6>Agree</h6></label>
+								</div>
+							</li>
+						
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q2A4" name="Q2" value="5"></span>
+									<label for="Q2A4"><h6>Strongly Agree</h6></label>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- Carousal item Q2 end -->
+			
+			<!-- Carousal item Q3 start -->
+			<div class="item container-fluid">
+				<input id="slideVisited"  class="slideVisited" type="hidden">
+				<div class="row">
+					<div class="pull-left">
+						<span class="questionBullet pull-right">04</span>
+					</div>
+					<div class="block">
+						<div class="question">I prefer investing in Fixed Deposit or Gold rather than invest in Stocks or Mutual Funds<br></div>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="answerIndent pull-left">
+					</div>
+					<div class="col-md-4">
+						<ul class="list answersList" style="list-style-type: none;">
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q3A0" name="Q3" value="1"></span>
+									<label for="Q3A0"><h6>Strongly Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q3A1" name="Q3" value="2"></span>
+									<label for="Q3A1"><h6>Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q3A2" name="Q3" value="3"></span>
+									<label for="Q3A2"><h6>No Strong Opinion</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q3A3" name="Q3" value="4"></span>
+									<label for="Q3A3"><h6>Agree</h6></label>
+								</div>
+							</li>		
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q3A4" name="Q3" value="5"></span>
+									<label for="Q3A4"><h6>Strongly Agree</h6></label>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>		
+			</div>
+			<!-- Carousal item Q3 end -->
+			
+			<!-- Carousal item Q4 start -->
+			<div class="item container-fluid" >
+				<input id="slideVisited"  class="slideVisited" type="hidden">
+				<div class="row">
+					<div class="pull-left">
+						<span class="questionBullet ">05</span>
+					</div>
+					<div class="block">
+						<div class="question">What is the level of your borrowings (e.g. loan or credit card bill outstanding) which cannot be repaid by your current savings or sale of assets you own?.<br></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="answerIndent pull-left">
+					</div>
+					<div class="col-md-3">
+						<ul class="list answersList" style="list-style-type: none;">
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q4A0" name="Q4" value="1"></span>
+									<label for="Q4A0"><h6>Very High</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q4A1" name="Q4" value="2"></span>
+									<label for="Q4A1"><h6>High</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q4A2" name="Q4" value="3"></span>
+									<label for="Q4A2"><h6>Moderate</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q4A3" name="Q4" value="4"></span>
+									<label for="Q4A3"><h6>Low</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q4A4" name="Q4" value="5"></span>
+									<label for="Q4A4"><h6>Almost zero</h6></label>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- Carousal item Q4 end -->
+			
+			<!-- Carousal item Q5 start -->
+			<div class="item container-fluid" >
+				<input id="slideVisited"  class="slideVisited" type="hidden">
+				<div class="row">
+					<div class="pull-left">
+						<span class="questionBullet ">06</span>
+					</div>
+					<div class="block">
+						<div class="question">My future expenses will be significantly higher than my future income.<br></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="answerIndent pull-left">
+					</div>
+					<div class="col-md-3">
+						<ul class="list answersList" style="list-style-type: none;">
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q5A0" name="Q5" value="1"></span>
+									<label for="Q5A0"><h6>Strongly Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q5A1" name="Q5" value="2"></span>
+									<label for="Q5A1"><h6>Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q5A2" name="Q5" value="3"></span>
+									<label for="Q5A2"><h6>No Strong Opinion</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q5A3" name="Q5" value="4"></span>
+									<label for="Q5A3"><h6>Agree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q5A4" name="Q5" value="5"></span>
+									<label for="Q5A4"><h6>Strongly Agree</h6></label>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- Carousal item Q5 end -->
+			
+			<!-- Carousal item Q6 start -->
+			<div class="item container-fluid" >
+				<input id="slideVisited"  class="slideVisited" type="hidden">
+				<div class="row">
+					<div class="pull-left">
+						<span class="questionBullet ">07</span>
+					</div>
+					<div class="block">
+						<div class="question">When an Investment in which I have strong long term belief drops in value by 30%.<br></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="answerIndent pull-left">
+					</div>
+					<div class="col-md-3">
+						<ul class="list answersList" style="list-style-type: none;">
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q6A0" name="Q6" value="1"></span>
+									<label for="Q6A0"><h6>I sell immediately</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q6A1" name="Q6" value="2"></span>
+									<label for="Q6A1"><h6>I don't know what to do</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q6A2" name="Q6" value="3"></span>
+									<label for="Q6A2"><h6>I may hold it for 1 more year</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q6A3" name="Q6" value="4"></span>
+									<label for="Q6A3"><h6>I may hold it for up to 3 years</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q6A4" name="Q6" value="5"></span>
+									<label for="Q6A4"><h6>I may hold it up to 5 years</h6></label>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- Carousal item Q6 end -->
+			
+			<!-- Carousal item Q7 start -->
+			<div class="item container-fluid" >
+				<input id="slideVisited"  class="slideVisited" type="hidden">
+				<div class="row">
+					<div class="pull-left">
+						<span class="questionBullet ">08</span>
+					</div>
+					<div class="block">
+						<div class="question">When the price of a Stock of a company with good prospects falls to its lowest levels, I buy more of that company's stock.<br></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="answerIndent pull-left">
+					</div>
+					<div class="col-md-6">
+						<ul class="list answersList" style="list-style-type: none;">
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q7A0" name="Q7" value="1"></span>
+									<label for="Q7A0"><h6>Strongly Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q7A1" name="Q7" value="2"></span>
+									<label for="Q7A1"><h6>Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q7A2" name="Q7" value="3"></span>
+									<label for="Q7A2"><h6>No Strong Opinion</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q7A3" name="Q7" value="4"></span>
+									<label for="Q7A3"><h6>Agree</h6></label>
+								</div>
+							</li>
+						
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q7A4" name="Q7" value="5"></span>
+									<label for="Q7A4"><h6>Strongly Agree</h6></label>
+								</div>
+							</li>
+						</ul>	
+					</div>
+				</div>
+			</div>
+			<!-- Carousal item Q7 end -->
+			
+			<!-- Carousal item Q8 start -->
+			<div class="item container-fluid" >
+				<input id="slideVisited"  class="slideVisited" type="hidden">
+				<div class="row">
+					<div class="pull-left">
+						<span class="questionBullet ">09</span>
+					</div>
+					<div class="block">
+						<div class="question">
+						I have adequate savings/assets to support my family's lifestyle in the future.
+							 
+						<br></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="answerIndent pull-left">
+					</div>
+					<div class="col-md-6">
+						<ul class="list answersList" style="list-style-type: none;">
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q8A0" name="Q8" value="1"></span>
+									<label for="Q8A0"><h6>Strongly Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q8A1" name="Q8" value="2"></span>
+									<label for="Q8A1"><h6>Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q8A2" name="Q8" value="3"></span>
+									<label for="Q8A2"><h6>No Strong Opinion</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q8A3" name="Q8" value="4"></span>
+									<label for="Q8A3"><h6>Agree</h6></label>
+								</div>
+							</li>
+						
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q8A4" name="Q8" value="5"></span>
+									<label for="Q8A4"><h6>Strongly Agree</h6></label>
+								</div>
+							</li>
+						</ul>	
+					</div>
+				</div>
+				
+			</div>
+			<!-- Carousal item Q8 end -->
+			
+			<!-- Carousal item Q9 start -->
+			<div class="item container-fluid" >
+				<input id="slideVisited"  class="slideVisited" type="hidden">
+				<div class="row">
+					<div class="pull-left">
+						<span class="questionBullet ">10</span>
+					</div>
+					<div class="block">
+						<div class="question">
+							Which investment portfolio matches your requirement.
+						<br></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="answerIndent pull-left">
+					</div>
+					<div class="col-md-6">
+						<ul class="list answersList" style="list-style-type: none;">
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q9A0" name="Q9" value="1"></span>
+									<label for="Q9A0"><h6>5 year returns of 10% per year with interim loss of up to -8%</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q9A1" name="Q9" value="2"></span>
+									<label for="Q9A1"><h6>5 year returns of 12% per year with interim loss of up to -18%</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q9A2" name="Q9" value="3"></span>
+									<label for="Q9A2"><h6>5 year returns of 15% per year with interim loss of up to -25%</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q9A3" name="Q9" value="4"></span>
+									<label for="Q9A3"><h6>5 year returns of 18% per year with interim loss of up to -30%</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q9A4" name="Q9" value="5"></span>
+									<label for="Q9A4"><h6>5 year returns of 25% per year with interim loss of up to -40%</h6></label>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- Carousal item Q9 end -->
+			
+			<!-- Carousal item Q10 start -->
+<!-- 			<div class="item container-fluid" >
+				<input id="slideVisited"  class="slideVisited" type="hidden">
+				<div class="row">
+					<div class="pull-left">
+						<span class="questionBullet ">11</span>
+					</div>
+					<div class="block">
+						<div class="question">I am confident in my ability to make good financial decisions.<br></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="answerIndent pull-left">
+					</div>
+					<div class="col-md-3">
+						<ul class="list answersList" style="list-style-type: none;">
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A0" name="Q10" value="1"></span>
+									<label for="Q10A0"><h6>Strongly Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A1" name="Q10" value="2"></span>
+									<label for="Q10A1"><h6>Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A2" name="Q10" value="3"></span>
+									<label for="Q10A2"><h6>Somewhat Disagree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A3" name="Q10" value="4"></span>
+									<label for="Q10A3"><h6>Undecided</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A4" name="Q10" value="5"></span>
+									<label for="Q10A4"><h6>Somewhat Agree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A5" name="Q10" value="6"></span>
+									<label for="Q10A5"><h6>Agree</h6></label>
+								</div>
+							</li>
+							<li>	
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A6" name="Q10" value="7"></span>
+									<label for="Q10A6"><h6>Strongly Agree</h6></label>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div> -->
+			<!-- Carousal item Q10 end -->
+			
+			<!-- Carousal item Q11 start -->
+<!-- 			<div class="item container-fluid" >
+				<input id="slideVisited"  class="slideVisited" type="hidden">
+				<div class="row">
+					<div class="pull-left">
+						<span class="questionBullet ">12</span>
+					</div>
+					<div class="block">
+						<div class="question">This risk tolerance questionnaire is scored from 0 to 100, 0 being the most risk-averse and 100 being those who are most prepared to take risks. What score do you think you will receive?<br></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div style="margin-top:50px; font-size: 20px;width: 100%; text-align: center;margin-bottom: 10px">(Drag the needle on the chart to change the value)</div>
+						<div id="divRiskProfile" style="height: 285px; padding-top: 100px; width: 100%; text-align: center; margin-top:-50px">
+							<div id="rsSalarySavingsRate" style="height: 320px !important; width:500px !important; "></div>
+							<div style="margin-top:20px; font-size: 20px"><b>Your Risk Score : <span id="spanRiskScore" style="background-color: #2E709F !important; color: #ffffff; border-radius: 25px;height: 50px; width: 50px;padding:10px">00</span></b></div>
+						</div>	
+					</div>
+				</div>
+			</div> -->
+			<!-- Carousal item Q11 end -->
+			
+		</div>
+	 </div>
+	 
+	<style>
+		.stepProgress .bar {
+			width: 20px;
+		}
+	</style>
+
+	
+	<div style="position: fixed;bottom:5px; width:100%; background-color: #ffffff">
+		
+		<div style="margin-right: 20px; background-color: #F5F5F5; padding:10px;border-radius: 10px;">
+			<div class="stepProgress">
+			<div id="spc0" class="circle active">
+				<a><span class="label">1</span></a>
+			</div>
+			<span class="bar"></span>
+			<div id="spc1" class="circle">
+				<a><span class="label">2</span></a>
+			</div>
+			<span class="bar"></span>
+			<div id="spc2" class="circle">
+				<a><span class="label">3</span></a>
+			</div>
+			<span class="bar"></span>
+			<div id="spc3" class="circle">
+				<a><span class="label">4</span></a>
+			</div>
+			<span class="bar"></span>
+			<div id="spc4" class="circle">
+				<a><span class="label">5</span></a>
+			</div>
+			<span class="bar"></span>
+			<div id="spc5" class="circle">
+				<a><span class="label">6</span></a>
+			</div>
+			<span class="bar"></span>
+			<div id="spc6" class="circle">
+				<a><span class="label">7</span></a>
+			</div>
+			<span class="bar"></span>
+			<div id="spc7" class="circle">
+				<a><span class="label">8</span></a>
+			</div>
+			<span class="bar"></span>
+			<div id="spc8" class="circle">
+				<a><span class="label">9</span></a>
+			</div>
+			<span class="bar"></span>
+			<div id="spc9" class="circle">
+				<a><span class="label">10</span></a>
+			</div>
+<!-- 			<span class="bar"></span>
+			<div id="spc10" class="circle">
+				<a><span class="label">11</span></a>
+			</div>
+			<span class="bar"></span>
+			<div id="spc11" class="circle">
+				<a><span class="label">12</span></a>
+			</div> -->
+		</div>
+			<div class="text-right"  style="margin-right:0px !important; ">
+	   			<button type="button" id="btnPrev" class="btn-flat inverse large" href="#myCarousel" role="button" data-slide="prev" style="display: none">Previous</button>
+		        <button type="button" id="btnNext" class="btn-flat inverse large" href="#myCarousel" role="button" data-slide="next">Next</button>
+		   		<button type="button" id="btnSubmit" class="btn-flat success large" href="#myCarousel">Submit</button>
+		    </div>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="modalErrorTitle"></h4>
+	      </div>
+	      <div class="modal-body" id="modalErrorBody">
+	        this is modalbody
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<div class="modal fade" id="modalSkip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Skip</h4>
+	      </div>
+	      <div class="modal-body">
+	        Are you sure you want to skip Risk Profile?
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn-flat inverse" data-dismiss="modal" href="javascript:alert(1);">Cancle</button>
+	      	<button type="button" class="btn-flat success" data-dismiss="modal" href="javascript:alert(2);" id="skipOK">OK</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<script>
+		$('#skipOK').on('click', function(evt) {
+			window.location="userRegistration.html";
+		});
+	</script>
+</div>

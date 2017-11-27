@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 16, 2015 12:27:54 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.EcsDebtPaymentFileContentTb" table="ecs_debt_payment_file_content_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="regId" type="string">
+            <column name="reg_id" length="20" not-null="true" />
+        </property>
+        <property name="debtAmount" type="big_decimal">
+            <column name="debt_amount" precision="10" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="20" />
+        </property>
+        <property name="failureReason" type="string">
+            <column name="failure_reason" length="100" />
+        </property>
+        <property name="dueDate" type="timestamp">
+            <column name="due_date" length="19" not-null="true" />
+        </property>
+        <property name="fileUploadDate" type="timestamp">
+            <column name="file_upload_date" length="19" not-null="true" />
+        </property>
+        <property name="lastUpdated" type="timestamp">
+            <column name="last_updated" length="19" not-null="true" />
+        </property>
+        <property name="mfee" type="java.lang.Boolean">
+            <column name="mFee" />
+        </property>
+        <property name="pfee" type="java.lang.Boolean">
+            <column name="pFee" />
+        </property>
+        <property name="feeCalculatedate" type="timestamp">
+            <column name="feeCalculatedate" length="19" />
+        </property>
+        <property name="debitRequestNumber" type="java.lang.Integer">
+            <column name="debit_request_number" length="12" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Apr, 2016 11:16:04 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.TempRegistrationTb" table="temp_registration_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="100" not-null="true" />
+        </property>
+        <property name="userType" type="string">
+            <column name="user_type" length="20" not-null="true" />
+        </property>
+        <property name="mailVerified" type="java.lang.Boolean">
+            <column name="mail_verified" />
+        </property>
+        <property name="verificationCode" type="string">
+            <column name="verificationCode" length="100" not-null="true" />
+        </property>
+        <property name="mailSendSuccess" type="java.lang.Boolean">
+            <column name="mail_send_success" />
+        </property>
+        <property name="initLogin" type="int">
+            <column name="initLogin" not-null="true" default="1"/>
+        </property>
+    </class>
+</hibernate-mapping>

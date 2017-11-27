@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>ManageMyFortune.com - Sign in</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!-- bootstrap -->
+        <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico" type="image/x-icon"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/custom.css" type="text/css" rel="stylesheet"/>
+
+        <!-- global styles -->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/layout.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/elements.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/icons.css"/>
+
+        <!-- libraries -->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/lib/font-awesome.css"/>
+
+        <!-- this page specific styles -->
+        <link rel="stylesheet" href="#{request.contextPath}/css/compiled/signin.css" type="text/css" media="screen"/>
+
+        <!-- open sans font -->
+        <link
+            href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800'
+            rel='stylesheet' type='text/css'/>
+        
+        <style>
+            .action a{
+                width: 72px;
+            }
+        </style>
+
+    </h:head>
+
+    <h:body style="background: url('#{request.contextPath}/img/bgs/bg.jpg') repeat; height: 200px;">
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <h:form id="admin_login_id" onkeypress="if (event.keyCode === 13) {
+                    document.getElementById('admin_login_id:login_btn').click();
+                    return false;}">
+            <div class="row-fluid login-wrapper">
+                <a href="#">
+                    <img class="logo" src="#{request.contextPath}/img/logo.png"/>
+                </a>
+                <div class="span4 box">
+                    <div class="content-wrap">
+                        <h6>Log in</h6>
+                        <h:inputText id="usename" styleClass="span12" required="true" value="#{adminLoginController.username}"
+                                     maxlength="50"
+                                     tabindex="0" requiredMessage="Please enter username ">
+                        </h:inputText>
+                        <p:watermark for="usename" value="Username"/>
+                        <h:message for="usename" styleClass="err_message">
+                        </h:message>
+                        <h:inputSecret id="password" styleClass="span12" required="true" requiredMessage="Please enter Password" 
+                                       maxlength="100"
+                                       value="#{adminLoginController.password}">
+                        </h:inputSecret>
+                        <p:watermark for="password" value="Password"/>
+                        <h:message for="password" styleClass="err_message">
+                        </h:message>  
+                        <h:message for="admin_login_id" style="color: black"/>    
+                        <br/>
+                        <a href="#{request.contextPath}/faces/pages/admin/admin_forgotpwd.xhtml" class="forgot">Forgot password?</a> 
+                        <br/>
+                        <div class="remember">
+                            <h:selectBooleanCheckbox value="#{adminLoginController.rememberMe}" id="remember-me" style="margin-top:-2px"></h:selectBooleanCheckbox>
+                            <label for="remember-me">Remember me</label>
+                        </div>
+                        <div class="action">
+                            <h:commandLink styleClass="btn-flat success" value="Log in" id="login_btn"
+                                           action="#{adminLoginController.adminLoginRedirect}" 
+                                           actionListener="#{adminLoginController.doActionAdminLoginListner}">
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</html>

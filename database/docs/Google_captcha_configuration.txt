@@ -1,0 +1,27 @@
+CAPTCHA SERVICE FOR UAT-231
+----------------------------------------------------------------
+PUBLIC_CAPTCHA_KEY  :- 6LfkbQoTAAAAANauxGczEh8aFITHCB_2mKRXacb3
+
+PRIVATE_CAPTCHA_KEY :- 6LfkbQoTAAAAAMJpew1luAO4TGCtVv-RiWfK4TmK
+
+
+
+CAPTCHA SERVICE FOR MANAGEMYFORTUNE.COM
+----------------------------------------------------------------
+PUBLIC_CAPTCHA_KEY  :- 6Ld9OQoTAAAAAOEmzuQZqTQ3i7vDjwLN9xDim_cA
+
+PRIVATE_CAPTCHA_KEY :- 6Ld9OQoTAAAAAMCP2_Iqfm5N1MSrsFNfMV-72nq3
+
+
+
+LINKEDIN SERVICE FOR UAT-231
+-----------------------------------------------------------------
+api.key = 7513spya30g73x
+secret.key = rWnK2OzE7WSc419f
+
+
+
+LINKEDIN SERVICE FOR MANAGEMYFORTUNE.COM
+-----------------------------------------------------------------
+api.key = ihps3oQZMFci8jfBKY0XlU7-H4mjKzru1NjYesX7wblEF3jBBu4-wHoM5xnbSTbp
+secret.key = IUhwgHgyI2X1f5WMtD3ymogxkaTbOEX432MqYlXm6jHVHuAFXh7M1aRER0fG3Tuk

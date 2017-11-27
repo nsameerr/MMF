@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"      
+      xmlns:p="http://primefaces.org/ui">
+    <head></head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout.xhtml"
+                        xmlns:compo="http://java.sun.com/jsf/composite/composite">
+            <ui:define name="title">Advisory Service Contract</ui:define>
+            <ui:define name="sidebar">
+                <ui:include src="/pages/template/components/sidebar_user.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+                <h:form id="frm_service_contract">
+                    <style>
+                        .stat .data {
+                            font-size: 13px;
+                            font-family: 'Open Sans', arial, sans-serif;
+                        }
+                    </style>
+                    <ui:param name="isAdviser" value="#{advisoryServiceContractController.advisorUser}"/>                    
+                    <script src="#{request.contextPath}/js/bootstrap.datepicker.js"></script>                                   
+                    <div class="content">                        
+                        <div class="container-fluid">
+                            <div id="pad-wrapper" class="user-profile">
+                                <!-- header -->
+                                <h2 class="page-title no-margin-bottom">Advisory Service Contract</h2>
+
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <h3 class="title no-margin-bottom">Personal Details</h3>
+                                        <table class="table one-pixel-border">
+                                            <thead style="border-top: none;">
+                                                <tr class="top-row">
+
+                                                    <th class="span4 align_center">Client Name</th>
+                                                    <th class="span4 left-border align_center">Asset Allocated</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <!-- row -->
+                                                <tr class="first">
+                                                    <td>
+                                                        <h:panelGroup rendered="#{isAdviser}">
+                                                            <img class="img-circle avatar hidden-phone" src="#{advisoryServiceContractController.investorProfile.pictureURL}"/>
+                                                        </h:panelGroup>
+                                                        <h:panelGroup rendered="#{!isAdviser}">
+                                                            <img class="img-circle avatar hidden-phone" src="#{advisoryServiceContractController.advisorProfile.pictureURL}"/>
+                                                        </h:panelGroup>
+                                                        <h:outputLabel value="#{advisoryServiceContractController.investorProfile.firstName.toUpperCase()}" rendered="#{isAdviser}"/>
+                                                        <h:outputLabel value="#{advisoryServiceContractController.advisorProfile.firstName.toUpperCase()}" rendered="#{!isAdviser}"/>
+                                                    </td>
+                                                    <td class="align_center"><i class="rupees"><span class="WebRupee">Rs.</span></i> #{advisoryServiceContractController.contractDetailsVO.allocatedFunds} </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">                                    
+                                    <div class="span12">
+                                        <h3 class="title no-margin-bottom">Professional Details</h3>
+                                        <table class="table one-pixel-border">
+                                            <thead style="border-top: none;">
+                                                <tr>
+                                                    <th class="span6 align_center">Company</th>
+                                                    <th class="span6 align_center">Title</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="first">
+                                                    <td>
+                                                        <h:outputLabel value="#{advisoryServiceContractController.investorProfile.workOrganization}" rendered="#{isAdviser}"/>
+                                                        <h:outputLabel value="#{advisoryServiceContractController.advisorProfile.workOrganization}" rendered="#{!isAdviser}"/>
+                                                    </td>
+                                                    <td>
+                                                        <h:outputLabel value="#{advisoryServiceContractController.investorProfile.jobTitle}" rendered="#{isAdviser}"/>
+                                                        <h:outputLabel value="#{advisoryServiceContractController.advisorProfile.jobTitle}" rendered="#{!isAdviser}"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <h3 class="title no-margin-bottom">Social Network Details</h3>
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>                                                      
+                                                    <th class="meta-head no_br_right" colspan="2">Connections</th>
+                                                </tr>
+                                                <tr class="top-row">
+                                                    <th class="align_center">Profile Link</th>
+                                                    <th class="left-border align_center">Level</th>
+                                                    <th class="align_center">Shared</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <h:panelGroup rendered="#{!isAdviser}">
+                                                            <a href="#{advisoryServiceContractController.advisorProfile.linkedInProfile}"
+                                                               target="_blank">#{advisoryServiceContractController.advisorProfile.linkedInProfile}</a>
+                                                        </h:panelGroup>
+                                                        <h:panelGroup rendered="#{isAdviser}">
+                                                            <a href="#{advisoryServiceContractController.investorProfile.linkedinProfileUrl}"
+                                                               target="_blank">#{advisoryServiceContractController.investorProfile.linkedinProfileUrl}</a>
+                                                        </h:panelGroup>
+                                                    </td>
+                                                    <td class="align_right">
+                                                        <h:outputText  class="text" value="#{advisoryServiceContractController.investorProfile.connectionLevel}" 
+                                                                       rendered="#{advisoryServiceContractController.investorProfile.connectionLevel == 'No connection' and isAdviser}"/>
+                                                        <h:outputText class="text" value="#{advisoryServiceContractController.advisorProfile.connectionLevel}" 
+                                                                      rendered="#{advisoryServiceContractController.advisorProfile.connectionLevel == 'No connection' and !isAdviser}"/>
+                                                        <div class="text span6">
+                                                            <h:outputText value="Connection Level" 
+                                                                          rendered = "#{advisoryServiceContractController.advisorProfile.connectionLevel != 'No connection' and !isAdviser}"/>
+                                                            <h:outputText value="Connection Level" 
+                                                                          rendered = "#{advisoryServiceContractController.investorProfile.connectionLevel != 'No connection' and isAdviser}"/>
+                                                        </div>    
+                                                    </td>
+                                                    <td class="align_right">
+                                                        <h:outputText value="#{advisoryServiceContractController.sharedConnection}" rendered="#{isAdviser}"/>  
+                                                        <h:outputText value="#{advisoryServiceContractController.sharedConnection}" rendered="#{!isAdviser}"/>  
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>                       
+                                    </div>
+                                </div>
+                                <div id="pad-wrapper" class="form-page">
+                                    <div class="row-fluid form-wrapper">
+                                        <div class="span12">                                       
+                                            <div class="field-box">
+                                                <label>Management Fee</label>
+
+                                                <div class="span8 no_lft_margin">
+                                                    <div class="clearfix">
+                                                        <label class="radio width_auto">
+                                                            <span style="width: 55px; display: inline-block;">Variable</span>
+                                                            <div class="radio" id="uniform-optionsRadios1">                                                           
+                                                                <span class="checked">                                                                  
+                                                                    <input type="radio" name="optionsRadios" id="mgmtFeeTypeVariable" value="option1" checked="true" onclick="setCss(this);" />
+                                                                </span>
+                                                            </div>
+                                                            <span class="ui-select disp_inline" style="width: 85px; margin-right: 5px;">
+                                                                <h:selectOneMenu value="#{advisoryServiceContractController.contractDetailsVO.variableManagementFee}" disabled="#{!isAdviser}">
+                                                                    <f:selectItems value="#{advisoryServiceContractController.mgmtFeeVariableAmountList}"/>
+                                                                </h:selectOneMenu>
+                                                            </span> AUM per annum, payable proportionately on a quarterly basis
+                                                        </label>
+                                                        <!--
+                                                        <span class="ui-select" style="width: 160px;">
+                                                            <h:selectOneMenu value="{advisoryServiceContractController.contractDetailsVO.mgmtFeeVariablePayableFrequecy}"
+                                                                             disabled="true" id="mng_varibl_freq">
+                                                                <f:selectItems value="{advisoryServiceContractController.aumPayableList}"/>
+                                                            </h:selectOneMenu>
+                                                        </span>
+                                                        -->
+                                                    </div>
+                                                    <div class="clearfix">
+                                                        <label class="radio width_auto">
+                                                            <span style="width: 55px; display: inline-block;">Fixed</span>
+                                                            <div class="radio" id="uniform-optionsRadios2">
+                                                                <span>
+                                                                    <input type="radio" name="optionsRadios" id="mgmtFeeTypeFixed" value="option2" checked="true" onclick="setCss(this);" />
+                                                                </span>
+                                                            </div>
+
+                                                            <span class="pos_relative" style="width: 85px; margin-right: 5px;">
+                                                                <span class="rupee_symbol"></span>
+                                                                <h:inputText id ="fixedManagementFee" value="#{advisoryServiceContractController.contractDetailsVO.fixedManagementFee}" 
+                                                                             disabled="#{!isAdviser}"  maxlength="5" class="cust_width"
+                                                                             validatorMessage="Please enter valid number(minimum 1 digit number)" 
+                                                                             converterMessage="Please enter a valid amount(Characters not allowed)">   
+                                                                    <f:validateLength maximum="5" minimum="1" />
+                                                                    <f:validateLongRange minimum="0" />
+                                                                </h:inputText> 
+                                                            </span> per annum, payable proportionately on a quarterly basis 
+                                                        </label>
+                                                       <!-- 
+                                                       <span class="ui-select" style="width: 160px;">
+                                                            <h:selectOneMenu value="{advisoryServiceContractController.contractDetailsVO.mgmtFeeFixedPayableFrequecy}"
+                                                                             disabled="true" id="mng_fixed_freq">
+                                                                <f:selectItems value="{advisoryServiceContractController.aumPayableList}"/>
+                                                            </h:selectOneMenu>
+                                                        </span>
+                                                       -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="field-box">
+                                                <label>Performance Fee </label>
+                                                <div style="display:inline-block; text-align:left;">
+                                                    <h:inputText value="#{advisoryServiceContractController.contractDetailsVO.performanceFeePercent}" disabled="#{!isAdviser}" 
+                                                                 maxlength="2" id="performancePercentage" style="width:30px;"
+                                                                 validatorMessage="Please enter valid number for  profits" 
+                                                                 converterMessage="Please enter a valid number(Characters not allowed)">
+                                                        <f:validateLongRange minimum="0" />   
+                                                        <f:convertNumber integerOnly="true"/>
+                                                    </h:inputText> % of profits exceeding  
+                                                </div>
+                                                <div style="display:inline-block; text-align:left;" class="margin_left_20">
+                                                    <h:inputText value="#{advisoryServiceContractController.contractDetailsVO.performanceFeeThreshold}" disabled="#{!isAdviser}" 
+                                                                 maxlength="2" id="performanceThreshold" style="width:30px;"
+                                                                 validatorMessage="Please enter valid number for returns" 
+                                                                 converterMessage="Please enter a valid number for (Characters not allowed)">
+                                                        <f:convertNumber integerOnly="true"/>
+                                                        <f:validateLongRange minimum="0"/>
+                                                    </h:inputText> % returns per annum, payable proportionately on a quarterly basis. 
+                                                </div>
+                                             <!--    
+                                             <div style="display:inline-block; text-align:left;" class="margin_left_20">
+                                                    charged every
+                                                   <span class="ui-select" style="width: 160px; margin-left: 5px;">
+                                                        <h:selectOneMenu value="{advisoryServiceContractController.contractDetailsVO.performanceFeeFrequency}"
+                                                                         disabled="{!isAdviser}" id="perf-freq">
+                                                            <f:selectItems value="{advisoryServiceContractController.performanceFeeFreqList}"/>
+                                                            <f:ajax execute="perf-freq" event="change"
+                                                                    listener="{advisoryServiceContractController.doActionChangeDuration}"
+                                                                    render="duration-freq"/>
+                                                        </h:selectOneMenu>
+                                                    </span>
+                                                </div>
+                                             -->
+
+                                            </div>
+                                            <div class="field-box">
+                                                <label>Duration</label>
+                                                <span class="ui-select" style="width: 50px; margin-right: 5px;">
+                                                    <h:selectOneMenu value="#{advisoryServiceContractController.contractDetailsVO.durationCount}" disabled="#{!isAdviser}">
+                                                        <f:selectItems value="#{advisoryServiceContractController.durationList}"/>
+                                                    </h:selectOneMenu>
+                                                </span>
+                                                <span class="ui-select" style="margin-left: 5px; margin-right: 12px;">
+                                                    <h:selectOneMenu value="#{advisoryServiceContractController.contractDetailsVO.durationFrequency}"
+                                                                     disabled="true" id="duration-freq">
+                                                        <f:selectItems value="#{advisoryServiceContractController.durationFreqList}"/>
+                                                    </h:selectOneMenu>
+                                                </span>starting <span style="color: red">*</span>
+                                                <div class="datepicker_box disp_inline">
+                                                    <h:inputText required="true" id="start_date" 
+                                                                 requiredMessage="Please fill start date." 
+                                                                 class="span12 datepicker no_lft_margin" 
+                                                                 disabled="#{!isAdviser}" 
+                                                                 converterMessage="Invalid DOB format (Eg: 10-06-2015)"
+                                                                 value="#{advisoryServiceContractController.contractStartDate}">
+                                                        <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                                    </h:inputText>
+                                                    <i class="icon-calendar"></i>
+                                                </div>
+                                                <p:watermark for="start_date" value="DD-MM-YY"/>
+                                                <h:message for="start_date" styleClass="err_message"/>
+                                            </div>
+
+                                            <div class="field-box">
+                                                <label>Allocated Investment</label>
+                                                <i class="rupees"><span class="WebRupee" style="float: left;margin-top: 3px;">Rs.</span></i>
+                                                <span>
+                                                    <h:inputText value="#{advisoryServiceContractController.contractDetailsVO.allocatedFunds}" readonly="true" rendered="#{!isAdviser}">
+                                                        <f:convertNumber maxFractionDigits="2"/>
+                                                    </h:inputText>
+                                                    <h:outputLabel value="#{advisoryServiceContractController.contractDetailsVO.allocatedFunds}" rendered="#{isAdviser}"/>
+                                                </span>
+                                            </div>                                             
+                                            <div class="field-box">
+                                                <div><label>Conversation</label></div>
+                                                <div class="span6 stat data-strip no-margin-left" style="width: 476px;height: 100px;">
+                                                    <div class="data row-fluid">
+                                                        <div style="float: left">
+                                                            <span>
+                                                                <ui:repeat var="reviews" value="#{advisoryServiceContractController.contractDetailsVO.previousReviews}">#{reviews}<br/></ui:repeat>                                                
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="field-box">
+                                                <label>Review Comments</label> 
+                                                <span>                                                   
+                                                    <h:inputTextarea id="review" value="#{advisoryServiceContractController.contractDetailsVO.investorReview}" style="resize: none;width: 460px;" rows="5"/>                                                </span>
+                                                <h:message for="review" styleClass="err_message"/>
+                                            </div>     
+                                            <div class="agreement">
+                                                <label>
+                                                    <h:panelGroup rendered="#{isAdviser}">
+                                                        <h:selectBooleanCheckbox id="adv_agreement" value="#{advisoryServiceContractController.aggrementAccepted}"
+                                                                                 style="margin-top: 0px;margin-right: 11px">
+                                                            <f:ajax  render="button_list adv_button"/> 
+                                                        </h:selectBooleanCheckbox>I/we hereby agree to the 
+                                                        <a href="#{request.contextPath}/pages/advisor_investor_agreement.xhtml?faces-redirect=true"
+                                                           target="_blank">Advisor-Investor Agreement.</a>
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{!isAdviser}">
+                                                        <h:selectBooleanCheckbox id="inv_agreement" value="#{advisoryServiceContractController.aggrementAccepted}"
+                                                                                 style="margin-top: 0px;margin-right: 11px">
+                                                            <f:ajax  render="button_list inv_button"/> 
+                                                        </h:selectBooleanCheckbox>I/we hereby accept
+                                                        <a href="#{request.contextPath}/pages/advisor_investor_agreement.xhtml?faces-redirect=true"
+                                                           target="_blank">Advisor-Investor Agreement.</a>
+                                                    </h:panelGroup>
+                                                </label>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                       
+                            <div class="button-row">
+                                <script type="text/javascript">
+                                    function onClickEvent(showConfirm) {
+                                        if (showConfirm === 'true') {
+                                            if (confirm("Are you sure you want to continue?")) {
+                                                disableButtons();
+                                                startPageSpinner();
+                                                return true;
+                                            } else {
+                                                return false;
+                                            }
+                                        } else {
+                                            disableButtons();
+                                            startPageSpinner();
+                                            return true;
+                                        }
+                                    }
+                                    function disableButtons() {
+                                        $("#btns a").attr("onclick", "return false;");
+                                        $("#btns a").css("color", "gray");
+                                    }
+                                </script>
+                                <h:panelGroup id="button_list">
+                                    <div id="btns">
+                                        <center>
+                                            <compo:clientbuttons buttonsList="#{advisoryServiceContractController.buttonsList}"
+                                                                 paramActionListner="#{advisoryServiceContractController.doActionListnerAdvisor}"
+                                                                 paramAction="#{advisoryServiceContractController.actionRedirect}"
+                                                                 rendered="#{advisoryServiceContractController.aggrementAccepted ?isAdviser:false}" 
+                                                                 id="adv_button"/>
+
+                                            <compo:clientbuttons buttonsList="#{advisoryServiceContractController.buttonsList}"
+                                                                 paramActionListner="#{advisoryServiceContractController.doActionListnerInvestor}"
+                                                                 paramAction="#{advisoryServiceContractController.actionRedirect}"
+                                                                 rendered="#{advisoryServiceContractController.aggrementAccepted ?!isAdviser:false}"
+                                                                 id="inv_button"/>
+                                                                 
+                                             <script type="text/javascript">
+										        $('#btns a').on('click',function(){
+													console.log($(this).text());
+													if($(this).text() == "Accept")		//Investor Side : Three Links : Accept Review and Decline
+													{
+														clevertap.event.push("Investor Accepts Contract");
+													}										
+													//Same Page : Advisor Side : Two Links :  Submit and Withdraw
+										        });
+									        </script>
+                                        </center>
+                                    </div>
+                                </h:panelGroup>
+                            </div>                       
+                        </div>
+                    </div>
+                    <p:remoteCommand name="changeMgmtFeeType" actionListener="#{advisoryServiceContractController.changeMgmtFeeType}" immediate="true"/>                     
+                </h:form>
+                <script type="text/javascript">
+                    $(".datepicker_box .icon-calendar").click(function() {
+                        $(this).prev(".datepicker").trigger("click").trigger("focus");
+                    });
+                    $('.datepicker').datepicker({
+                        format: 'dd-mm-yyyy',
+                        inline: true,
+                        showWeek: true,
+                        firstDay: 1
+                    }).on('changeDate', function(ev) {
+                        $(this).datepicker('hide');
+
+                    });
+
+                    function setCss(elm) {
+                        if (elm.id === "mgmtFeeTypeVariable") {
+                            changeMgmtFeeType([{name: 'variable', value: '#{true}'}]);
+                            elm.parentNode.className = "checked";
+                            document.getElementById("mgmtFeeTypeFixed").parentNode.className = null;
+                        } else if (elm.id === "mgmtFeeTypeFixed") {
+                            changeMgmtFeeType([{name: 'variable', value: '#{false}'}]);
+                            elm.parentNode.className = "checked";
+                            document.getElementById("mgmtFeeTypeVariable").parentNode.className = null;
+                        }
+                    }
+
+                    function onLoadBody() {
+
+                        if ('#{advisoryServiceContractController.contractDetailsVO.mgmtFeeTypeVariable}' === 'true') {
+                            changeMgmtFeeType([{name: 'variable', value: '#{true}'}]);
+                            document.getElementById("mgmtFeeTypeVariable").parentNode.className = "checked";
+                            document.getElementById("mgmtFeeTypeFixed").parentNode.className = null;
+                        } else {
+                            changeMgmtFeeType([{name: 'variable', value: '#{false}'}]);
+                            document.getElementById("mgmtFeeTypeFixed").parentNode.className = "checked";
+                            document.getElementById("mgmtFeeTypeVariable").parentNode.className = null;
+                        }
+                    }
+
+                    var watermark;
+                    if ('#{isAdviser}' === 'true') {
+                        watermark = 'Enter your comments';
+                    } else {
+                        watermark = 'If you want to review this contract, enter your review comments and press Review button else press Accept button';
+                    }
+
+                    //init, set watermark text and class
+                    $('#frm_service_contract\\:review').val(watermark).addClass('watermark');
+
+                    //if blur and no value inside, set watermark text and class again.
+                    $('#frm_service_contract\\:review').blur(function() {
+                        if ($(this).val().length === 0) {
+                            $(this).val(watermark).addClass('watermark');
+                            $(this).attr('type', 'text');
+                        }
+                    });
+
+                    //if focus and text is watermrk, set it to empty and remove the watermark class
+                    $('#frm_service_contract\\:review').focus(function() {
+                        if ($(this).val() === watermark) {
+                            $(this).val('').removeClass('watermark');
+                            $(this).attr('type', 'password');
+                        }
+                    });
+                </script>                      
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

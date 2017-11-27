@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 15, 2015 11:10:49 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.Totaladvisorpayout" table="totaladvisorpayout" catalog="mmfdb">
+        <composite-id name="id" class="com.gtl.mmf.entity.TotaladvisorpayoutId">
+            <key-property name="advisorId" type="int">
+                <column name="advisorID" />
+            </key-property>
+            <key-property name="payDate" type="date">
+                <column name="payDate" length="10" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="masterAdvisorTb" class="com.gtl.mmf.entity.MasterAdvisorTb" update="false" insert="false" fetch="select">
+            <column name="advisorID" not-null="true" />
+        </many-to-one>
+        <property name="payout" type="big_decimal">
+            <column name="Payout" precision="8" />
+        </property>
+    </class>
+</hibernate-mapping>

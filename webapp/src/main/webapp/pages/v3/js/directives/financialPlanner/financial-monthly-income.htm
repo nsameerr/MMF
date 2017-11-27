@@ -1,0 +1,67 @@
+		<!-- Financial Planner : Income -->
+        <div class="content_box_finance">
+        
+          <div class="content_box_finance_hd"><h2>Take Home Income <br> </h2> </div>           
+          <!--Scenario 1: Married -->
+          <div class="content_box_finance_row minheight" ng-if="userFpData.relationStatus == 'married'"> 
+            <div class="content_box_finance_c1"> <h3> What is your monthly <br> take home income? </h3> <br>
+              <!--Age one slider design start -->
+              <div class="agecolumn">               	
+                  <div class="agecolumn_data"> 
+                      <div class="age1">
+                          <div class="agerow_income"> 
+                            <i class="fa fa-inr"></i> 
+                            <input type="text" id="income" readonly ng-model="userFpData.userMonthlyTakehomeSalary">  
+                          </div>
+                          <div id="slider-range-min-income" class="agebar" ></div>
+                      </div>    	
+                  </div>
+              </div>
+              <!--Age slider design end  -->
+            </div>
+            <div class="content_box_finance_c1"> <h3> What is your spouse's monthly <br> take home income? </h3> <br> 
+              <div class="agecolumn">  
+                <div class="agecolumn_data"> 
+                  <div class="age1">
+                    <div class="agerow_income "> 
+                      <i class="fa fa-inr"></i> 
+                      <input type="text" id="income2" readonly style="border:0;" ng-model="userFpData.spouseMonthlyTakehomeSalary">                       
+                    </div>
+                    <div id="slider-range-min-income2" class="agebar" ></div>
+                  </div>    	
+                </div>
+              </div>
+            </div>          
+          </div>
+          
+          <!--Scenario 2: Single-->
+          <div class="content_box_finance_row minheight" ng-if="userFpData.relationStatus == 'single'"> 
+            <div class="content_box_finance_c1 content_box_finance_full"> 
+                <h3> What is your monthly <br>  take home income? </h3> <br>
+                <!--Slider design start -->
+                <div class="agecolumn"> 
+                  <div class="agecolumn_data"> 
+                        <div class="age1">
+                            <div class="agerow_income"> 
+                                <i class="fa fa-inr"></i> 
+                                <input type="text" id="income1" readonly ng-model="userFpData.userMonthlyTakehomeSalary"> 
+                            </div>
+                            <div id="slider-range-min-income1" class="agebar" ></div>
+                        </div>      
+                    </div>
+                </div>
+                <!--Slider design end  -->
+            </div>        
+          </div>
+
+
+          <div class="registration_row content_box_finance_row text-center">  
+            <input type="button" value="Back" class="buttonFpBack btnPrev" ng-click="gotoPrev()"> &nbsp; 
+            <input type="button" value="NEXT" class="buttonFpNext btnNext" ng-click="saveFpMonthlyIncome();gotoNext()"> 
+          </div>        
+        </div>
+
+
+<!--age slider script start-->
+<link rel="stylesheet" href="css/jquery-ui.css">
+<script src="js/jquery-ui.js"></script>

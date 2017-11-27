@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 Feb, 2016 3:01:09 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.MmfSettingsTb" table="mmf_settings_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="fieldname" type="string">
+            <column name="fieldname" length="30" not-null="true"/>
+        </property>
+        <property name="fieldvalue" type="string">
+            <column name="fieldvalue" length="30" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

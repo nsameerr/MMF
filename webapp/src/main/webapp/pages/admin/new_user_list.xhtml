@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+    </h:head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout_admin.xhtml">
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_admin.xhtml" />
+            </ui:define>
+            <ui:define name="title">
+                <h:outputText value="New Users List - MMF"/>
+            </ui:define>
+            <ui:define name="content">
+                <style>
+                    .label-success{
+                        background-color: #81BD82;
+                    }
+                    .col1,.col2,.col3,.col4,.col5,.col6{
+                        padding: 8px;
+                    }
+                    .table,.table-hover{
+                        margin-bottom: 0px;
+                    }
+                    .table_content{
+                        font-family: 'Open Sans', sans-serif;
+                        font-size: 12px;
+                    }
+                    .col1{
+                        width: 16.5%;
+                    }
+                    .col2{
+                        width: 16.5%;
+                    }
+                    .col3{
+                        width: 16.5%;
+                    }
+                    .col4{
+                        width: 16.5%;
+                    }
+                    .col5{
+                        width: 16.5%;
+                    }
+                    .col6{
+                        width: 16.5%;
+                    }
+                </style>
+                <div class="content">
+                    <div class="container-fluid">
+                        <h:form id="frm_new_user_list">
+                            <div id="pad-wrapper" >
+                                <h2 class="page-title">New Users List</h2>
+
+                                <div class="row-fluid filter-block">
+                                    <div class="pull-left">
+                                        Search users <h:inputText styleClass="search"
+                                                                  value="#{newUserListBean.searchText}"
+                                                                  valueChangeListener="#{newUserListBean.searchTextChangeListener}"
+                                                                  onchange="submit()"/>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="ui-select width_180">
+                                            <h:selectOneMenu value="#{newUserListBean.userTypeSelected}" onchange="submit()"
+                                                             valueChangeListener="#{newUserListBean.userTypeChangeListener}" style="width:180px">
+                                                <f:selectItems value="#{newUserListBean.userTypeList}" var="usertype">
+                                                </f:selectItems>
+                                            </h:selectOneMenu>
+                                        </div>
+                                        Sort By:
+                                        <div class="ui-select width_180">
+                                            <h:selectOneMenu value="#{newUserListBean.userSelected}" onchange="submit()"
+                                                             valueChangeListener="#{newUserListBean.userStatusChangeListener}" style="width:180px"> 
+                                                <f:selectItems value="#{newUserListBean.userStatus}" var="userStatus">
+                                                </f:selectItems>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="table-wrapper">
+                                        <div class="row-fluid">
+                                            <p:remoteCommand name="nextListRemote" actionListener="#{newUserListBean.onClickNext}" update="pagination"/>
+                                            <p:remoteCommand name="previousListRemote" actionListener="#{newUserListBean.onClickPrevious}" update="pagination"/>
+                                            <h:panelGroup id="pagination">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="span3 align_center">
+                                                                Name
+                                                            </th>
+                                                            <th class="span3 align_center">
+                                                               Email
+                                                            </th>
+                                                            <th class="span3 align_center">
+                                                                Registration Number
+                                                            </th>
+                                                            <th class="span3 align_center">
+                                                                Advisor 
+                                                            </th>
+                                                            <th class="span3 align_center">
+                                                                Date of Registration
+                                                            </th>
+                                                            <th class="span3 align_center">
+                                                                Mandate Status
+                                                            </th>
+                                                            <th class="span3 align_center">
+                                                                Status
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <ui:repeat var="user" value="#{newUserListBean.newuserList}">
+                                                            <p:remoteCommand name="selectUserRemote"  actionListener="#{newUserListBean.onUserSelect}" 
+                                                                             action="#{newUserListBean.getRedirectionURL()}"/>
+                                                            <tr onclick="selectUserRemote([{name: 'index', value: '#{newUserListBean.newuserList.indexOf(user)}'}]);"
+                                                                style="cursor: pointer;">
+                                                                <td>#{user.masterApplicant.name.toUpperCase()}  #{user.masterApplicant.middleName.toUpperCase()}  #{user.masterApplicant.lastName.toUpperCase()} </td>
+                                                                <td>#{user.masterApplicant.email}</td>
+                                                                <td>#{user.masterApplicant.registrationId}</td>
+                                                                <td>#{user.userType}</td>
+                                                                <td  class="align_right">#{user.dateJoining}</td>
+                                                                <td class="#{user.mandatestyleClass}"><b>#{user.mandateStatus}</b></td>
+                                                                <td class="#{user.styleClass}"><b>#{user.status}</b></td>
+                                                            </tr>
+                                                        </ui:repeat>
+                                                    </tbody>
+                                                </table>
+                                                <br></br>
+                                                <div style="float: right;">
+                                                    <h:outputLabel value="Next" onclick="nextListRemote();"
+                                                                   rendered="#{newUserListBean.allowNext}"
+                                                                   styleClass="paging_button"/>
+                                                    <h:outputLabel value="Previous" onclick="previousListRemote();"
+                                                                   rendered="#{newUserListBean.allowPrevious}"
+                                                                   styleClass="paging_button"/>
+
+                                                </div>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{newUserListBean.newuserList.size()==0}">
+                                                <div>
+                                                    <Span style="color: red;padding-left: 40%">No items to display. </Span>
+                                                </div>
+                                            </h:panelGroup>
+                                            <h:message for="frm_new_user_list" styleClass="err_message"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

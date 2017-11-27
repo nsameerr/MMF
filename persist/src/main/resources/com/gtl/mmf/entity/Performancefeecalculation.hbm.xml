@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 13, 2015 10:58:19 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.Performancefeecalculation" table="performancefeecalculation" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="customerAdvisorMappingTb" class="com.gtl.mmf.entity.CustomerAdvisorMappingTb" fetch="select">
+            <column name="relation_id" not-null="true" />
+        </many-to-one>
+        <property name="customerId" type="int">
+            <column name="customer_id" not-null="true" />
+        </property>
+        <property name="advisorId" type="java.lang.Integer">
+            <column name="advisor_id" />
+        </property>
+        <property name="feeCalculateDate" type="date">
+            <column name="feeCalculateDate" length="10" />
+        </property>
+        <property name="cashFlow" type="big_decimal">
+            <column name="cashFlow" precision="15" />
+        </property>
+        <property name="expectedReturn" type="big_decimal">
+            <column name="expectedReturn" precision="15" />
+        </property>
+        <property name="effectiveHwm" type="big_decimal">
+            <column name="effectiveHWM" precision="15" />
+        </property>
+        <property name="marketValue" type="big_decimal">
+            <column name="marketValue" precision="15" />
+        </property>
+        <property name="billableAmount" type="big_decimal">
+            <column name="billableAmount" precision="15" />
+        </property>
+        <property name="isBillDate" type="java.lang.Boolean">
+            <column name="isBillDate" />
+        </property>
+        <property name="billAmount" type="big_decimal">
+            <column name="billAmount" precision="15" />
+        </property>
+        <property name="sumPrevBillAmount" type="big_decimal">
+            <column name="sumPrevBillAmount" precision="15" />
+        </property>
+    </class>
+</hibernate-mapping>

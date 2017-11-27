@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 15, 2016 5:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.FpMasterUserInputDetailsTb" table="fp_master_user_input_details_tb" catalog="mmfdb">
+        <id name="userDetialsId" type="java.lang.Integer">
+            <column name="user_detials_id" />
+            <generator class="identity" />
+        </id>
+        <property name="customerId" type="string">
+            <column name="customer_id" length="50" />
+        </property>
+        <property name="dateTime" type="timestamp">
+            <column name="date_time" length="19" />
+        </property>
+        <property name="selfAge" type="java.lang.Integer">
+            <column name="self_age" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="10" />
+        </property>
+        <property name="selfMonthlyTakeHomeSalary" type="java.lang.Integer">
+            <column name="self_monthly_take_home_salary" />
+        </property>
+        <property name="marritalStatus" type="string">
+            <column name="marrital_status" length="10" />
+        </property>
+        <property name="spouseAge" type="java.lang.Integer">
+            <column name="spouse_age" />
+        </property>
+        <property name="spouseMonthlyTakeHomeSalary" type="java.lang.Integer">
+            <column name="spouse_monthly_take_home_salary" />
+        </property>
+        <property name="totalMonthlySalary" type="java.lang.Integer">
+            <column name="total_monthly_salary" />
+        </property>
+        <property name="monthlySavings" type="java.lang.Integer">
+            <column name="monthly_savings" />
+        </property>
+        <property name="savingsRate" type="java.lang.Float">
+            <column name="savings_rate" precision="12" scale="0" />
+        </property>
+        <property name="totalCurrentFinancialAssets" type="java.lang.Integer">
+            <column name="total_current_financial_assets" />
+        </property>
+        <property name="expectedRiskScoreId" type="java.lang.Integer">
+            <column name="expected_risk_score_id" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <title>SELFIE - Sign in</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!-- bootstrap -->
+        <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico" type="image/x-icon"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/custom.css" type="text/css" rel="stylesheet"/>
+
+        <!-- global styles -->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/layout.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/elements.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/icons.css"/>
+
+        <!-- libraries -->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/lib/font-awesome.css"/>
+
+        <!-- this page specific styles -->
+        <link rel="stylesheet" href="#{request.contextPath}/css/compiled/signin.css" type="text/css" media="screen"/>
+
+        <link href="#{request.contextPath}/css/LiteStyleSheet.css" rel="stylesheet" type="text/css"/>
+
+        <!-- open sans font -->
+        <link
+            href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800'
+            rel='stylesheet' type='text/css'/>
+        <script src="#{request.contextPath}/js/bootstrap.datepicker.js"></script>
+        
+        <style>
+            .radio{
+                margin: 0px auto;
+                width: 210px;
+                margin-left: 50px;
+                margin-bottom: 7px;
+            }
+            .radio td > label{
+                margin-left: -25px;
+            }
+            .action a{
+                width: 55px;
+            }
+            form{
+                margin: 0px;
+            }
+            p{
+                font-size: 13px;
+            }
+            .err_message{
+                font-size: 14px;
+                color: red;
+            }
+            input[type="reset"] {
+                text-transform: none;
+                border:1px solid #9EC8E8;
+                background-color: #DFEDED; 
+                text-decoration: none;
+                font-size: 10px;
+            }
+            .spinner-start{
+                width: 100%;
+                background-color: red;
+                height: 100%;
+                position: fixed;
+                z-index: 1;
+                background: url("#{request.contextPath}/img/select2/spiffygif_180x180.gif")no-repeat;
+                background-position: center;
+            }
+            .spinner-stop{
+                width: 0%;
+                background-color: red;
+                height: 0%;
+                position: fixed;
+                z-index: 0;
+                background: url("")no-repeat;
+            }
+            .ui-state-default {
+                width: 50px; 
+                height: 20px;
+                top: 1px;
+                outline: 0;
+                background-image: none;
+            }
+            ::-webkit-input-placeholder { /* WebKit browsers */
+                    text-transform: none;
+            }
+            :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                    text-transform: none;
+            }
+            ::-moz-placeholder { /* Mozilla Firefox 19+ */
+                    text-transform: none;
+            }
+            :-ms-input-placeholder { /* Internet Explorer 10+ */
+                    text-transform: none;
+            }
+        </style>
+    </h:head>
+
+    <h:body style="background-color: #1b1b1b;vertical-align: middle">
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+        <!-- End Google Tag Manager -->
+        
+        <div id="spinner"></div>
+        <h:form id="oms_login_form">
+            <div class="row-fluid login-wrapper">
+                <!-- <a href="#"><img class="logo" src="{request.contextPath}/img/logo.png"/></a> -->
+                <div class="">
+                    <h:panelGroup  id="oms_login" rendered="#{omslogincontroller.omsLoginPageStatus and omslogincontroller.online}">
+                        <div class="content-wrap" style="margin-top: 100px;">
+                            <table width="100%" height="100%" class="outerTable" >
+                                <tbody><tr>
+                                        <td valign="middle" class="outerTableCell">
+                                            <table class="loginTable" border="0" align="center" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="2" class="login_head" style="padding-bottom: 20px;">
+                                                            <img src="#{request.contextPath}/img/Selfie_logo.png"/>
+                                                            <a href="https://sealinfo.verisign.com/splash?form_file=fdf/splash.fdf&amp;dn=FLIP.GEOJITBNPPARIBAS.COM&amp;lang=en" target="_blank"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="login_input" colspan="2">
+                                                            <span class="text">User ID</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" class="login_input">
+                                                            <h:inputText id="usename" styleClass="span12" required="true" value="#{omslogincontroller.omsOrderVO.omsUserid}"
+                                                                         maxlength="50" tabindex="0" requiredMessage="Please enter username" autocomplete="off"
+                                                                         style="width:80%;text-transform:uppercase" readonly="true"/>
+                                                            <p:watermark for="usename" value="Username"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" class="login_input"><h:message for="usename" style="color: red"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" class="login_input">
+                                                            <div class="text">Password</div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="login_input">
+                                                            <h:inputSecret id="password" styleClass="span12" required="true" requiredMessage="Please enter Password" 
+                                                                           maxlength="100" value="#{omslogincontroller.omsOrderVO.omsUserPassword}" autocomplete="off"
+                                                                           style="width:80%"/>
+                                                            <p:watermark for="password" value="Password"/>
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" class="login_input"><h:message for="password" style="color: red"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" class="login_submitCell">
+                                                            <p:commandButton styleClass="login_submit" value="Log in" update=":oms_login_form"
+                                                                             style="width: 55px;" onclick="javascript:startPageSpinner();" oncomplete="javascript:stopPageSpinner();"
+                                                                             actionListener="#{omslogincontroller.omsLoginRequest}"
+                                                                             action="#{omslogincontroller.reDirectionURL()}">
+                                                            </p:commandButton>  &#160;
+                                                            <p:commandButton styleClass="login_clearButton" value="Cancel" immediate= "true"
+                                                                                 actionListener="#{omslogincontroller.omsCancelRequest}" 
+                                                                                 action="#{omslogincontroller.reDirectionURL()}"
+                                                                                 onclick="javascript:startPageSpinner();" oncomplete="javascript:stopPageSpinner();">
+                                                            </p:commandButton>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="footerText" align="center" style="color:#666666 ">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="login_submitCell"> <h:message for="oms_login_form" style="color: red"/> </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="61" colspan="2" align="center">
+                                                            <table width="null">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td colspan="2">
+                                                                            <table>
+                                                                                <tbody> <tr>
+                                                                                        <td class="footerText" align="center" style="color:#666666 ">
+                                                                                            #{omslogincontroller.omsLoginFooter}
+                                                                                        </td>
+                                                                                    </tr> </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </h:panelGroup>
+                    <p:dialog  id="dialog" resizable="false" visible="#{!omslogincontroller.online}" closable="false" header=""
+                               style="display: block;height: 500px;width: 850px"  widgetVar="dialog" 
+                               modal="true" showEffect="fade" hideEffect="fade" draggable="true"> 
+                        <h:panelGroup  id="oms_msg">
+                            <div class="content-wrap">
+                                <table width="100%" height="100%" class="outerTable">
+                                    <tbody>
+                                        <tr>
+                                            <td valign="middle">
+                                                <table class="loginTable" border="0" align="center" cellpadding="0" cellspacing="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="2" class="login_head">
+                                                                <img src="#{request.contextPath}/img/Selfie_logo.png"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="login_input">
+
+                                                                <h:outputText value="You are not allowed to place offline order."
+                                                                              rendered="#{!omslogincontroller.offlinee_Enabled and !omslogincontroller.online}">
+
+                                                                </h:outputText>
+                                                                <h:outputText value="#{omslogincontroller.oflineMsg}"
+                                                                              rendered="#{omslogincontroller.offlinee_Enabled and !omslogincontroller.online}">
+                                                                </h:outputText>
+                                                                <h:panelGroup rendered="#{omslogincontroller.offlinee_Enabled and !omslogincontroller.online}">
+                                                                    <div class="text">Do you want to place the order as offline?</div>
+                                                                </h:panelGroup>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="login_submitCell">
+                                                                <p:commandButton styleClass="login_submit" value="Yes"
+                                                                                 rendered="#{omslogincontroller.offlinee_Enabled and !omslogincontroller.online}"
+                                                                                 actionListener="#{omslogincontroller.placeOfflineYes()}"
+                                                                                 action="#{omslogincontroller.reDirectionURL()}"
+                                                                                 onclick="javascript:startPageSpinner();" oncomplete="javascript:stopPageSpinner();">
+
+                                                                </p:commandButton> &#160;
+                                                                <p:commandButton styleClass="login_submit" value="No"
+                                                                                 rendered="#{omslogincontroller.offlinee_Enabled and !omslogincontroller.online}"
+                                                                                 actionListener="#{omslogincontroller.placeOfflineNo()}"
+                                                                                 action="#{omslogincontroller.reDirectionURL()}"
+                                                                                 onclick="javascript:startPageSpinner();" oncomplete="javascript:stopPageSpinner();">
+
+                                                                </p:commandButton>&#160;
+                                                                <h:button styleClass="login_submit" value="Ok" 
+                                                                          rendered="#{!omslogincontroller.offlinee_Enabled and !omslogincontroller.online}"
+                                                                          outcome="/pages/v3/investor-rebalance-portfolio.jsp?faces-redirect=true">
+                                                                          <!-- "/pages/rebalance_portfolio?faces-redirect=true" -->
+                                                                </h:button>&#160;
+                                                                <h:button styleClass="login_submit" style="height: 20px;" value="Cancel" 
+                                                                          outcome="/pages/v3/investor-rebalance-portfolio.jsp?faces-redirect=true">
+                                                                          <!-- "/pages/rebalance_portfolio?faces-redirect=true" -->
+                                                                </h:button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </h:panelGroup>
+                    </p:dialog>
+                    <!-- OMS TWO FACTOR LOGIN -->
+                    <h:panelGroup id="oms_two_factor_login" rendered="#{omslogincontroller.twoFactorRequired}">
+                        <div class="content-wrap" style="margin-top: 100px;">
+                            <table width="100%" height="100%" class="outerTable">
+                                <tbody>
+                                    <tr>
+                                        <td valign="" class="outerTableCell">
+                                            <h:panelGroup id="twofactorinputpanel">
+                                                <table class="loginTable" border="0" align="" cellpadding="0" cellspacing="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="2" class="login_head" style="padding-bottom: 20px;">
+                                                                <img src="#{request.contextPath}/img/Selfie_logo.png"/>
+                                                                <a href="https://sealinfo.verisign.com/splash?form_file=fdf/splash.fdf&amp;dn=FLIP.GEOJITBNPPARIBAS.COM&amp;lang=en" target="_blank"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="" style="text-align: center;padding-top: 10px">
+                                                                <h:selectOneRadio styleClass="radio" id="optionsRadios1" value="#{omslogincontroller.twoFactorType}">
+                                                                    <f:ajax render="twofactorinputpanel" event="valueChange" 
+                                                                            listener="#{omslogincontroller.changeTwoFactorType}"/>
+                                                                    <f:selectItem  itemLabel="PAN" itemValue="PAN"/>
+                                                                    <f:selectItem  itemLabel="SMS" itemValue="SMS"/>
+                                                                    <f:selectItem  itemLabel="DOB" itemValue="DOB"/>
+                                                                </h:selectOneRadio>
+                                                            </td>
+                                                        </tr>                       
+                                                        <tr>
+                                                            <td colspan="2" class="login_input">
+                                                                <h:inputText id="pan" styleClass="" required="true" value="#{omslogincontroller.pan}"
+                                                                             maxlength="10" rendered="#{omslogincontroller.PAN}" autocomplete="off"
+                                                                             validatorMessage="Please enter valid PAN No.(Eg:AOFBP6688A)"
+                                                                             tabindex="0" requiredMessage="Please enter your PAN" style="width:80%">
+                                                                    <f:validateRegex pattern="^$|[A-Za-z]{3}(p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G)[\w][\d]{4}[A-Za-z]"/>
+                                                                </h:inputText>
+                                                                <p:watermark for="pan" value="Enter your PAN"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="">
+                                                                <h:message for="pan" styleClass="err_message"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="login_input" colspan="2">
+                                                                <h:inputText id="sms" styleClass="" required="true" value="#{omslogincontroller.sms}"
+                                                                             maxlength="50" rendered="#{omslogincontroller.SMS}" autocomplete="off"
+                                                                             tabindex="0" requiredMessage="Please enter your secure code" style="width:80%"/>
+                                                                <p:watermark for="sms" value="Enter your Secure Code"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class=""><h:message for="sms" styleClass="err_message"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="login_input">
+                                                                <h:inputText id="dob" styleClass="datepicker" required="true" value="#{omslogincontroller.dob}"
+                                                                             maxlength="12" rendered="#{omslogincontroller.DOB}" autocomplete="off"
+                                                                             converterMessage="Please enter date in format: Eg:06 May,2014"
+                                                                             requiredMessage="Please enter your date of birth" style="width: 80%">
+                                                                </h:inputText>
+                                                                <script type="text/javascript">
+                                                                    $('.datepicker').datepicker({
+                                                                        format: 'dd M, yyyy'
+                                                                    }).on('changeDate', function(ev) {
+                                                                        $(this).datepicker('hide');
+                                                                    });
+                                                                </script>
+                                                                <p:watermark for="dob" value="Enter your Date Of Birth"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="login_submitCell"><h:message for="dob" styleClass="err_message"/> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="login_submitCell"><h:message for="oms_login_form" style="color: red"/> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="login_submitCell">
+                                                                <p:commandButton styleClass="login_submit" value="Log in" update=":oms_login_form"
+                                                                                 style="width: 55px;" onclick="javascript:startSpinner();"  oncomplete="javascript:stopPageSpinner();"
+                                                                                 actionListener="#{omslogincontroller.omsTFOLoginRequest}"
+                                                                                 action="#{omslogincontroller.reDirectionURL()}"/>&#160;
+                                                                <p:commandButton styleClass="login_clearButton" value="Cancel" immediate= "true"
+                                                                                 actionListener="#{omslogincontroller.omsCancelRequest}" 
+                                                                                 action="#{omslogincontroller.reDirectionURL()}"
+                                                                                 onclick="javascript:startPageSpinner();" oncomplete="javascript:stopPageSpinner();"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="61" colspan="2" align="center">
+                                                                <table width="null">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td colspan="2">
+                                                                                <table>
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td class="footerText" align="center" style="color:#666666 ">
+                                                                                               #{omslogincontroller.omsLoginFooter}
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </h:panelGroup>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </h:form>
+        <!-- scripts -->
+        <script type="text/javascript">
+            function startPageSpinner() {
+                $("#spinner").attr("class", "spinner-start");
+                $("#spinner").show();
+            }
+            function stopPageSpinner() {
+                $("#spinner").attr("class", "spinner-stop");
+                $("#spinner").hide();
+            }
+        </script>
+    </h:body>
+</html>

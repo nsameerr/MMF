@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Dec, 2015 1:20:59 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.PortfolioSecuritiesPerformanceTb" table="portfolio_securities_performance_tb" catalog="mmfdb">
+        <id name="portfolioSecuritiesPerformanceId" type="java.lang.Integer">
+            <column name="portfolio_securities_performance_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="portfolioDetailsTb" class="com.gtl.mmf.entity.PortfolioDetailsTb" fetch="select">
+            <column name="portfolio_details_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="portfolioSecuritiesTb" class="com.gtl.mmf.entity.PortfolioSecuritiesTb" fetch="select">
+            <column name="portfolio_securities_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="masterAssetTb" class="com.gtl.mmf.entity.MasterAssetTb" fetch="select">
+            <column name="asset_class_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="portfolioTb" class="com.gtl.mmf.entity.PortfolioTb" fetch="select">
+            <column name="portfolio_id" not-null="true" />
+        </many-to-one>
+        <property name="securityId" type="string">
+            <column name="security_id" length="300" not-null="true" />
+        </property>
+        <property name="securityCode" type="string">
+            <column name="security_code" length="100" not-null="true" />
+        </property>
+        <property name="datetime" type="timestamp">
+            <column name="datetime" length="19" />
+        </property>
+        <property name="closingValue" type="big_decimal">
+            <column name="closing_value" precision="12" />
+        </property>
+        <property name="existingUnits" type="big_decimal">
+            <column name="existing_units" precision="11" />
+        </property>
+        <property name="closingPrice" type="big_decimal">
+            <column name="closing_price" precision="12" />
+        </property>
+        <property name="marketValue" type="big_decimal">
+            <column name="market_value" precision="12" />
+        </property>
+        <property name="marketValueAfterCashFlow" type="big_decimal">
+            <column name="market_value_after_cash_flow" precision="12">
+                <comment>Cash flow will be zero in all cases.</comment>
+            </column>
+        </property>
+        <property name="subPeriodReturn" type="big_decimal">
+            <column name="sub_period_return" precision="12" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 13, 2015 10:58:19 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.Tieredpromocommissionmatrix" table="tieredpromocommissionmatrix" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="promodefinitions" class="com.gtl.mmf.entity.Promodefinitions" fetch="select">
+            <column name="promoID" />
+        </many-to-one>
+        <many-to-one name="tiers" class="com.gtl.mmf.entity.Tiers" fetch="select">
+            <column name="tierID" />
+        </many-to-one>
+        <property name="mgnmntFeeCommission" type="big_decimal">
+            <column name="mgnmntFeeCommission" precision="8" />
+        </property>
+        <property name="perfFeeCommission" type="big_decimal">
+            <column name="perfFeeCommission" precision="8" />
+        </property>
+    </class>
+</hibernate-mapping>

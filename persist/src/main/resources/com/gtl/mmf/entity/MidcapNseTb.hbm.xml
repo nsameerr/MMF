@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 22, 2014 10:14:08 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.MidcapNseTb" table="midcap_nse_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="isinCode" type="string">
+            <column name="isin_code" length="20" />
+        </property>
+        <property name="companyName" type="string">
+            <column name="company_name" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

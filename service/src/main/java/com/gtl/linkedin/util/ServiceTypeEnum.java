@@ -1,0 +1,22 @@
+package com.gtl.linkedin.util;
+
+public enum ServiceTypeEnum {
+
+    ACCESS_TOKEN,
+    BASIC_PROFILE,
+    FULL_PROFILE,
+    EMAILID,
+    CONNECTIONS,
+    CONTACT_INFO,
+    NETWORK_UPDATES,
+    GROUP_DISCUSSION,
+    MESSAGES,
+    POSITIONS,
+    COMPANY_SEARCH,
+    COMPANY_DETAILS,
+    CONNECTIONS_LEVEL,
+    SEARCH_PEOPLE_DIST,
+    COMPANY_DETAILS_FULL,
+    SHARED_CONNECTIONS;
+    
+}

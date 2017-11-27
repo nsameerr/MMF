@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:c="http://java.sun.com/jsp/jstl/core"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout_admin.xhtml">
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_admin.xhtml" />
+            </ui:define>
+            <ui:define name="title">
+                <h:outputText value="settings"/>
+            </ui:define>
+            <ui:define name="content">
+                <style>
+                    .info_message{
+                        font-weight: bolder;
+                        color: green;
+                    }
+                    .btn-flat {
+                        width: 100px;
+                        margin-right: 12px;
+                        text-align: center;
+                        margin-top: 12px;
+                    }
+                </style>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div id="pad-wrapper">
+                            <h:form id="form_settings" >
+                                <h2 class="page-title">Configuration Settings</h2>  
+                                <br/>
+                                <h:messages style="margin-left: 18%;" globalOnly="true" layout="table" errorClass="err_message" infoClass="info_message"/> 
+                                <h:panelGroup id="update_group">
+                                    <h:panelGroup id="group1" rendered="#{adminSettingsController.enableUpdate}">
+                                        <div class="row-fluid" style="margin-left: 18%;">
+                                            <div class="span2">
+                                                Key: 
+                                                <h:inputText id="field_name" required="true" requiredMessage="Please enter key"
+                                                             value="#{adminSettingsController.key}" readonly="#{!adminSettingsController.enableKey}"
+                                                             style="text-transform:uppercase"
+                                                             maxlength="30">
+                                                </h:inputText>
+                                                <br/>
+                                                <h:message for="field_name" styleClass="err_message"/>
+                                            </div>
+                                            <div class="span2">
+                                                Value:
+                                                <h:inputText id="field_string" required="false" requiredMessage="Please enter value"
+                                                             value="#{adminSettingsController.value}"
+                                                             validatorMessage="Invalid format ( Eg:06-05-2014 )"
+                                                             maxlength="30">
+                                                    <f:validateRegex pattern="^$|^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$"/> 
+                                                </h:inputText>
+                                                <br/>
+                                                <h:message for="field_string" styleClass="err_message"/>
+                                            </div>
+                                            <p:watermark for="field_string" value="DD-MM-YYYY"/> 
+                                            <script type="text/javascript">
+                                                var $j = jQuery.noConflict();
+                                                $j(".datepicker_box .icon-calendar").click(function() {
+                                                    $j(this).prev(".datepicker").trigger("click").trigger("focus");
+                                                });
+                                                $j('.picker').datepicker({
+                                                    format: 'dd-mm-yyyy'
+                                                }).on('changeDate', function(ev) {
+                                                    $j(this).datepicker('hide');
+                                                    var input = $(this);
+                                                    var id = $(this).attr('id');
+                                                    var date = new Date();
+                                                    var a = Date.parse(date.toDateString());
+                                                    var b = new Date(a).getTime();
+                                                    var exampleDate = input.val().toString();
+                                                    var parts = exampleDate.split('-');
+                                                    var psdt = new Date(parts[2], parts[1] - 1, parts[0]).getTime();
+                                                    if (b > psdt)
+                                                    {
+                                                        $j(input).val("");
+                                                        alert('Past date cannot be selected');
+                                                    }
+                                                });
+                                            </script>
+                                        </div>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+                                <h:panelGroup id="bttn_group">
+                                    <h:panelGroup id="group2">
+                                        <div style="margin-left: 18%;">
+                                            <h:commandLink styleClass="btn-flat success" value="Update" id="update_btn" 
+                                                           rendered="#{!adminSettingsController.enableKey and adminSettingsController.enableUpdate}"
+                                                           actionListener="#{adminSettingsController.updateSettings()}">
+                                            </h:commandLink>
+                                            <h:commandLink styleClass="btn-flat success" value="Save" id="save_btn" 
+                                                           rendered="#{adminSettingsController.enableKey}"
+                                                           actionListener="#{adminSettingsController.saveSettings()}">
+                                            </h:commandLink>
+                                            <h:commandLink styleClass="btn-flat success" value="Add new" id="add_btn" 
+                                                           rendered="#{!adminSettingsController.enableKey}"
+                                                           actionListener="#{adminSettingsController.addNewSettings()}"
+                                                           action="#{adminSettingsController.getRedirectTo}">
+                                                <p:ajax update="table_group group3 bttn_group group2 update_group group1"/>
+                                            </h:commandLink>
+                                        </div>
+
+                                    </h:panelGroup>
+                                </h:panelGroup>
+                                
+                                <div class="row-fluid">
+                                    <div class="table-wrapper">
+                                        <div class="row-fluid">
+                                            <h:panelGroup id="table_group">
+                                                <h:panelGroup id="group3">
+                                                    <table class="table table-hover" style="max-width: 50%;margin-left: 18%;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="align_center">KEY</th>
+                                                                <th class="align_center">VALUE</th>
+                                                                <th class="align_center">EDIT</th>
+                                                            </tr>
+                                                        </thead> 
+                                                        <tbody>
+                                                            <c:forEach items="#{adminSettingsController.settingslist.entrySet()}" var="map">
+
+                                                                <tr>
+                                                                    <p:remoteCommand name="selectUpdate" immediate="true"  actionListener="#{adminSettingsController.onClickUpdate()}" 
+                                                                                     action="#{adminSettingsController.getRedirectTo}" 
+                                                                                     update="table_group group3 update_group group1 bttn_group group2"/>
+                                                                    <td class="align_center">#{map.key}</td>
+                                                                    <td class="align_center">#{map.value}</td>
+                                                                    <td class="align_center" style="cursor: pointer;" 
+                                                                        onclick="selectUpdate([{name: 'key', value: '#{map.key}'}]);">
+                                                                        <a>Update</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                        </tbody>
+                                                    </table>
+                                                </h:panelGroup>
+                                            </h:panelGroup>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script src="#{request.contextPath}/js/bootstrap.datepicker.js"></script>
+                                <script type="text/javascript">
+                                    var $j = jQuery.noConflict();
+                                    $j(".datepicker_box .icon-calendar").click(function() {
+                                        $j(this).prev(".datepicker").trigger("click").trigger("focus");
+                                    });
+                                    $j('.picker').datepicker({
+                                        format: 'dd-mm-yyyy'
+                                    }).on('changeDate', function(ev) {
+                                        $j(this).datepicker('hide');
+                                        var input = $(this);
+                                        var id = $(this).attr('id');
+                                        var date = new Date();
+                                        var a = Date.parse(date.toDateString());
+                                        var b = new Date(a).getTime();
+                                        var exampleDate = input.val().toString();
+                                        var parts = exampleDate.split('-');
+                                        var psdt = new Date(parts[2], parts[1] - 1, parts[0]).getTime();
+                                        if (b > psdt)
+                                        {
+                                            $j(input).val("");
+                                            alert('Past date cannot be selected');
+                                        }
+                                    });
+                                </script>
+                                <div class="datepicker datepicker-dropdown dropdown-menu" style="display: none; top: 553px; left: 708px; z-index: 10;"><div class="datepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">April 2014</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">30</td><td class="day old">31</td><td class="day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td><td class="day">5</td></tr><tr><td class="day">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td><td class="day">11</td><td class="day">12</td></tr><tr><td class="day">13</td><td class="day">14</td><td class="day">15</td><td class="day">16</td><td class="day">17</td><td class="day">18</td><td class="day">19</td></tr><tr><td class="day">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td><td class="day">24</td><td class="day">25</td><td class="day">26</td></tr><tr><td class="day">27</td><td class="day">28</td><td class="day">29</td><td class="day">30</td><td class="day new">1</td><td class="day new">2</td><td class="day new">3</td></tr><tr><td class="day new">4</td><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td><td class="day new">9</td><td class="day new">10</td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">2014</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month active">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">2010-2019</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year active">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr></tfoot></table></div></div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

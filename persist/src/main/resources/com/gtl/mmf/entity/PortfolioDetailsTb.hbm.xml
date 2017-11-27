@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 29, 2014 11:06:21 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.PortfolioDetailsTb" table="portfolio_details_tb" catalog="mmfdb">
+        <id name="portfolioDetailsId" type="java.lang.Integer">
+            <column name="portfolio_details_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="masterAssetTb" class="com.gtl.mmf.entity.MasterAssetTb" fetch="select">
+            <column name="asset_class_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="portfolioTb" class="com.gtl.mmf.entity.PortfolioTb" fetch="select">
+            <column name="portfolio_id" not-null="true" />
+        </many-to-one>
+        <property name="rangeFrom" type="big_decimal">
+            <column name="range_from" precision="5" />
+        </property>
+        <property name="rangeTo" type="big_decimal">
+            <column name="range_to" precision="5" />
+        </property>
+        <property name="newWeight" type="big_decimal">
+            <column name="new_weight" precision="5" />
+        </property>
+        <property name="currentWeight" type="big_decimal">
+            <column name="current_weight" precision="5" />
+        </property>
+        <property name="initialWeight" type="big_decimal">
+            <column name="initial_weight" precision="5" />
+        </property>
+        <property name="rebalanceRequired" type="java.lang.Boolean">
+            <column name="rebalance_required" />
+        </property>
+        <property name="rebalanceReqdDate" type="timestamp">
+            <column name="rebalance_reqd_date" length="19" />
+        </property>
+        <property name="currentValue" type="big_decimal">
+            <column name="current_value" precision="12" />
+        </property>
+        <property name="newAllocation" type="big_decimal">
+            <column name="new_allocation" precision="5" />
+        </property>
+        <set name="portfolioSecuritiesTbs" inverse="true">
+            <key>
+                <column name="portfolio_details_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.PortfolioSecuritiesTb" />
+        </set>
+    </class>
+</hibernate-mapping>

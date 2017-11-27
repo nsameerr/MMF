@@ -1,0 +1,524 @@
+<!doctype html>
+<html>
+<head>
+<title>Manage My Fortune</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="images/favicon.ico">
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="css/custom.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="css/jquery.toast.min.css" />
+<link rel="stylesheet" href="css/spinner.css" />
+
+<link rel="stylesheet" href="css/floatingDiv.css">
+
+<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet">
+<link href="css/custom.css" type="text/css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+                  
+                  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+                  <!-- <script src="js/jquery.min.js"></script> -->
+                  <script src="js/bootstrap.min.js"></script>
+                  <!-- <script type="text/javascript" src="js/highcharts.js"></script> -->
+                  <!-- <script src="js/jquery-ui.js"></script> -->
+                  <!-- <script type="text/javascript" src="js/custom.js"></script> -->
+          		    <script src="js/vendor/angular.min.js"></script>
+          	      <script src="js/vendor/moment.js"></script>
+                  <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
+                  <script src="js/vendor/jquery.toast.min.js"></script>
+                  <script src="js/constants.js"></script>
+                  <script src="js/main.js"></script>
+                  <script src= "js/spinner.js"></script>
+                  <script src= "js/clevertap.js"></script>
+                  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+     <!-- Facebook Pixel Code -->
+		<script>
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+		n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t,s)}(window,document,'script',
+		'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '395130707546730');
+		//fbq('track', 'PageView');
+		</script>
+		<noscript>
+		<img height="1" width="1" src="https://www.facebook.com/tr?id=395130707546730&ev=PageView&noscript=1"/>
+		</noscript>
+	<!-- End Facebook Pixel Code -->
+</head>
+<script type="text/javascript">
+	fbq('trackCustom', 'login');
+</script>
+<body ng-app="appMMF" ng-controller="Home" data-ng-init="initCaptcha()">
+  <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+	     </script>
+        <!-- End Google Tag Manager -->
+  
+<mmf-header-new></mmf-header-new>
+<style>
+.submitLogin {
+    height: 36px;
+    line-height: 36px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: 'ProximaNova-Semibold';
+    border-radius: 5px;
+    border: 1px solid #999999;
+    border-top: 0;
+    background: #ff7e00;
+    padding: 0px 30px;
+    transition: all 0.3s ease 0s;
+    font-size: 14px;
+    margin: 6px 0px 6px 0px;
+    width: 100%;
+    cursor: pointer;
+    -webkit-appearance: button;
+    box-sizing: border-box;
+    align-items: flex-start;
+    text-align: center;
+    -webkit-rtl-ordering: logical;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    -webkit-writing-mode: horizontal-tb;
+}
+
+
+.calendar_icon_left {
+	background: url(../v3/images/calendar-green.png) no-repeat  0px; 
+	<!--right-->
+    cursor: pointer;
+}
+</style>
+
+
+<div class="body_bg investor_brand">
+<div class="container-fluid login_pattern"> 
+	<div class="container"> 
+    	<div class="login-main">
+        	<div class="login_bg">
+                <div class="login-c1 login-c1-pad"> 
+                  <h2>Welcome back</h2> 
+                  <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis massa non elit luctus imperdiet. Praesent. -->
+                  Enter the Email id you have used during sign up as your username. If you have forgotten your password please click on the forgot password link.
+                  </div>
+                <div id="divLogin"  > <!-- style="display:none;" -->
+                  <div class="login-c2">
+                  	<div class="login-c2-pad">
+                      <div class="mobile_login_bg">
+                          <h3>Login to your Account</h3>  
+                          <form name="loginfrm" id="loginForm" action="/faces/login" method="post">
+                          <input type="email" id="email" placeholder="Username" class="field_username" onblur="javascript:validateLoginEmail(this);"> <br>
+                          <!--input type="text" name="lg_username" id="lg_username" placeholder="Username" class="field_username" > <br-->
+                          <input type="password" id="password" placeholder="Password" class="field_password " ><br>
+                          <!--input type="password" name="lg_password" id="lg_password" placeholder="Password" class="field_password" ><br-->
+
+                          <!-- image captcha start-->
+                         
+                          <div id="demo-form" >
+                               <!-- <button class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-callback='onSubmit'>Submit</button>-->
+                              
+                          </div>
+      						<!-- image captcha end-->
+                          <div class="login-row">
+                            <div class="pull-left"><br><a id="anchorForgotPassword" href="">Forgot Password?</a></div> 
+                            <div class="pull-right">
+                              <!-- input type="submit" name="login" id="login" value="Login" -->
+                              <input class="submitLogin" type="button" name="login" id="login" value="Login" onclick="userLogin()">
+<!--                               "userLogin()" -->
+                              <!-- <input value="submit" type="button" onclick="validateCaptcha()"> -->
+                            </div>
+                          </div>
+                          </form>
+                      </div>
+                      <div class="login-row" id="signUp"> <div class="new-account" id="signUp"><a href="#" id="signUp">New here? Create Account</a></div></div>
+                  </div>
+                </div>
+              </div>
+              <div id="divDob" class="login-c2"  style="display: none;"> 
+			  <!-- style="display: none;" -->
+			  
+<!--shubhada-->
+	
+			<div class="accfrm_row_c1"> 
+				<div class="login-c2-pad">
+					<div class="mobile_login_bg">
+						<!-- <div class="login-c2"> -->
+						<h3>Two Factor Login</h3>
+							<br/>
+							<br/>
+							<form name="loginDobForm" id="loginDobForm" action="/faces/login" method="post">
+								<div class="col_in1">
+								<label for="calendar">Date of Birth</label>
+								<!--</div>
+								<br-->
+								 <!--<div class="col_in2">   -->
+										<input type="text" id="calendar" name="calendar" class="calendar_icon_left" placeholder="DD-MM-YYYY"  align="center"> <!--class="hasDatepicker" style="width: 170px; length=170px "  -->
+								</div> 
+								<div class="login-row">
+									<div class="pull-right">
+										<input type="button" class="submitLogin" type="button" name="login2" id="login2" value="Login" onClick="validateTwoFactor()"/>
+									</div>
+								</div>
+								
+							</form>
+						<!-- </div> -->
+					</div>
+				</div>
+			</div> 
+	
+<!--shubhada-->			  
+			  </div>
+        </div>
+    </div> 
+    <!-- Modal -->
+</div>
+</div>
+
+<div id="signUpModal" class="modal">
+<div>
+<div class="modal-content" >
+        <div class="modal-header" style="background-color: #6ebf63;">
+          <span class="close" style="font-size : 42px; color:rgba(255, 255, 255, 1);">x</span>
+          <h2 style="color: rgba(255, 255, 255, 1);">Signup</h2>
+        </div>
+       
+        <div class="modal-body" style="height: 99%;" >
+          <span style="float: left;margin-left: 15px;margin-bottom: 10px;">
+           <a href="advisor-signup.htm" ><button href="advisor-signup.htm" style="background:#5baed9;" value="Advisor" class="signupFloat">Advisor</button> </a>
+          </span>
+
+          <span style="position:relative;margin-bottom: 10px;">
+          <a href="investor-signup.htm"><button href="investor-signup.htm"  value="Investor" class="signupFloat" style="background:#4aae3c;">Investor</button></a>
+          </span>
+        </div>
+      
+</div>
+</div>
+</div> 
+<!-- mmf Page Footer -->
+<mmf-footer-new></mmf-footer-new>
+</div> 
+
+
+<script>
+    setTimeout(function(){ 
+    //Get Full Year
+    var now = new Date();
+    var d=now.getFullYear();
+   // console.log(new Date().getFullYear());
+    $("#copyYear").text(new Date().getFullYear()); 
+    //On Hover Show SignUp Options
+    $('ul.nav li.dropdown').hover(function() {
+      $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+    }, function() {
+      $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+    });
+
+        }, 100);
+</script>
+
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('signUpModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("signUp");
+
+// Get the <span> element that closes the modal
+var spn = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+spn.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+</script>
+<script>
+      $('.forgotPassword').click(function(){
+        window.location.href = _gc_url_forgotpassword;
+      });
+        
+      
+      $( '.js-float-label-wrapper' ).FloatLabel();
+      togglePasswordType = function(obj){
+        if(obj.value==''){
+          obj.setAttribute('type', 'text');
+        }
+        else{
+          obj.setAttribute('type', 'password');
+        }
+        return;
+      }
+      
+      // $(':input').each(function(){
+      //     var self = $(this);
+      //     label = self.next();
+      //     label_text = label.text();
+      //     //label.remove();
+      //     self.iCheck({
+      //     checkboxClass: 'icheckbox_square-green',
+      //     radioClass: 'iradio_square-green'
+      //     });
+             
+      // });
+      
+      $(".alphaOnly").keypress(function (event) {
+        var regex = new RegExp("^[a-zA-Z\b]+$");
+          var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+          if (!regex.test(key)) {
+             event.preventDefault();
+             return false;
+          }
+      });
+
+      $(".numericOnly").keypress(function (e) {
+          if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+      });
+    
+      $(".advLoginKeyUpEnter").keyup(function(event){
+          if(event.keyCode == 13){
+            javascript:advisorLogin();
+          }
+      });
+
+
+      $(".advRegKeyUpEnter").keyup(function(event){
+          if(event.keyCode == 13){
+            javascript:advisorRegistration();
+          }
+      });
+
+      $(".invRegKeyUpEnter").keyup(function(event){
+          if(event.keyCode == 13){
+            javascript:investorRegistration();
+          }
+      });
+
+      $(".invLoginKeyUpEnter").keyup(function(event){
+          if(event.keyCode == 13){
+           javascript:investorLogin();
+          }
+      });
+</script>
+
+
+<script>
+$('ul.nav li.dropdown').hover(function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+}, function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+});
+</script>
+
+<script>
+      $('.forgotPassword').click(function(){
+        window.location.href = _gc_url_forgotpassword;
+      });
+        
+      
+      $( '.js-float-label-wrapper' ).FloatLabel();
+      togglePasswordType = function(obj){
+        if(obj.value==''){
+          obj.setAttribute('type', 'text');
+        }
+        else{
+          obj.setAttribute('type', 'password');
+        }
+        return;
+      }
+      
+      // $(':input').each(function(){
+      //     var self = $(this);
+      //     label = self.next();
+      //     label_text = label.text();
+      //     //label.remove();
+      //     self.iCheck({
+      //     checkboxClass: 'icheckbox_square-green',
+      //     radioClass: 'iradio_square-green'
+      //     });
+             
+      // });
+      
+      $(".alphaOnly").keypress(function (event) {
+        var regex = new RegExp("^[a-zA-Z\b]+$");
+          var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+          if (!regex.test(key)) {
+             event.preventDefault();
+             return false;
+          }
+      });
+
+      $(".numericOnly").keypress(function (e) {
+          if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+      });
+    
+      $(".advLoginKeyUpEnter").keyup(function(event){
+          if(event.keyCode == 13){
+            javascript:advisorLogin();
+          }
+      });
+
+
+      $(".advRegKeyUpEnter").keyup(function(event){
+          if(event.keyCode == 13){
+            javascript:advisorRegistration();
+          }
+      });
+
+      $(".invRegKeyUpEnter").keyup(function(event){
+          if(event.keyCode == 13){
+            javascript:investorRegistration();
+          }
+      });
+
+      $(".invLoginKeyUpEnter").keyup(function(event){
+          if(event.keyCode == 13){
+           javascript:investorLogin();
+          }
+      });
+      </script>
+  
+
+  <script type="text/javascript">
+      function validateCaptcha() {
+          var captcha_response = grecaptcha.getResponse();
+          if (captcha_response.length === 0) {
+              // Captcha is not Passed
+              console.log('Please verify captcha');
+              $.toast({
+                heading: 'Error',
+                text: 'Please verify captcha',
+                showHideTransition: 'fade',
+                icon: 'error'
+              });
+              return false;
+          }
+          else {
+              // Captcha is Passed
+              //console.log('captcha verified');
+              return true;
+          }
+      }
+  </script>
+
+
+        
+
+		
+<!-- calendar scripts start -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+<script type="text/javascript">
+	$( function() {
+		$( "#calendar" ).datepicker({
+			dateFormat: "dd-mm-yy" ,
+			changeMonth: true,
+			changeYear: true,
+			yearRange: "-100:+0"	// last hundred years
+			
+			}).val()
+	  } );
+</script>
+<!-- calendar scripts end -->
+        
+        <!-- Modules -->
+        <script src="js/app.js"></script>
+        
+        <!-- Controllers -->
+        <script src="js/controllers/Home.js?v=3" charset="UTF-8"></script>
+        <script src="js/directives/home.js" charset="UTF-8"></script>
+        <script src="js/directives/headerFooter.js" charset="UTF-8"></script>
+        <script type="text/javascript">
+     $(document).ready(function(){
+
+    getCaptchaKey = function(){
+      //console.log('Captcha Call');
+      $.ajax({
+        type: 'POST',
+        url : _gc_url_CaptchaKey,
+        async: false,
+        success : function(data){
+          //console.log('Received Captcha Key');
+          //console.log(data);
+          // $scope.publicCaptchaKey = data;
+           $('#myCaptchaKey').attr('data-sitekey',data);    
+          // $scope.$apply();
+          //return data;
+
+          
+
+          var str = '<div class="g-recaptcha" '+
+                                    'data-sitekey="'+ data+'" '+
+                                    'id="myCaptchaKey" style="transform:scale(0.8);-webkit-transform:scale(0.8);transform-origin:0 0;-webkit-transform-origin:0 0;">'+
+                                    //<!-- data-sitekey="6Lci4icTAAAAABgt8AmFVFhjFJTCxjKnyzIETzum"> -->
+                                    //<!-- data-callback="onSubmit" > -->
+                                    //<!--"1" -->
+
+                              '</div>';
+                              $('#demo-form').append(str);
+        },
+        error : function(xhr,textStatus,error){
+          console.log(xhr.statusText);
+          console.log(textStatus);
+          console.log(error);
+          return null;
+        }
+      });
+    }
+    getCaptchaKey();
+   }); 
+   
+  	$('#anchorForgotPassword').click(function(event){
+  		$(this).attr('href',_gc_url_baseUrl + "/faces/pages/v3/forgot-password.jsp");  		
+  	}); 		
+  	
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+html, body{
+    height: 100%;
+}
+
+body{
+    overflow: auto;
+}
+.navbar, #sidebar-nav {
+	background: transparent url(../../img/bgs/bg.jpg) repeat 0 0;
+}
+
+#sidebar-nav{
+    position: fixed;
+}
+body {
+	background: none;
+}
+.navbar-inverse .navbar-inner {
+	background: none;
+	border: 1px solid transparent;
+	box-shadow: none;
+}
+.navbar-inverse .notification-dropdown .count {
+	background: rgb(252, 130, 123);
+}
+
+
+/* sidebar */
+#sidebar-nav.display { 
+	background: transparent url(../../img/bgs/bg.jpg) repeat 0 0;
+	background-size: 100% 100%;
+	box-shadow: none;
+}
+#dashboard-menu > li.active > a, 
+#dashboard-menu > li > a:hover {
+	color: #fff;
+	text-shadow: none;
+}
+#dashboard-menu > li > a {
+	color: rgb(190, 190, 190);
+	box-shadow: none;
+	border: 0;
+}
+#dashboard-menu a i.icon-chevron-down {
+	color: #fff;
+}
+#dashboard-menu ul.submenu {
+	border-bottom: 0;
+	box-shadow: 0 2px 1px -1px rgb(75, 101, 136);
+}
+#dashboard-menu ul.submenu a {
+	text-shadow: none;
+	color: rgb(211, 211, 211);
+}
+
+

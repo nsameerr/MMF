@@ -1,0 +1,18 @@
+/*
+
+Theme Name: Multicorp Child
+Theme URI: http://themes.ishyoboy.com/multicorp/
+Author: ishYoBoy
+Author URI: http://ishyoboy.com
+Description: Multicorp Child serves as a child theme to Multicorp theme. Use it if you wish to make customizations to the original theme without having them overwritten with future updates.
+Template: multicorp
+*/
+
+
+/* Import the original Parent Theme Styles */
+@import url("../multicorp/style.css");
+
+
+/********************************************************************/
+/*   Pleas DO NOT add your code here. Use child-theme.css instead   */
+/********************************************************************/

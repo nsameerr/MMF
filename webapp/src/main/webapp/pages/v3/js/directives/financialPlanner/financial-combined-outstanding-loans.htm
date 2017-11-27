@@ -1,0 +1,137 @@
+<!-- Financial Planner : Outstanding Loans-->
+<style>
+.content_box_finance.questionnaire {
+    margin-top: 30px;
+}
+</style>
+        <div class="content_box_finance questionnaire">
+          <div class="content_box_finance_hd">
+              <h2>Outstanding Loans<br> </h2> 
+          </div>
+
+          <div class="content_box_finance_row minheight">
+              <div class="questionnaire-sec"> 
+              	<div  ng-if="userFpData.relationStatus == 'married'">
+              		<span class="bold">What are your combined </span> (your + spouse's) <span class="bold">current outstanding loans?</span>
+              	</div>
+                <div ng-if="userFpData.relationStatus == 'single'">
+              		<span class="bold">What are your current outstanding loans?</span>
+              	</div>
+                <br> <br> 
+                <div class="financial-loan-row financial-loan-hd">
+                  <div class="financial-loan-c1">Loan Description</div>
+                  <div class="financial-loan-c2">Loan Amount</div>
+                  <div class="financial-loan-c2">Monthly  Payment (EMI)</div>
+                  <div class="financial-loan-c4">Final year of payment</div>
+                </div>
+
+                <div class="financial-loan-row fp-loan-main-row" id="row-id-1" ng-if="userFpData.outstandingLoans.length == 0 && loanPageVisited">
+                	<div class="financial-loan-c1">
+                    	<div class="loan_mobile">Choose Loan Type </div>
+                      <select id="loan-type-1" ng-model="loanType1" ng-init="loanType1 = 'House'">
+                          <option ng-repeat="loan in loans" value="{{loan.id}}">{{loan.name}}</option>
+                      </select>
+                	</div>
+                  <div class="financial-loan-c2">
+                  	<div class="loan_mobile">Loan Amount </div>
+              		  <div class="age1">           
+                          <div id="sliderprice-range-loan-total-0" class="loan_price_bar" ></div> 
+                          <i class="fa fa-inr"></i> <input type="text" id="price-amount-0" readonly > 
+                  	</div>    
+                  </div>
+                  <div class="financial-loan-c2">
+                  	<div class="loan_mobile">Monthly  Payment (EMI)</div>
+              		  <div class="age1">           
+                          <div id="sliderprice-rangeMP-0" class="loan_price_bar" ></div> 
+                          <i class="fa fa-inr"></i> <input type="text" id="price-emi-0" readonly >  
+                  	</div>    
+                  </div>
+                    <div class="financial-loan-c4">
+                    	<div class="loan_mobile">Final year of payment</div>
+                      <select id="final-payment-year-1" ng-model="finalPaymentYear1" ng-init="finalPaymentYear1 = (''+yearStart)">
+                        <option ng-repeat="x in yearsList">{{x}}</option>
+                      </select>
+                    </div>
+                    <div class="financial-loan-c5"> <a href="javascript:void(0)" class="delrow" alt="1">X</a> </div>
+                </div>
+
+                <div class="financial-loan-row fp-loan-main-row"  id="row-id-2" ng-if="userFpData.outstandingLoans.length == 0 && loanPageVisited">
+                        	<div class="financial-loan-c1">
+                            	<div class="loan_mobile">Choose Loan Type </div>
+                                <select id="loan-type-2" ng-model="loanType2" ng-init="loanType2 = 'Vehicle'">
+                                  <option ng-repeat="loan in loans" value="{{loan.id}}">{{loan.name}}</option>
+                                </select>
+                        	</div>
+                          <div class="financial-loan-c2">
+                          	<div class="loan_mobile">Loan Amount </div>
+                        		<div class="age1">           
+                                    <div id="sliderprice-range-loan-total-1" class="loan_price_bar" ></div> 
+                                    <i class="fa fa-inr"></i> <input type="text" id="price-amount-1" readonly > 
+                            </div>    
+                          </div>
+                          <div class="financial-loan-c2">
+                          	<div class="loan_mobile">Monthly  Payment (EMI)</div>
+                      		  <div class="age1">           
+                                  <div id="sliderprice-rangeMP-1" class="loan_price_bar" ></div> 
+                                  <i class="fa fa-inr"></i> <input type="text" id="price-emi-1" readonly >  
+                          	</div>    
+                          </div>
+                          <div class="financial-loan-c4">
+                          	<div class="loan_mobile">Final year of payment</div>
+                          	  <select id="final-payment-year-2"  ng-model="finalPaymentYear2" ng-init="finalPaymentYear2 = (''+yearStart)"> <!--'2022'-->
+                                <option ng-repeat="x in yearsList">{{x}}</option>
+                              </select>
+                          </div>
+                          <div class="financial-loan-c5"> <a href="javascript:void(0)" class="delrow" alt="2">X</a> </div>    
+                </div>
+
+                <!--AutoPopulate Data for Existing Users-->
+                <div class="financial-loan-row fp-loan-main-row"  id="{{ 'row-id-' + $index}}" ng-repeat="(i,ol) in userFpData.outstandingLoans track by $index" ng-cloak>
+                          <div class="financial-loan-c1">
+                              <div class="loan_mobile">Choose Loan Type </div>
+                                <select id="{{'loan-type-' + $index}}" ng-model="ol.loanDescription" >
+                                  <option ng-repeat="loan in loans" value="{{loan.id}}">{{loan.name}}</option>
+                                </select>
+                          </div>
+                          <div class="financial-loan-c2">
+                            <div class="loan_mobile">Loan Amount </div>
+                            <div class="age1">           
+                                    <div id="{{'sliderprice-range-loan-total-' + $index}}" class="loan_price_bar" ></div> 
+                                    <i class="fa fa-inr"></i> <input type="text" id="{{'price-amount-' + $index}}" readonly ng-model="ol.loanAmount"> 
+                            </div>    
+                          </div>
+                          <div class="financial-loan-c2">
+                            <div class="loan_mobile">Monthly  Payment (EMI)</div>
+                            <div class="age1">           
+                                  <div id="{{'sliderprice-rangeMP-' + $index}}" class="loan_price_bar" ></div> 
+                                  <i class="fa fa-inr"></i> <input type="text" id="{{'price-emi-' + $index}}" readonly ng-model="ol.emi">  
+                            </div>    
+                          </div>
+                          <div class="financial-loan-c4">
+                              <div class="loan_mobile">Final year of payment</div>
+                              <select id="{{'final-payment-year-' + $index}}"  ng-model="ol.finalYearofPayment">
+                                <option ng-repeat="x in yearsList">{{x}}</option>
+                              </select>
+                          </div>
+                          <div class="financial-loan-c5"> <a href="javascript:void(0)" class="delrow" alt="{{$index}}">X</a> </div>    
+                </div>
+                <!--End AutoPopulate-->
+                <!-- additional row code start -->
+                    <div class="append-div"></div>
+                <!-- additional row code end  -->
+
+                <div class="financial-loan-row">
+                	<div class="financial-loan-c1"><div class="fpq_addrowbtn"><a href="javascript:void(0)" ng-click="addNewLoanRow()">+</a> </div> <!--&nbsp; Add Another--> </div>
+                </div>
+              </div>
+
+              <div class="registration_row content_box_finance_row text-center">   <!--text-right-->
+                <input type="button" value="Back" class="buttonFpBack btnPrev" ng-click="gotoPrev()"> &nbsp; 
+                <input type="button" value="NEXT" class="buttonFpNext btnNext" ng-click="saveFpLoan();gotoNext()"> 
+              </div>  
+            </div>
+        </div>
+
+
+<link rel="stylesheet" href="css/jquery-ui.css">
+<script src="js/jquery-ui.js"></script>

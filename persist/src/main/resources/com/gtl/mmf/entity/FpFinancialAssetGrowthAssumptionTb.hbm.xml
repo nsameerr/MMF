@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 15, 2016 5:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.FpFinancialAssetGrowthAssumptionTb" table="fp_financial_asset_growth_assumption_tb" catalog="mmfdb">
+        <id name="financialAssetId" type="java.lang.Integer">
+            <column name="financial_asset_id" />
+            <generator class="identity" />
+        </id>
+        <property name="financialAssetName" type="string">
+            <column name="financial_asset_name" length="150" />
+        </property>
+        <property name="growthRate" type="java.lang.Float">
+            <column name="growth_rate" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,539 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 Nov, 2015 10:56:58 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.MasterApplicantTb" table="master_applicant_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="registrationId" type="string">
+            <column name="registration_id" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="verificationCode" type="string">
+            <column name="verification_code" length="100" />
+        </property>
+        <property name="isMailVerified" type="boolean">
+            <column name="is_mail_verified" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="advisor" type="java.lang.Boolean">
+            <column name="advisor" />
+        </property>
+        <property name="linkedinUser" type="string">
+            <column name="linkedin_user" length="50" />
+        </property>
+        <property name="linkedinPassword" type="string">
+            <column name="linkedin_password" length="200" />
+        </property>
+        <property name="linkedinMemberId" type="string">
+            <column name="linkedin_member_id" length="50" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="100" />
+        </property>
+        <property name="address1" type="string">
+            <column name="address1" length="100" />
+        </property>
+        <property name="address2" type="string">
+            <column name="address2" length="100" />
+        </property>
+        <property name="addressCity" type="string">
+            <column name="address_city" length="50" />
+        </property>
+        <property name="addressPincode" type="string">
+            <column name="address_pincode" length="50" />
+        </property>
+        <property name="addressCountry" type="string">
+            <column name="address_country" length="50" />
+        </property>
+        <property name="telephone" type="string">
+            <column name="telephone" length="15" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="15" />
+        </property>
+        <property name="registerDatetime" type="timestamp">
+            <column name="register_datetime" length="19" />
+        </property>
+        <property name="sebiRegno" type="string">
+            <column name="sebi_regno" length="20" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="linkedinExpireIn" type="string">
+            <column name="linkedin_expire_in" length="15" />
+        </property>
+        <property name="middleName" type="string">
+            <column name="middle_name" length="100" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="100" />
+        </property>
+        <property name="pictureUrl" type="string">
+            <column name="picture_url" length="200" />
+        </property>
+        <property name="dob" type="date">
+            <column name="dob" length="10" />
+        </property>
+        <property name="linkedinExpireDate" type="date">
+            <column name="linkedin_expire_date" length="10" />
+        </property>
+        <property name="workOrganization" type="string">
+            <column name="work_organization" length="200" />
+        </property>
+        <property name="jobTitle" type="string">
+            <column name="job_title" length="200" />
+        </property>
+        <property name="isActiveUser" type="boolean">
+            <column name="is_active_user" not-null="true">
+                <comment>Status for user deleted or not</comment>
+            </column>
+        </property>
+        <property name="fatherSpouseName" type="string">
+            <column name="father_spouse_name" length="100" />
+        </property>
+        <property name="nationality" type="string">
+            <column name="nationality" length="50" />
+        </property>
+        <property name="residentialStatus" type="string">
+            <column name="residential_status" length="50" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="10" />
+        </property>
+        <property name="maritalStatus" type="string">
+            <column name="marital_status" length="20" />
+        </property>
+        <property name="pan" type="string">
+            <column name="pan" length="20" />
+        </property>
+        <property name="uidAadhar" type="string">
+            <column name="uid_aadhar" length="20" />
+        </property>
+        <property name="proofOfIdentity" type="string">
+            <column name="proof_of_identity" length="50" />
+        </property>
+        <property name="addressState" type="string">
+            <column name="address_state" length="50" />
+        </property>
+        <property name="address2Country" type="string">
+            <column name="address2_country" length="50" />
+        </property>
+        <property name="address2State" type="string">
+            <column name="address2_state" length="50" />
+        </property>
+        <property name="address2City" type="string">
+            <column name="address2_city" length="50" />
+        </property>
+        <property name="address2Pincode" type="string">
+            <column name="address2_pincode" length="10" />
+        </property>
+        <property name="telephone2" type="string">
+            <column name="telephone2" length="15" />
+        </property>
+        <property name="fax" type="string">
+            <column name="fax" length="15" />
+        </property>
+        <property name="proofOfAddress" type="string">
+            <column name="proof_of_address" length="100" />
+        </property>
+        <property name="expiryDate" type="date">
+            <column name="expiry_date" length="10" />
+        </property>
+        <property name="bankName" type="string">
+            <column name="bank_name" length="200" />
+        </property>
+        <!--
+        <property name="branch" type="string">
+            <column name="branch" length="100" />
+        </property>
+        -->
+        <property name="bankBuilding" type="string">
+            <column name="bank_building" length="200" />
+        </property>
+        <property name="bankStreet" type="string">
+            <column name="bank_street" length="50" />
+        </property>
+        <property name="bankArea" type="string">
+            <column name="bank_area" length="50" />
+        </property>
+        <property name="bankCity" type="string">
+            <column name="bank_city" length="50" />
+        </property>
+        <property name="bankPincode" type="string">
+            <column name="bank_pincode" length="10" />
+        </property>
+        <property name="bankSubtype" type="string">
+            <column name="bank_subtype" length="50" />
+        </property>
+        <property name="accountNumber" type="string">
+            <column name="account_number" length="20" />
+        </property>
+        <property name="ifcsNumber" type="string">
+            <column name="ifcs_number" length="20" />
+        </property>
+        <property name="micrNumber" type="string">
+            <column name="micr_number" length="15" />
+        </property>
+        <property name="accountTypeOpen" type="string">
+            <column name="account_type_open" length="100" />
+        </property>
+        <property name="clientId" type="string">
+            <column name="client_id" length="10" />
+        </property>
+        <property name="dpId" type="string">
+            <column name="dp_id" length="50" />
+        </property>
+        <property name="tradingAccountType" type="string">
+            <column name="trading_account_type" length="50" />
+        </property>
+        <property name="dematAccountType" type="string">
+            <column name="demat_account_type" length="50" />
+        </property>
+        <property name="smsFacility" type="java.lang.Boolean">
+            <column name="sms_facility" />
+        </property>
+        <property name="occupation" type="string">
+            <column name="occupation" length="100" />
+        </property>
+        <property name="incomeRange" type="string">
+            <column name="income_range" length="50" />
+        </property>
+        <property name="netWorthDate" type="date">
+            <column name="net_worth_date" length="10" />
+        </property>
+        <property name="amount" type="string">
+            <column name="amount" length="10" />
+        </property>
+        <property name="politicalyExposed" type="java.lang.Boolean">
+            <column name="politicaly_exposed" />
+        </property>
+        <property name="politicalyRelated" type="java.lang.Boolean">
+            <column name="politicaly_related" />
+        </property>
+        <property name="instruction1" type="string">
+            <column name="instruction1" length="5" />
+        </property>
+        <property name="instruction2" type="string">
+            <column name="instruction2" length="5" />
+        </property>
+        <property name="instruction3" type="string">
+            <column name="instruction3" length="5" />
+        </property>
+        <property name="instruction4" type="string">
+            <column name="instruction4" length="5" />
+        </property>
+        <property name="addressForCommunication" type="string">
+            <column name="address_for_communication" length="100" />
+        </property>
+        <property name="permanentAddress" type="java.lang.Boolean">
+            <column name="permanent_address" />
+        </property>
+        <property name="telephoneIsd" type="string">
+            <column name="telephone_isd" length="5" />
+        </property>
+        <property name="telephoneStd" type="string">
+            <column name="telephone_std" length="5" />
+        </property>
+        <property name="telephone2Isd" type="string">
+            <column name="telephone2_isd" length="5" />
+        </property>
+        <property name="telephone2Std" type="string">
+            <column name="telephone2_std" length="5" />
+        </property>
+        <property name="faxIsd" type="string">
+            <column name="fax_isd" length="5" />
+        </property>
+        <property name="faxStd" type="string">
+            <column name="fax_std" length="5" />
+        </property>
+        <property name="address2Proof" type="string">
+            <column name="address2_proof" length="100" />
+        </property>
+        <property name="address2Validity" type="date">
+            <column name="address2_validity" length="10" />
+        </property>
+        <property name="mailSendSuccess" type="java.lang.Boolean">
+            <column name="mail_send_success" />
+        </property>
+        <property name="userActivationDate" type="date">
+            <column name="user_activation_date" length="10" />
+        </property>
+        <property name="ecsMandateStatus" type="java.lang.Integer">
+            <column name="ecs_mandate_status" />
+        </property>
+        <property name="linkedInConnected" type="java.lang.Boolean">
+            <column name="linkedIn_connected" />
+        </property>
+        <property name="secondHolderDetailsAvailable" type="java.lang.Boolean">
+            <column name="second_holder_details_available" />
+        </property>
+        <property name="smsFacilitySecondHolder" type="java.lang.Boolean">
+            <column name="sms_facility_second_holder" />
+        </property>
+        <property name="nameSecondHolder" type="string">
+            <column name="name_second_holder" length="100" />
+        </property>
+        <property name="occupationSecondHolder" type="string">
+            <column name="occupation_second_holder" length="100" />
+        </property>
+        <property name="incomeRangeSecondHolder" type="string">
+            <column name="income_range_second_holder" length="50" />
+        </property>
+        <property name="netWorthDateSecondHolder" type="date">
+            <column name="net_worth_date_second_holder" length="10" />
+        </property>
+        <property name="amountSecondHolder" type="string">
+            <column name="amount_second_holder" length="10" />
+        </property>
+        <property name="politicalyExposedSecondHolder" type="java.lang.Boolean">
+            <column name="politicaly_exposed_second_holder" />
+        </property>
+        <property name="politicalyRelatedSecondHolder" type="java.lang.Boolean">
+            <column name="politicaly_related_second_holder" />
+        </property>
+        <property name="nameEmployerSecondHolder" type="string">
+            <column name="name_employer_second_holder" length="100" />
+        </property>
+        <property name="designationSecondHolder" type="string">
+            <column name="designation_second_holder" length="100" />
+        </property>
+        <property name="rbiReferenceNumber" type="string">
+            <column name="rbi_reference_number" length="50" />
+        </property>
+        <property name="rbiApprovalDate" type="date">
+            <column name="rbi_approval_date" length="10" />
+        </property>
+        <property name="depositoryParticipantName" type="string">
+            <column name="depository_participant_name" length="50" />
+        </property>
+        <property name="depositoryName" type="string">
+            <column name="depository_name" length="50" />
+        </property>
+        <property name="beneficiaryName" type="string">
+            <column name="beneficiary_name" length="150" />
+        </property>
+        <property name="dpIdDepository" type="string">
+            <column name="dp_id_depository" length="50" />
+        </property>
+        <property name="beneficiaryId" type="string">
+            <column name="beneficiary_id" length="50" />
+        </property>
+        <property name="tradingPreferenceExchange" type="string">
+            <column name="trading_preference_exchange" length="50" />
+        </property>
+        <property name="tradingPreferenceSegment" type="string">
+            <column name="trading_preference_segment" length="100" />
+        </property>
+        <property name="documentaryEvedenceOther" type="java.lang.Boolean">
+            <column name="documentary_evedence_other" />
+        </property>
+        <property name="documentaryEvedence" type="string">
+            <column name="documentary_evedence" length="50" />
+        </property>
+        <property name="dealingThroughSubbroker" type="java.lang.Boolean">
+            <column name="dealing_through_subbroker" />
+        </property>
+        <property name="subbrokerName" type="string">
+            <column name="subbroker_name" length="50" />
+        </property>
+        <property name="nseSebiRegistrationNumber" type="string">
+            <column name="nse_sebi_registration_number" length="50" />
+        </property>
+        <property name="bseSebiRegistrationNumber" type="string">
+            <column name="bse_sebi_registration_number" length="50" />
+        </property>
+        <property name="registeredAddressSubbroker" type="string">
+            <column name="registered_address_subbroker" length="50" />
+        </property>
+        <property name="phoneSubbroker" type="string">
+            <column name="phone_subbroker" length="50" />
+        </property>
+        <property name="faxSubbroker" type="string">
+            <column name="fax_subbroker" length="50" />
+        </property>
+        <property name="websiteSubbroker" type="string">
+            <column name="website_subbroker" length="50" />
+        </property>
+        <property name="dealingThroughBroker" type="java.lang.Boolean">
+            <column name="dealing_through_broker" />
+        </property>
+        <property name="nameStockBroker" type="string">
+            <column name="name_stock_broker" length="50" />
+        </property>
+        <property name="nameSubbroker" type="string">
+            <column name="name_subbroker" length="50" />
+        </property>
+        <property name="clientCodeSubbroker" type="string">
+            <column name="client_code_subbroker" length="50" />
+        </property>
+        <property name="exchangeSubbroker" type="string">
+            <column name="exchange_subbroker" length="50" />
+        </property>
+        <property name="detailsBroker" type="string">
+            <column name="Details_broker" length="100" />
+        </property>
+        <property name="typeElectronicContract" type="string">
+            <column name="type_electronic_contract" length="100" />
+        </property>
+        <property name="facilityInternetTrading" type="java.lang.Boolean">
+            <column name="facility_internet_trading" />
+        </property>
+        <property name="tradingExperince" type="string">
+            <column name="trading_experince" length="20" />
+        </property>
+        <property name="addressFirmPropritory" type="string">
+            <column name="address_firm_propritory" length="100" />
+        </property>
+        <property name="typeAlert" type="string">
+            <column name="type_alert" length="50" />
+        </property>
+        <property name="relationSipMobilenumber" type="string">
+            <column name="relationSip_mobilenumber" length="50" />
+        </property>
+        <property name="panMobileNumber" type="string">
+            <column name="pan_mobileNumber" length="50" />
+        </property>
+        <property name="otherInformations" type="string">
+            <column name="other_informations" length="100" />
+        </property>
+        <property name="relativeGeojitEmployee" type="java.lang.Boolean">
+            <column name="relative_geojit_employee" />
+        </property>
+        <property name="relationshipGeojitEmployee" type="string">
+            <column name="relationship_geojit_employee" length="100" />
+        </property>
+        <property name="geojitEmployeeCode" type="string">
+            <column name="geojit_employee_code" length="50" />
+        </property>
+        <property name="geojitEmployeeName" type="string">
+            <column name="geojit_employee_name" length="50" />
+        </property>
+        <property name="nomineeExist" type="java.lang.Boolean">
+            <column name="nominee_exist" />
+        </property>
+        <property name="address2Email" type="string">
+            <column name="address2_email" length="50" />
+        </property>
+        <property name="address2Mobil" type="string">
+            <column name="address2_mobil" length="12" />
+        </property>
+        <property name="coresspondenceAddress" type="string">
+            <column name="coresspondence_address" length="25" />
+        </property>
+        <property name="bankCountry" type="string">
+            <column name="bank_Country" length="50" />
+        </property>
+        <property name="bankState" type="string">
+            <column name="bank_state" length="50" />
+        </property>
+        <property name="linkedinProfileUrl" type="string">
+            <column name="linkedin_profile_url" length="200" />
+        </property>
+        <property name="correspondenceAddressPath" type="string">
+            <column name="correspondence_address_path" length="100" />
+        </property>
+        <property name="permanentAddressPath" type="string">
+            <column name="permanent_address_path" length="100" />
+        </property>
+        <property name="identityProofPath" type="string">
+            <column name="identity_proof_path" length="100" />
+        </property>
+        <property name="documentaryEvidencePath" type="string">
+            <column name="documentary_evidence_path" length="100" />
+        </property>
+        <property name="resCityOther" type="string">
+            <column name="resCityOther" length="50" />
+        </property>
+        <property name="offCityOther" type="string">
+            <column name="offCityOther" length="50" />
+        </property>
+        <property name="bnkCityOther" type="string">
+            <column name="bnkCityOther" length="50" />
+        </property>
+        <property name="nomCityOther" type="string">
+            <column name="nomCityOther" length="50" />
+        </property>
+        <property name="minorCityother" type="string">
+            <column name="minorCityother" length="50" />
+        </property>
+        <property name="indvOrCprt" type="java.lang.Boolean">
+            <column name="indvOrCprt" />
+        </property>
+        <property name="usNational" type="string">
+            <column name="usNational" length="5" />
+        </property>
+        <property name="usResident" type="string">
+            <column name="usResident" length="5" />
+        </property>
+        <property name="usBorn" type="string">
+            <column name="usBorn" length="5" />
+        </property>
+        <property name="usAddress" type="string">
+            <column name="usAddress" length="5" />
+        </property>
+        <property name="usTelephone" type="string">
+            <column name="usTelephone" length="5" />
+        </property>
+        <property name="usStandingInstruction" type="string">
+            <column name="usStandingInstruction" length="5" />
+        </property>
+        <property name="usPoa" type="string">
+            <column name="usPoa" length="5" />
+        </property>
+        <property name="usMailAddress" type="string">
+            <column name="usMailAddress" length="5" />
+        </property>
+        <property name="individualTaxIdntfcnNmbr" type="string">
+            <column name="individualTaxIdntfcnNmbr" length="10" />
+        </property>
+        <property name="secondHldrPan" type="string">
+            <column name="secondHldrPan" length="10" />
+        </property>
+        <property name="secondHldrDependentRelation" type="string">
+            <column name="secondHldrDependentRelation" length="50" />
+        </property>
+        <property name="secondHldrDependentUsed" type="string">
+            <column name="secondHldrDependentUsed" length="15" />
+        </property>
+        <property name="firstHldrDependentUsed" type="string">
+            <column name="firstHldrDependentUsed" length="50" />
+        </property>
+        <property name="kitNumber" type="java.lang.Integer">
+            <column name="kit_number" />
+        </property>
+        <property name="motherName" type="string">
+            <column name="motherName" length="100" />
+        </property>
+        <property name="addressType" type="string">
+            <column name="address_type" length="100" />
+        </property>
+        <property name="linkedInSkipped" type="java.lang.Boolean">
+            <column name="linkedInSkipped" />
+        </property>
+        <set name="masterCustomerTbs" table="master_customer_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="master_appl_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.MasterCustomerTb" />
+        </set>
+        <set name="masterAdvisorQualificationTbs" table="master_advisor_qualification_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="master_appl_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.MasterAdvisorQualificationTb" />
+        </set>
+        <set name="masterAdvisorTbs" table="master_advisor_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="master_appl_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.MasterAdvisorTb" />
+        </set>
+       
+    </class>
+</hibernate-mapping>

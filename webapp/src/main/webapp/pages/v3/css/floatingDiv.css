@@ -1,0 +1,99 @@
+/* buttons within modal scope */
+.signupFloat {
+				height: 36px;
+				line-height: 36px;
+				color: #ffffff;
+				text-transform: uppercase;
+				font-family: 'ProximaNova-Semibold';
+				border-radius: 5px;
+				border: 1px solid #999999;
+				border-top: 0;
+				background: #4aae3c;
+				padding: 0px 15px;
+				transition: all 0.3s ease 0s;
+				font-size: 14px;
+				margin: 0px 6px 0px 6px;
+				width: inherit;
+				cursor: pointer;
+				-webkit-appearance: button;
+				box-sizing: border-box;
+				align-items: flex-start;
+				text-align: center;
+				-webkit-rtl-ordering: logical;
+				text-indent: 0px;
+				text-shadow: none;
+				display: inline-block;
+				-webkit-writing-mode: horizontal-tb;
+				border-radius: 15px 15px 15px 15px;
+			}
+
+/* The Modal (background) */
+	.modal {
+				/*border-radius: 15px 15px 15px 15px;*/
+				display: none; /* Hidden by default */
+				position: fixed; /* Stay in place */
+				z-index: 1; /* Sit on top */
+				padding-top: 100px; /* Location of the box */
+				left: 0;
+				top: 0;
+				width: 100%; /* Full width */
+				height: 100%; /* Full height */
+				overflow: auto; /* Enable scroll if needed */
+				background-color: rgb(0,0,0); /* Fallback color */
+				background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		   }
+
+/* Modal Content */
+.modal-content {
+				position: relative;
+				background-color: #fefefe;
+				margin: auto;
+				padding: 0;
+				border: 1px solid #888;
+				width: 300px; /* Full width */
+				
+				box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2),0 6px 6px 0 rgba(0,0,0,0.19);
+				border-radius: 15px 15px 15px 15px;
+				
+				animation-name: animatecentre;
+				animation-duration: 0.4s
+			}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+				from {top:-300px; opacity:0} 
+				to {top:0; opacity:1}
+			}
+
+@keyframes animatetop {
+				from {top:-300px; opacity:0}
+				to {top:0; opacity:1}
+			}
+
+/* The Close Button */
+	.close {
+				color: white;
+				float: right;
+				font-size: 32px;
+				font-weight: bold;
+			}
+
+.close:hover,.close:focus {
+				color: #00000;
+				text-decoration: none;
+				cursor: pointer;
+			}
+
+.modal-header {
+				border-radius: 15px 15px 0 0;
+				padding: 20px 20px;
+				background-color: #00000;
+				color: "GREEN";
+				opacity:0.9;
+			}
+
+.modal-body {
+			/*	border-radius: 15px 15px 15px 15px;*/
+				padding: 30px; 
+				opacity:0.9;
+			}
+

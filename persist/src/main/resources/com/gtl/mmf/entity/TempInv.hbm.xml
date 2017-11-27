@@ -1,0 +1,446 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 Nov, 2015 10:56:58 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.TempInv" table="temp_inv" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="registrationId" type="string">
+            <column name="registration_id" length="50" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" unique="true" />
+        </property>
+        <property name="firstname" type="string">
+            <column name="firstname" length="50" />
+        </property>
+        <property name="middlename" type="string">
+            <column name="middlename" length="50" />
+        </property>
+        <property name="lastname" type="string">
+            <column name="lastname" length="50" />
+        </property>
+        <property name="fatherSpouse" type="string">
+            <column name="fatherSpouse" length="50" />
+        </property>
+        <property name="dob" type="date">
+            <column name="dob" length="10" />
+        </property>
+        <property name="nationality" type="string">
+            <column name="nationality" length="50" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="50" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="50" />
+        </property>
+        <property name="mstatus" type="string">
+            <column name="mstatus" length="50" />
+        </property>
+        <property name="uid" type="string">
+            <column name="uid" length="20" />
+        </property>
+        <property name="pan" type="string">
+            <column name="pan" length="15" />
+        </property>
+        <property name="caddress" type="string">
+            <column name="caddress" length="100" />
+        </property>
+        <property name="cpincode" type="string">
+            <column name="cpincode" length="10" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" length="50" />
+        </property>
+        <property name="cstate" type="string">
+            <column name="cstate" length="50" />
+        </property>
+        <property name="ccity" type="string">
+            <column name="ccity" length="50" />
+        </property>
+        <property name="cproof" type="string">
+            <column name="cproof" length="100" />
+        </property>
+        <property name="cvalidity" type="date">
+            <column name="cvalidity" length="10" />
+        </property>
+        <property name="permenentAddress" type="java.lang.Boolean">
+            <column name="permenentAddress" />
+        </property>
+        <property name="paddress" type="string">
+            <column name="pAddress" length="100" />
+        </property>
+        <property name="ppin" type="string">
+            <column name="ppin" length="10" />
+        </property>
+        <property name="pcountry" type="string">
+            <column name="pcountry" length="50" />
+        </property>
+        <property name="pstate" type="string">
+            <column name="pstate" length="50" />
+        </property>
+        <property name="pcity" type="string">
+            <column name="pcity" length="50" />
+        </property>
+        <property name="pproof" type="string">
+            <column name="pproof" length="100" />
+        </property>
+        <property name="pvalidity" type="date">
+            <column name="pvalidity" length="10" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="15" />
+        </property>
+        <property name="htelephone" type="string">
+            <column name="htelephone" length="30" />
+        </property>
+        <property name="rtelephone" type="string">
+            <column name="rtelephone" length="30" />
+        </property>
+        <property name="ftelphone" type="string">
+            <column name="ftelphone" length="30" />
+        </property>
+        <property name="bankname" type="string">
+            <column name="bankname" length="200" />
+        </property>
+        <!--
+        <property name="branch" type="string">
+            <column name="branch" length="100" />
+        </property>
+        -->
+        <property name="accountType" type="string">
+            <column name="accountType" length="100" />
+        </property>
+        <property name="accno" type="string">
+            <column name="accno" length="30" />
+        </property>
+        <property name="reAccno" type="string">
+            <column name="reAccno" length="30" />
+        </property>
+        <property name="bifsc" type="string">
+            <column name="bifsc" length="15" />
+        </property>
+        <property name="bmicr" type="string">
+            <column name="bmicr" length="15" />
+        </property>
+        <property name="baddress" type="string">
+            <column name="baddress" length="100" />
+        </property>
+        <property name="bpincode" type="string">
+            <column name="bpincode" length="10" />
+        </property>
+        <property name="bcountry" type="string">
+            <column name="bcountry" length="50" />
+        </property>
+        <property name="bstate" type="string">
+            <column name="bstate" length="50" />
+        </property>
+        <property name="bcity" type="string">
+            <column name="bcity" length="50" />
+        </property>
+        <property name="openAccountType" type="string">
+            <column name="openAccountType" length="50" />
+        </property>
+        <property name="dp" type="string">
+            <column name="dp" length="50" />
+        </property>
+        <property name="tradingtAccount" type="string">
+            <column name="tradingtAccount" length="50" />
+        </property>
+        <property name="dematAccount" type="string">
+            <column name="dematAccount" length="50" />
+        </property>
+        <property name="smsFacility" type="string">
+            <column name="smsFacility" length="10" />
+        </property>
+        <property name="fstHldrOccup" type="string">
+            <column name="fstHldrOccup" length="50" />
+        </property>
+        <property name="fstHldrOrg" type="string">
+            <column name="fstHldrOrg" length="50" />
+        </property>
+        <property name="fstHldrDesig" type="string">
+            <column name="fstHldrDesig" length="50" />
+        </property>
+        <property name="fstHldrIncome" type="string">
+            <column name="fstHldrIncome" length="50" />
+        </property>
+        <property name="fstHldrNet" type="date">
+            <column name="fstHldrNet" length="10" />
+        </property>
+        <property name="fstHldrAmt" type="string">
+            <column name="fstHldrAmt" length="20" />
+        </property>
+        <property name="pep" type="string">
+            <column name="pep" length="10" />
+        </property>
+        <property name="rpep" type="string">
+            <column name="rpep" length="10" />
+        </property>
+        <property name="scndHldrExist" type="java.lang.Boolean">
+            <column name="scndHldrExist" />
+        </property>
+        <property name="scndHldrName" type="string">
+            <column name="scndHldrName" length="50" />
+        </property>
+        <property name="scndHldrOccup" type="string">
+            <column name="scndHldrOccup" length="50" />
+        </property>
+        <property name="scndHldrOrg" type="string">
+            <column name="scndHldrOrg" length="50" />
+        </property>
+        <property name="scndHldrDesig" type="string">
+            <column name="scndHldrDesig" length="50" />
+        </property>
+        <property name="scndHldrSms" type="string">
+            <column name="scndHldrSms" length="10" />
+        </property>
+        <property name="scndHldrIncome" type="string">
+            <column name="scndHldrIncome" length="50" />
+        </property>
+        <property name="scndHldrNet" type="date">
+            <column name="scndHldrNet" length="10" />
+        </property>
+        <property name="scndHldrAmt" type="string">
+            <column name="scndHldrAmt" length="20" />
+        </property>
+        <property name="scndPep" type="string">
+            <column name="scndPep" length="10" />
+        </property>
+        <property name="scndRpep" type="string">
+            <column name="scndRpep" length="10" />
+        </property>
+        <property name="instrn1" type="string">
+            <column name="instrn1" length="50" />
+        </property>
+        <property name="instrn2" type="string">
+            <column name="instrn2" length="50" />
+        </property>
+        <property name="instrn3" type="string">
+            <column name="instrn3" length="50" />
+        </property>
+        <property name="instrn4" type="string">
+            <column name="instrn4" length="50" />
+        </property>
+        <property name="instrn5" type="string">
+            <column name="instrn5" length="50" />
+        </property>
+        <property name="depoPartcpnt" type="string">
+            <column name="depoPartcpnt" length="50" />
+        </property>
+        <property name="deponame" type="string">
+            <column name="deponame" length="50" />
+        </property>
+        <property name="beneficiary" type="string">
+            <column name="beneficiary" length="150" />
+        </property>
+        <property name="dpId" type="string">
+            <column name="dpId" length="50" />
+        </property>
+        <property name="docEvdnc" type="string">
+            <column name="docEvdnc" length="50" />
+        </property>
+        <property name="other" type="string">
+            <column name="other" length="50" />
+        </property>
+        <property name="experience" type="string">
+            <column name="experience" length="50" />
+        </property>
+        <property name="contractNote" type="string">
+            <column name="contractNote" length="50" />
+        </property>
+        <property name="intrntTrading" type="string">
+            <column name="intrntTrading" length="50" />
+        </property>
+        <property name="alert" type="string">
+            <column name="alert" length="50" />
+        </property>
+        <property name="relationship" type="string">
+            <column name="relationship" length="50" />
+        </property>
+        <property name="panAddtnl" type="string">
+            <column name="panAddtnl" length="50" />
+        </property>
+        <property name="otherInformation" type="string">
+            <column name="otherInformation" length="100" />
+        </property>
+        <property name="nomineeExist" type="java.lang.Boolean">
+            <column name="nomineeExist" />
+        </property>
+        <property name="nameNominee" type="string">
+            <column name="nameNominee" length="50" />
+        </property>
+        <property name="nomineeRelation" type="string">
+            <column name="nomineeRelation" length="50" />
+        </property>
+        <property name="nomineeDob" type="date">
+            <column name="nomineeDob" length="10" />
+        </property>
+        <property name="nominePan" type="string">
+            <column name="nominePan" length="50" />
+        </property>
+        <property name="nomineeAddress" type="string">
+            <column name="nomineeAddress" length="100" />
+        </property>
+        <property name="nomineePincode" type="string">
+            <column name="nomineePincode" length="50" />
+        </property>
+        <property name="nomCountry" type="string">
+            <column name="nomCountry" length="50" />
+        </property>
+        <property name="nomState" type="string">
+            <column name="nomState" length="50" />
+        </property>
+        <property name="nomCity" type="string">
+            <column name="nomCity" length="50" />
+        </property>
+        <property name="notelephone" type="string">
+            <column name="notelephone" length="30" />
+        </property>
+        <property name="nrtelephone" type="string">
+            <column name="nRtelephone" length="30" />
+        </property>
+        <property name="nomineeFax" type="string">
+            <column name="nomineeFax" length="30" />
+        </property>
+        <property name="nomMobile" type="string">
+            <column name="nomMobile" length="50" />
+        </property>
+        <property name="nomEmail" type="string">
+            <column name="nomEmail" length="50" />
+        </property>
+        <property name="minorExist" type="java.lang.Boolean">
+            <column name="minorExist" />
+        </property>
+        <property name="minorGuard" type="string">
+            <column name="minorGuard" length="50" />
+        </property>
+        <property name="mnrReltn" type="string">
+            <column name="mnrReltn" length="50" />
+        </property>
+        <property name="mnrDob" type="date">
+            <column name="mnrDob" length="10" />
+        </property>
+        <property name="minorAddress" type="string">
+            <column name="minorAddress" length="100" />
+        </property>
+        <property name="mnrCountry" type="string">
+            <column name="mnrCountry" length="50" />
+        </property>
+        <property name="mnrState" type="string">
+            <column name="mnrState" length="50" />
+        </property>
+        <property name="mnrCity" type="string">
+            <column name="mnrCity" length="50" />
+        </property>
+        <property name="mnrPincode" type="string">
+            <column name="mnrPincode" length="50" />
+        </property>
+        <property name="minortel" type="string">
+            <column name="minortel" length="50" />
+        </property>
+        <property name="minrRestel" type="string">
+            <column name="minrRestel" length="50" />
+        </property>
+        <property name="minorfax" type="string">
+            <column name="minorfax" length="50" />
+        </property>
+        <property name="mnrMob" type="string">
+            <column name="mnrMob" length="50" />
+        </property>
+        <property name="mnrEmail" type="string">
+            <column name="mnrEmail" length="50" />
+        </property>
+        <property name="pcityOther" type="string">
+            <column name="pCityOther" length="50" />
+        </property>
+        <property name="ccityOther" type="string">
+            <column name="cCityOther" length="50" />
+        </property>
+        <property name="bnkCityOther" type="string">
+            <column name="bnkCityOther" length="50" />
+        </property>
+        <property name="nomCityOther" type="string">
+            <column name="nomCityOther" length="50" />
+        </property>
+        <property name="minorCityother" type="string">
+            <column name="minorCityother" length="50" />
+        </property>
+        <property name="panFilePath" type="string">
+            <column name="panFilePath" length="100" />
+        </property>
+        <property name="coresFilePath" type="string">
+            <column name="coresFilePath" length="100" />
+        </property>
+        <property name="prmntFilePath" type="string">
+            <column name="prmntFilePath" length="100" />
+        </property>
+        <property name="docFilePath" type="string">
+            <column name="docFilePath" length="100" />
+        </property>
+        <property name="usNational" type="string">
+            <column name="usNational" length="5" />
+        </property>
+        <property name="usResident" type="string">
+            <column name="usResident" length="5" />
+        </property>
+        <property name="usBorn" type="string">
+            <column name="usBorn" length="5" />
+        </property>
+        <property name="usAddress" type="string">
+            <column name="usAddress" length="5" />
+        </property>
+        <property name="usTelephone" type="string">
+            <column name="usTelephone" length="5" />
+        </property>
+        <property name="usStandingInstruction" type="string">
+            <column name="usStandingInstruction" length="5" />
+        </property>
+        <property name="usPoa" type="string">
+            <column name="usPoa" length="5" />
+        </property>
+        <property name="usMailAddress" type="string">
+            <column name="usMailAddress" length="5" />
+        </property>
+        <property name="individualTaxIdntfcnNmbr" type="string">
+            <column name="individualTaxIdntfcnNmbr" length="10" />
+        </property>
+        <property name="secondHldrPan" type="string">
+            <column name="secondHldrPan" length="10" />
+        </property>
+        <property name="secondHldrDependentRelation" type="string">
+            <column name="secondHldrDependentRelation" length="50" />
+        </property>
+        <property name="secondHldrDependentUsed" type="string">
+            <column name="secondHldrDependentUsed" length="15" />
+        </property>
+        <property name="firstHldrDependentUsed" type="string">
+            <column name="firstHldrDependentUsed" length="50" />
+        </property>
+        <property name="kitNumber" type="java.lang.Integer">
+            <column name="kitNumber" length="10" />
+        </property>
+        <property name="nomineeProof" type="string">
+            <column name="nominee_proof" length="50" />
+        </property>
+        <property name="nomineeAadhar" type="string">
+            <column name="nominee_aadhar" length="20" />
+        </property>
+        <property name="minorProof" type="string">
+            <column name="minor_proof" length="50" />
+        </property>
+        <property name="minorPan" type="string">
+            <column name="minor_pan" length="20" />
+        </property>
+        <property name="minorAadhar" type="string">
+            <column name="minor_aadhar" length="20" />
+        </property>
+        <property name="motherName" type="string">
+            <column name="motherName" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

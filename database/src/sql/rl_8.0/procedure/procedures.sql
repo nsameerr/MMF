@@ -1,0 +1,14 @@
+\. rl_8.0/procedure/SP_MANAGEMENTFEECALCULATION.sql
+SELECT "rl_8.0/procedure/SP_MANAGEMENTFEECALCULATION.sql completed" AS "";
+\. rl_8.0/procedure/PERFORMANCE_FEE_OVER_PORTFOLIO_RETURNS_SP.sql
+SELECT "rl_8.0/procedure/PERFORMANCE_FEE_OVER_PORTFOLIO_RETURNS_SP.sql completed" AS "";
+\. rl_8.0/procedure/UPDATECASHFLOWDETAILS.sql
+SELECT "rl_8.0/procedure/UPDATECASHFLOWDETAILS.sql completed" AS "";
+\. rl_8.0/procedure/UPDATECASHBALNCEOMSDISABLEDCASE.sql
+SELECT "rl_8.0/procedure/UPDATECASHBALNCEOMSDISABLEDCASE.sql completed" AS "";
+\. rl_8.0/procedure/EOD_CLIENT_PORTFOLIO_RETURNS_SP.sql
+SELECT "rl_8.0/procedure/EOD_CLIENT_PORTFOLIO_RETURNS_SP.sql completed" AS "";
+\. rl_8.0/procedure/UPDATEECSDEBTPAYMENTDETAILS.sql
+SELECT "rl_8.0/procedure/UPDATEECSDEBTPAYMENTDETAILS.sql completed" AS "";
+\. rl_8.0/procedure/COPY_CASH_FLOW_FROMBO_PROC.sql
+SELECT "rl_8.0/procedure/COPY_CASH_FLOW_FROMBO_PROC.sql completed" AS "";

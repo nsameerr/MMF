@@ -1,0 +1,270 @@
+<style>
+	.boldText{
+		padding-left: 3%;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	
+	.boldText3{
+		font-size: 15px;
+		/*
+		font-style: italic;
+		font-weight: bold;
+		*/
+	}
+	.boldText2{
+		font-size: 14px;
+		font-style: italic;
+		/*
+		font-weight: bold;
+		*/
+	}
+	.msgDiv{	
+		text-align: center;	
+		font-size: 18px;
+		font-style: italic;
+		font-weight: bold;	
+		color: red;	
+	}
+	/* unvisited link */
+	a:link {
+	    color: blue;
+	}
+	
+	/* visited link */
+	a:visited {
+	    color: green;
+	}
+	
+	/* mouse over link */
+	a:hover {
+	    color: green;
+	}
+	
+	/* selected link */
+	a:active {
+	    color: blue;
+	}
+	
+	.calender{
+		background-image: url('img/icon_calender.png');
+		background-repeat: no-repeat;
+		background-position: right center; 
+		background-size: auto 20px;
+		padding-right: 25px !important;
+		padding-bottom: 30px;
+	}
+	
+	.required{
+	    background-image: url('img/required.png') !important;
+	    background-size: 0.5em 0.5em  !important;
+	    background-position: right top  !important;
+	    background-repeat: no-repeat  !important;
+	}
+</style>
+<div class="row-fluid">
+	<div class="col-md-12">
+		<h3>Advisory Service Contract</h3>
+	</div>	
+</div>
+<div id="divLoading"  style="display:none">Loading...</div>
+<div  id="divContent" ng-controller="AdvisoryServiceContract"  data-ng-init="init()">	
+	<div class="row-fluid">
+	<div class="col-md-12">
+		<h3 class="page-title">Advisory Service Contract</h3>
+	</div>	
+	</div>
+	<div class="row">
+		<div class="col-md-2 boldText">Portfolio Assigned</div>	
+		<div class="col-md-4 boldText3">{{contractData.allocatedPortfolio.portfolioName}}</div>
+		<div class="col-md-2 boldText">Allocated Investment</div>	
+		<div class="col-md-4 boldText3">
+			<span>&#8377; {{contractData.allocatedFunds}}</span>			
+		</div>
+	</div>
+	<br>	
+	<div class="row">
+		<div class="col-md-2 boldText">Management Fee</div>
+		<div class="col-md-10">
+			<div class="row">
+				<div class="col-md-1">
+					<label for="mfee01">Variable</label>
+				</div>
+				<div class="col-md-11">
+					<input type="radio" id="mfee01" name="mfee" value="variable">	
+					<select id="mfeeVarAmount" ng-model="mgmtFeeVariableAmount" ng-options="value as key for (key, value) in mgmtFeeVariableAmountList" style="width: 50px;"></select>
+					AUM per annum, payable proportionately on a
+					<!--quarterly-->
+					<select ng-model="varAUMPayableFrequency" 
+							ng-options="value as key for (key, value) in aumPayableFrequencyList"
+							disabled="disabled"></select>
+					basis			
+				</div>					
+			</div>
+			<div class="row">
+				<div class="col-md-1">
+					<label for="mfee02">Fixed</label>
+				</div>
+				<div class="col-md-11">
+					<input type="radio" id="mfee02" name="mfee" value="fixed">	
+					<input type="text" id="mfeeFixedAmount" size="10" ng-model="mgmtFeeFixedAmount" class="numericOnly">
+					per annum, payable proportionately on a
+					<!--quarterly-->
+					<select ng-model="fixAUMPayableFrequency"									 
+							ng-options="value as key for (key, value) in aumPayableFrequencyList"
+							disabled="disabled"></select>					
+					basis
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<!-- text-align: center; -->
+		<div class="col-md-2 boldText">Performance Fee</div>
+		<div class="col-md-9">
+			<input id="pFeePercent" type="text" size="5" 
+				ng-model="performanceFeePercent" ng-init="performanceFeePercent = 20" 
+				ng-disabled="filterTag"
+				class="numericWithDecimal"> 
+			% of profits exceeding 
+			<input id="pFeeThreshold" type="text" size="5" 
+				ng-model="performanceFeeThreshold" ng-init="performanceFeeThreshold = 12"
+				ng-disabled="filterTag" 
+				class="numericWithDecimal">
+			% returns per annum, payable on a 
+			<!-- quarterly --> 
+			<select ng-model="pFeeFrequency"									 
+							ng-options="value as key for (key, value) in aumPayableFrequencyList"
+							disabled="disabled"></select>
+			basis
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-2 boldText">Exit Load</div>	
+		<div class="col-md-9">
+			<input id="eLFeePercent" type="text" size="5" 
+				ng-model="exitLoadFeePercent" ng-init="exitLoadFeePercent = 5" 
+				ng-disabled="filterTag"
+				class="numericWithDecimal"> 
+			% of AUM of portfolio redeemed before 
+			<input  id="eLDuration" type="text" size="5" 
+				ng-model="exitLoadDuration" ng-init="exitLoadDuration = 12" 
+				ng-disabled="filterTag"
+				class="numericOnly">
+			months
+		</div>
+	</div>
+	<br>	
+	<div class="row">
+		<div class="col-md-2 boldText">Duration</div>	
+		<div class="col-md-9">				
+		<!-- 1 -->
+		<select id="cDurationCount" ng-model="ContractDurationCount" 
+				ng-options="value as key for (key, value) in contractDurationList"
+				style="width: 50px;"
+				ng-change="changeExitLoadDuration()"
+				ng-disabled="filterTag">
+		</select>
+		<!-- Year  -->	<!--disabled-->
+		<select id="cDurationFreq" ng-model="ContractDuration" 
+				ng-options="value as key for (key, value) in contractDurationFrequencyList"
+				disabled="disabled"
+				style="width: 100px;"
+				ng-change="changeExitLoadDuration()"
+				ng-disabled="filterTag">
+			
+		</select>
+		starting 
+		<input id="contractDate" type="text" class="calender" 
+				placeholder="Contract Start Date" value=""
+				ng-disabled="filterTag">		
+		</div>		
+	</div>
+	<br>
+					
+	<div class="row" ng-if="hideReview == false">
+		<div class="col-md-2 boldText">Conversation</div>	
+		<div class="col-md-4">
+			<textarea rows="3" cols="40" readonly="readonly" ng-model="reviewConversation" class="boldText2"></textarea>
+		</div>
+		<div class="col-md-2 boldText">Review Comments</div>	
+		<div class="col-md-4">
+			<textarea rows="3" cols="40" placeholder="{{reviewCommentPlaceholder}}" ng-model="$parent.reviewComment"></textarea>
+		</div>
+	</div>
+	<br>					
+	<div class="row">
+		<div class="col-md-11" style="padding-left: 3%;">
+			<input id="advisorInvestorAgreement" type="checkbox">
+			<label for="advisorInvestorAgreement">
+			I/We hereby agree to 
+			<a href="/pages/advisor_investor_agreement.xhtml?faces-redirect=true" target="_blank">Advisor-Investor Agreement</a>
+			</label>			
+		</div>				
+	</div>
+	<br>
+	<div class="row">
+		<div ng-class="filterTag ? 'col-md-4' : 'col-md-6'" ng-repeat="actionItem in actionText" align="center">
+ 			<button type="button" 
+ 				class="btn-flat success large"
+ 				id="button-action-{{$index}}" 
+				ng-bind="actionItem" 
+				ng-click="callToAction($index)"
+				style="font-size:20px ;font-weight: bold;">
+			Accept
+			</button>
+		</div>
+	</div>
+	<br>
+	<div class="row msgDiv" style="display:none" id="contractReviewMessage">
+		<span>Contract is being reviewed by Advisor</span>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel"></h4>
+	      </div>
+	      <div class="modal-body">
+	        this is modalbody
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>			
+</div>
+
+
+<script>
+	$(document).ready(function () {
+		$('#contractDate').datetimepicker({
+			format: 'DD-MM-YYYY',
+	    	//minDate: moment(),
+	    	minDate : moment().subtract(1,'d'),
+	    	widgetPositioning: {
+            	horizontal: 'right',
+            	vertical: 'bottom'
+        	}
+		});
+		$('select').css("background-color","#FFFFFF");
+
+		$('.numericOnly').keypress(function(key) {
+        	if(key.charCode < 48 || key.charCode > 57) 
+        		return false;
+    	});
+
+    	$(".numericWithDecimal").on("keypress",function (event) {
+            $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });        
+        	
+	});
+</script>

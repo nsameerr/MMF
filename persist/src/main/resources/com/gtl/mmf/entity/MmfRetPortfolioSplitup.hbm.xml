@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17 Dec, 2015 2:48:51 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.MmfRetPortfolioSplitup" table="mmf_ret_portfolio_splitup" catalog="mmfdb">
+        <id name="id" type="int">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <property name="clientid" type="java.lang.Integer">
+            <column name="Clientid" />
+        </property>
+        <property name="isin" type="string">
+            <column name="Isin" length="20" />
+        </property>
+        <property name="dpHolding" type="big_decimal">
+            <column name="DpHolding" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="nsePool" type="big_decimal">
+            <column name="NsePool" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="bsePool" type="big_decimal">
+            <column name="BsePool" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="nseUnAc" type="big_decimal">
+            <column name="NseUnAc" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="bseUnAc" type="big_decimal">
+            <column name="BseUnAc" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="nsePend" type="big_decimal">
+            <column name="NsePend" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="bsePend" type="big_decimal">
+            <column name="BsePend" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="nseFinalQty" type="big_decimal">
+            <column name="NseFinalQty" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="bseFinalQty" type="big_decimal">
+            <column name="BseFinalQty" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="avgRate" type="big_decimal">
+            <column name="AvgRate" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="nseSymbol" type="string">
+            <column name="NseSymbol" length="20" />
+        </property>
+        <property name="nseSeries" type="string">
+            <column name="NseSeries" length="4" />
+        </property>
+        <property name="bseSymbol" type="string">
+            <column name="BseSymbol" length="20" />
+        </property>
+        <property name="bseSeries" type="string">
+            <column name="BseSeries" length="4" />
+        </property>
+        <property name="bsecode" type="string">
+            <column name="Bsecode" length="20" />
+        </property>
+        <property name="tradeCode" type="string">
+            <column name="TradeCode" length="20" />
+        </property>
+        <property name="itClient" type="string">
+            <column name="ItClient" length="1" />
+        </property>
+        <property name="location" type="string">
+            <column name="Location" length="20" />
+        </property>
+        <property name="financeStock" type="int">
+            <column name="Finance_stock" not-null="true" />
+        </property>
+        <property name="financeAvgCost" type="big_decimal">
+            <column name="Finance_AvgCost" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="pledgeQty" type="big_decimal">
+            <column name="PledgeQty" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="mtfDpQty" type="big_decimal">
+            <column name="Mtf_DP_Qty" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="weightedAverageRate" type="big_decimal">
+            <column name="Weighted_AverageRate" precision="15" scale="4" not-null="true" />
+        </property>
+        <property name="financeAvgRate" type="big_decimal">
+            <column name="Finance_AvgRate" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="multiplier" type="big_decimal">
+            <column name="Multiplier" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="mcxPool" type="big_decimal">
+            <column name="McxPool" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="mcxUnAc" type="big_decimal">
+            <column name="McxUnAc" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="mcxPend" type="big_decimal">
+            <column name="McxPend" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="mcxFinalQty" type="big_decimal">
+            <column name="McxFinalQty" precision="15" scale="3" not-null="true" />
+        </property>
+        <property name="mcxSymbol" type="string">
+            <column name="McxSymbol" length="20" />
+        </property>
+        <property name="mcxSeries" type="string">
+            <column name="McxSeries" length="4" />
+        </property>
+        <property name="issueDate" type="string">
+            <column name="IssueDate" length="16" />
+        </property>
+        <property name="expiryDate" type="timestamp">
+            <column name="ExpiryDate" length="19" />
+        </property>
+        <property name="nseToken" type="int">
+            <column name="NseToken" not-null="true" />
+        </property>
+        <property name="processedQty" type="big_decimal">
+            <column name="processedQty" precision="18" scale="6" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout.xhtml"
+                        xmlns:compo="http://java.sun.com/jsf/composite/composite">
+            <ui:define name="title">Asset Class | ManageMyFortune.com</ui:define>
+            <ui:define name="sidebar">
+                <ui:include src="/pages/template/components/sidebar_user.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <div class="content section">
+                        <div id="pad-wrapper">
+                            <h2 class="page-title">Asset Class Breakdown</h2>
+                            <!--
+                            <div class="row-fluid">
+                                <div class="btn-group pull-right">
+                                    <div class="btn-group pull-right">
+                                        <button type="button" class="glow middle" id="five-day" value="5" onclick="onClickDateButton(this.value, this)">5d</button>
+                                        <button type="button" class="glow middle" id="one-month" value="30" onclick="onClickDateButton(this.value, this)">1m</button>
+                                        <button type="button" class="glow middle" id="three-month" value="90" onclick="onClickDateButton(this.value, this)">3m</button>
+                                        <button type="button" class="glow middle" id="six-month" value="180" onclick="onClickDateButton(this.value, this)">6m</button>
+                                        <button type="button" class="glow middle" id="year-to-date" onclick="getCurrentDayOfyer(this)">YTD</button>
+                                        <button type="button" class="glow middle" id="one-year" value="365" onclick="onClickDateButton(this.value, this)">1y</button>
+                                        <button type="button" class="glow middle" id="five-year" value="1825" onclick="onClickDateButton(this.value, this)">5y</button>
+                                        <button type="button" class="glow middle" id="ten-year" value="3650" onclick="onClickDateButton(this.value, this)">10y</button>
+                                        <button type="button" class="glow right" id="all" value="0" onclick="onClickDateButton(this.value, this)">All</button>
+                                    </div>
+                                    <p:remoteCommand  name="clickdatebutton" actionListener="{assetbreakdowncontroller.onClickReturnDays()}" update="assetBreakdownTable"/>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="">5D</a></li>
+                                        <li><a href="#">1 week</a></li>
+                                        <li><a href="#">1 month</a></li>
+                                        <li><a href="#">3 months</a></li>
+                                        <li><a href="#">6 months</a></li>
+                                        <li><a href="#">1 year</a></li>
+                                        <li><a href="">YTD</a></li>
+                                        <li><a href="">5 years</a></li>
+                                        <li><a href="">10 years</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            -->
+                            <h:panelGroup id="assetBreakdownTable">
+                                <div class="table-wrapper orders-table hidden-phone">
+                                    <div class="row-fluid">
+                                        <!--<div class="span9"> -->
+                                        <!-- <h3 class="title no-margin-bottom" style="color: #4aae43;">My Portfolio</h3> -->
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr class="top-row">
+                                                    <th colspan="8" class="head">My Portfolio</th>
+                                                    <th colspan="1" class="head recommended">Recommended</th>
+                                                </tr>
+                                                <tr class="row-2">
+                                                    <th class="column-1 align_center">Name</th>
+                                                    <th class="column-5 align_center">Units</th>
+                                                    <th class="column-5 align_center">Blocked Units</th>
+                                                    <th class="column-4 align_center">Unit Price</th>
+                                                   <!-- <th class="align_center">Weight</th> -->
+                                                    <th class="column-2 align_center">Current Value</th>
+                                                    <th class="column-3 align_center">Acquisition Cost</th>
+                                                    <th class="column-6 align_center">gains/loss</th>
+                                                    <th class="align_center">Weight</th>
+                                                    <!--<th class="column-7 align_center">Returns</th> -->
+                                                    <!--<th class="column-6 align_center">Allocation</th>-->
+                                                    <th class="align_center">Allocation</th>
+                                                    <!--For new UI change -->
+                                                    <!--<th class="column-7 align_center">Returns</th>-->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:set var="toatalWeight" value="0"/>
+                                                <c:set var="currentValue" value="0"/>
+                                                <c:set var="totalGainLossValue" value="0"/>
+                                                <c:set var="totalAlloc" value="0"/>
+                                                <c:set var="totalAcq" value="0"/>
+                                                
+                                                <c:forEach items="#{assetbreakdowncontroller.portfolioSecurityVOlist}" var="securityList">
+                                                    
+                                                    <c:set var="toatalWeight" value="#{toatalWeight + securityList.clientportfolioPercentage}"/>
+                                                    <c:set var="currentValue" value="#{currentValue + securityList.currentValue}"/>
+                                                    <c:set var="totalGainLossValue" value="#{totalGainLossValue + securityList.totalGainLoss}"/>
+                                                    <c:set var="totalAlloc" value="#{totalAlloc + securityList.masterportfolioPercentage}"/>
+                                                    <c:set var="totalAcq" value="#{totalAcq + securityList.acquisitionCost}"/>
+                                                    
+                                                    <tr class="row-3">
+                                                        <td class="column-1">#{securityList.scripDecription}</td>
+                                                        <td class="column-5 align_right">#{securityList.executedUnits}</td>
+                                                        <td class="column-5 align_right">#{securityList.blockedCount}</td>
+                                                        <td class="column-4 align_right">
+                                                            <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                            <h:outputText
+                                                                value="#{securityList.currentPrice}">
+                                                                <f:convertNumber groupingUsed="true" pattern="#0.0000" />
+                                                            </h:outputText>
+                                                        </td>
+                                                        <!--Change order-->
+                                                       <!-- <td class="column-6 align_right">
+                                                            <h:outputText
+                                                                value="{securityList.clientportfolioPercentage}%">
+                                                                <f:convertNumber pattern="#0.00" />
+                                                            </h:outputText>
+                                                        </td>-->
+                                                        <td class="column-2 align_right">
+                                                            <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                            <h:outputText
+                                                                value="#{securityList.currentValue}">
+                                                                <f:convertNumber groupingUsed="true" pattern="#0.00" />
+                                                            </h:outputText>
+                                                        </td>
+                                                        <td class="column-3 align_right">
+                                                            <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                            <h:outputText
+                                                                value="#{securityList.acquisitionCost}">
+                                                                <f:convertNumber  pattern="#0.00" />
+                                                            </h:outputText>
+                                                        </td>
+                                                        <td class="align_right">
+                                                            <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                            <h:outputText value="#{securityList.totalGainLoss}">
+                                                                <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2"/>
+                                                            </h:outputText>
+                                                        </td>
+                                                       <td class="column-6 align_right">
+                                                            <h:outputText
+                                                                value="#{securityList.clientportfolioPercentage}%">
+                                                                <f:convertNumber pattern="#0.00" />
+                                                            </h:outputText>
+                                                        </td>
+                                                        <!--
+                                                        <td class="column-7 align_right">
+                                                            <h:outputText
+                                                                value="{securityList.clientTWR}%">
+                                                                <f:convertNumber pattern="#0.00" />
+                                                            </h:outputText>
+                                                        </td>-->
+                                                        <td class="align_right">
+                                                            <h:outputText
+                                                                value="#{securityList.masterportfolioPercentage}">
+                                                                <f:convertNumber pattern="#00.00" />
+                                                            </h:outputText>%
+                                                        </td>
+                                                        <!--
+                                                        <td class="align_right">
+                                                            <h:outputText value="{securityList.recommendedTWR}">
+                                                                <f:convertNumber pattern="#00.00"  maxFractionDigits="2" minFractionDigits="2"/>
+                                                            </h:outputText>%
+                                                        </td>
+                                                        -->
+                                                    </tr>
+                                                </c:forEach>
+                                                <tr class="subhead">
+                                                    <th>TOTAL</th>
+                                                    <th></th>
+                                                    <th></th>
+													<th></th>
+                                                <!--    <th class="align_right">
+                                                        <h:outputText
+                                                            value="{toatalWeight}">
+                                                            <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2"/>
+                                                        </h:outputText>%
+                                                    </th> -->
+                                                    <th class="align_right">
+                                                        <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                        <h:outputText 
+                                                            value="#{currentValue}">
+                                                            <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2"/>
+                                                        </h:outputText>
+                                                    </th>
+                                                    <th class="align_right">
+                                                        <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                        <h:outputText 
+                                                            value="#{totalAcq}">
+                                                            <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2"/>
+                                                        </h:outputText>
+                                                    </th>
+                                                    <th class="align_right">
+                                                        <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                        <h:outputText 
+                                                            value="#{totalGainLossValue}">
+                                                            <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2"/>
+                                                        </h:outputText>
+                                                    </th>
+                                                    <!--
+                                                    <th class="align_right">
+                                                        <h:outputText
+                                                            value="{assetbreakdowncontroller.customerTWR}%">
+                                                            <f:convertNumber pattern="#0.00" />
+                                                        </h:outputText>
+                                                    </th> -->
+                                                    <th class="align_right">
+                                                        <h:outputText
+                                                            value="#{toatalWeight}">
+                                                            <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2"/>
+                                                        </h:outputText>%
+                                                    </th> 
+                                                    <th class="align_right">
+                                                        <h:outputText value="#{totalAlloc}">
+                                                            <f:convertNumber pattern="#00.00"  maxFractionDigits="2" minFractionDigits="2"/>
+                                                        </h:outputText>%
+                                                    </th>
+                                                    
+                                                    <!--
+                                                    <th class="align_right">
+                                                        <h:outputText value="{assetbreakdowncontroller.recommmendedTWR}">
+                                                            <f:convertNumber pattern="#00.00"  maxFractionDigits="2" minFractionDigits="2"/>
+                                                        </h:outputText>%
+                                                    </th>-->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--</div> -->
+                                        <!--
+                                        <div class="span2" style="margin-left: 1px; width: 200px" >
+                                            <h3 class="title no-margin-bottom">Recommended</h3>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr class="row-2">
+                                                        <th class="column-6 align_center">Allocation</th>
+                                                        <th class="column-7 align_center">Returns</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <c:set var="totalAlloc" value="0"/>
+                                                    <c:set var="totalRet" value="0"/>
+                                                    <c:forEach
+                                                        items="{assetbreakdowncontroller.portfolioSecurityVOlist}"
+                                                        var="securityList">
+                                                        <c:set var="totalAlloc" value="{totalAlloc + securityList.masterportfolioPercentage}"/>
+                                                        <c:set var="totalRet" value="{totalRet + securityList.recommendedTWR}"/>
+                                                        <tr>
+                                                            <td class="align_right">
+                                                                <h:outputText
+                                                                    value="{securityList.masterportfolioPercentage}">
+                                                                    <f:convertNumber pattern="#00.00" />
+                                                                </h:outputText>%
+                                                            </td>
+                                                            <td class="align_right">
+                                                                <h:outputText value="{securityList.recommendedTWR}">
+                                                                    <f:convertNumber pattern="#00.00"  maxFractionDigits="2" minFractionDigits="2"/>
+                                                                </h:outputText>%
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                    <tr class="subhead">
+                                                        <th class="align_right">
+                                                            <h:outputText value="{totalAlloc}">
+                                                                 <f:convertNumber pattern="#00.00"  maxFractionDigits="2" minFractionDigits="2"/>
+                                                            </h:outputText>%
+                                                        </th>
+                                                        <th class="align_right">
+                                                            <h:outputText value="{totalRet}">
+                                                                 <f:convertNumber pattern="#00.00"  maxFractionDigits="2" minFractionDigits="2"/>
+                                                            </h:outputText>%
+                                                        </th>
+                                                    </tr>  
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        -->
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+                        </div>
+                        <div class="button-row">
+                            <h:commandLink value="Back" styleClass="btn-flat success"
+                                           actionListener="#{assetbreakdowncontroller.onbackFromAssteBreakDown()}"
+                                           action="#{assetbreakdowncontroller.getreDirectionUrl()}">
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </h:form>
+                <script type="text/javascript">
+
+                    var days = '#{assetbreakdowncontroller.timePeriod}';
+                    $(document).ready(function() {
+                        switch (days) {
+                            case "5":
+                                $("#five-day").css('color', 'blue');
+                                break;
+                            case "30":
+                                $("#one-month").css('color', 'blue');
+                                break;
+                            case "90":
+                                $("#three-month").css('color', 'blue');
+                                break;
+                            case "180":
+                                $("#six-month").css('color', 'blue');
+                                break;
+                            case "365":
+                                $("#one-year").css('color', 'blue');
+                                break;
+                            case "1825":
+                                $("#five-year").css('color', 'blue');
+                                break;
+                            case "3650":
+                                $("#ten-year").css('color', 'blue');
+                                break;
+                            case "ytd":
+                                $("#year-to-date").css('color', 'blue');
+                                break;
+                            default:
+                                $("#all").css('color', 'blue');
+                                break;
+
+                        }
+                    });
+
+
+                    function  onClickDateButton(dayValue, selection) {
+                        makeSelectionVisible(selection);
+                        clickdatebutton([{name: 'dayValue', value: dayValue}]);
+                    }
+
+                    function makeSelectionVisible(selection) {
+                        $("#five-day").css('color', 'black');
+                        $("#one-month").css('color', 'black');
+                        $("#three-month").css('color', 'black');
+                        $("#six-month").css('color', 'black');
+                        $("#one-year").css('color', 'black');
+                        $("#year-to-date").css('color', 'black');
+                        $("#five-year").css('color', 'black');
+                        $("#ten-year").css('color', 'black');
+                        $("#all").css('color', 'black');
+                        $(selection).css('color', 'blue');
+                    }
+
+                    function getCurrentDayOfyer(selection) {
+                        var timestmp = new Date().setFullYear(new Date().getFullYear(), 0, 1);//Date.setFullYear(year,month,day)
+                        var yearFirstDay = Math.floor(timestmp / 86400000);
+                        var today = Math.ceil((new Date().getTime()) / 86400000);
+                        onClickDateButton((today - yearFirstDay), selection);
+                    }
+                </script>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 Sep, 2014 11:11:14 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.MmfDailyTxnSummaryTb" table="mmf_daily_txn_summary_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="trndate" type="timestamp">
+            <column name="trndate" length="19" not-null="true" />
+        </property>
+        <property name="tradecode" type="string">
+            <column name="tradecode" length="16" not-null="true" />
+        </property>
+        <property name="orderno" type="string">
+            <column name="orderno" length="64" not-null="true" />
+        </property>
+        <property name="product" type="string">
+            <column name="product" length="32" not-null="true" />
+        </property>
+        <property name="venueScriptCode" type="string">
+            <column name="venue_script_code" length="50" not-null="true" />
+        </property>
+        <property name="security" type="string">
+            <column name="security" length="32" not-null="true" />
+        </property>
+        <property name="instrument" type="string">
+            <column name="instrument" length="32" not-null="true" />
+        </property>
+        <property name="contract" type="string">
+            <column name="contract" length="32" not-null="true" />
+        </property>
+        <property name="buysell" type="string">
+            <column name="buysell" length="1" not-null="true"/>
+        </property>
+        <property name="quantity" type="big_decimal">
+            <column name="quantity" precision="15" not-null="true"/>
+        </property>
+        <property name="price" type="big_decimal">
+            <column name="price" precision="15" scale="4" not-null="true"/>
+        </property>
+        <property name="units" type="big_decimal">
+            <column name="units" precision="15" scale="4" not-null="true"/>
+        </property>
+        <property name="volume" type="big_decimal">
+            <column name="volume" precision="15" scale="4" not-null="true"/>
+        </property>
+        <property name="brokerage" type="big_decimal">
+            <column name="brokerage" precision="15" not-null="true"/>
+        </property>
+        <property name="othercharges" type="big_decimal">
+            <column name="othercharges" precision="15" not-null="true"/>
+        </property>
+        <property name="channel" type="string">
+            <column name="channel" length="32" not-null="true"/>
+        </property>
+        <property name="euser" type="string">
+            <column name="euser" length="16" not-null="true"/>
+        </property>
+        <property name="lastupdatedon" type="timestamp">
+            <column name="lastupdatedon" length="19" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

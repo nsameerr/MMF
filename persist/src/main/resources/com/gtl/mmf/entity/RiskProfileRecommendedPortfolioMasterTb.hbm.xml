@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 1, 2016 6:01:23 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.RiskProfileRecommendedPortfolioMasterTb" table="risk_profile_recommended_portfolio_master_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="assetAllocationId" type="java.lang.Integer">
+            <column name="asset_allocation_id" />
+        </property>
+        <property name="riskProfileRecommendedPortfolioId" type="java.lang.Integer">
+            <column name="risk_profile_recommended_portfolio_id" />
+        </property>
+        <property name="assetClassId" type="java.lang.Integer">
+            <column name="asset_class_id" />
+        </property>
+        <property name="assetClassAllocation" type="java.lang.Float">
+            <column name="asset_class_allocation" precision="12" scale="0" />
+        </property>
+        <property name="allocationMinLimit" type="java.lang.Float">
+            <column name="allocation_min_limit" precision="12" scale="0" />
+        </property>
+        <property name="allocationMaxLimit" type="java.lang.Float">
+            <column name="allocation_max_limit" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

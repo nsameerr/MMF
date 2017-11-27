@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 May, 2016 5:49:38 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.MasterPortfolioSizeTb" table="master_portfolio_size_tb" catalog="mmfdb">
+        <id name="portfolioSizeId" type="java.lang.Integer">
+            <column name="portfolio_size_id" />
+            <generator class="identity" />
+        </id>
+        <property name="portfolioSize" type="string">
+            <column name="portfolio_size" length="200" />
+        </property>
+        <property name="minAum" type="java.lang.Integer">
+            <column name="min_aum" />
+        </property>
+        <property name="maxAum" type="java.lang.Integer">
+            <column name="max_aum" />
+        </property>
+        <set name="masterPortfolioTypeTbs" table="master_portfolio_type_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="portfolio_size_id" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.MasterPortfolioTypeTb" />
+        </set>
+    </class>
+</hibernate-mapping>

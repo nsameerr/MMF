@@ -1,0 +1,22 @@
+CREATE TABLE `mmfdb`.`master_applicant_tb`(  
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `registration_id` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
+  `advisor` BOOLEAN,
+  `linkedin_user` VARCHAR(50),
+  `linkedin_password` VARCHAR(50),
+  `linkedin_member_id` VARCHAR(50),
+  `name` VARCHAR(100),
+  `address1` VARCHAR(100),
+  `address2` VARCHAR(100),
+  `address_city` VARCHAR(50),
+  `address_pincode` VARCHAR(50),
+  `address_country` VARCHAR(50),
+  `telephone` VARCHAR(15),
+  `mobile` VARCHAR(15),
+  `register_datetime` DATETIME,
+  `sebi_regno` VARCHAR(20),
+  `status` INTEGER,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `UK_EMAIL` (`email`)
+);

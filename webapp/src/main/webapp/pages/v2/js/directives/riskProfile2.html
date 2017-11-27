@@ -1,0 +1,1035 @@
+<style>
+lable{
+	margin-left: 12px !important;
+}
+					
+</style><div class="row-fluid">
+	<h2 class="page-title"> Risk Profile </h2>
+</div>
+<div id="divLoading">Loading...</div>
+<div id="divContent" style="display:none">
+	<div class="row-fluid">
+		<div class="span12">
+		    <label><strong>Please answer the following Questions<br><br></strong></label>
+		</div>
+	</div>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false" data-wrap="false">
+		<div class="carousel-inner" role="listbox">
+			<!-- Carousal item Q0 start -->
+			<div class="item active" >
+				
+				<h4>#1 I can understand financial and investment terms without difficulty.<br></h4>
+				
+				<div>
+					<table style="margin: 0 auto; margin-top:100px;">
+						<tr>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A0" name="Q0" value="0"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A1" name="Q0" value="1"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A2" name="Q0" value="2"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A3" name="Q0" value="3"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A4" name="Q0" value="4"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A5" name="Q0" value="5"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A6" name="Q0" value="6"></span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><label for="Q0A0">Strongly Agree</label></td>
+							<td><label for="Q0A1">Agree</label></td>
+							<td><label for="Q0A2">Somewhat Agree</label></td>
+							<td><label for="Q0A3">Undecided</label></td>
+							<td><label for="Q0A4">Somewhat Disagree</label></td>
+							<td><label for="Q0A5">Disagree</label></td>
+							<td><label for="Q0A6">Strongly Disagree</label></td>
+						</tr>
+					</table>
+				</div>
+				<div id="divRangeQ0" style="margin-left: 200px; margin-right:200px; margin-top:50px;  margin-bottom:25px; display:none"><input id="Q0x" name="Q0x"/></div>
+				<script type="text/javascript">
+					$("irs-single").css("display","none");
+					var rangeQ0 = $("#Q0");
+					rangeQ0.ionRangeSlider({
+						values: [
+						         "Strongly Agree", "Agree", "Somewhat Agree", "Undecided", "Somewhat Disagree", "Disagree", "Strongly Disagree"
+						     ],
+				         grid: true,
+				         
+				         onStart: function (data) {
+				             console.log('onStart>' + data.from);
+				         },
+				         onChange: function (data) {
+				             console.log('onChange>' + data.from);
+				         },
+				         onFinish: function (data) {
+				             console.log('onFinish>' + data.from);
+				         },
+				         onUpdate: function (data) {
+				             console.log('onUpdate>' + data.from);
+				         }
+				     });
+				     sliderAge = rangeQ0.data("ionRangeSlider");
+				     
+				     $("#divRangeQ0 span.irs-grid-text").on('click', function () {
+				         console.log((($(this).index()-1)/5));
+				     });
+				</script>
+				<style>
+				.irs-grid-text {font-size: 12px}
+				.irs-single {display:none}
+				</style>
+			</div>
+			<!-- Carousal item Q0 end -->
+			
+			<!-- Carousal item Q1 start -->
+			<div class="item" >
+				<h4>#2 I am comfortable with financial risk, knowing there can be increases and decreases in the value of my investments.<br></h4>
+				<div>
+					<table style="margin: 0 auto; margin-top:100px;">
+						<tr>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q1A0" name="Q1" value="0"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q1A1" name="Q1" value="1"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q1A2" name="Q1" value="2"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q1A3" name="Q1" value="3"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q1A4" name="Q1" value="4"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q1A5" name="Q1" value="5"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q1A6" name="Q1" value="6"></span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><label for="Q1A0">Strongly Agree</label></td>
+							<td><label for="Q1A1">Agree</label></td>
+							<td><label for="Q1A2">Somewhat Agree</label></td>
+							<td><label for="Q1A3">Undecided</label></td>
+							<td><label for="Q1A4">Somewhat Disagree</label></td>
+							<td><label for="Q1A5">Disagree</label></td>
+							<td><label for="Q1A6">Strongly Disagree</label></td>
+						</tr>
+					</table>
+				</div>
+				<div id="divRangeQ1" style="margin-left: 200px; margin-right:200px; margin-top:50px;  margin-bottom:25px; display: none"><input id="Q1x" name="Q1x"/></div>
+				<script type="text/javascript">
+					$("irs-single").css("display","none");
+					var rangeQ1 = $("#Q1");
+					rangeQ1.ionRangeSlider({
+						values: [
+						         "Strongly Agree", "Agree", "Somewhat Agree", "Undecided", "Somewhat Disagree", "Disagree", "Strongly Disagree"
+						     ],
+				         grid: true,
+				         
+				         onStart: function (data) {
+				             console.log('onStart>' + data.from);
+				         },
+				         onChange: function (data) {
+				             console.log('onChange>' + data.from);
+				         },
+				         onFinish: function (data) {
+				             console.log('onFinish>' + data.from);
+				         },
+				         onUpdate: function (data) {
+				             console.log('onUpdate>' + data.from);
+				         }
+				     });
+				     sliderAge = rangeQ1.data("ionRangeSlider");
+				     
+				     $("#divRangeQ1 span.irs-grid-text").on('click', function () {
+			             console.log((($(this).index()-1)/5));
+			         });
+				</script>
+				<style>
+				.irs-grid-text {font-size: 12px}
+				.irs-single {display:none}
+				</style>
+			</div>
+			<!-- Carousal item Q1 end -->
+			
+			<!-- Carousal item Q2 start -->
+			<div class="item" >
+				<h4>#3 In 2008 the Indian NIFTY Equity Index dropped by approximately 52%. This meant that  ₹500,000 invested in the Indian NIFTY Equity Index at the beginning of 2008 was worth  ₹240,000 at the end of 2008. If a similar event were to occur again in your lifetime, what would you do with your investment?<br><br><br></h4>
+				<ul class="list" style="list-style-type: none;">
+					<li>	
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q2A0" name="Q2" value="0"></span>
+							<label for="Q2A0"><h6>I would sell my entire investment.</h6></label>
+						</div>
+					</li>
+					<li>	
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q2A1" name="Q2" value="1"></span>
+							<label for="Q2A1"><h6>I would significantly decrease my investment.</h6></label>
+						</div>
+					</li>
+					<li>	
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q2A2" name="Q2" value="2"></span>
+							<label for="Q2A2"><h6>I would slightly decrease my investment.</h6></label>
+						</div>
+					</li>
+					<li>	
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q2A3" name="Q2" value="3"></span>
+							<label for="Q2A3"><h6>I would neither buy nor sell.</h6></label>
+						</div>
+					</li>
+					<li>	
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q2A4" name="Q2" value="4"></span>
+							<label for="Q2A4"><h6>I would slightly increase my investment.</h6></label>
+						</div>
+					</li>
+					<li>	
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q2A5" name="Q2" value="5"></span>
+							<label for="Q2A5"><h6>I would significantly increase my investment.</h6></label>
+						</div>
+					</li>
+					<li>	
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q2A6" name="Q2" value="6"></span>
+							<label for="Q2A6"><h6>I would double my investment.</h6></label>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- Carousal item Q2 end -->
+			
+			<!-- Carousal item Q3 start -->
+			<div class="item">
+				<h4>
+					#4 "The chart below is a historical representation of Indian NIFTY Equity Index and Indian NSE-Government Securities Index (bonds) performance from 1950 to 2013.
+					<br><br>Although past performance is no guarantee of future results, which portfolio best suits your desired level of risk and return?"<br><br><br><br>
+					<style>
+					th{
+						font-size:13px;
+						padding:10px;
+						text-align: right;
+						color: #FA5C3D; 
+						vertical-align: top;
+						
+					}
+					td{
+						font-size:13px;
+						padding:10px;
+						text-align: center;
+						vertical-align: top;
+					}
+					
+					</style>
+					<table>
+						<tr>
+							<th>Portfolio</th>
+							<td>100% Equity</td>
+							<td>80% Equity<br>20% Bonds</td>
+							<td>60% Equity<br>40% Bonds</td>
+							<td>50% Equity<br>50% Bonds</td>
+							<td>40% Equity<br>60% Bonds</td>
+							<td>20% Equity<br>80% Bonds</td>
+							<td>100% Bonds</td>
+						</tr>
+						<tr>
+							<th>Average Annual Return</th>
+							<td>20.3%</td>
+							<td>16.5%</td>
+							<td>12.6%</td>
+							<td>10.7%</td>
+							<td>8.8%</td>
+							<td>4.9%</td>
+							<td>1.1%</td>
+						</tr>
+						<tr>
+							<th>Best year</th>
+							<td>75.5%</td>
+							<td>58.0%</td>
+							<td>42.2%</td>
+							<td>37.2%</td>
+							<td>30.3%</td>
+							<td>17.3%</td>
+							<td>14.6%</td>
+						</tr>
+						<tr>
+							<th>Worst year</th>
+							<td>-51.8%</td>
+							<td>-38.5%</td>
+							<td>-25.2%</td>
+							<td>-18.6%</td>
+							<td>-12%</td>
+							<td>-6.2%</td>
+							<td>-11.9%</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q3A0" name="Q3" value="0"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q3A1" name="Q3" value="1"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q3A2" name="Q3" value="2"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q3A3" name="Q3" value="3"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q3A4" name="Q3" value="4"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q3A5" name="Q3" value="5"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q3A6" name="Q3" value="6"></span>
+								</div>
+							</td>
+						</tr>
+					</table>
+					
+				</h4>
+			</div>
+			<!-- Carousal item Q3 end -->
+			
+			<!-- Carousal item Q4 start -->
+			<div class="item" >
+				<h4>#5 I would describe my past investment decisions as conservative.<br></h4>
+				<div>
+					<table style="margin: 0 auto; margin-top:100px;">
+						<tr>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q4A0" name="Q4" value="0"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q4A1" name="Q4" value="1"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q4A2" name="Q4" value="2"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q4A3" name="Q4" value="3"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q4A4" name="Q4" value="4"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q4A5" name="Q4" value="5"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q4A6" name="Q4" value="6"></span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><label for="Q4A0">Strongly Agree</label></td>
+							<td><label for="Q4A1">Agree</label></td>
+							<td><label for="Q4A2">Somewhat Agree</label></td>
+							<td><label for="Q4A3">Undecided</label></td>
+							<td><label for="Q4A4">Somewhat Disagree</label></td>
+							<td><label for="Q4A5">Disagree</label></td>
+							<td><label for="Q4A6">Strongly Disagree</label></td>
+						</tr>
+					</table>
+				</div>
+				<div id="divRangeQ4" style="margin-left: 200px; margin-right:200px; margin-top:50px;  margin-bottom:25px;display:none"><input id="Q4x" name="Q4x"/></div>
+				<script type="text/javascript">
+					$("irs-single").css("display","none");
+					var rangeQ4 = $("#Q4");
+					rangeQ4.ionRangeSlider({
+						values: [
+						         "Strongly Agree", "Agree", "Somewhat Agree", "Undecided", "Somewhat Disagree", "Disagree", "Strongly Disagree"
+						     ],
+				         grid: true,
+				         
+				         onStart: function (data) {
+				             console.log('onStart>' + data.from);
+				         },
+				         onChange: function (data) {
+				             console.log('onChange>' + data.from);
+				         },
+				         onFinish: function (data) {
+				             console.log('onFinish>' + data.from);
+				         },
+				         onUpdate: function (data) {
+				             console.log('onUpdate>' + data.from);
+				         }
+				     });
+				     sliderAge = rangeQ4.data("ionRangeSlider");
+				     
+				     $("#divRangeQ4 span.irs-grid-text").on('click', function () {
+				         console.log((($(this).index()-1)/5));
+				     });
+				</script>
+			</div>
+			<!-- Carousal item Q4 end -->
+			
+			<!-- Carousal item Q5 start -->
+			<div class="item" >
+				<h4>#6 I would feel anxious if my investments were performing negatively.<br></h4>
+				<div>
+					<table style="margin: 0 auto; margin-top:100px;">
+						<tr>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q5A0" name="Q5" value="0"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q5A1" name="Q5" value="1"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q5A2" name="Q5" value="2"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q5A3" name="Q5" value="3"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q5A4" name="Q5" value="4"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q5A5" name="Q5" value="5"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q5A6" name="Q5" value="6"></span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><label for="Q5A0">Strongly Agree</label></td>
+							<td><label for="Q5A1">Agree</label></td>
+							<td><label for="Q5A2">Somewhat Agree</label></td>
+							<td><label for="Q5A3">Undecided</label></td>
+							<td><label for="Q5A4">Somewhat Disagree</label></td>
+							<td><label for="Q5A5">Disagree</label></td>
+							<td><label for="Q5A6">Strongly Disagree</label></td>
+						</tr>
+					</table>
+				</div>
+				<div id="divRangeQ5" style="margin-left: 200px; margin-right:200px; margin-top:50px;  margin-bottom:25px; display: none"><input id="Q5x" name="Q5x"/></div>
+				<script type="text/javascript">
+					$("irs-single").css("display","none");
+					var rangeQ5 = $("#Q5");
+					rangeQ5.ionRangeSlider({
+						values: [
+						         "Strongly Agree", "Agree", "Somewhat Agree", "Undecided", "Somewhat Disagree", "Disagree", "Strongly Disagree"
+						     ],
+				         grid: true,
+				         
+				         onStart: function (data) {
+				             console.log('onStart>' + data.from);
+				         },
+				         onChange: function (data) {
+				             console.log('onChange>' + data.from);
+				         },
+				         onFinish: function (data) {
+				             console.log('onFinish>' + data.from);
+				         },
+				         onUpdate: function (data) {
+				             console.log('onUpdate>' + data.from);
+				         }
+				     });
+				     sliderAge = rangeQ5.data("ionRangeSlider");
+				     
+				     $("#divRangeQ5 span.irs-grid-text").on('click', function () {
+				         console.log((($(this).index()-1)/5));
+				     });
+				</script>
+			</div>
+			<!-- Carousal item Q5 end -->
+			
+			<!-- Carousal item Q6 start -->
+			<div class="item" >
+				<h4>#7 When I think of the word risk I associate it with the word opportunity.<br></h4>
+				<div>
+					<table style="margin: 0 auto; margin-top:100px;">
+						<tr>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q6A0" name="Q6" value="0"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q6A1" name="Q6" value="1"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q6A2" name="Q6" value="2"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q6A3" name="Q6" value="3"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q6A4" name="Q6" value="4"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q6A5" name="Q6" value="5"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q6A6" name="Q6" value="6"></span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><label for="Q6A0">Strongly Agree</label></td>
+							<td><label for="Q6A1">Agree</label></td>
+							<td><label for="Q6A2">Somewhat Agree</label></td>
+							<td><label for="Q6A3">Undecided</label></td>
+							<td><label for="Q6A4">Somewhat Disagree</label></td>
+							<td><label for="Q6A5">Disagree</label></td>
+							<td><label for="Q6A6">Strongly Disagree</label></td>
+						</tr>
+					</table>
+				</div>
+				<div id="divRangeQ6" style="margin-left: 200px; margin-right:200px; margin-top:50px;  margin-bottom:25px;display:none"><input id="Q6x" name="Q6x"/></div>
+				<script type="text/javascript">
+					$("irs-single").css("display","none");
+					var rangeQ6 = $("#Q6");
+					rangeQ6.ionRangeSlider({
+						values: [
+						         "Strongly Agree", "Agree", "Somewhat Agree", "Undecided", "Somewhat Disagree", "Disagree", "Strongly Disagree"
+						     ],
+				         grid: true,
+				         
+				         onStart: function (data) {
+				             console.log('onStart>' + data.from);
+				         },
+				         onChange: function (data) {
+				             console.log('onChange>' + data.from);
+				         },
+				         onFinish: function (data) {
+				             console.log('onFinish>' + data.from);
+				         },
+				         onUpdate: function (data) {
+				             console.log('onUpdate>' + data.from);
+				         }
+				     });
+				     sliderAge = rangeQ6.data("ionRangeSlider");
+				     
+				     $("#divRangeQ6 span.irs-grid-text").on('click', function () {
+				         console.log((($(this).index()-1)/5));
+				     });
+				</script>
+			</div>
+			<!-- Carousal item Q6 end -->
+			
+			<!-- Carousal item Q7 start -->
+			<div class="item" >
+				<h4>#8 If my investments fall in value during the first two years, I would want to...<br><br><br></h4>
+				<ul class="list" style="list-style-type: none;">
+					<li>	
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q7A0" name="Q7" value="9"></span>
+							<label for="Q7A0"><h6>Sell them immediately</h6></label>
+						</div>
+					</li>
+					<li>	
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q7A1" name="Q7" value="1"></span>
+							<label for="Q7A1"><h6>Wait an extra 1-3 years to see if they recover </h6></label>
+						</div>
+					</li>
+					<li>	
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q7A2" name="Q7" value="2"></span>
+							<label for="Q7A2"><h6>Wait an extra 4 or more years to see if they recover</h6></label>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- Carousal item Q7 end -->
+			
+			<!-- Carousal item Q8 start -->
+			<div class="item" >
+				<h4>#9 If you were to invest  ₹500,000 over a one-year period, which of these possible investment outcomes would best suit your current investment needs?<br>
+					<img src="img/anuallReturns.png" style="height: 250px;">
+				</h4>
+				<ul class="list row" style="list-style-type: none;">
+					<li class="span1">	
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q8A0" name="Q8" value="0"></span>
+							<label for="Q8A0"><h6>A</h6></label>
+						</div>
+					</li>
+					<li  class="span1">	
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q8A1" name="Q8" value="1"></span>
+							<label for="Q8A1"><h6>B</h6></label>
+						</div>
+					</li>
+					<li class="span1">	
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q8A2" name="Q8" value="2"></span>
+							<label for="Q8A2"><h6>C</h6></label>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- Carousal item Q8 end -->
+			
+			<!-- Carousal item Q9 start -->
+			<div class="item" >
+				<h4>#10 It is possible for some investments to undergo periods of underperformance. For example, the average annual return for the Indian NIFTY Equity Index between 2011 and 2013 was approximately 2.8%. However, the long run average annual return for the Indian NIFTY Equity Index between 1994 and 2013 was approximately 16.4%. <br><br>To what extent do you agree with the statement "I am willing to maintain my investment during periods of underperformance."<br></h4>	
+				<div>
+					<table style="margin: 0 auto; margin-top:100px;">
+						<tr>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q9A0" name="Q9" value="0"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q9A1" name="Q9" value="1"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q9A2" name="Q9" value="2"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q9A3" name="Q9" value="3"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q9A4" name="Q9" value="4"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q9A5" name="Q9" value="5"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q9A6" name="Q9" value="6"></span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><label for="Q9A0">Strongly Agree</label></td>
+							<td><label for="Q9A1">Agree</label></td>
+							<td><label for="Q9A2">Somewhat Agree</label></td>
+							<td><label for="Q9A3">Undecided</label></td>
+							<td><label for="Q9A4">Somewhat Disagree</label></td>
+							<td><label for="Q9A5">Disagree</label></td>
+							<td><label for="Q9A6">Strongly Disagree</label></td>
+						</tr>
+					</table>
+				</div>
+				<div id="divRangeQ9" style="margin-left: 200px; margin-right:200px; margin-top:50px;  margin-bottom:25px; display:none"><input id="Q9x" name="Q9x"/></div>
+				<script type="text/javascript">
+					$("irs-single").css("display","none");
+					var rangeQ9 = $("#Q9");
+					rangeQ9.ionRangeSlider({
+						values: [
+						         "Strongly Agree", "Agree", "Somewhat Agree", "Undecided", "Somewhat Disagree", "Disagree", "Strongly Disagree"
+						     ],
+				         grid: true,
+				         
+				         onStart: function (data) {
+				             console.log('onStart>' + data.from);
+				         },
+				         onChange: function (data) {
+				             console.log('onChange>' + data.from);
+				         },
+				         onFinish: function (data) {
+				             console.log('onFinish>' + data.from);
+				         },
+				         onUpdate: function (data) {
+				             console.log('onUpdate>' + data.from);
+				         }
+				     });
+				     sliderAge = rangeQ9.data("ionRangeSlider");
+				     
+				     $("#divRangeQ9 span.irs-grid-text").on('click', function () {
+				         console.log((($(this).index()-1)/5));
+				     });
+				</script>
+			</div>
+			<!-- Carousal item Q9 end -->
+			
+			<!-- Carousal item Q10 start -->
+			<div class="item" >
+				<h4>#11 I am confident in my ability to make good financial decisions.<br></h4>
+				<div>
+					<table style="margin: 0 auto; margin-top:100px;">
+						<tr>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A0" name="Q10" value="0"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A1" name="Q10" value="1"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A2" name="Q10" value="2"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A3" name="Q10" value="3"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A4" name="Q10" value="4"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A5" name="Q10" value="5"></span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q10A6" name="Q10" value="6"></span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><label for="Q10A0">Strongly Agree</label></td>
+							<td><label for="Q10A1">Agree</label></td>
+							<td><label for="Q10A2">Somewhat Agree</label></td>
+							<td><label for="Q10A3">Undecided</label></td>
+							<td><label for="Q10A4">Somewhat Disagree</label></td>
+							<td><label for="Q10A5">Disagree</label></td>
+							<td><label for="Q10A6">Strongly Disagree</label></td>
+						</tr>
+					</table>
+				</div>
+				<div id="divRangeQ10" style="margin-left: 200px; margin-right:200px; margin-top:50px;  margin-bottom:25px;display:none"><input id="Q10x" name="Q10x"/></div>
+				<script type="text/javascript">
+					$("irs-single").css("display","none");
+					var rangeQ10 = $("#Q10");
+					rangeQ10.ionRangeSlider({
+						values: [
+						         "Strongly Agree", "Agree", "Somewhat Agree", "Undecided", "Somewhat Disagree", "Disagree", "Strongly Disagree"
+						     ],
+				         grid: true,
+				         
+				         onStart: function (data) {
+				             console.log('onStart>' + data.from);
+				         },
+				         onChange: function (data) {
+				             console.log('onChange>' + data.from);
+				         },
+				         onFinish: function (data) {
+				             console.log('onFinish>' + data.from);
+				         },
+				         onUpdate: function (data) {
+				             console.log('onUpdate>' + data.from);
+				         }
+				     });
+				     sliderAge = rangeQ10.data("ionRangeSlider");
+				     
+				     $("#divRangeQ10 span.irs-grid-text").on('click', function () {
+				         console.log((($(this).index()-1)/5));
+				     });
+				</script>
+			</div>
+			<!-- Carousal item Q10 end -->
+			
+			<!-- Carousal item Q11 start -->
+			<div class="item" >
+				<h4>#12 This risk tolerance questionnaire is scored from 0 to 100, 0 being the most risk-averse and 100 being those who are most prepared to take risks. What score do you think you will receive?<br></h4>
+				<br><br>
+				<div id="divRiskoMeter"  style="width:500px ; height: 300px;  margin: 0 auto;"></div>
+				<div style="margin-left: 200px; margin-right:200px; margin-top:-50px;  margin-bottom:25px"><input id="range_score"/></div>
+				<script type="text/javascript">
+					var riskoMeterPointer;
+	    			var riskoMeterChart;
+	    			$(function () {
+	    			    $('#divRiskoMeter').highcharts({
+	    			    	credits: {
+	        			          enabled: false
+	      			        },
+	      			        exporting: {
+	      			          enabled: false
+	      			        },
+	      			        chart: {
+	      			            type: 'gauge',
+	      			            plotBorderWidth: 0,
+	      			            plotBackgroundImage : 'img/riskometer_bg.png'
+	      			        },
+	
+	      			        title: {
+	      			            text: '',
+	        			          enabled: false
+	      			        },
+	      			        
+	      			        pane: [{
+	      			            startAngle: -90,
+	      			            endAngle: 90,
+	      			            background: null,
+	      			            center: ['50%', '207'],
+	      			            size: 220
+	      			        }],
+	
+	      			        tooltip: {
+	      			            enabled: false
+	      			        },
+	      			        
+	          			    plotOptions: {
+	          		            series: {
+	          		                dataLabels: {
+	          		                    enabled: false,
+	          		                    backgroundColor: 'rgba(0, 0, 0, 0)',
+	          		                    borderWidth: 0,
+	          		                  	format: ''
+	          		                }
+	          		            }
+	          		        },
+	
+	      			        yAxis: [{
+	      			            visible : false,
+	      			            min: 0,
+	      			            max: 100
+	      			        }],
+	      			        series: [{
+	      			            name: 'Channel A',
+	      			            data: [50],
+	      			            yAxis: 0
+	      			        }]
+	
+	    			    },
+	    			    // Add some life
+	    			    function (chart) {
+	    			        riskoMeterChart = chart;
+	    			    });
+	    			});
+					var rangeSalarySpouse = $("#range_score");
+					rangeSalarySpouse.ionRangeSlider({
+				         min:0,
+				         max:100,
+				         from:50,
+				         grid: true,
+				         grid_num: 10,
+				         onChange: function(data){
+				        	 //console.log('hiyaa')
+				        	 riskoMeterChart.series[0].points[0].update(data.from);
+				         },
+				         onFinish: function(data){
+				        	 //console.log('hiyaa')
+				        	 riskoMeterChart.series[0].points[0].update(data.from);
+				         }
+				     });
+				     sliderSalarySpouse = rangeSalarySpouse.data("ionRangeSlider");
+				     $(".irs-single").css("display","block");
+				</script>
+			</div>
+			<!-- Carousal item Q11 end -->
+			
+				
+			
+			
+			<!--##Template if answers contain images##
+			<div class="item" >
+				<h4>#1 This is Question 1<br></h4>
+				<ul ng-if="rpq.answerType=='text'" class="list" style="list-style-type: none;">
+					<li ng:repeat="ans in rpq.answers">
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q{{$parent.$index+1}}A{{$index+1}}" name="Q{{$parent.$index+1}}" value="{{$index+1}}"></span>
+							<label for="Q{{$parent.$index+1}}A{{$index+1}}"><h6>{{ans}}</h6></label>
+						</div>
+					</li>
+				</ul>
+				<ul ng-if="rpq.answerType=='img'" class="list row" style="list-style-type: none;">
+					<li ng:repeat="ans in rpq.answers" class="span3">
+						
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q1A1" name="Q1" value="A1" style=""></span>
+							<label for="Q{{$parent.$index+1}}A{{$index+1}}"><IMG alt="" src="{{ans}}" style="margin-top: 0px;margin-left: 0px;" /></label>
+						</div>
+					</li>
+				</ul>
+			</div>
+			-->
+            
+		</div>
+	 </div>
+<div class="row-fluid">
+	<h2 class="page-title"></h2>
+</div>
+	<div style="display: none"><input id="range_q_pb"/></div>
+	<style>
+		.stepProgress .bar {
+			width: 50px;
+		}
+	 </style>
+	<div class="stepProgress">
+		<div id="spc0" class="circle active">
+			<a><span class="label">1</span></a>
+		</div>
+		<span class="bar"></span>
+		<div id="spc1" class="circle">
+			<a><span class="label">2</span></a>
+		</div>
+		<span class="bar"></span>
+		<div id="spc2" class="circle">
+			<a><span class="label">3</span></a>
+		</div>
+		<span class="bar"></span>
+		<div id="spc3" class="circle">
+			<a><span class="label">4</span></a>
+		</div>
+		<span class="bar"></span>
+		<div id="spc4" class="circle">
+			<a><span class="label">5</span></a>
+		</div>
+		<span class="bar"></span>
+		<div id="spc5" class="circle">
+			<a><span class="label">6</span></a>
+		</div>
+		<span class="bar"></span>
+		<div id="spc6" class="circle">
+			<a><span class="label">7</span></a>
+		</div>
+		<span class="bar"></span>
+		<div id="spc7" class="circle">
+			<a><span class="label">8</span></a>
+		</div>
+		<span class="bar"></span>
+		<div id="spc8" class="circle">
+			<a><span class="label">9</span></a>
+		</div>
+		<span class="bar"></span>
+		<div id="spc9" class="circle">
+			<a><span class="label">10</span></a>
+		</div>
+		<span class="bar"></span>
+		<div id="spc10" class="circle">
+			<a><span class="label">11</span></a>
+		</div>
+		<span class="bar"></span>
+		<div id="spc11" class="circle">
+			<a><span class="label">12</span></a>
+		</div>
+	</div>
+	<div class="button-row"><span id="modify"></span>
+		<div class="text-right">
+   			<button type="button" id="btnPrev" class="btn-flat inverse" href="#myCarousel" role="button" data-slide="prev" style="display: none">Previous</button>
+	        <button type="button" id="btnNext" class="btn-flat inverse" href="#myCarousel" role="button" data-slide="next">Next</button>
+	   		<button type="button" id="btnSubmit" class="btn-flat success" href="#myCarousel">Submit</button>
+	    </div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel"></h4>
+	      </div>
+	      <div class="modal-body">
+	        this is modalbody
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>

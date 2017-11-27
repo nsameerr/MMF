@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 May, 2014 1:07:14 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.BenchmarkPerformanceTb" table="benchmark_performance_tb" catalog="mmfdb">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="benchmark" type="java.lang.Integer">
+            <column name="benchmark" />
+        </property>
+        <property name="datetime" type="timestamp">
+            <column name="datetime" length="19" not-null="true" />
+        </property>
+        <property name="open" type="big_decimal">
+            <column name="open" precision="8" />
+        </property>
+        <property name="high" type="big_decimal">
+            <column name="high" precision="8" />
+        </property>
+        <property name="low" type="big_decimal">
+            <column name="low" precision="8" />
+        </property>
+        <property name="close" type="big_decimal">
+            <column name="close" precision="8"/>
+        </property>
+        <property name="sharestraded" type="java.lang.Long">
+            <column name="sharestraded" precision="10" scale="0" />
+        </property>
+        <property name="turnover" type="big_decimal">
+            <column name="turnover" precision="8" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+                <!--Financial Savings-->
+                <div class="content_box_finance">
+                    <div class="content_box_finance_hd"><h2>Savings <br> </h2> </div>           
+                    <div class="content_box_finance_row minheight"> 
+                        <div class="content_box_finance_c1 content_box_finance_full"> 
+                            <h3> What is your <span ng-if="userFpData.relationStatus == 'married'">combined <br> (Your + spouse's)</span>  monthly savings?</h3> 
+                            <div class="saving_txt">(Post loan EMIs &amp; recurring monthly expenditure) </div>
+                            <!--Slider design start -->
+                            <div class="agecolumn"> 
+                            	<div class="agecolumn_photo saving_photo"> <img src="images/saving.png" alt=""> </div>
+                                <div class="savingcolumn_data "> 
+                                    <div class="age1">
+                                        <div class="saverow_income"> 
+                                            <i class="fa fa-inr"></i> 
+                                            <input type="text" id="saving" readonly ng-model="userFpData.monthlySavings">
+                                        </div>
+                                        <div id="slider-range-min-save-combine" class="agebar saving_bar"></div>
+                                    </div>    	
+                                </div>
+                                <div class="saving_cm"> 
+                                	<div class="saving_cm_c1">
+                                        Savings Rate <br> 
+                                        <span>
+                                            <span id="combinedSavingRate" ng-model="userFpData.savingsRate"></span>
+                                            % 
+                                        </span>
+                                    </div>
+                                    <div class="saving_cm_c1">
+                                        Monthly Expense <br> 
+                                        <span>
+                                            <i class="fa fa-inr"></i> 
+                                            <span id="combinedExp"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="combinedSal" value="{{userFpData.userMonthlyTakehomeSalary + userFpData.spouseMonthlyTakehomeSalary}}">
+                            </div>
+                            <!--Slider design end  -->                            
+                        </div>
+
+                    </div>           
+                    <div class="registration_row content_box_finance_row text-center">   
+                        <input type="button" value="Back" class="buttonFpBack btnPrev" ng-click="gotoPrev()"> &nbsp; 
+                        <input type="button" value="NEXT" class="buttonFpNext btnNext" ng-click="calculateExpense();gotoNext()"> 
+                    </div>  
+                </div>
+<link rel="stylesheet" href="css/jquery-ui.css">
+<script src="js/jquery-ui.js"></script>

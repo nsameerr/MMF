@@ -1,0 +1,516 @@
+<!doctype html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+        	body{
+        	padding-top: 55px;
+        	padding-bottom: 60px;
+        	}
+        </style>
+        
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        
+        <link rel="stylesheet" href="css/bootstrap-theme-paper.min.css">
+        <link rel="stylesheet" href="css/bootstrap-wrapper.css">
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  
+        
+        <link rel="stylesheet" href="css/iCheck.css" />
+        <link rel="stylesheet" href="css/ion.rangeSlider.css"/>
+        <link rel="stylesheet" href="css/ion.rangeSlider.skinHTML5.css"/>
+		<link href="css/bootstrap-switch.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/jquery.FloatLabel.css"/>
+        <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" href="css/jquery.toast.min.css" />
+        <link rel="stylesheet" href="css/jasny-bootstrap.min.css" />
+        
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/spinner.css">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/angular.min.js"></script>
+        
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="http://code.highcharts.com/highcharts-more.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+        <script src="js/vendor/iCheck.js"></script>
+        <script src="js/vendor/ion.rangeSlider.min.js"></script>
+		<script src="js/vendor/bootstrap-switch.js"></script>
+        <script src="js/vendor/jquery.FloatLabel.js"></script>
+        <script src="js/vendor/moment.js"></script>
+        <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
+        <script src="js/vendor/autoNumeric-min.js"></script>
+        <script src="js/vendor/jquery.maskedinput.min.js"></script>
+        <script src="js/vendor/jquery.toast.min.js"></script>
+        <script src="js/vendor/jasny-bootstrap.min.js"></script>
+        
+        <script src="js/constants.js"></script>
+        <script src="js/main.js"></script>
+        <script src= "js/spinner.js"></script>
+    </head>
+    <body  ng-app="appMMF" ng-controller="Home">
+	    <mmf-header-home></mmf-header-home>
+		  <div id="loadingOverlay" style="display:none">
+		    <div class="rippleSpinner">
+		    	 <img src="img/gears.svg"/> 
+		    </div>
+		  </div>
+	    <div class="container-fluid" style="padding:0px !important;" >
+			<style>
+				.txtRupee{
+					background-image: url('img/icon_rupee.png');
+					background-repeat: no-repeat;
+					background-position: left center; 
+					background-size: auto 20px;
+					padding-left: 25px !important;
+					padding-bottom: 30px;
+				}
+				.calender{
+					background-image: url('img/icon_calender.png');
+					background-repeat: no-repeat;
+					background-position: right center; 
+					background-size: auto 20px;
+					padding-right: 25px !important;
+					padding-bottom: 30px;
+				}
+				
+				.icheckbox_square-green{
+					top: -7px;
+				    right: -15px;
+				}
+				    
+			
+			
+			.carousel.vertical .carousel-inner {
+			  height: 100%;
+			  width: auto;
+			}
+			.carousel.vertical .carousel-inner > .item {
+			  width: auto;
+			  padding-right: 0px;
+			  -webkit-transition: 0.6s ease-in-out top;
+			  transition: 0.6s ease-in-out top;
+			}
+			@media all and (transform-3d), (-webkit-transform-3d) {
+			  .carousel.vertical .carousel-inner > .item {
+			    -webkit-transition: 0.2s ease-in-out;
+			    transition: 0.2s ease-in-out;
+			  }
+			  .carousel.vertical .carousel-inner > .item.next, .carousel.vertical .carousel-inner > .item.active.right {
+			    -webkit-transform: translate3d(0, 100%, 0);
+			            transform: translate3d(0, 100%, 0);
+			    top: 0;
+			  }
+			  .carousel.vertical .carousel-inner > .item.prev, .carousel.vertical .carousel-inner > .item.active.left {
+			    -webkit-transform: translate3d(0, -100%, 0);
+			            transform: translate3d(0, -100%, 0);
+			    top: 0;
+			  }
+			  .carousel.vertical .carousel-inner > .item.next.left, .carousel.vertical .carousel-inner > .item.prev.right, .carousel.vertical .carousel-inner > .item.active {
+			    -webkit-transform: translate3d(0, 0, 0);
+			            transform: translate3d(0, 0, 0);
+			    top: 0;
+			  }
+			}
+			.carousel.vertical .carousel-inner > .active,
+			.carousel.vertical .carousel-inner > .next,
+			.carousel.vertical .carousel-inner > .prev {
+			  display: block;
+			}
+			.carousel.vertical .carousel-inner > .active {
+			  top: 0;
+			}
+			.carousel.vertical .carousel-inner > .next,
+			.carousel.vertical .carousel-inner > .prev {
+			  position: absolute;
+			  top: 0;
+			  width: 100%;
+			}
+			.carousel.vertical .carousel-inner > .next {
+			  top: 100%;
+			}
+			.carousel.vertical .carousel-inner > .prev {
+			  top: -100%;
+			}
+			.carousel.vertical .carousel-inner > .next.left,
+			.carousel.vertical .carousel-inner > .prev.right {
+			  top: 0;
+			}
+			.carousel.vertical .carousel-inner > .active.left {
+			  top: -100%;
+			}
+			.carousel.vertical .carousel-inner > .active.right {
+			  top: 100%;
+			}
+			
+			.carousel.vertical .carousel-control {
+			  left: auto;
+			  width: 50px;
+			}
+			.carousel.vertical .carousel-control.up {
+			  top: 0;
+			  right: 0;
+			  bottom: 50%;
+			}
+			.carousel.vertical .carousel-control.down {
+			  top: 50%;
+			  right: 0;
+			  bottom: 0;
+			}
+			.carousel.vertical .carousel-control .icon-prev,
+			.carousel.vertical .carousel-control .icon-next,
+			.carousel.vertical .carousel-control .glyphicon-chevron-up,
+			.carousel.vertical .carousel-control .glyphicon-chevron-down {
+			  position: absolute;
+			  top: 50%;
+			  z-index: 5;
+			  display: inline-block;
+			}
+			.carousel.vertical .carousel-control .icon-prev,
+			.carousel.vertical .carousel-control .glyphicon-chevron-up {
+			  left: 50%;
+			  margin-left: -10px;
+			  top: 50%;
+			  margin-top: -10px;
+			}
+			.carousel.vertical .carousel-control .icon-next,
+			.carousel.vertical .carousel-control .glyphicon-chevron-down {
+			  left: 50%;
+			  margin-left: -10px;
+			  top: 50%;
+			  margin-top: -10px;
+			}
+			.carousel.vertical .carousel-control .icon-up,
+			.carousel.vertical .carousel-control .icon-down {
+			  width: 20px;
+			  height: 20px;
+			  line-height: 1;
+			  font-family: serif;
+			}
+			.carousel.vertical .carousel-control .icon-prev:before {
+			  content: '\2039';
+			}
+			.carousel.vertical .carousel-control .icon-next:before {
+			  content: '\203a';
+			}
+						
+			</style>
+			
+			
+			<div id="divContent">
+				<div id="carousel-example-vertical" class="carousel vertical slide" data-interval="false">
+					<div class="carousel-inner" role="listbox">
+						<div class="item"  style="background-color: #4AAE3C !important;">
+							<div id="divone" class="container" style="min-height:600px;padding: 50px">
+								<div class="row">
+									<div class="col-md-6 row">
+										<div class="container-fluid col-md-12" >
+											<h3 style="color:white !important">We connect you with the best-in-class Investment Advisors to manage your fortune.<br><br></h3>
+											<h6 style="color:white !important">Let the industry experts at ManageMyFortune 
+												guide you through the market ups-and-downs 
+												to help you realize your life aspirations.<br><br><br>
+											</h6>
+										</div>
+										<div class="col-md-6" style="display:none">
+											<a href="javascript:$('#carousel-example-vertical').carousel(1);" class="btn-flat" style="width:100%; text-align: center; background-color: rgba(0,0,0,0); border:2px solid white;">
+												<h5 style="color:#ffffff">I am an Investor</h5>
+											</a>
+										</div>
+										<div class="col-md-6"  style="display:none">
+											<a href="javascript:$('#carousel-example-vertical').carousel(2);" class="btn-flat" style="width:100%; text-align: center; background-color: rgba(0,0,0,0); border:2px solid white;">
+												<h5 style="color:#ffffff">I am an Advisor</h5>
+											</a>
+										</div>
+										<div class="col-md-12">
+											<a href="javascript:$('#carousel-example-vertical').carousel(2);" class="btn-flat" style="width:100%; text-align: center; background-color: #0C95BE; border:0px solid white;">
+												<h5 style="color:#ffffff">Register Now</h5>
+											</a>
+										</div>
+									</div>
+									<div class="col-md-6"><img src="img/landing-laptop.jpg" style="width:100%"></div>
+								</div>
+							</div>
+						</div>
+						<div class="item"  style="background-color: #ffffff !important;">
+							<div class="row" style="padding-left: 50px;padding-right: 50px">
+									<h2 class="page-title"> Sign In</h2>
+							</div>
+							<div id="divTwo" class="container" style="min-height:600px;padding: 50px">
+								<div class="row">
+									<div class="col-md-2"></div>
+									<div class="col-md-4">
+										<h3>Investor</h3>
+										<h6>Select Free system recommended investment advisoryservice OR Find trusted and skilled SEBI registered Investment Advisors<br><br></h6>
+										<button type="button" class="btn-flat success" onclick="javascript:$('#carousel-example-vertical').carousel(2);">INVESTOR SIGN IN &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
+									</div>
+									<div class="col-md-1"></div>
+									<div class="col-md-4">
+										<h3>Advisor</h3>
+										<h6>Grow your business exponentially at zero cost targeting awider audience<br><br><br></h6>
+										<button type="button" class="btn-flat success" onclick="javascript:$('#carousel-example-vertical').carousel(3);">ADVISOR SIGN IN &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
+									</div>
+									<div class="col-md-2"></div>
+								</div>
+							</div>
+						</div>
+						<div class="item active">
+							<div id="divThree" class="container-fluid" style="background-color: #4AAE3C; min-height:600px;padding: 50px">
+								<div>
+<!-- 									<div class=" pull-right">
+										<a href="javascript:$('#carousel-example-vertical').carousel(0);"><img src="img/x_white.png" style="height: 50px;"></a>
+									</div> -->
+									<div class="row col-centered" style="margin: auto;background-color: white; border-radius:10px; width:800px; padding:10px; overflow: auto">  
+										   <div class="col-md-6 container-fluid row">
+									    		<form id="formInvestorLogin" method="post" action="/faces/login">
+									    			<input type="hidden" id="user_login_type" value="INVESTOR">
+										    		<div class="col-md-12" style="margin-bottom: 10px;"><h4>Login Into Your Account</h4></div>
+												    <div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Email</label>
+														<input id="email" class="form-control" type="email">
+													</div>
+												    <div class="form-group js-float-label-wrapper col-md-12"  style="margin-bottom: 20px;">
+														<label for="">Password</label>
+														<input id="password" class="form-control" type="text" placeholder="Password"  onchange="javascript:togglePasswordType(this);" onfocus="javascript:togglePasswordType(this);" onblur="javascript:togglePasswordType(this);" onclick="javascript:togglePasswordType(this);">
+													</div>
+													<div class="col-md-12" style="margin-bottom:10px ">
+														<a href="javascript:investorLogin()" class="btn btn-success btn-xs btn-block">
+															<h6 style="color:#ffffff">Login</h6>
+														</a>
+													</div>
+<!-- 													<div class="col-md-6" style="text-align: center;">
+														<div class="input-group">
+															<span class="input-group-addon"><input type="checkbox"  id="Q0A0" name="Q0" value="male"></span>
+															<label for="Q0A0">Remember me</label>
+														</div>
+													</div> -->
+													<div class="col-md-12" style="text-align: center;" >Forgot Password?</div>
+													<div class="col-md-12" style="text-align: center;padding-top:0px">
+														--------------OR--------------
+													</div>
+													<div class="col-md-2" ></div>
+													<div class="col-md-2" style="text-align: center; padding:10px">
+														<img src="img/icon_facebook.png" width="40px">
+													</div>
+													<div class="col-md-2" style="text-align: center; padding:10px">
+														<img src="img/icon_twitter.png" width="40px">
+													</div>
+													<div class="col-md-2" style="text-align: center; padding:10px">
+														<img src="img/icon_google.png" width="40px">
+													</div>
+													<div class="col-md-2" style="text-align: center; padding:10px">
+														<img src="img/icon_linkedin.png" width="40px">
+													</div>
+													<div class="col-md-2" ></div>
+												</form>
+										    </div>
+										    
+										    <div class="col-md-6 container-fluid row" style="border-left-style: outset;margin-left: 10px;">
+										    	<form id="formInvestorRegistration" method="post"  action="/faces/register">
+										    		<input type="hidden" id="user_login_type" value="ADVISOR">
+											    	<div class="col-md-12" style="margin-bottom: 10px;"><h4>Register as Investor</h4></div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">First Name</label>
+														<input id="firstName" class="form-control" type="text">
+													</div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Middle Name</label>
+														<input id="middleName" class="form-control" type="text">
+													</div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Last Name</label>
+														<input id="lastName" class="form-control" type="text">
+													</div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Email</label>
+														<input id="email" class="form-control" type="email" onblur="javascript:validateEmail(this);">
+													</div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Mobile Number</label>
+														<input id="phone" class="form-control" type="text">
+													</div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Password</label>
+														<input id="password" class="form-control password" type="text" onchange="javascript:togglePasswordType(this);" onfocus="javascript:togglePasswordType(this);" onblur="javascript:togglePasswordType(this);" onclick="javascript:togglePasswordType(this);">
+													</div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Re-enter Password</label>
+														<input id="rePassword" class="form-control" type="text" placeholder="Re-enter Password"  onchange="javascript:togglePasswordType(this);" onfocus="javascript:togglePasswordType(this);" onblur="javascript:togglePasswordType(this);validatePassword(this);" onclick="javascript:togglePasswordType(this);">
+													</div>
+													<div class="col-md-12">
+														<a href="javascript:investorRegistration();" class="btn btn-success btn-xs btn-block">
+															<h6 style="color:#ffffff">Signup</h6>
+														</a>
+													</div>
+												</form>
+										    </div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div id="divFour" class="container-fluid" style="background-color: #4AAE3C; min-height:600px;padding: 50px">
+								<div>
+									<div class=" pull-right">
+										<a href="javascript:$('#carousel-example-vertical').carousel(0);"><img src="img/x_white.png" style="height: 50px;"></a>
+									</div>
+									<div class="row col-centered" style="margin: auto;background-color: white; border-radius:10px; width:800px; padding:10px; overflow: auto">  
+										   <div class="col-md-6 container-fluid row">
+									    		<form id="formAdvisorLogin" method="post" action="/faces/login">
+									    			
+										    		<div class="col-md-12" style="margin-bottom: 10px;"><h4>Login Into Your Account</h4></div>
+												    <div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Email</label>
+														<input id="email" class="form-control" type="email">
+													</div>
+												    <div class="form-group js-float-label-wrapper col-md-12"  style="margin-bottom: 20px;">
+														<label for="password">Password</label>
+														<input id="" class="form-control" type="text" placeholder="Password"  onchange="javascript:togglePasswordType(this);" onfocus="javascript:togglePasswordType(this);" onblur="javascript:togglePasswordType(this);" onclick="javascript:togglePasswordType(this);">
+													</div>
+													<div class="col-md-12" style="margin-bottom:10px ">
+														<a href="javascript:advisorLogin()" class="btn btn-success btn-xs btn-block">
+															<h6 style="color:#ffffff">Login</h6>
+														</a>
+													</div>
+													<div class="col-md-6" style="text-align: center;">
+														<div class="input-group">
+															<span class="input-group-addon"><input type="checkbox"  id="Q0A0" name="Q0" value="male"></span>
+															<label for="Q0A0">Remember me</label>
+														</div>
+													</div>
+													<div class="col-md-6" style="text-align: center;" >Forgot Password?</div>
+													<div class="col-md-12" style="text-align: center;padding-top:0px">
+														--------------OR--------------
+													</div>
+													<div class="col-md-2" ></div>
+													
+													<div class="col-md-8" style="text-align: center; padding:10px">
+														<img src="img/icon_linkedin_big.jpg">
+													</div>
+													<div class="col-md-2" ></div>
+												</form>
+										    </div>
+										    
+										    <div class="col-md-6 container-fluid row">
+										    	<form id="formAdvisorRegistration" method="post" action="/faces/register">
+										    		<input type="hidden" id="advisor" value="true">
+											    	<div class="col-md-12" style="margin-bottom: 10px;"><h4>Register</h4></div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">First Name</label>
+														<input id="firstName" class="form-control" type="text">
+													</div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Middle Name</label>
+														<input id="middleName" class="form-control" type="text">
+													</div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Last Name</label>
+														<input id="lastName" class="form-control" type="text">
+													</div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Email</label>
+														<input id="email" class="form-control" type="email" onblur="javascript:validateEmail(this);">
+													</div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Mobile Number</label>
+														<input id="phone" class="form-control" type="text">
+													</div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Password</label>
+														<input id="password" class="form-control password" type="text" onchange="javascript:togglePasswordType(this);" onfocus="javascript:togglePasswordType(this);" onblur="javascript:togglePasswordType(this);" onclick="javascript:togglePasswordType(this);">
+													</div>
+													<div class="form-group js-float-label-wrapper col-md-12" >
+														<label for="">Re-enter Password</label>
+														<input id="rePassword" class="form-control" type="text" placeholder="Re-enter Password"  onchange="javascript:togglePasswordType(this);" onfocus="javascript:togglePasswordType(this);" onblur="javascript:togglePasswordType(this);" onclick="javascript:togglePasswordType(this);">
+													</div>
+													<div class="col-md-12">
+														<a href="javascript:advisorRegistration()" class="btn btn-success btn-xs btn-block">
+															<h6 style="color:#ffffff" href="">Signup</h6>
+														</a>
+													</div>
+												</form>
+										    </div>
+										    
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<!-- Controls -->
+					<div style="display: none">
+						<a class="up carousel-control" href="#carousel-example-vertical" role="button" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+						</a>
+						<a class="down carousel-control" href="#carousel-example-vertical" role="button" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+						</a>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="myModalLabel"></h4>
+							</div>
+							<div class="modal-body">
+								this is modalbody
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			<script>
+			$( '.js-float-label-wrapper' ).FloatLabel();
+			togglePasswordType = function(obj){
+				if(obj.value==''){
+					obj.setAttribute('type', 'text');
+				}
+				else{
+					obj.setAttribute('type', 'password');
+				}
+				return;
+			}
+			
+			$(':input').each(function(){
+			    var self = $(this);
+			    label = self.next();
+			    label_text = label.text();
+			    //label.remove();
+			    self.iCheck({
+			    checkboxClass: 'icheckbox_square-green',
+			    radioClass: 'iradio_square-green'
+			    });
+			       
+			});
+			
+
+			</script>
+
+		<!-- Modules -->
+        <script src="js/app.js"></script>
+    
+        <!-- Controllers -->
+        <script src="js/controllers/Home.js" charset="UTF-8"></script>
+        <script src="js/directives/home.js" charset="UTF-8"></script>
+    </body>
+</html>

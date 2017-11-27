@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title></title>
+        <!-- script src="#{request.contextPath}/pages/v2/js/mixpanel.js"></script> -->        
+    </head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+        <!-- End Google Tag Manager -->
+
+        <ui:composition>
+            <script type="text/javascript">
+                function tab(tab_name, advisor) {
+                    document.getElementById("tab_invest").setAttribute("class", "");
+                    document.getElementById("tab_advise").setAttribute("class", "");
+                    document.getElementById(tab_name).setAttribute("class", "active");
+                    document.getElementById('frm_home:hide').value = advisor;
+
+                }
+                
+               //mixpanel.track("HomePage Visited");
+    		   clevertap.event.push("HomePage Visited");
+            </script>
+            <div class="masthead">
+                <div class="container">
+                    <div class="row">
+                        <div class="span6">
+                            <h3>We connect you with the best-in-class Investment Advisors to manage your fortune.</h3>
+                            <p>
+                                Let the industry experts at ManageMyFortune <br/>
+                                guide you through the market ups-and-downs <br/>
+                                to help you realize your life aspirations.
+                            </p>
+                            <div class="email-input-container" style="background-color: #4aae3c;">
+                                <!--                                 <div class="title">Register</div> -->
+                                <div class="subtitle" style="display:none;">Enter your email address to get started</div>
+                                <h:form id="frm_home" onkeypress="if (event.keyCode === 13) {
+                                            document.getElementById('frm_home:reg_btn').click();
+                                            return false;
+                                        }" style="display:none;">
+                                    <h:inputText styleClass="email-input" id="email_in" required="true"
+                                                 requiredMessage="Please enter email"
+                                                 maxlength="50"
+                                                 validatorMessage="Invalid email format"
+                                                 value="#{homePageController.email}" style="display:none;">  
+                                        <f:validateRegex
+                                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                    </h:inputText><br/>
+                                    <p:watermark for="email_in" value="Email address" style="display:none;"/>
+                                    <h:message for="email_in" styleClass="err_message"></h:message><br/>
+                                    <h:commandLink styleClass="btn btn-success" value="Register now" id="reg_btn"
+                                                   action="#{homePageController.registerNow}"
+                                                   actionListener="#{homePageController.doActionRegisterNow}" style="display:none;">
+                                    </h:commandLink>
+                                    <h:inputHidden id="hide" value="#{homePageController.dummy}"></h:inputHidden>
+                                </h:form> 
+									<!-- <a href="/faces/pages/v2/home.html?src=2" class="btn btn-success" style="width:75%">Register as Investor</a> -->
+									<a id="anchor-Login-2" href="#{request.contextPath}/faces/pages/v3/investor-signup.htm" class="btn btn-success" style="width: 75%;background: #08BDBD; box-shadow: 3px 2px 4px #0077b3; border-width: thin;    border-color: #08BDBD; font-size: 18px;    font-weight: 400;">Register As Investor</a>
+									<script type="text/javascript"><!-- v2/home.html?src=2 -->
+										$('#anchor-Login-2').click(function () { 
+											clevertap.event.push("Click Register as Investor");
+										});
+										//mixpanel.track_links("#anchor-Login-2","Click Register as Investor");
+									</script>
+									<!-- <a href="#{request.contextPath}/faces/pages/v2/home.html?src=2" class="btn btn-success" style="width:75%;background: #DCF763;color: #3C3036;border: solid;border-width: thin;border-color: #3C3036;font-size: larger;">Register As Investor</a> -->
+									 
+                            </div>
+                        </div>
+                        <div class="span6">
+                            <div class="macbook">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" role="tabpanel">
+                <div class="midnav">
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li role="presentation" id="tab_invest" class="active"><a href="#investors" data-toggle="tab"  role="tab"><h3>For Investors</h3></a></li>
+                            <li role="presentation" id="tab_advise"><a href="#advisors" data-toggle="tab" role="tab"><h3>For Investment Advisors</h3></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane active" id="investors">
+                        <div class="row">
+                            <div class="span6">
+                                <ul>
+                                    <li><span class="number">1.</span>
+                                        <p>Choose from <strong>SEBI</strong> Registered <strong>Investment Advisors</strong> OR select ROBO Advisor
+                                        </p>
+                                    </li>
+
+                                    <li><span class="number">2.</span>
+                                        <p>Receive <strong>customized</strong> investment advice matching your <strong>Risk Profile</strong></p>
+                                    </li>
+
+                                    <li><span class="number">3.</span>
+                                        <p>Execute trades at <strong>competitive brokerage</strong> rates</p>
+                                    </li>
+                                    <li><span class="number">4.</span>
+                                        <p>Always be in <strong>control</strong> of your money in own account</p>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="span6">
+                                <!--video goes here-->
+                                <div class="video-placeholder">
+                                    <!--replace everything below this line with YouTube/Vimeo embed code-->
+                                    <div class="dummy-video-image-i">
+
+                                    </div>
+                                    <!--replace everything above this line with YouTube/Vimeo embed code-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane advisors" role="tabpanel" id="advisors">
+                        <div class="row">
+                            <div class="span6">
+                                <ul>
+                                    <li><span class="number">1.</span>
+                                        <p><strong>Grow</strong> your business <strong>exponentially</strong> at <strong>zero cost</strong> targeting a wider audience</p>
+                                    </li>
+
+                                    <li><span class="number">2.</span>
+                                        <p>Earn <strong>stable &amp; upfront fees</strong> instead of volatile brokerage commissions</p>
+                                    </li>
+
+                                    <li><span class="number">3.</span>
+                                        <p>Focus on <strong>advisory</strong> service instead of dealing with trade execution</p>
+                                    </li>
+                                    <li><span class="number">4.</span>
+                                        <p>Access <strong>Tools &amp; Research</strong> to ease your investment advisory process</p>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="span6">
+
+                                <div class="video-placeholder">
+                                    <!--replace everything below this line with YouTube/Vimeo embed code-->
+                                    <div class="dummy-video-image-a">
+
+                                    </div>
+                                    <!--replace everything above this line with YouTube/Vimeo embed code-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:composition>
+    </body>
+</html>

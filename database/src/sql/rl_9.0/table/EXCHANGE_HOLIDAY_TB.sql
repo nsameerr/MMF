@@ -1,0 +1,6 @@
+CREATE TABLE exchange_holiday_tb(
+	id INT NOT NULL AUTO_INCREMENT,
+	hdate DATE NOT NULL,
+	hevent VARCHAR(150) NOT NULL,
+	PRIMARY KEY (Id)
+);

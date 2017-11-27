@@ -1,0 +1,1607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout_linkedin.xhtml">
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_user_linkedin.xhtml" />
+            </ui:define>
+            <ui:define name="title">Investor Registration</ui:define>
+            <ui:define name="content">
+                <h:form id="frm_investor_profile" enctype="multipart/form-data">
+                    <style>
+                        .form-page .form-wrapper label {
+                            width: 230px;
+                        }
+                        input[type="text"] {
+                            width: 220px !important;
+                        }
+                        textarea{
+                            width: 400px;
+                        }
+                        .ui-select span6{
+                            margin-left: 0px;
+                            width: 400px;
+                        }
+                        .span6{
+                            width: 400px;
+                        }
+                        select{
+                            width: 400px;
+                        }
+                        .content{
+                            padding-bottom: 0px;
+                        }
+                        .field-box{
+                            width: 169px;
+                        }
+                        .msghidden {
+                            display:none;
+                        }
+                        .msgvisible {
+                            font-size: 13px;
+                            color: #fff;
+                            display: block;
+                            width: 15em;
+                            margin-top:5px;
+                            margin-left:45px;
+                            position:absolute;
+                            background-color:#696d73;
+                            border-radius: 4px;
+                        }
+                        .err_message {
+                            color: red;
+                            padding-left: 0px;
+                        }
+                        .margin_style {
+                            margin-left: 28px;
+                        }
+                        .standing_instruction_select {
+                            width: 7%;
+                        }
+                        .standing_address_select {
+                            width: 17%;
+                        }
+                        .msg_label {
+                            font-weight: 600;
+                            font-size: 12px;
+                            text-align: left;
+                        }
+                        @media screen{
+                            .form-page .form-wrapper{
+                                margin-bottom: 0px;
+                            }
+                            .err_message{
+                                padding-left: 0px;
+                            }
+                            .span8{
+                                width: 73%;
+                            }
+                            .button-row {
+                                padding-left: 18%;
+                            }
+                            .row-fluid .span3 {
+                                width: 31%;
+                            }
+                            .row-fluid .span5{
+                                width: 66%;
+                            }
+                        }
+                        @media (max-width: 767px){
+                            .row-fluid .span3{
+                                width: 70%;
+                            }
+                            .margin_style{
+                                margin-left: 0px;
+                            }
+                            .standing_instruction_select {
+                                width: 40%;
+                            }
+                            .standing_address_select {
+                                width: 40%;
+                            }
+                        }
+                        @media (max-width: 979px)and (min-width: 768px){
+                            .row-fluid .span3 {
+                                width: 53%;
+                                margin-left: 0px;
+                            }
+                            .margin_style {
+                                margin-left: 0px;
+                            }
+                        }
+                        @media (min-width: 1200px){
+                            .row-fluid .span3 {
+                                width: 23%;
+                            }
+                        }
+                        .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+                            border: 1px solid #D0E788;
+                            background: #D0E788;
+                        }
+                        .info_message{
+                            font-weight: bolder;
+                            color: green;
+                        }
+                    </style>
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div id="pad-wrapper" class="form-page">
+                                <div class="row-fluid form-wrapper">
+                                    <div id="pad-wrapper" style="padding-left: 0px">
+                                        <h2 class="page-title two-baseline-margin-bottom" style="font-weight: bold;">
+                                            Investor Registration
+                                        </h2>
+                                    </div>
+                                </div>
+                                <div class="align_center">
+                                    <h:messages id="msg_form" globalOnly="true" layout="table" errorClass="err_message" infoClass="info_message"/> 
+                                </div>
+                                <h4 class="title">Personal</h4>
+                                <div class="msg_label" style="color: red;">NOTE: Please enter your Full Name EXACTLY as mentioned on PAN card</div>
+                                <br/>
+                                <div class="row-fluid form-wrapper">
+                                    <div  class="span3">
+                                        <label>First Name<span style="color:red">*</span></label>
+                                        <h:inputText id="ipt_name" value="#{userRegistrationBean.registrationVo.name}" 
+                                                     validatorMessage="Please enter valid First Name(special charecters,numbers not allowed)"    
+                                                     styleClass="span6" maxlength="50" required="true" requiredMessage="Please specify FirstName">
+                                            <f:validateRegex pattern="[a-zA-Z\s.]+"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="ipt_name" styleClass="err_message"/>   
+                                    </div>
+                                    <div  class="span3">
+                                        <label>Middle Name</label>
+                                        <h:inputText id="ipt_mname" value="#{userRegistrationBean.registrationVo.middleName}"
+                                                     validatorMessage="Please enter valid Middle Name(special charecters,numbers not allowed)"    
+                                                     styleClass="span6" maxlength="50">
+                                            <f:validateRegex pattern="[a-zA-Z\s.]*"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="ipt_mname" styleClass="err_message"/>  
+                                    </div>
+                                    <div  class="span3">
+                                        <label>Last Name<span style="color:red">*</span></label>
+                                        <h:inputText id="ipt_lname" value="#{userRegistrationBean.registrationVo.lastName}"
+                                                     validatorMessage="Please enter valid Last Name(special charecters,numbers not allowed)"    
+                                                     styleClass="span6" maxlength="50" required="true" requiredMessage="Please specify LastName">
+                                            <f:validateRegex pattern="[a-zA-Z\s.]*"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="ipt_lname" styleClass="err_message"/>    
+                                    </div>
+                                </div>
+                                <div class="row-fluid form-wrapper">
+                                    <div  class="span3">
+                                        <label> Father/Spouse Name<span style="color:red">*</span></label>
+                                        <h:inputText id="fsname" value="#{userRegistrationBean.registrationVo.fatherOrSpouseName}"
+                                                     validatorMessage="Please enter valid name(special charecters,numbers not allowed)"
+                                                     requiredMessage="Please specify Father/SpouseName" required="true"
+                                                     styleClass="span6" maxlength="50">
+                                            <f:validateRegex pattern="[a-zA-Z\s.]*"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="fsname" styleClass="err_message"/>    
+                                    </div>
+
+
+                                    <div class="span3">
+                                        <label>Your Date of Birth<span style="color:red">*</span> </label>
+                                        <div class="datepicker_box">
+                                            <p:inputText id="dob" maxlength="20" required="true"  
+                                                         requiredMessage="Please select Date of Birth" placeholder = "DD-MM-YYYY"
+                                                         styleClass="span6 datepicker no_lft_margin" value="#{userRegistrationBean.registrationVo.dob}"
+                                                         autocomplete="off"
+                                                         converterMessage="Invalid format ( Eg:06-5-2014 )">
+                                                <f:convertDateTime pattern="dd-MM-yyyy"/> 
+                                            </p:inputText>
+                                            <i class="icon-calendar"></i>
+                                        </div><br></br>
+                                        <h:message for="dob" styleClass="err_message"></h:message>
+                                    </div>
+
+                                    <div  class="span3">
+                                        <label>Nationality<span style="color:red">*</span></label>
+                                        <div class="ui-select">
+                                            <h:selectOneMenu value="#{userRegistrationBean.registrationVo.nationality}" style="width:260px"
+                                                             required="true" requiredMessage="Please select Nationality" id="nationality">
+                                                <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                <f:selectItems value="#{userRegistrationBean.countryList.entrySet()}" 
+                                                               var="countryList"
+                                                               itemLabel="#{countryList.value}" itemValue="#{countryList.key}"/>
+                                            </h:selectOneMenu>
+                                        </div> <br></br>
+                                        <h:message for="nationality" styleClass="err_message"/>    
+                                    </div>
+
+                                </div>
+                                <div class="row-fluid form-wrapper">
+                                    <div  class="span3">
+                                        <label>Status<span style="color:red">*</span></label>
+                                        <div class="ui-select">
+                                            <h:selectOneMenu id="status" value="#{userRegistrationBean.registrationVo.status}" 
+                                                             disabled="true" required="true" requiredMessage="Please select Status"  style="width: 100%;">
+                                                <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                <f:selectItems value="#{userRegistrationBean.statusData.entrySet()}" 
+                                                               var="status" itemLabel="#{status.key}" itemValue="#{status.key}"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <br></br>
+                                        <h:message for="status" styleClass="err_message"/>    
+                                    </div>
+                                    <div  class="span3">
+                                        <label>Gender<span style="color:red">*</span></label>
+                                        <div class="ui-select">
+                                            <h:selectOneMenu id="gender" value="#{userRegistrationBean.registrationVo.gender}"
+                                                             required="true" requiredMessage="Please select Gender"  style="width: 100%;">
+                                                <f:selectItem  noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                <f:selectItems value="#{userRegistrationBean.genderData.entrySet()}" 
+                                                               var="gender" 
+                                                               itemLabel="#{gender.key}" itemValue="#{gender.key}"/>
+                                            </h:selectOneMenu> 
+                                        </div><br></br>
+                                        <h:message for="gender" styleClass="err_message"/>
+                                    </div>
+                                    <div  class="span3">
+                                        <label>Marital Status<span style="color:red">*</span></label>
+                                        <div class="ui-select">
+                                            <h:selectOneMenu id="mstatus" value="#{userRegistrationBean.registrationVo.maritalStatus}"
+                                                             required="true" requiredMessage="Please select Marital Status" 
+                                                             style="width: 100%;">
+                                                <f:selectItem  noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                <f:selectItems value="#{userRegistrationBean.maritalstatus.entrySet()}" 
+                                                               var="mstatus" 
+                                                               itemLabel="#{mstatus.key}" itemValue="#{mstatus.key}"/>
+                                            </h:selectOneMenu> 
+                                        </div><br></br>
+                                        <h:message for="mstatus" styleClass="err_message"/>
+                                    </div>
+                                </div>
+                                <div class="row-fluid form-wrapper" style="padding-top:11px;">
+                                    <div class="span3">
+                                        <label>UID/Aadhaar</label>
+                                        <h:inputText  onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                      maxlength="12" id="UID"  requiredMessage="Please enter UID " required="false"
+                                                      styleClass="span4" value="#{userRegistrationBean.registrationVo.uid}" style="width:55%"
+                                                      validatorMessage="Invalid UID" >
+                                            <f:validateRegex pattern="^$|^[0-9]{12}\b"/>
+                                        </h:inputText>
+                                        <br></br>
+
+                                        <h:message for="UID" styleClass="err_message"/>
+                                    </div>
+                                    <div  class="span3">
+                                        <label>PAN 
+                                            <span style="color:red ;background: white; border: none;
+                                                  padding: 0px 0px 0px 0px;">*</span>
+                                        </label>
+                                        <h:inputText value="#{userRegistrationBean.registrationVo.pan}"
+                                                     required="true"
+                                                     requiredMessage="Please enter PAN No."
+                                                     validatorMessage="Please enter valid PAN(Eg:AOFBP6688A)"
+                                                     styleClass="span6" maxlength="10" id="panno_in">
+                                            <f:validateRegex pattern="^$|[A-Za-z]{3}(p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G)[\w][\d]{4}[A-Za-z]"/>
+                                        </h:inputText><br/>
+                                        <h:message for="panno_in" styleClass="err_message" style="background: white; border: none;
+                                                   font-size: 12px;font-family: 'Open Sans', sans-serif;margin-left: -6px;"/>
+                                    </div> 
+                                    <div class="span3">
+                                        <label> Upload Scanned Copy of PAN
+                                        </label>
+                                        <div class="upload_btn ">
+                                            <span class="btn-flat default">
+                                                <h:inputFile id="pan_file"  requiredMessage="Upload failed" 
+                                                             title="Maximum allowable size 2MBSupported formats(pdf, jpeg, png files only)">
+                                                </h:inputFile>ATTACH FILE
+                                            </span>
+                                        </div><br/>  
+                                        <div id="pan_name" style="display: none"> </div>
+                                        <div id="pan_name2"> </div>
+                                        <br/>
+                                        <h:message for="pan_file" styleClass="err_message"
+                                                   style="background: white; border: none;"/>    
+                                    </div>
+                                    <div class="span3">
+                                        <span>
+                                            Optional. <b>Attaching documents helps us process your application FASTER</b><br/>
+                                            Maximum allowable size 2MB.<br/>
+                                            Supported formats(pdf, jpeg, png files only)
+                                        </span>    
+                                    </div>
+                                </div> 
+                                <h4 class="title" style="margin-top: 25px;">Correspondence Address</h4>
+                                <div class="msg_label" style="color: red;">NOTE: Please enter your address EXACTLY as mentioned in your Address Proof</div>
+                                <br/>
+                                <div class="row-fluid form-wrapper">
+                                    <div  class="span3" style="width: 443px;">
+                                        <label>Address Line1<span style="color:red">*</span></label>
+                                        <h:inputText id="address1_line1" value="#{userRegistrationBean.registrationVo.address1_Line1}"                                                         
+                                                     styleClass="span6" required="true" maxlength="37"
+                                                     requiredMessage="Please enter Home Address "
+                                                     validatorMessage="Please enter valid Home Address"  style="width: 460px!important;">
+                                        </h:inputText><br></br>
+                                        <h:message for="address1_line1" styleClass="err_message"/>
+                                    </div>
+                                    <div  class="span3" style="width: 449px;">
+                                        <label>Address Line2</label>
+                                        <h:inputText id="address1_line2" value="#{userRegistrationBean.registrationVo.address1_Street}"                                                         
+                                                     styleClass="span6" required="false" maxlength="37"
+                                                     requiredMessage="Please enter Address Line2 "
+                                                     validatorMessage="Please enter valid Address Line2" style="width: 460px!important;">
+                                        </h:inputText><br></br>
+                                        <h:message for="address1_line2" styleClass="err_message"/>
+                                    </div>
+                                    <!--
+                                    <div  class="span3">
+                                        <label>Landmark</label>
+                                        <h:inputText id="address1_landmark" value="{userRegistrationBean.registrationVo.address1_Landmark}"                                                         
+                                                     styleClass="span6" required="false" maxlength="14"
+                                                     requiredMessage="Please enter Landmark "
+                                                     validatorMessage="Please enter valid Landmark">
+                                        </h:inputText><br></br>
+                                        <h:message for="address1_landmark" styleClass="err_message"/>
+                                    </div>
+                                    -->
+                                </div>
+
+
+
+                                <div class="row-fluid form-wrapper">
+                                    <div class="span3">
+                                        <label>Country<span style="color:red">*</span></label>
+                                        <div class="ui-select">
+                                            <h:selectOneMenu value="#{userRegistrationBean.registrationVo.ccountry}" style="width: 100%;"
+                                                             id="cores_country">
+                                                <f:selectItems value="#{userRegistrationBean.countryList.entrySet()}" 
+                                                               var="countryList" 
+                                                               itemLabel="#{countryList.value}" itemValue="#{countryList.key}"/>
+                                                <p:ajax event="change" listener="#{userRegistrationBean.onChnageCountry()}" update="state_panel_group city_panel_group"/> 
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <h:panelGroup id="state_panel_group">
+                                        <div class="span3">
+                                            <label>State <span style="color:red">*</span></label>
+                                            <h:inputText id="state_text" maxlength="50"
+                                                         required="true"
+                                                         requiredMessage="Please enter State" style="width: 208px!important;"
+                                                         value="#{userRegistrationBean.registrationVo.cstate}"
+                                                         rendered="#{userRegistrationBean.stateListEditable}"
+                                                         validatorMessage="Please enter valid State">
+                                                <f:validateRegex pattern="^$|[a-zA-Z\s]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:panelGroup rendered="#{!userRegistrationBean.stateListEditable}">
+                                                <div class="ui-select">
+                                                    <h:selectOneMenu value="#{userRegistrationBean.registrationVo.cstate}" id="state_list" 
+                                                                     required="true" requiredMessage="Please select State"
+                                                                     style="width: 100%;">
+                                                        <p:ajax event="change" listener="#{userRegistrationBean.onChangeState(userRegistrationBean.registrationVo.cstate,1)}" update="city_panel_group"/> 
+                                                        <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                        <f:selectItems value="#{userRegistrationBean.stateList.entrySet()}" 
+                                                                       var="stateList" itemLabel="#{stateList.value}" itemValue="#{stateList.value}"/>
+                                                    </h:selectOneMenu>
+                                                </div><br></br>
+                                            </h:panelGroup>
+                                            <h:message for="state_text" styleClass="err_message"></h:message> 
+                                            <h:message for="state_list" styleClass="err_message"></h:message> 
+                                        </div>
+                                    </h:panelGroup>
+
+                                    <h:panelGroup id="city_panel_group">
+                                        <div class="span3">
+                                            <label>City <span style="color:red">*</span></label>
+                                            <h:inputText id="city_text" maxlength="50"
+                                                         required="true"
+                                                         requiredMessage="Please enter City" style="width: 208px!important;"
+                                                         value="#{userRegistrationBean.registrationVo.ccity}"
+                                                         rendered="#{userRegistrationBean.cityListEditable}"
+                                                         validatorMessage="Please enter valid city">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:panelGroup rendered="#{!userRegistrationBean.cityListEditable}">
+                                                <div class="ui-select">
+                                                    <h:selectOneMenu value="#{userRegistrationBean.registrationVo.ccity}" id="city_list" 
+                                                                     required="true" requiredMessage="Please select City"
+                                                                     style="width: 100%;">
+                                                        <p:ajax event="change" update="other_cpgroup other_cpcity"/> 
+                                                        <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                        <f:selectItems value="#{userRegistrationBean.cityList.entrySet()}" 
+                                                                       var="cityList" itemLabel="#{cityList.value}" itemValue="#{cityList.value}"/>
+                                                    </h:selectOneMenu>
+                                                </div> <br></br>
+                                            </h:panelGroup>
+                                            <h:message for="city_text" styleClass="err_message"></h:message> 
+                                            <h:message for="city_list" styleClass="err_message"></h:message> 
+                                        </div>
+                                    </h:panelGroup>
+
+                                    <h:panelGroup id="other_cpgroup">
+                                        <h:panelGroup id="other_cpcity" rendered="#{userRegistrationBean.registrationVo.ccity eq 'Other'}">
+                                            <div class="span3">
+                                                <label>City Other <span style="color:red">*</span></label>
+                                                <h:inputText id="cores_city" maxlength="50"
+                                                             required="true" styleClass="span6"
+                                                             requiredMessage="Please enter City" 
+                                                             value="#{userRegistrationBean.registrationVo.cp_city_other}"
+                                                             validatorMessage="Please enter valid City">
+                                                    <f:validateRegex pattern="^$|[a-zA-Z\s.,\-\\\/\#]*"/> 
+                                                </h:inputText>
+                                            </div><br></br>
+                                            <h:message for="cores_city" styleClass="err_message"></h:message> 
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                    <div  class="span3">
+                                        <label>Pin Code<span style="color:red">*</span></label>
+                                        <h:inputText  onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                      id="pincode" value="#{userRegistrationBean.registrationVo.cpinCode}"
+                                                      maxlength="6" required="true" class="span6"
+                                                      requiredMessage="Please enter Pin Code"
+                                                      validatorMessage="Please enter valid Pin Code">
+                                            <f:validateRegex pattern="^([+]?[\d]+)?$"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="pincode" styleClass="err_message"/>
+                                    </div>
+                                </div>
+
+
+                                <div class="row-fluid form-wrapper">
+                                    <div class="span3">
+                                        <label>Proof of Address<span style="color:red">*</span></label>
+                                        <div class="ui-select" >
+                                            <h:selectOneMenu value="#{userRegistrationBean.registrationVo.addressProof}" required="true" class="default_width select_text proofofAddress"
+                                                             requiredMessage="Please select Proof"  style="width: 100%;" id="proofofAddress">
+                                                <f:ajax event="change" listener="#{userRegistrationBean.clearValidity()}" render="corespondence corespondence_group"/> 
+                                                <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                <f:selectItems value="#{userRegistrationBean.proofofAddress.entrySet()}" 
+                                                               var="proofofAddress" 
+                                                               itemLabel="#{proofofAddress.key}" itemValue="#{proofofAddress.key}"/>
+                                            </h:selectOneMenu>
+                                        </div><br></br>
+                                        <h:message for="proofofAddress" styleClass="err_message"/>
+                                    </div>
+
+                                    <h:panelGroup id="corespondence">
+                                        <h:panelGroup id="corespondence_group"
+                                                      rendered="#{userRegistrationBean.registrationVo.addressProof.equalsIgnoreCase('Driving Licence')or
+                                                                  userRegistrationBean.registrationVo.addressProof.equalsIgnoreCase('Passport')}">
+                                            <div class="span3">
+                                                <label class="browse_label">Validity/Period 
+                                                </label>
+                                                <div class="datepicker_box">
+                                                    <p:inputText id="adrsvalidity" maxlength="20" 
+                                                                 requiredMessage="Please select Validity" placeholder = "DD-MM-YYYY"
+                                                                 styleClass="span6 datepicker no_lft_margin coresdate" value="#{userRegistrationBean.registrationVo.dobValidity}"
+                                                                 autocomplete="off" 
+                                                                 rendered="#{userRegistrationBean.registrationVo.addressProof.equalsIgnoreCase('Driving Licence')or
+                                                                             userRegistrationBean.registrationVo.addressProof.equalsIgnoreCase('Passport')}"
+                                                                 required="#{userRegistrationBean.registrationVo.addressProof.equalsIgnoreCase('Driving Licence')or
+                                                                             userRegistrationBean.registrationVo.addressProof.equalsIgnoreCase('Passport')}"
+                                                                 converterMessage="Invalid format ( Eg:06-5-2014 )">
+                                                        <f:convertDateTime pattern="dd-MM-yyyy"/> 
+                                                    </p:inputText>
+                                                    <i class="icon-calendar" hidden=""></i>
+                                                </div>
+
+
+                                                <script type="text/javascript">
+                                                    $(".datepicker_box .icon-calendar").click(function(){
+                                                        $(this).prev(".datepicker").trigger("click").trigger("focus");
+                                                    });
+                                                    var $j = jQuery.noConflict();
+                                                    $j('.coresdate').datepicker({
+                                                        format: 'dd-mm-yyyy'
+                                                    }).on('changeDate', function(ev) {
+                                                        $j(this).datepicker('hide');
+                                                        var input = $j(this);
+                                                        var id = $j(this).attr('id');
+                                                        var address = $('.proofofAddress').val();
+                                                        if (id == 'frm_investor_profile:adrsvalidity'){
+                                                            if (address == 'Passport' || address == 'Driving Licence'){
+                                                                var date3 = new Date();
+                                                                var a3 = Date.parse(date3.toDateString());
+                                                                var b3 = new Date(a3).getTime();
+                                                                var exampleDate3 = input.val().toString();
+                                                                var parts3 = exampleDate3.split('-');
+                                                                var psdt3 = new Date(parts3[2], parts3[1] - 1, parts3[0]).getTime();
+                                                                if (b3 > psdt3){
+                                                                    $j(input).val("");
+                                                                    alert('Past date cannot be selected');
+                                                                }
+                                                            }
+                                                        }
+                                                    });                                                
+                                                                                                    
+                                                </script>
+                                                <br></br>
+                                                <h:message for="adrsvalidity" styleClass="err_message" style="background: white; border: none;
+                                                           font-size: 12px;font-family: 'Open Sans', sans-serif;margin-left: -6px;"/>
+                                            </div>
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                    <div class="span3">
+                                        <label> Upload Scanned Copy of Address Proof
+                                        </label>
+                                        <div class="upload_btn ">
+                                            <span class="btn-flat default">
+                                                <h:inputFile id="cfile"  requiredMessage="Upload failed" 
+                                                             title="Maximum allowable size 2MBSupported formats(pdf, jpeg, png files only)">
+                                                </h:inputFile>ATTACH FILE
+                                            </span>
+                                        </div><br/>  
+                                        <div id="cfile_name" style="display: none"> </div>
+                                        <div id="cfile_name2"> </div>
+                                        <br/>
+                                        <h:message for="cfile" styleClass="err_message" 
+                                                   style="background: white; border: none;"/>
+                                    </div>
+                                    <div class="span3">
+                                        <span>
+                                            Optional. <b>Attaching documents helps us process your application FASTER</b><br/>
+                                            Maximum allowable size 2MB.<br/>
+                                            Supported formats(pdf, jpeg, png files only)
+                                        </span>    
+                                    </div>
+                                </div>
+
+
+                                <div class="row-fluid form-wrapper">
+                                    <div class="span3">
+                                        <label style="width: 295px">Do You Have A Different Permanent Address?
+                                            <h:selectBooleanCheckbox id="permanentadrs" class="permanentadrs" value="#{userRegistrationBean.registrationVo.permenentAddress}"
+                                                                     style="margin-top: 0px;height: 15px;margin-right: 15px;">
+                                                <f:ajax  render="address1 permenntaddress"/> 
+                                            </h:selectBooleanCheckbox>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <h:panelGroup id="address1">
+                                    <h:panelGroup id="permenntaddress" rendered="#{userRegistrationBean.registrationVo.permenentAddress}">
+                                        <div class="row-fluid form-wrapper">
+                                            <div  class="span3" style="width: 443px;">
+                                                <label>Address Line1<span style="color:red">*</span></label>
+                                                <h:inputText id="address2_line1" value="#{userRegistrationBean.registrationVo.address2_Line1}"                                                         
+                                                             styleClass="span6" required="true" maxlength="37"
+                                                             requiredMessage="Please enter Home Address "
+                                                             validatorMessage="Please enter valid home address" style="width: 460px!important;">
+                                                </h:inputText><br></br>
+                                                <h:message for="address2_line1" styleClass="err_message"/>
+                                            </div>
+                                            <div  class="span3" style="width: 449px;">
+                                                <label>Address Line2</label>
+                                                <h:inputText id="address2_street" value="#{userRegistrationBean.registrationVo.address2_Street}"                                                         
+                                                             styleClass="span6" required="false" maxlength="37"
+                                                             requiredMessage="Please enter Address Line2 "
+                                                             validatorMessage="Please enter valid Address Line2" style="width: 460px!important;">
+                                                </h:inputText><br></br>
+                                                <h:message for="address2_street" styleClass="err_message"/>
+                                            </div>
+                                            <!--
+                                            <div  class="span3">
+                                                <label>Landmark</label>
+                                                <h:inputText id="address2_landmark" value="{userRegistrationBean.registrationVo.address2_Landmark}"                                                         
+                                                             styleClass="span6" required="false" maxlength="14"
+                                                             requiredMessage="Please enter Landmark "
+                                                             validatorMessage="Please enter valid Landmark">
+                                                </h:inputText><br></br>
+                                                <h:message for="address2_landmark" styleClass="err_message"/>
+                                            </div>
+                                            -->
+                                        </div>
+
+                                        <div class="row-fluid form-wrapper">
+                                            <div class="span3">
+                                                <label>Country<span style="color:red">*</span></label>
+                                                <div class="ui-select">
+                                                    <h:selectOneMenu value="#{userRegistrationBean.registrationVo.pcountry}" style="width: 100%;"
+                                                                     id="pmnt_country">
+                                                        <f:selectItems value="#{userRegistrationBean.countryList.entrySet()}" 
+                                                                       var="countryList2" 
+                                                                       itemLabel="#{countryList2.value}" itemValue="#{countryList2.key}"/>
+                                                        <p:ajax event="change" listener="#{userRegistrationBean.onChnageCountry2()}" 
+                                                                update="permstate_panel_group permcity_panel_group"> 
+                                                        </p:ajax>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+                                            <h:panelGroup id="permstate_panel_group">
+                                                <div class="span3">
+                                                    <label>State <span style="color:red">*</span></label>
+                                                    <h:inputText id="permstate_text" maxlength="50"
+                                                                 required="true" 
+                                                                 requiredMessage="Please enter State" style="width: 208px!important;"
+                                                                 value="#{userRegistrationBean.registrationVo.pstate}"
+                                                                 rendered="#{userRegistrationBean.stateList2Editable}"
+                                                                 validatorMessage="Please enter valid State">
+                                                        <f:validateRegex pattern="^$|[a-zA-Z\s]*"/> 
+                                                    </h:inputText><br></br>
+                                                    <h:panelGroup rendered="#{!userRegistrationBean.stateList2Editable}">
+                                                        <div class="ui-select">
+                                                            <h:selectOneMenu value="#{userRegistrationBean.registrationVo.pstate}" id="permstate_list" 
+                                                                             required="true" requiredMessage="Please select State"
+                                                                             style="width: 100%;">
+                                                                <p:ajax event="change" listener="#{userRegistrationBean.onChangeState(userRegistrationBean.registrationVo.pstate,2)}" update="permcity_panel_group"/> 
+                                                                <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                                <f:selectItems value="#{userRegistrationBean.stateList2.entrySet()}" 
+                                                                               var="stateList2" itemLabel="#{stateList2.value}" itemValue="#{stateList2.value}"/>
+                                                            </h:selectOneMenu>
+                                                        </div><br></br>
+                                                    </h:panelGroup>
+                                                    <h:message for="permstate_text" styleClass="err_message"></h:message> 
+                                                    <h:message for="permstate_list" styleClass="err_message"></h:message> 
+                                                </div>
+                                            </h:panelGroup>
+
+                                            <h:panelGroup id="permcity_panel_group">
+                                                <div class="span3">
+                                                    <label>City <span style="color:red">*</span></label>
+                                                    <h:inputText id="permcity_text" maxlength="50"
+                                                                 required="true"
+                                                                 requiredMessage="Please enter City" style="width: 208px!important;"
+                                                                 value="#{userRegistrationBean.registrationVo.pcity}"
+                                                                 rendered="#{userRegistrationBean.cityList2Editable}"
+                                                                 validatorMessage="Please enter valid City">
+                                                        <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                                    </h:inputText><br></br>
+                                                    <h:panelGroup rendered="#{!userRegistrationBean.cityList2Editable}">
+                                                        <div class="ui-select">
+                                                            <h:selectOneMenu value="#{userRegistrationBean.registrationVo.pcity}" id="permcity_list" 
+                                                                             required="true" requiredMessage="Please select City"
+                                                                             style="width: 100%;">
+                                                                <p:ajax event="change" update="other_perrmgroup other_permcity"/> 
+                                                                <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                                <f:selectItems value="#{userRegistrationBean.cityList2.entrySet()}" 
+                                                                               var="cityList2" itemLabel="#{cityList2.value}" itemValue="#{cityList2.value}"/>
+                                                            </h:selectOneMenu>
+                                                        </div><br></br>
+                                                    </h:panelGroup>
+                                                    <h:message for="permcity_text" styleClass="err_message"></h:message> 
+                                                    <h:message for="permcity_list" styleClass="err_message"></h:message> 
+                                                </div>
+                                            </h:panelGroup>
+
+                                            <h:panelGroup id="other_perrmgroup">
+                                                <h:panelGroup id="other_permcity" rendered="#{userRegistrationBean.registrationVo.pcity eq 'Other'}">
+                                                    <div class="span3">
+                                                        <label>City Other <span style="color:red">*</span></label>
+                                                        <h:inputText id="perm_other_city" maxlength="50"
+                                                                     required="true" styleClass="span6"
+                                                                     requiredMessage="Please enter City" 
+                                                                     value="#{userRegistrationBean.registrationVo.permanentCityOther}"
+                                                                     validatorMessage="Please enter valid City">
+                                                            <f:validateRegex pattern="^$|[a-zA-Z\s.,\-\\\/\#]*"/> 
+                                                        </h:inputText>
+                                                    </div><br></br>
+                                                    <h:message for="perm_other_city" styleClass="err_message"></h:message> 
+                                                </h:panelGroup>
+                                            </h:panelGroup>
+                                            <div  class="span3">
+                                                <label >Pin Code<span style="color:red">*</span></label>
+                                                <h:inputText  onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                              id="ppincode" value="#{userRegistrationBean.registrationVo.ppinCode}"
+                                                              maxlength="6"
+                                                              validatorMessage="Please enter valid Pin Code"
+                                                              required="true" requiredMessage="Please enter Pin Code">
+                                                    <f:validateRegex pattern="^([+]?[\d]+)?$"/> 
+                                                </h:inputText><br></br>
+                                                <h:message for="ppincode" styleClass="err_message margin_style"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row-fluid form-wrapper">
+                                            <div class="span3" >
+                                                <label>Proof of Address<span style="color:red">*</span></label>
+                                                <div class="ui-select">
+                                                    <h:selectOneMenu class="default_width select_text address2_proof" value="#{userRegistrationBean.registrationVo.address2_proof}" required="true"
+                                                                     requiredMessage="Please select Proof"  style="width: 100%;" id="address2_proof">
+                                                        <f:ajax event="change" listener="#{userRegistrationBean.clearValidity2()}" render="prmnt_proof_panel prmnt_proof_group"/> 
+                                                        <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                        <f:selectItems value="#{userRegistrationBean.proofofAddress.entrySet()}" 
+                                                                       var="proofofAddress2" 
+                                                                       itemLabel="#{proofofAddress2.key}" itemValue="#{proofofAddress2.key}"/>
+                                                    </h:selectOneMenu>
+                                                </div><br></br>
+                                                <h:message for="address2_proof" styleClass="err_message"/>
+                                            </div>
+                                            <h:panelGroup id="prmnt_proof_panel">
+                                                <h:panelGroup id="prmnt_proof_group" 
+                                                              rendered="#{userRegistrationBean.registrationVo.address2_proof.equalsIgnoreCase('Driving Licence')or
+                                                                          userRegistrationBean.registrationVo.address2_proof.equalsIgnoreCase('Passport')}">
+                                                    <div class="span3">
+                                                        <label class="browse_label">Validity/Period</label>
+                                                        <div class="datepicker_box browse_dtp">
+                                                            <p:inputText id="address2_validity" maxlength="20"  
+                                                                         requiredMessage="Please select Validity" placeholder = "DD-MM-YYYY"
+                                                                         styleClass="span6 datepicker no_lft_margin picker"
+                                                                         value="#{userRegistrationBean.registrationVo.address2_validity}"  
+                                                                         autocomplete="off" 
+                                                                         rendered="#{userRegistrationBean.registrationVo.address2_proof.equalsIgnoreCase('Driving Licence')or
+                                                                                     userRegistrationBean.registrationVo.address2_proof.equalsIgnoreCase('Passport')}"
+                                                                         converterMessage="Invalid format ( Eg:06-5-2014 )"
+                                                                         required="#{userRegistrationBean.registrationVo.address2_proof.equalsIgnoreCase('Driving Licence')or
+                                                                                     userRegistrationBean.registrationVo.address2_proof.equalsIgnoreCase('Passport')}">
+                                                                <f:convertDateTime pattern="dd-MM-yyyy"/> 
+                                                            </p:inputText>
+                                                            <i class="icon-calendar"></i>
+                                                        </div>
+                                                        <script type="text/javascript">
+                                                            $(".datepicker_box .icon-calendar").click(function(){
+                                                                $(this).prev(".datepicker").trigger("click").trigger("focus");
+                                                            });
+                                                            var $j = jQuery.noConflict();
+                                                            $j('.picker').datepicker({
+                                                                format: 'dd-mm-yyyy'
+                                                            }).on('changeDate', function(ev) {
+                                                                $j(this).datepicker('hide');
+                                                                var input = $j(this);
+                                                                var id = $j(this).attr('id');
+                                                                var paddress2 = $('.address2_proof').val();
+                                                                if (id == 'frm_investor_profile:address2_validity'){
+                                                                    if (paddress2 == 'Passport' || paddress2 == 'Driving Licence'){
+                                                                        var date = new Date();
+                                                                        var a = Date.parse(date.toDateString());
+                                                                        var b = new Date(a).getTime();
+                                                                        var exampleDate = input.val().toString();
+                                                                        var parts = exampleDate.split('-');
+                                                                        var psdt = new Date(parts[2], parts[1] - 1, parts[0]).getTime();
+                                                                        if (b > psdt){
+                                                                            $j(input).val("");
+                                                                            alert('Past date cannot be selected');
+                                                                        }
+                                                                    }
+                                                                }
+                                                            });                                                        
+                                                                                                                    
+                                                        </script>
+                                                        <br></br>
+                                                        <h:message for="address2_validity" styleClass="err_message" style="background: white; border: none;
+                                                                   font-size: 12px;font-family: 'Open Sans', sans-serif;margin-left: -6px;"/>
+                                                        <br></br>
+                                                    </div>
+                                                </h:panelGroup>
+                                            </h:panelGroup>
+                                            <div class="span3">
+                                                <label> Upload Scanned Copy of Address Proof
+                                                </label>
+                                                <div class="upload_btn ">
+                                                    <span class="btn-flat default">
+                                                        <h:inputFile id="pfile" class="pfile"
+                                                                     title="Maximum allowable size 2MBSupported formats(pdf, jpeg, png files only)"
+                                                                     requiredMessage="Upload failed">
+                                                        </h:inputFile>ATTACH FILE
+                                                    </span>
+                                                </div><br/> 
+                                                <div id="pfile_name" style="display: none"> </div>
+                                                <div id="pfile_name2"> </div><br/>
+                                                <h:message for="pfile" styleClass="err_message" 
+                                                           style="background: white; border: none;"/>
+                                                <script type="text/javascript">
+
+                                                    var permanentFile = document.getElementById('frm_investor_profile:hiddenPerm').value == '' ? 
+                                                                    '#{userRegistrationBean.registrationVo.permenentAddressFile eq null  
+                                                                   || userRegistrationBean.registrationVo.permenentAddressFile eq ''
+                                                                   ? ''
+                                                                   : userRegistrationBean.registrationVo.permenentAddressFile}'
+                                                                   : document.getElementById('frm_investor_profile:hiddenPerm').value;
+                                                    $("#pfile_name").html(permanentFile);
+                                                    // For development
+                                                    $("#pfile_name2").html($("#pfile_name").text().split('\/')[4]);
+                                                    // For UAT/production
+                                                    //$("#pfile_name2").html($("#pfile_name").text().split('\/')[5]);
+                                                    $('input[type=file]').change(function(e){
+                                                        $in = $(this);
+                                                        var id = $(this).attr('id');
+                                                        $in.next().html($in.val());
+                                                        if (id == 'frm_investor_profile:pfile'){
+                                                            var file = $('input[type=file]').get(2).files[0];
+                                                            if (file.size > 2097152){
+                                                                alert('Maximum allowable size 2MB.');
+                                                            } else{
+                                                                var form = new FormData();
+                                                                form.append('file', file);
+                                                                form.append('regId',#{userRegistrationBean.registrationVo.regId});
+                                                                $.ajax({
+                                                                    url: webUrl+ '#{userRegistrationBean.contextRoot}' + "/service/mmfresource/uploadPermAdrsFile",
+                                                                    type: "POST",
+                                                                    data: form,
+                                                                    cache: false,
+                                                                    contentType: false,
+                                                                    processData: false,
+                                                                    success: function(result){
+                                                                        var name = "#{userRegistrationBean.permProofPath}" + "#{userRegistrationBean.registrationVo.regId}" + "_PERMENENTADDR."+file.name.split('.').pop();
+                                                                        $("#pfile_name").html(name);
+                                                                        $("#pfile_name2").html("#{userRegistrationBean.registrationVo.regId}" + "_PERMENENTADDR."+file.name.split('.').pop());
+                                                                        saveData();
+                                                                        alert('file upload complete');
+                                                                        document.getElementById('frm_investor_profile:hiddenPerm').value = name;
+                                                                    },
+                                                                    error: function(response){
+                                                                        var error = "error";
+                                                                        if (response.status === 409){
+                                                                            error = response.responseText;
+                                                                            $("#pfile_name").html("");
+                                                                        }
+                                                                        alert('File upload failed');
+                                                                    },
+                                                                });
+                                                            }
+                                                        }
+                                                    });                                                
+                                                                                                        
+                                            </script>
+                                            </div>
+                                            <div class="span3">
+                                                <span>
+                                                    Optional. <b>Attaching documents helps us process your application FASTER</b><br/>
+                                                    Maximum allowable size 2MB.<br/>
+                                                    Supported formats(pdf, jpeg, png files only)
+                                                </span>    
+                                            </div>
+                                        </div>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+
+                                <h4 class="title" style="margin-top: 25px;">Contact Numbers</h4>
+                                <div class="row-fluid form-wrapper"> 
+                                    <div  class="span3">
+                                        <label style="width: 100%">Mobile<span style="color:red">*</span></label>
+                                        <div class="clearfix inputgrp mobile">
+                                            <h:inputText value="+ 91" readonly="true"/>
+                                            <span>&#32;</span>
+                                            <p:inputText  onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                          id="mobile" value="#{userRegistrationBean.registrationVo.mobileNumber}"
+                                                          styleClass="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all span6"
+                                                          maxlength="10" style="font-weight:normal"
+                                                          validatorMessage="Please enter valid Mobile number"
+                                                          placeholder="(Eg:8622334455)" required="true" 
+                                                          requiredMessage="Please specify Mobile Number">
+                                                <f:validateRegex pattern="^$|^\d{10}$"/>
+                                            </p:inputText><br></br>
+                                            <h:message for="mobile" styleClass="err_message"/>  
+                                        </div>										
+                                    </div>
+                                    <div  class="span3">
+                                        <label>Email<span style="color:red">*</span></label>
+                                        <h:inputText value="#{userRegistrationBean.registrationVo.email}"
+                                                     required="true" requiredMessage="Please enter Email"
+                                                     styleClass="span6" maxlength="50" id="email-in"
+                                                     validatorMessage="Invalid email format"
+                                                     readonly="true">
+                                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </h:inputText><br></br>
+                                        <h:message for="email-in" styleClass="err_message"/>
+                                    </div>
+                                    <div  class="span3">
+                                        <label>Telephone(Off:)</label>
+                                        <div class="clearfix inputgrp tel">
+                                            <p:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         id="hISD" maxlength="3" value="#{userRegistrationBean.registrationVo.hisd}" placeholder="ISD"
+                                                         styleClass="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all"  
+                                                         label="HISD" validatorMessage="Please enter valid ISD Code" style="font-weight:normal">
+                                                <f:validateRegex pattern="^([+]?[\d]+)?$"/> 
+                                            </p:inputText>
+                                            <p:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         value="#{userRegistrationBean.registrationVo.hstd}" maxlength="4" placeholder="STD"
+                                                         id="hSTD"  styleClass="ui-inputfield ui-inputtext ui-widget ui-state-default"  
+                                                         label="HSTD" validatorMessage="Please enter valid STD Code" style="font-weight:normal">
+                                                <f:validateRegex pattern="^([\d]+)?$"/> 
+                                            </p:inputText>
+                                            <p:inputText  onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                          id="telephone" value="#{userRegistrationBean.registrationVo.hnumber}"
+                                                          styleClass="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" 
+                                                          maxlength="8" style="font-weight:normal"
+                                                          validatorMessage="Please enter valid Office Telephone number">
+                                                <f:validateRegex pattern="^([\d]+)?$"/> 
+                                            </p:inputText><br></br>
+                                            <h:message for="telephone" styleClass="err_message"/>
+                                        </div>
+                                    </div>
+                                    <div  class="span3">
+                                        <label>Telephone(Res:)</label><div class="clearfix inputgrp tel">
+                                            <p:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         id="rISD" maxlength="3" value="#{userRegistrationBean.registrationVo.risd}" placeholder="ISD"
+                                                         styleClass="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all"  
+                                                         label="RISD" validatorMessage="Please enter valid ISD Code" style="font-weight:normal">
+                                                <f:validateRegex pattern="^([+]?[\d]+)?$"/> 
+                                            </p:inputText>
+                                            <p:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         value="#{userRegistrationBean.registrationVo.rstd}" maxlength="4" placeholder="STD"
+                                                         id="rSTD"  styleClass="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all"  label="RSTD" 
+                                                         validatorMessage="Please enter valid STD Code" style="font-weight:normal">
+                                                <f:validateRegex pattern="^([\d]+)?$"/> 
+                                            </p:inputText>
+                                            <p:inputText  onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                          id="tele_office" value="#{userRegistrationBean.registrationVo.rnumber}"
+                                                          styleClass="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" maxlength="8" 
+                                                          validatorMessage="Please enter valid Telephone number"
+                                                          style="width: 80px!important;font-weight:normal">
+                                                <f:validateRegex pattern="^([\d]+)?$"/> 
+                                            </p:inputText><br></br>
+                                            <h:message for="tele_office" styleClass="err_message"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row-fluid form-wrapper">
+                                    <!--
+                                    <div  class="span3" >
+                                        <label>Fax</label>
+                                        <div class="clearfix inputgrp tel">
+                                            <p:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         id="fISD" maxlength="3" value="{userRegistrationBean.registrationVo.fisd}" placeholder="ISD"
+                                                         styleClass="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" label="FISD"
+                                                         validatorMessage="Please enter valid ISD Code" style="font-weight:normal">
+                                                <f:validateRegex pattern="^([+]?[\d]+)?$"/> 
+                                            </p:inputText>
+                                            <p:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         value="{userRegistrationBean.registrationVo.fstd}"  placeholder="STD" style="font-weight:normal"
+                                                         maxlength="4"  id="fSTD"  styleClass="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all"
+                                                         label="FSTD" validatorMessage="Please enter valid STD Code">
+                                                <f:validateRegex pattern="^([\d]+)?$"/> 
+                                            </p:inputText>
+                                            <p:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         id="fax" value="{userRegistrationBean.registrationVo.fnumber}"
+                                                         styleClass="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" maxlength="8"
+                                                         validatorMessage="Please enter valid Fax number"
+                                                         style="width: 80px!important;font-weight:normal">
+                                                <f:validateRegex pattern="^([\d]+)?$"/>
+                                            </p:inputText><br></br>
+                                            <h:message for="fax" styleClass="err_message"/>
+                                        </div>
+                                    </div>
+                                    -->
+                                </div>
+                                <h4 class="title " id="investor_trddata" style="margin-top: 25px;">Bank Details</h4> 
+                                <div class="row-fluid form-wrapper bank_det_copy ">
+                                    <div class="span3">
+                                        <label style="width: 291px">Bank<span style="color:red">*</span></label>
+                                        <div class="ui-select">
+                                            <h:selectOneMenu value="#{userRegistrationBean.registrationVo.bankname}" id="Bank_list" 
+                                                             required="true" requiredMessage="Please select Bank"
+                                                             style="width: 100%;">
+                                                <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                <f:selectItems value="#{userRegistrationBean.bankList.entrySet()}" 
+                                                               var="bankList" itemLabel="#{bankList.value}" itemValue="#{bankList.value}"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <br></br>
+                                        <h:message for="Bank_list" styleClass="err_message"/>
+                                    </div>
+
+                                    <div class="span3">
+                                        <label>Account Type<span style="color:red">*</span></label>
+                                        <div class="ui-select">
+                                            <h:selectOneMenu  value="#{userRegistrationBean.registrationVo.bankSubType}" required="true"
+                                                              requiredMessage="Please select Account Type"  style="margin-left: 0px;width:100%" 
+                                                              id="aSubtype">
+                                                <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                <f:selectItems value="#{userRegistrationBean.bankSubTypeData.entrySet()}" 
+                                                               var="bankSubTypeData" 
+                                                               itemLabel="#{bankSubTypeData.key}" itemValue="#{bankSubTypeData.key}"/>
+                                            </h:selectOneMenu>
+                                        </div><br></br>
+                                        <h:message for="aSubtype" styleClass="err_message"/>
+                                    </div>
+
+                                    <div class="span3">
+                                        <label>Bank Account No:<span style="color:red">*</span></label>
+
+
+                                        <h:inputSecret redisplay="true" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                       maxlength="20" required="true"   id="acno" 
+                                                       requiredMessage="Please enter Account Number" styleClass="span4"
+                                                       value="#{userRegistrationBean.registrationVo.bankAccountNumber}"  
+                                                       validatorMessage="Please enter valid Account Number">
+                                            <f:validateRegex pattern="^([\d]+)?$"/> 
+                                        </h:inputSecret >
+
+                                        <br></br>
+                                        <h:message for="acno" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3">
+                                        <label>Re-enter Bank Account No:<span style="color:red">*</span></label>
+                                        <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                     maxlength="20" required="true"   id="re-acno" 
+                                                     onmousedown="DisableRightClick(event)" 
+                                                     onkeydown="return DisableCtrlKey(event)" 
+                                                     requiredMessage="Please Re-enter Account No" styleClass="span4"
+                                                     value="#{userRegistrationBean.raccontNumber}"  
+                                                     validatorMessage="Please enter valid Account Number">
+                                            <f:validateRegex pattern="^([\d]+)?$"/> 
+                                        </h:inputText> <br></br>
+                                        <h:message for="re-acno" styleClass="err_message"/>
+                                    </div>
+                                </div>	    
+
+                                <div class="row-fluid form-wrapper">
+                                    <div class="span3">
+                                        <label>IFSC No.<span style="color:red">*</span></label>
+                                        <h:inputText  id="ifcs_code" value="#{userRegistrationBean.registrationVo.ifsc}"
+                                                      styleClass="span4" maxlength="11"  required="true"                                                    
+                                                      validatorMessage="Please enter valid IFSC(Eg:SBIN0002806)"
+                                                      requiredMessage="Please enter IFSC Number" >
+                                            <f:validateRegex pattern="^$|[A-Z|a-z]{4}[0][\d]{6}$"/> 
+                                        </h:inputText><br></br>
+                                        <h:message for="ifcs_code" styleClass="err_message"/>
+                                    </div>
+
+                                    <div class="span3">
+                                        <label>MICR No</label>
+                                        <h:inputText  onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                      maxlength="9" id="micr" required="false" requiredMessage="Please enter MICR Number "
+                                                      styleClass="span4" value="#{userRegistrationBean.registrationVo.micrCode}" 
+                                                      validatorMessage="Please enter valid MICR Number"  >
+                                            <f:validateRegex pattern="^$|^[0-9]{9}$"/>
+                                        </h:inputText><br></br>
+                                        <h:message for="micr" styleClass="err_message"/>
+                                    </div>
+                                </div>
+                                <div class="row-fluid form-wrapper">
+
+                                    <div class="span3">
+                                        <label>Address Line1<span style="color:red">*</span> </label>
+                                        <h:inputText id="bankaddress_line1" value="#{userRegistrationBean.registrationVo.building}"                                                         
+                                                     styleClass="span4" required="true" maxlength="50"
+                                                     requiredMessage="Please enter Bank address "
+                                                     validatorMessage="Please enter valid Resident address">
+                                            <!-- <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#\:]*"/> -->
+                                        </h:inputText><br></br>
+                                        <h:message for="bankaddress_line1" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3">
+                                        <label>Address Line2</label>
+                                        <h:inputText id="bankaddress_line2" value="#{userRegistrationBean.registrationVo.bstreet}"                                                         
+                                                     styleClass="span6" required="false" maxlength="30"
+                                                     requiredMessage="Please enter Address Line 2 "
+                                                     validatorMessage="Please enter Address Line 2">
+                                            <!-- <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#\:]*"/> -->
+                                        </h:inputText><br></br>
+                                        <h:message for="bankaddress_line2" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3">
+                                        <label>Landmark</label>
+                                        <h:inputText id="bankaddress_landmark" value="#{userRegistrationBean.registrationVo.barea}"                                                         
+                                                     styleClass="span6" required="false" maxlength="10"
+                                                     requiredMessage="Please enter Landmark "
+                                                     validatorMessage="Please enter valid Landmark">
+                                            <!-- <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#\:]*"/> -->
+                                        </h:inputText><br></br>
+                                        <h:message for="bankaddress_landmark" styleClass="err_message"/>
+                                    </div>
+                                    <div class="span3">
+                                        <label>Pin Code <span style="color:red">*</span> </label>
+                                        <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                     id="bankAddrpincode" required="true"
+                                                     maxlength="6" style="width: 197px;"
+                                                     requiredMessage="Please enter Pin Code"
+                                                     validatorMessage="Please enter valid Pin Code"
+                                                     styleClass="span6" value="#{userRegistrationBean.registrationVo.bpincode}">
+                                            <f:validateRegex pattern="^$|^([\d]+)?$"/>
+                                        </h:inputText><br></br>
+                                        <h:message for="bankAddrpincode" styleClass="err_message"></h:message>
+                                    </div> 
+                                </div>
+
+
+                                <div class="row-fluid form-wrapper">
+
+                                    <div class="span3">
+                                        <label>Country<span style="color:red">*</span></label>
+                                        <div class="ui-select">
+                                            <h:selectOneMenu value="#{userRegistrationBean.registrationVo.bank_country}" style="width: 100%;"
+                                                             id="bnk_country">
+                                                <f:selectItems value="#{userRegistrationBean.countryList.entrySet()}" 
+                                                               var="bcountryList" 
+                                                               itemLabel="#{bcountryList.value}" itemValue="#{bcountryList.key}"/>
+                                                <p:ajax event="change" listener="#{userRegistrationBean.onChnageCountryBank()}" update="bankstate_panel_group bankcity_panel_group"/> 
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <h:panelGroup id="bankstate_panel_group">
+                                        <div class="span3">
+                                            <label>State<span style="color:red">*</span></label>
+                                            <h:inputText id="bankstate_text" maxlength="50"
+                                                         required="true" 
+                                                         requiredMessage="Please enter State"
+                                                         value="#{userRegistrationBean.registrationVo.bank_state}"
+                                                         rendered="#{userRegistrationBean.stateListBank2Editable}"
+                                                         validatorMessage="Please enter valid State">
+                                                <f:validateRegex pattern="^$|[a-zA-Z\s]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:panelGroup rendered="#{!userRegistrationBean.stateListBank2Editable}">
+                                                <div class="ui-select">
+                                                    <h:selectOneMenu value="#{userRegistrationBean.registrationVo.bank_state}" id="bankcity_list" 
+                                                                     required="true" requiredMessage="Please select State"
+                                                                     style="width: 100%;">
+                                                        <p:ajax event="change" listener="#{userRegistrationBean.onChangeState(userRegistrationBean.registrationVo.bank_state,3)}" update="bankcity_panel_group"/> 
+                                                        <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                        <f:selectItems value="#{userRegistrationBean.stateListBank2.entrySet()}" 
+                                                                       var="bstateList" itemLabel="#{bstateList.value}" itemValue="#{bstateList.value}"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                                <br></br>
+                                            </h:panelGroup>
+                                            <h:message for="bankstate_text" styleClass="err_message"></h:message> 
+                                            <h:message for="bankcity_list" styleClass="err_message"></h:message> 
+                                        </div>
+                                    </h:panelGroup>
+
+                                    <h:panelGroup id="bankcity_panel_group">
+                                        <div class="span3">
+                                            <label>City<span style="color:red">*</span></label>
+                                            <h:inputText id="bank_text" maxlength="50"
+                                                         required="true" 
+                                                         requiredMessage="Please enter City" 
+                                                         value="#{userRegistrationBean.registrationVo.bcity}"
+                                                         rendered="#{userRegistrationBean.cityListBank2Editable}"
+                                                         validatorMessage="Please enter valid City">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:panelGroup rendered="#{!userRegistrationBean.cityListBank2Editable}">
+                                                <div class="ui-select">
+                                                    <h:selectOneMenu value="#{userRegistrationBean.registrationVo.bcity}" id="bcityList" 
+                                                                     required="true" requiredMessage="Please select City"
+                                                                     style="width: 100%;">
+                                                        <p:ajax event="change" update="other_bnkgroup other_bnkcity"/>
+                                                        <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                        <f:selectItems value="#{userRegistrationBean.cityListBank2.entrySet()}" 
+                                                                       var="bcityList" itemLabel="#{bcityList.value}" itemValue="#{bcityList.value}"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                                <br></br>
+                                            </h:panelGroup>
+                                            <h:message for="bank_text" styleClass="err_message"></h:message> 
+                                            <h:message for="bcityList" styleClass="err_message"></h:message> 
+                                        </div>
+                                    </h:panelGroup>
+
+                                    <h:panelGroup id="other_bnkgroup">
+                                        <h:panelGroup id="other_bnkcity" rendered="#{userRegistrationBean.registrationVo.bcity eq 'Other'}">
+                                            <div class="span3">
+                                                <label>City Other <span style="color:red">*</span></label>
+                                                <h:inputText id="bnk_city" maxlength="50"
+                                                             required="true" styleClass="span6"
+                                                             requiredMessage="Please enter City" 
+                                                             value="#{userRegistrationBean.registrationVo.bnk_city_other}"
+                                                             validatorMessage="Please enter valid City">
+                                                    <f:validateRegex pattern="^$|[a-zA-Z\s.,\-\\\/\#]*"/> 
+                                                </h:inputText>
+                                            </div><br></br>
+                                            <h:message for="bnk_city" styleClass="err_message"></h:message> 
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-row">
+                        <h:inputHidden value="#{userRegistrationBean.registrationVo.email}"></h:inputHidden>
+                        <h:inputHidden value="#{userRegistrationBean.registrationVo.advisor}"></h:inputHidden>
+                        <h:inputHidden id="hiddenPan"/>
+                        <h:inputHidden id="hiddenCores"/>
+                        <h:inputHidden id="hiddenPerm"/>
+                        <h:commandLink styleClass="btn-flat success" value="Save &amp; Proceed"   onclick="stopTimer()"
+                                       actionListener="#{userRegistrationBean.doActionNextpageListener}"
+                                       action="#{userRegistrationBean.doActionNextpage}">
+                        </h:commandLink>
+                        <h:commandLink styleClass="btn-flat success" immediate="true"
+                                       value="Cancel" id="cancel" action="#{userRegistrationBean.cancel()}"/>
+                        <h:commandLink styleClass="btn-flat success" immediate="true" 
+                                       value="Save Draft" id="save_draft" actionListener="#{userRegistrationBean.saveDraft()}"
+                                       action="#{userRegistrationBean.getredirectPage()}"/>
+                    </div>                            
+
+                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+                    <script src="#{request.contextPath}/js/bootstrap.datepicker.js"></script>
+                    <script type="text/javascript">
+                        
+                        //webpage domain origin
+                        var webUrl = window.location.origin;
+                        
+                        $(".datepicker_box .icon-calendar").click(function(){
+                            $(this).prev(".datepicker").trigger("click").trigger("focus");
+                        });
+                        var $j = jQuery.noConflict();
+                        $j('.datepicker').datepicker({
+                            format: 'dd-mm-yyyy'
+                        }).on('changeDate', function(ev) {
+                            $j(this).datepicker('hide');
+                            var input = $j(this);
+                            var id = $j(this).attr('id');
+                            var caddress = $('.proofofAddress').val();
+                            var paddress = $('.address2_proof').val();
+                            if (id == 'frm_investor_profile:dob'){
+                                var date = new Date();
+                                var a = Date.parse(date.toDateString());
+                                var b = new Date(a).getTime();
+                                var exampleDate = input.val().toString();
+                                var parts = exampleDate.split('-');
+                                var psdt = new Date(parts[2], parts[1] - 1, parts[0]).getTime();
+                                if (psdt > b){
+                                    $j(input).val("");
+                                    alert('future date cannot be selected');
+                                }
+                            }
+                            if (id == 'frm_investor_profile:address2_validity'){
+                                if (paddress == 'Passport' || paddress == 'Driving Licence'){
+                                    var date1 = new Date();
+                                    var a1 = Date.parse(date1.toDateString());
+                                    var b1 = new Date(a1).getTime();
+                                    var exampleDate1 = input.val().toString();
+                                    var parts1 = exampleDate1.split('-');
+                                    var psdt1 = new Date(parts1[2], parts1[1] - 1, parts1[0]).getTime();
+                                    if (b1 > psdt1){
+                                        $j(input).val("");
+                                        alert('Past date cannot be selected');
+                                    }
+                                }
+                            }
+                            if (id == 'frm_investor_profile:adrsvalidity'){
+                                if (caddress == 'Passport' || caddress == 'Driving Licence'){
+                                    var date2 = new Date();
+                                    var a2 = Date.parse(date2.toDateString());
+                                    var b2 = new Date(a2).getTime();
+                                    var exampleDate2 = input.val().toString();
+                                    var parts2 = exampleDate2.split('-');
+                                    var psdt2 = new Date(parts2[2], parts2[1] - 1, parts2[0]).getTime();
+                                    if (b2 > psdt2){
+                                        $j(input).val("");
+                                        alert('Past date cannot be selected');
+                                    }
+                                }
+                            }
+                        });
+                            
+                        function startSpinner() {
+                            startPageSpinner();
+                        }
+
+                        //Code to disable  mouse right click 
+                        function DisableRightClick(event){
+                            if (event.button == 2){
+                                alert("Please Re-enter Account Number");
+                            }
+                        }
+
+                        //Code to disable CTRL key press
+                        function DisableCtrlKey(e){
+                            var code = (document.all) ? event.keyCode:e.which;
+                            var message = "Please Re-enter Account Number";
+                            if (parseInt(code) == 17){
+                                alert(message);
+                                window.event.returnValue = false;
+                            }
+                        }
+
+
+                        var correspondenceFile = document.getElementById('frm_investor_profile:hiddenCores').value == '' ?
+                                                '#{userRegistrationBean.registrationVo.corespondenceAddressFile eq null || 
+                                                userRegistrationBean.registrationVo.corespondenceAddressFile eq ''? ''
+                                                : userRegistrationBean.registrationVo.corespondenceAddressFile}'
+                                                : document.getElementById('frm_investor_profile:hiddenCores').value;
+                        var permanentFile = document.getElementById('frm_investor_profile:hiddenPerm').value == '' ?
+                                            '#{userRegistrationBean.registrationVo.permenentAddressFile eq null || 
+                                            userRegistrationBean.registrationVo.permenentAddressFile eq ''? ''
+                                            : userRegistrationBean.registrationVo.permenentAddressFile}'
+                                            : document.getElementById('frm_investor_profile:hiddenPerm').value;
+                        var panFile = document.getElementById('frm_investor_profile:hiddenPan').value == '' ?
+                                    '#{userRegistrationBean.registrationVo.panUploadFile eq null || 
+                                    userRegistrationBean.registrationVo.panUploadFile eq ''? ''
+                                    : userRegistrationBean.registrationVo.panUploadFile}'
+                                    : document.getElementById('frm_investor_profile:hiddenPan').value;
+                        $("#cfile_name").html(correspondenceFile);
+                        $("#pfile_name").html(permanentFile);
+                        $("#pan_name").html(panFile);
+                        // For development
+                        $("#cfile_name2").html($("#cfile_name").text().split('\/')[4]);
+                        $("#pfile_name2").html($("#pfile_name").text().split('\/')[4]);
+                        $("#pan_name2").html($("#pan_name").text().split('\/')[3]);
+                        // For UAT/production
+                        //$("#cfile_name2").html($("#cfile_name").text().split('\/')[5]);
+                        //$("#pfile_name2").html($("#pfile_name").text().split('\/')[5]);
+                        //$("#pan_name2").html($("#pan_name").text().split('\/')[4]);
+                        $('input[type=file]').change(function(e){
+                            $in = $(this);
+                            var id = $(this).attr('id');
+                            $in.next().html($in.val());
+                            if (id == 'frm_investor_profile:cfile'){
+                                var file = $('input[type=file]').get(1).files[0];
+                                if (file.size > 2097152){
+                                    alert('Maximum allowable size 2MB.');
+                                } else{
+                                    var form = new FormData();
+                                    form.append('file', file);
+                                    form.append('regId',#{userRegistrationBean.registrationVo.regId});
+                                    $.ajax({
+                                        url: webUrl+ '#{userRegistrationBean.contextRoot}' + "/service/mmfresource/uploadCoresAddrsFile",
+                                        type: "POST",
+                                        data: form,
+                                        cache: false,
+                                        contentType: false,
+                                        processData: false,
+                                        success: function(result){
+                                        var name = "#{userRegistrationBean.coresProofPath}" + "#{userRegistrationBean.registrationVo.regId}" + "_CORRESPONDENCEADDR."+file.name.split('.').pop();
+                                                $("#cfile_name").html(name);
+                                                $("#cfile_name2").html("#{userRegistrationBean.registrationVo.regId}" + "_CORRESPONDENCEADDR."+file.name.split('.').pop());
+                                                saveData();
+                                                alert('file upload complete');
+                                                document.getElementById('frm_investor_profile:hiddenCores').value = name;
+                                        },
+                                        error: function(response){
+                                        var error = "error";
+                                                if (response.status === 409){
+                                        error = response.responseText;
+                                                $("#cfile_name").html("");
+                                        }
+                                        alert('File upload failed');
+                                        },
+                                    });
+                                }
+                            }
+                            if (id == 'frm_investor_profile:pan_file'){
+                                var file = $('input[type=file]').get(0).files[0];
+                                if (file.size > 2097152){
+                                    alert('Maximum allowable size 2MB.');
+                                } else{
+                                    var form = new FormData();
+                                    form.append('file', file);
+                                    form.append('regId',#{userRegistrationBean.registrationVo.regId});
+                                    $.ajax({
+                                        url: webUrl+ '#{userRegistrationBean.contextRoot}' + "/service/mmfresource/uploadPanFile",
+                                        type: "POST",
+                                        data: form,
+                                        cache: false,
+                                        contentType: false,
+                                        processData: false,
+                                        success: function(result){
+                                        var name = "#{userRegistrationBean.panPath}" + "#{userRegistrationBean.registrationVo.regId}" + "_PAN_COPY."+file.name.split('.').pop();
+                                                $("#pan_name").html(name);
+                                                $("#pan_name2").html("#{userRegistrationBean.registrationVo.regId}" + "_PAN_COPY."+file.name.split('.').pop());
+                                                saveData();
+                                                alert('file upload complete');
+                                                document.getElementById('frm_investor_profile:hiddenPan').value = name;
+                                        },
+                                        error: function(response){
+                                        var error = "error";
+                                                if (response.status === 409){
+                                        error = response.responseText;
+                                                $("#pan_name").html("");
+                                        }
+                                        alert('File upload failed');
+                                        },
+                                    });
+                                }
+                            }
+                        });
+                        
+                        var interval = self.setInterval(saveData, 10000);
+                        
+                        function saveData() {
+                            //Personal Details
+                            var firstname = (document.getElementById('frm_investor_profile:ipt_name') == null ? '' :document.getElementById('frm_investor_profile:ipt_name').value);
+                            var middlename = (document.getElementById('frm_investor_profile:ipt_mname') == null ? '' :document.getElementById('frm_investor_profile:ipt_mname').value);
+                            var lastname = (document.getElementById('frm_investor_profile:ipt_lname') == null ? '' :document.getElementById('frm_investor_profile:ipt_lname').value);
+                            var fatherSpouse = (document.getElementById('frm_investor_profile:fsname') == null ? '' :document.getElementById('frm_investor_profile:fsname').value);
+                            var dob = (document.getElementById('frm_investor_profile:dob') == null ? '' :document.getElementById('frm_investor_profile:dob').value);
+                            var nationality = (document.getElementById('frm_investor_profile:nationality') == null ? '' :document.getElementById('frm_investor_profile:nationality').value);
+                            var status = (document.getElementById('frm_investor_profile:status') == null ? '' :document.getElementById('frm_investor_profile:status').value);
+                            var gender = (document.getElementById('frm_investor_profile:gender') == null ? '' :document.getElementById('frm_investor_profile:gender').value);
+                            var mstatus = (document.getElementById('frm_investor_profile:mstatus') == null ? '' :document.getElementById('frm_investor_profile:mstatus').value);
+                            var uid = (document.getElementById('frm_investor_profile:UID') == null ? '' :document.getElementById('frm_investor_profile:UID').value);
+                            var pan = (document.getElementById('frm_investor_profile:panno_in') == null ? '' :document.getElementById('frm_investor_profile:panno_in').value);
+                            //Correspondence Address
+                            var caddressline1 = (document.getElementById('frm_investor_profile:address1_line1') == null ? '' :document.getElementById('frm_investor_profile:address1_line1').value);
+                            var caddressline2 = (document.getElementById('frm_investor_profile:address1_line2') == null ? '' :document.getElementById('frm_investor_profile:address1_line2').value);
+                            var clandmark = (document.getElementById('frm_investor_profile:address1_landmark') == null ? '' :document.getElementById('frm_investor_profile:address1_landmark').value);
+                            var cpincode = (document.getElementById('frm_investor_profile:pincode') == null ? '' :document.getElementById('frm_investor_profile:pincode').value);
+                            var country = (document.getElementById('frm_investor_profile:cores_country') == null ? '' :document.getElementById('frm_investor_profile:cores_country').value);
+                            var cstate;
+                            if (document.getElementById('frm_investor_profile:state_text') !== null){
+                                cstate = (document.getElementById('frm_investor_profile:state_text') == null ? '' :document.getElementById('frm_investor_profile:state_text').value);
+                            } else{
+                                cstate = (document.getElementById('frm_investor_profile:state_list') == null ? '' :document.getElementById('frm_investor_profile:state_list').value);
+                            }
+                            var ccity;
+                            if (document.getElementById('frm_investor_profile:city_text') !== null){
+                                ccity = (document.getElementById('frm_investor_profile:city_text') == null ? '' :document.getElementById('frm_investor_profile:city_text').value);
+                            } else{
+                                ccity = (document.getElementById('frm_investor_profile:city_list') == null ? '' :document.getElementById('frm_investor_profile:city_list').value);
+                            }
+                            var cCityOther = (document.getElementById('frm_investor_profile:cores_city') == null ? '' :document.getElementById('frm_investor_profile:cores_city').value);
+                            var cproof = (document.getElementById('frm_investor_profile:proofofAddress') == null ? '' :document.getElementById('frm_investor_profile:proofofAddress').value);
+                            var cvalidity = (document.getElementById('frm_investor_profile:adrsvalidity') == null ? '' :document.getElementById('frm_investor_profile:adrsvalidity').value);
+                            //permanent details
+                            var permenentAddress = $('.permanentadrs').is(':checked');
+                            var paddressline1 = (document.getElementById('frm_investor_profile:address2_line1') == null ? '' :document.getElementById('frm_investor_profile:address2_line1').value);
+                            var paddressline2 = (document.getElementById('frm_investor_profile:address2_street') == null ? '' :document.getElementById('frm_investor_profile:address2_street').value);
+                            var plandmark = (document.getElementById('frm_investor_profile:address2_landmark') == null ? '' :document.getElementById('frm_investor_profile:address2_landmark').value);
+                            var ppin = (document.getElementById('frm_investor_profile:ppincode') == null ? '' :document.getElementById('frm_investor_profile:ppincode').value);
+                            var pcountry = (document.getElementById('frm_investor_profile:pmnt_country') == null ? '' :document.getElementById('frm_investor_profile:pmnt_country').value);
+                            var pstate;
+                            if (document.getElementById('frm_investor_profile:permstate_text') !== null){
+                                pstate = (document.getElementById('frm_investor_profile:permstate_text') == null ? '' :document.getElementById('frm_investor_profile:permstate_text').value);
+                            } else{
+                                pstate = (document.getElementById('frm_investor_profile:permstate_list') == null ? '' :document.getElementById('frm_investor_profile:permstate_list').value);
+                            }
+                            var pcity;
+                            if (document.getElementById('frm_investor_profile:permcity_text') !== null){
+                                pcity = (document.getElementById('frm_investor_profile:permcity_text') == null ? '' :document.getElementById('frm_investor_profile:permcity_text').value);
+                            } else{
+                                pcity = (document.getElementById('frm_investor_profile:permcity_list') == null ? '' :document.getElementById('frm_investor_profile:permcity_list').value);
+                            }
+                            var pCityOther = (document.getElementById('frm_investor_profile:perm_other_city') == null ? '' :document.getElementById('frm_investor_profile:perm_other_city').value);
+                            var pproof = (document.getElementById('frm_investor_profile:address2_proof') == null ? '' :document.getElementById('frm_investor_profile:address2_proof').value);
+                            var pvalidity = (document.getElementById('frm_investor_profile:address2_validity') == null ? '' :document.getElementById('frm_investor_profile:address2_validity').value);
+                            //Contact Numbers
+                            var mobile = (document.getElementById('frm_investor_profile:mobile') == null ? '' :document.getElementById('frm_investor_profile:mobile').value);
+                            var histd = (document.getElementById('frm_investor_profile:hISD') == null ? '' :document.getElementById('frm_investor_profile:hISD').value);
+                            var hstd = (document.getElementById('frm_investor_profile:hSTD') == null ? '' :document.getElementById('frm_investor_profile:hSTD').value);
+                            var htelephone = (document.getElementById('frm_investor_profile:telephone') == null ? '' :document.getElementById('frm_investor_profile:telephone').value);
+                            var risd = (document.getElementById('frm_investor_profile:rISD') == null ? '' :document.getElementById('frm_investor_profile:rISD').value);
+                            var rstd = (document.getElementById('frm_investor_profile:rSTD') == null ? '' :document.getElementById('frm_investor_profile:rSTD').value);
+                            var rtelephone = (document.getElementById('frm_investor_profile:tele_office') == null ? '' :document.getElementById('frm_investor_profile:tele_office').value);
+                            var fisd = (document.getElementById('frm_investor_profile:fISD') == null ? '' :document.getElementById('frm_investor_profile:fISD').value);
+                            var fstd = (document.getElementById('frm_investor_profile:fSTD') == null ? '' :document.getElementById('frm_investor_profile:fSTD').value);
+                            var ftelphone = (document.getElementById('frm_investor_profile:fax') == null ? '' :document.getElementById('frm_investor_profile:fax').value);
+                            //Bank details
+                            var bankname = (document.getElementById('frm_investor_profile:Bank_list') == null ? '' :document.getElementById('frm_investor_profile:Bank_list').value);
+                            //var branch = (document.getElementById('frm_investor_profile:Branch_list') == null ? '' :document.getElementById('frm_investor_profile:Branch_list').value);
+                            var accountType = (document.getElementById('frm_investor_profile:aSubtype') == null ? '' :document.getElementById('frm_investor_profile:aSubtype').value);
+                            var accno = (document.getElementById('frm_investor_profile:acno') == null ? '' :document.getElementById('frm_investor_profile:acno').value);
+                            var reAccno = (document.getElementById('frm_investor_profile:re-acno') == null ? '' :document.getElementById('frm_investor_profile:re-acno').value);
+                            var bifsc = (document.getElementById('frm_investor_profile:ifcs_code') == null ? '' :document.getElementById('frm_investor_profile:ifcs_code').value);
+                            var bmicr = (document.getElementById('frm_investor_profile:micr') == null ? '' :document.getElementById('frm_investor_profile:micr').value);
+                            var baddressline1 = (document.getElementById('frm_investor_profile:bankaddress_line1') == null ? '' :document.getElementById('frm_investor_profile:bankaddress_line1').value);
+                            var baddressline2 = (document.getElementById('frm_investor_profile:bankaddress_line2') == null ? '' :document.getElementById('frm_investor_profile:bankaddress_line2').value);
+                            var blandmark = (document.getElementById('frm_investor_profile:bankaddress_landmark') == null ? '' :document.getElementById('frm_investor_profile:bankaddress_landmark').value);
+                            var bpincode = (document.getElementById('frm_investor_profile:bankAddrpincode') == null ? '' :document.getElementById('frm_investor_profile:bankAddrpincode').value);
+                            var bcountry = (document.getElementById('frm_investor_profile:bnk_country') == null ? '' :document.getElementById('frm_investor_profile:bnk_country').value);
+                            var bstate;
+                            if (document.getElementById('frm_investor_profile:bankstate_text') !== null){
+                                bstate = (document.getElementById('frm_investor_profile:bankstate_text') == null ? '' :document.getElementById('frm_investor_profile:bankstate_text').value);
+                            } else{
+                                bstate = (document.getElementById('frm_investor_profile:bankcity_list') == null ? '' :document.getElementById('frm_investor_profile:bankcity_list').value);
+                            }
+                            var bcity;
+                            if (document.getElementById('frm_investor_profile:bank_text') !== null){
+                                bcity = (document.getElementById('frm_investor_profile:bank_text') == null ? '' :document.getElementById('frm_investor_profile:bank_text').value);
+                            } else{
+                                bcity = (document.getElementById('frm_investor_profile:bcityList') == null ? '' :document.getElementById('frm_investor_profile:bcityList').value);
+                            }
+                            var bnkCityOther = (document.getElementById('frm_investor_profile:bnk_city') == null ? '' :document.getElementById('frm_investor_profile:bnk_city').value);
+                            var panFilePath = ($("#pan_name").text() == null ? '#{userRegistrationBean.registrationVo.panUploadFile}' : $("#pan_name").text());
+                            var corsFilePath = ($("#cfile_name").text() == null ? '#{userRegistrationBean.registrationVo.corespondenceAddressFile}' : $("#cfile_name").text());
+                            var prmntFilePath = ($("#pfile_name").text() == null ? '#{userRegistrationBean.registrationVo.permenentAddressFile}' : $("#pfile_name").text());
+                            var JSONObject = {
+                                "regId" : "#{userRegistrationBean.registrationVo.regId}",
+                                "email" : "#{userRegistrationBean.registrationVo.email}",
+                                "firstname" : firstname,
+                                "middlename" : middlename,
+                                "lastname" : lastname,
+                                "fatherSpouse" : fatherSpouse,
+                                "dob" : dob,
+                                "nationality" : nationality,
+                                "status" : status,
+                                "gender" : gender,
+                                "mstatus" : mstatus,
+                                "uid" : uid,
+                                "pan" : pan,
+                                "caddressline1" : caddressline1,
+                                "caddressline2" : caddressline2,
+                                "clandmark" : clandmark,
+                                "cpincode" : cpincode,
+                                "country" : country,
+                                "cstate" : cstate,
+                                "ccity" : ccity,
+                                "cproof" : cproof,
+                                "cvalidity" : cvalidity,
+                                "permenentAddress" : permenentAddress,
+                                "paddressline1" : paddressline1,
+                                "paddressline2" : paddressline2,
+                                "plandmark" : plandmark,
+                                "ppin" : ppin,
+                                "pcountry" : pcountry,
+                                "pstate" : pstate,
+                                "pcity" : pcity,
+                                "pproof" : pproof,
+                                "pvalidity" : pvalidity,
+                                "mobile" : mobile,
+                                "histd" : histd,
+                                "hstd" : hstd,
+                                "htelephone" : htelephone,
+                                "risd" : risd,
+                                "rstd" : rstd,
+                                "rtelephone" : rtelephone,
+                                "fisd" : fisd,
+                                "fstd" : fstd,
+                                "ftelphone" : ftelphone,
+                                "bankname" : bankname,
+                                //"branch" : branch,
+                                "accountType" : accountType,
+                                "accno" : accno,
+                                "reAccno" : reAccno,
+                                "bifsc" : bifsc,
+                                "bmicr" : bmicr,
+                                "baddressline1" : baddressline1,
+                                "baddressline2" : baddressline2,
+                                "blandmark" : blandmark,
+                                "bpincode" : bpincode,
+                                "bcountry" : bcountry,
+                                "bstate": bstate,
+                                "bcity" : bcity,
+                                "cCityOther" : cCityOther,
+                                "pCityOther" : pCityOther,
+                                "bnkCityOther" : bnkCityOther,
+                                "panFilePath" : panFilePath,
+                                "corsFilePath" : corsFilePath,
+                                "prmntFilePath" : prmntFilePath
+                            };
+                            var request = $.ajax({
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                                url: webUrl+ '#{userRegistrationBean.contextRoot}'+ "/service/mmfresource/autoSaveInvService",
+                                type: "POST",
+                                data: JSON.stringify(JSONObject),
+                                dataType: "json"
+                            });
+                        }
+                        
+                        function stopTimer() {
+                            clearInterval(interval);
+                            saveData();
+                        }
+                        
+                        // This code is for positioning bank ifsc autocomplete panel
+                        /*
+                        window.onload = function(){
+                            newdiv();
+                        }
+                        function newdiv() {
+                            $('#frm_investor_profile\\:auto_ifsc_panel').appendTo('#span_auto');
+                        }*/
+                    </script>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

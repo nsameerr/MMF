@@ -1,0 +1,104 @@
+{
+    "lifeGoals":[
+        {
+            "goalDescriptionId":1,
+            "goalDescription":"Self Marriage",
+            "yearofRealization":2016,
+            "loanYesNo":"Yes",
+            "frequency":0,
+            "estimatedAmount":678876,
+            "age":null
+        },
+        {
+            "goalDescriptionId":6,
+            "goalDescription":"Domestic vacation",
+            "yearofRealization":2016,
+            "loanYesNo":"No",
+            "frequency":0,
+            "estimatedAmount":87687,
+            "age":null
+        },
+        {
+            "goalDescriptionId":0,
+            "goalDescription":"Others",
+            "yearofRealization":2016,
+            "loanYesNo":"Yes",
+            "frequency":0,
+            "estimatedAmount":98890,
+            "age":null
+        }
+    ],
+    "outstandingLoans":[
+        {
+            "loanDescription":"House",
+            "emi":98,
+            "loanAmount":890,
+            "finalYearofPayment":2017
+        },
+        {
+            "loanDescription":"Vehicle",
+            "emi":789,
+            "loanAmount":678987,
+            "finalYearofPayment":2022
+        }
+    ],
+    "lifeInsuranceCover":[
+        {
+            "lifeInsuranceDescription":"lifeInsuarance1",
+            "insuranceCover":890,
+            "annualPremium":90,
+            "finalYearofPayment":2020
+        },
+        {
+            "lifeInsuranceDescription":"lifeInsuarance2",
+            "insuranceCover":876678,
+            "annualPremium":876876,
+            "finalYearofPayment":786876
+        }
+    ],
+    "healthInsuranceCover":[
+        {
+            "healthInsuranceDescription":"healthInsuarance1",
+            "insuranceCover":678,
+            "annualPremium":78
+        }
+    ],
+    "financialAssetList":[
+        {
+            "assetId":1,
+            "assetDescription":"Cash, Bank Deposits & Liquid Debt Mutual Funds",
+            "assetAmount":90
+        },
+        {
+            "assetId":2,
+            "assetDescription":"Fixed Income(Provident Fund, Debt Mutual Funds, Bonds, KVP, NSC, etc..)",
+            "assetAmount":89
+        },
+        {
+            "assetId":3,
+            "assetDescription":"Gold (ETF, Physical)",
+            "assetAmount":78
+        },
+        {
+            "assetId":4,
+            "assetDescription":"Equity (Mutual Funds, Shares)",
+            "assetAmount":67
+        },
+        {
+            "assetId":5,
+            "assetDescription":"Total Real Estate Value",
+            "assetAmount":56
+        }
+    ],
+    "gender":"",
+    "userAge":25,
+    "relationStatus":"",
+    "userMonthlyTakehomeSalary":81000,
+    "spouseAge":27,
+    "spouseMonthlyTakehomeSalary":68000,
+    "monthlySavings":41000,
+    "savingsRate":27.52,
+    "initialTotalFinancialAsset":380,
+    "riskGroupId":-1,
+    "responseid":0
+}

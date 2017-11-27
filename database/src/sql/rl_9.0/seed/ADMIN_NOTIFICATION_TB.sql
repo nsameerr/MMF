@@ -1,0 +1,4 @@
+DELETE FROM admin_notification_tb;
+INSERT INTO `admin_notification_tb` (`id`, `notification_status`, status_code, `notification_date`, `notify_admin`, `admin_viewed`) VALUES('1','REG KIT INADEQUATE',50,NULL,FALSE,FALSE);
+INSERT INTO `admin_notification_tb` (`id`, `notification_status`, status_code, `notification_date`, `notify_admin`, `admin_viewed`) VALUES('2','REG KIT OUT OF STOCK',100,NULL,FALSE,FALSE);
+INSERT INTO `admin_notification_tb` (`id`, `notification_status`, status_code, `notification_date`, `notify_admin`, `admin_viewed`) VALUES('3','UPDATE HOLIDAY CALENDER',150,NULL,FALSE,FALSE);

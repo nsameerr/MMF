@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21 Mar, 2016 10:10:17 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.AddRedeemLogTb" table="add_redeem_log_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="customerPortfolioTb" class="com.gtl.mmf.entity.CustomerPortfolioTb" fetch="select">
+            <column name="customer_portfolio_id" not-null="true" />
+        </many-to-one>
+        <property name="omsId" type="string">
+            <column name="oms_id" length="20" not-null="true" />
+        </property>
+        <property name="assetclass" type="short">
+            <column name="assetclass" not-null="true" />
+        </property>
+        <property name="securityCode" type="string">
+            <column name="security_code" length="50" not-null="true" />
+        </property>
+        <property name="datetime" type="timestamp">
+            <column name="datetime" length="19" not-null="true" />
+        </property>
+        <property name="venue" type="string">
+            <column name="venue" length="10" not-null="true" />
+        </property>
+        <property name="price" type="big_decimal">
+            <column name="price" precision="7" not-null="true" />
+        </property>
+        <property name="units" type="big_decimal">
+            <column name="units" precision="11" not-null="true" />
+        </property>
+        <property name="volume" type="big_decimal">
+            <column name="volume" precision="11" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 15, 2016 5:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.FpMappingGoalsidToLoansidTb" table="fp_mapping_goalsid_to_loansid_tb" catalog="mmfdb">
+        <id name="mappingId" type="java.lang.Integer">
+            <column name="mapping_id" />
+            <generator class="identity" />
+        </id>
+        <property name="lifeGoalsId" type="java.lang.Integer">
+            <column name="life_goals_id" />
+        </property>
+        <property name="lifeGoalsDescription" type="string">
+            <column name="life_goals_description" length="40" />
+        </property>
+        <property name="loansId" type="java.lang.Integer">
+            <column name="loans_id" />
+        </property>
+        <property name="loansDescription" type="string">
+            <column name="loans_description" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

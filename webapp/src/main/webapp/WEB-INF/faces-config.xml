@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.1"
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+    <application>
+        <el-resolver>
+            org.springframework.web.jsf.el.SpringBeanFacesELResolver
+        </el-resolver>
+    </application>
+    
+    <navigation-rule>
+        <from-view-id>pages/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{userRegistrationBean.registerNewUser}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>pages/init_reg.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>
+                user_view_expired
+            </from-outcome>
+            <to-view-id>
+                faces/pages/login.xhtml
+            </to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>
+                admin_view_expired
+            </from-outcome>
+            <to-view-id>
+                faces/admin
+            </to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <factory>
+        <exception-handler-factory>
+            com.gtl.mmf.common.ViewExpiredExceptionExceptionHandlerFactory
+        </exception-handler-factory>
+    </factory>
+</faces-config>

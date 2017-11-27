@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body onload="stopPageSpinner();">
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+	</script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout_linkedin.xhtml"
+                        xmlns:compo="http://java.sun.com/jsf/composite/composite">
+            <ui:define name="title">Rejection Report | ManageMyFortune.com</ui:define>
+            <ui:define name="sidebar">
+                <ui:include src="/pages/template/components/sidebar_user_linkedin.xhtml" />
+            </ui:define>           
+            <ui:define name="content"> 
+                <h:form id="todays_details_form">
+                    <style>
+                        @media (max-width: 767px) {
+                            .row-fluid.scroll{
+                                overflow :auto;
+                            }
+                        }
+
+                        .cancel_dropdown {
+                            margin-left: -50px;
+                            margin-top: -11px;
+                        }
+                        .ui-dialog .ui-dialog-titlebar {
+                            padding: .4em .4em .4em 1em;
+                            position: relative;
+                            border: 0px;
+                            background: rgb(86, 195, 100);
+                        }
+                        .today-title {
+                            margin-bottom: 18px;
+                            font-family: 'Open Sans', arial, sans-serif;
+                            font-weight: 300;
+                            font-size: 36px;
+                            color: #4AAE43;
+                            line-height: 120%;
+                            padding-bottom: 15px;
+                            font-style: normal;
+                        }
+                    </style>
+
+                    <div class="content container-fluid">
+                        <div id="pad-wrapper">
+                            <table  border="0" class="table table-hover"  style="border: none !important;">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="border: none !important;">
+                                            <h2 class="page-title" style="border-bottom: 1px solid #eee;">Rejection Summary</h2> 
+                                        </td>
+                                        <td class="align_right" style="border: none !important;">
+                                            <img src="#{request.contextPath}/img/selfie_powered_logo.png"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="align_right">
+                                <h:button value="Go to Dashboard" id="dashboard_bttn2" class="btn-flat success" style="padding: 5px 4px;width:180px"
+                                          outcome="/pages/investordashboard?faces-redirect=true">
+                                </h:button>
+                                <h:commandLink style="padding: 5px 4px;"
+                                               value="Refresh" class="btn-flat success"
+                                               action="#{todaysdetailscontroller.refreshPage(todaysdetailscontroller.reportType)}">
+                                </h:commandLink>
+                            </div>
+
+                            <div class="table-wrapper orders-table">
+                                <div class="row-fluid scroll">
+
+                                    <h:panelGroup id="todays_trade_table" rendered="#{todaysdetailscontroller.reportType == 'OMS Rejection' and 
+                                                                                      todaysdetailscontroller.todaysDetailsList.size()>0}">
+                                        <table class="table table-hover" >
+                                            <thead>
+                                                <tr>
+                                                    <th class="align_center">SECURITY</th>
+                                                    <th class="align_center">VENUE</th>
+                                                    <th class="align_center">CONTRACT</th>
+                                                    <th class="align_center">PRODUCT</th>
+                                                    <th class="align_center">PRICE CONDITION</th>
+                                                    <th class="align_center">SCRIP CODE</th>
+                                                    <th class="align_center">BUY/SELL</th>
+                                                    <th class="align_center">QUANTITY </th>
+                                                    <th class="align_center">PRICE</th>
+                                                    <th class="align_center">TRANS-ID</th>
+                                                    <th class="align_center">REQUEST TIME</th>
+                                                    <th class="span3 align_center">ERROR MESSAGE</th>
+                                                </tr>
+                                            </thead> 
+                                            <tbody>
+                                                <ui:repeat value="#{todaysdetailscontroller.todaysDetailsList}" var="rejectionList">
+                                                    <tr>
+                                                        <td class="align_center">#{rejectionList.securityCode}</td>
+                                                        <td class="align_center">#{rejectionList.venueCode}</td>
+                                                        <td class="align_center">#{rejectionList.instrumentType}</td>
+                                                        <td class="align_center">#{rejectionList.productType}</td>
+                                                        <td class="align_center">#{rejectionList.priceCondition}</td>
+                                                        <td class="align_center">#{rejectionList.venueScripcode}</td>
+                                                        <td class="align_center">#{rejectionList.buyorsell}</td>
+                                                        <td class="align_center">#{rejectionList.quantity}</td>
+                                                        <td class="align_center">#{rejectionList.price}</td>
+                                                        <td class="align_center">#{rejectionList.transId}</td>
+                                                        <td class="align_center">#{rejectionList.requestTime}</td>
+                                                        <td class="align_center">
+                                                            <h:outputText value="#{rejectionList.erroMsg}" title="#{rejectionList.erroMsg}">
+                                                            </h:outputText>
+                                                        </td>
+                                                    </tr>
+                                                </ui:repeat>
+                                            </tbody>
+                                        </table>
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-row" style="margin-left: 10%!important;">
+                        <h:button value="Go to Dashboard" id="dashboard_bttn" class="btn-flat success" style="padding: 5px 4px;width:180px"
+                                  outcome="/pages/investordashboard?faces-redirect=true">
+                        </h:button>
+                    </div> 
+                </h:form>   
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

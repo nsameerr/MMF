@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head><title></title></head>
+    <body>        
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+	</script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout.xhtml"
+                        xmlns:compo="http://java.sun.com/jsf/composite/composite">
+            <ui:define name="title">Profiling Questionnaire | ManageMyFortune.com</ui:define>
+            <ui:define name="sidebar">
+                <ui:include src="/pages/template/components/sidebar_user.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+                <h:form id="frm_questinnaire">
+                    <style type="text/css">
+                        div.span5{
+                            margin-left: 0px !important;
+                        }
+                        p a.anchor:hover{
+                            color: #0088cc;
+                        }
+                    </style>
+                    <div class="content" style="box-shadow: none;">
+                        <div class="">
+                            <div id="pad-wrapper" class="form-page">
+                                <h2 class="page-title">Profiling Questionnaire</h2>
+                                <div><h:message for="frm_questinnaire" styleClass="err_message"/></div>
+                                <c:forEach items="#{investerQuestionnaireControlller.questionnaireList}" var="questionList" varStatus="rowStatus">
+                                    <div class="form-wrapper">
+                                        <div class="span12" style="position: relative; left: 30px;margin-left: 0 !important">  
+                                            <div class="row question-block">
+                                                <div class="span5" style="width: 100%;">
+                                                    <div class="row-fluid ">
+                                                        <div class="q-no span1" style="width: 10px;"><h2>#{rowStatus.count}.</h2></div>
+                                                        <div class="question span11" style="margin-top: 5px;padding-left: 10px;">#{questionList.value.questionName}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div style="margin-left: 100px;" >
+                                             	<h:outputLabel rendered="#{not empty questionList.value.img_path}" style="width: 500px;height:400px;">
+                                                 	  <img id="quest_img" src="#{request.contextPath}/#{questionList.value.img_path}" width="500px" height="400px"/>
+                                            	</h:outputLabel>
+                                            	
+                                            </div>
+                                            
+                                            <div style="margin-left: 100px; width: 50%;">
+                                                <h:selectOneRadio layout="pageDirection" value="#{questionList.value.qstoptionId}" onchange="callRemoteValueChange('#{questionList.value.questionId}', this.value)">  
+                                                    <f:selectItems value="#{questionList.value.options}" var="optionList" 
+                                                                   itemValue="#{optionList.optionId}" itemLabel="#{optionList.optionName}"
+                                                                   noSelectionValue="0"/>
+                                                </h:selectOneRadio>
+                                            </div>                                       
+                                            <p:remoteCommand name="onRadioValueChange" action="#{investerQuestionnaireControlller.processRadioValueChange()}" immediate="true"/>
+                                        </div>                                       
+                                    </div>
+                                </c:forEach>
+                                <div class="button-row" style="margin-left: -24px;">
+                                    <p style="text-align: justify;font-size: 11px;margin-left: 55px;">
+                                      Disclosure:  The stock and bond market data in the questions are taken from National Stock Exchange (NSE) India. The stock market refers to the CNX Nifty Index
+
+                                        The bond market refers to the NSE Government Securities Index. International markets refer to the MSCI EAFE index. Question
+
+                                        15 is a hypothetical illustration there is no guarantee the expected return will be achieved. 
+
+                                        Source of questionnaire - Pocket Risk (Pocket Capital Limited). This questionnaire is free to use and distribute by customers of Pocket Risk (Pocket Capital Limited).
+
+                                        The contents of the questionnaire have been customized to make it relevant in the context of the Indian capital markets.
+
+                                        For PocketRisk Methodology please refer <a class="anchor" href="https://www.pocketrisk.com/us/methodology">https://www.pocketrisk.com/us/methodology</a></p>
+                                    <h:commandLink styleClass="btn-flat success" value="Submit" 
+                                                   actionListener="#{investerQuestionnaireControlller.submitInvestorQuestionnaire}" 
+                                                   action="#{investerQuestionnaireControlller.reDirectTo}" immediate="true"/>
+                                    <h:commandLink styleClass="btn-flat inverse" value="Cancel" 
+                                                   action="#{investerQuestionnaireControlller.currentPage}" immediate="true"/>                                    
+                                </div>                                
+
+                            </div>
+                        </div>
+                    </div>     
+                </h:form>
+                <script type="text/javascript">
+                    function  callRemoteValueChange(questionId, optionId) {
+                        onRadioValueChange([{name: 'questionnaire_questionId', value: questionId}, {name: 'questionnaire_optionId', value: optionId}]);
+                    }
+                </script>
+            </ui:define>
+        </ui:composition>        
+    </body>
+</html>

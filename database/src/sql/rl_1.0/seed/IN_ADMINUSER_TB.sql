@@ -1,0 +1,2 @@
+-- INSERT INTO `adminuser_tb`(`username`,`password`,`user_type`,`email`,`mobile`)VALUES('admin','admin','admin','admin@managemyfortune.com','1234567890');
+INSERT INTO `adminuser_tb`(`username`,`password`,`user_type`)VALUES('admin','0DPiKuNIrrVmD8IUCuw1hQxNqZc=','admin');

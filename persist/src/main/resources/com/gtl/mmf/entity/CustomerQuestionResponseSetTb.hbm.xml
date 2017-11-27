@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10 Apr, 2014 2:17:59 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerQuestionResponseSetTb" table="customer_question_response_set_tb" catalog="mmfdb">
+        <id name="responseSetId" type="java.lang.Integer">
+            <column name="response_set_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="questionoptionsmasterTb" class="com.gtl.mmf.entity.QuestionoptionsmasterTb" fetch="select">
+            <column name="option_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="questionmasterTb" class="com.gtl.mmf.entity.QuestionmasterTb" fetch="select">
+            <column name="question_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customerAdvisorMappingTb" class="com.gtl.mmf.entity.CustomerAdvisorMappingTb" fetch="select">
+            <column name="relation_id" not-null="true" />
+        </many-to-one>
+        <property name="responseSetDate" type="timestamp">
+            <column name="response_set_date" length="19" not-null="true" />
+        </property>
+        <property name="optionValue" type="int">
+            <column name="option_value" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

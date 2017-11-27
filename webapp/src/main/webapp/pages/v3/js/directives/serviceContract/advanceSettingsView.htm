@@ -1,0 +1,726 @@
+<style type="text/css">
+        .increment_section .body .edit_graph_data {
+                margin: 0px;
+                width: 102%;
+        }
+
+        .increment_section .salary_row .column1 {
+            width: 18%;
+        }
+</style>
+<!--Advance Settings DIV : Advisor View-->
+<div class="advance_settings_section inv_advance_settings_section">
+	<div class="header_block">
+		<a href="#advance_settings_block" data-toggle="collapse"><h4>Advance Settings</h4></a>
+	</div>
+	<div id="advance_settings_block" class="collapse in col-xs-12">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 slider_block">
+			<div class="slider_row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    			<div class="content col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        			<h5>Life Expectancy</h5>
+        		</div>
+        		<div class="slider col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        			<div class="edit_graph_row">
+            			<div class="edit_graph_data"> 
+							<div class="age1">           
+								<div id="adv_sett_slide1" class="edit_graph_bar" ></div><input type="text" id="adv_sett1" readonly style="border:0;"><label for="adv_sett1">Yr</label>
+							</div>    	
+						</div>
+					</div>	
+        		</div>
+    		</div>
+    		<div class="slider_row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    			<div class="content col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        			<h5>Rate of which non invested amount grows</h5>
+        		</div>
+        		<div class="slider col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        			<div class="edit_graph_row">
+            			<div class="edit_graph_data"> 
+							<div class="age1">           
+								<div id="adv_sett_slide2" class="edit_graph_bar" ></div>
+								<input type="text" id="adv_sett2" readonly style="border:0;"><label for="adv_sett2">%</label>
+							</div>    	
+						</div>
+					</div>	
+        		</div>
+    		</div>
+    		<div class="slider_row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    			<div class="content col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        			<h5>What is your long term inflation expectation</h5>
+        		</div>
+        		<div class="slider col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        			<div class="edit_graph_row">
+            			<div class="edit_graph_data"> 
+							<div class="age1">           
+								<div id="adv_sett_slide3" class="edit_graph_bar" ></div>
+								<input type="text" id="adv_sett3" readonly style="border:0;"><label for="adv_sett3">%</label>
+							</div>    	
+						</div>
+					</div>	
+        		</div>
+    		</div>
+    		<div class="slider_row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    			<div class="content col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        			<h5>Recurring  Expense level post retirement</h5>
+        		</div>
+        		<div class="slider col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        			<div class="edit_graph_row">
+            			<div class="edit_graph_data"> 
+							<div class="age1">           
+								<div id="adv_sett_slide4" class="edit_graph_bar" ></div>
+								<input type="text" id="adv_sett4" readonly style="border:0;"><label for="adv_sett4">%</label>
+							</div>    	
+						</div>
+					</div>	
+        		</div>
+    		</div>
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table_block">
+			<div class="adv_table_row head">
+    			<div class="column column1">
+        			<h5>Loan For</h5>
+        		</div>
+        		<div class="column column2">
+        			<h5>No. of Years</h5>
+        		</div>
+        		<div class="column column3">
+        			<h5>Interest Rates</h5>
+        		</div>
+        		<div class="column column4">
+        			<h5>Down payment</h5>
+        		</div>
+   			</div>
+            <div class="adv_table_row body">
+                <div class="column column1">
+                    <h5>Education</h5>
+                </div>
+                <div class="column column2">
+                    <select class="adv_sett_select adv_sett_select_disable" ng-cloak 
+                        ng-model="userFpData.fpmasterassumption.fploanassumptions[0].loanDuration"
+                        ng-options="x for x in rangeHundred">                        
+                    </select>                    
+                </div>
+                <div class="column column3">
+                    <select class="adv_sett_select adv_sett_select_disable" ng-cloak 
+                        ng-model="userFpData.fpmasterassumption.fploanassumptions[0].interestRate"
+                        ng-options="x for x in rangeHundred">                                       
+                    </select>
+                </div>
+                <div class="column column4">
+                    <select class="adv_sett_select adv_sett_select_disable" ng-cloak 
+                        ng-model="userFpData.fpmasterassumption.fploanassumptions[0].downPaymentPercent"
+                        ng-options="x for x in rangeHundred">                                        
+                    </select>
+                </div>
+            </div>
+            <div class="adv_table_row body">
+                <div class="column column1">
+                    <h5>House</h5>
+                </div>
+                <div class="column column2">
+                    <select class="adv_sett_select adv_sett_select_disable" ng-cloak
+                        ng-model="userFpData.fpmasterassumption.fploanassumptions[1].loanDuration"
+                        ng-options="x for x in rangeHundred">                                    
+                    </select>
+                </div>
+                <div class="column column3">
+                    <select class="adv_sett_select adv_sett_select_disable" ng-cloak
+                        ng-model="userFpData.fpmasterassumption.fploanassumptions[1].interestRate"
+                        ng-options="x for x in rangeHundred">                                    
+                    </select>
+                </div>
+                <div class="column column4">
+                    <select class="adv_sett_select adv_sett_select_disable" ng-cloak
+                        ng-model="userFpData.fpmasterassumption.fploanassumptions[1].downPaymentPercent"
+                        ng-options="x for x in rangeHundred">                                    
+                    </select>
+                </div>
+            </div>
+            <div class="adv_table_row body">
+                <div class="column column1">
+                    <h5>Car</h5>
+                </div>
+                <div class="column column2">
+                    <select class="adv_sett_select adv_sett_select_disable" ng-cloak
+                        ng-model="userFpData.fpmasterassumption.fploanassumptions[2].loanDuration"
+                        ng-options="x for x in rangeHundred">                                    
+                    </select>
+                </div>
+                <div class="column column3">
+                    <select class="adv_sett_select adv_sett_select_disable" ng-cloak
+                        ng-model="userFpData.fpmasterassumption.fploanassumptions[2].interestRate"
+                        ng-options="x for x in rangeHundred">                                    
+                    </select>
+                </div>
+                <div class="column column4">
+                    <select class="adv_sett_select adv_sett_select_disable" ng-cloak
+                        ng-model="userFpData.fpmasterassumption.fploanassumptions[2].downPaymentPercent"
+                        ng-options="x for x in rangeHundred">                                    
+                    </select>
+                </div>
+            </div>
+            <div class="adv_table_row body">
+                <div class="column column1">
+                    <h5>Marriage<span class="sub_title">(Personal Loan)</span></h5>
+                </div>
+                <div class="column column2">
+                    <select class="adv_sett_select adv_sett_select_disable" ng-cloak
+                        ng-model="userFpData.fpmasterassumption.fploanassumptions[3].loanDuration"
+                        ng-options="x for x in rangeHundred">                                    
+                    </select>
+                </div>
+                <div class="column column3">
+                    <select class="adv_sett_select adv_sett_select_disable" ng-cloak
+                        ng-model="userFpData.fpmasterassumption.fploanassumptions[3].interestRate"
+                        ng-options="x for x in rangeHundred">                                    
+                    </select>
+                </div>
+                <div class="column column4">
+                    <select class="adv_sett_select adv_sett_select_disable" ng-cloak
+                        ng-model="userFpData.fpmasterassumption.fploanassumptions[3].downPaymentPercent"
+                        ng-options="x for x in rangeHundred">
+                    </select>
+                </div>
+            </div>
+		</div>
+		<div class="increment_section nobox">
+			<div class="salary_inc_block heading col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<h3 class="header">Salary Increments vs Age</h3>
+				<div class="salary_block">
+					<div class="salary_row head">
+    					<div class="column column1">
+        					<h5>Years</h5>
+        				</div>
+        				<div class="column column2">
+        					<h5>Increments In Self Salary</h5>
+        				</div>
+        				<div class="column column3">
+        					<h5>Increments In Spouse Salary</h5>
+        				</div>
+    				</div>
+                    <div class="salary_row body">
+                        <div class="column column1">
+                            <h5>21 - 28 <span>Years</span></h5>
+                        </div>
+                        <div class="column column2">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_self_slide1" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_self1" readonly style="border:0;"><label for="salary_self1">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column column3">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_spouse_slide1" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_spouse1" readonly style="border:0;"><label for="salary_spouse1">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="salary_row body">
+                        <div class="column column1">
+                            <h5>28 - 35 <span>Years</span></h5>
+                        </div>
+                        <div class="column column2">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_self_slide2" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_self2" readonly style="border:0;"><label for="salary_self2">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column column3">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_spouse_slide2" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_spouse2" readonly style="border:0;"><label for="salary_spouse2">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="salary_row body">
+                        <div class="column column1">
+                            <h5>35 - 50 <span>Years</span></h5>
+                        </div>
+                        <div class="column column2">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_self_slide3" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_self3" readonly style="border:0;"><label for="salary_self3">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column column3">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_spouse_slide3" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_spouse3" readonly style="border:0;"><label for="salary_spouse3">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="salary_row body">
+                        <div class="column column1">
+                            <h5>50 - 60 <span>Years</span></h5>
+                        </div>
+                        <div class="column column2">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_self_slide4" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_self4" readonly style="border:0;"><label for="salary_self4">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column column3">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_spouse_slide4" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_spouse4" readonly style="border:0;"><label for="salary_spouse4">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="salary_row body">
+                        <div class="column column1">
+                            <h5>60 - 80 <span>Years</span></h5>
+                        </div>
+                        <div class="column column2">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_self_slide5" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_self5" readonly style="border:0;"><label for="salary_self5">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column column3">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_spouse_slide5" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_spouse5" readonly style="border:0;"><label for="salary_spouse5">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="salary_row body">
+                        <div class="column column1">
+                            <h5>80 Plus <span>Years</span></h5>
+                        </div>
+                        <div class="column column2">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_self_slide6" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_self6" readonly style="border:0;"><label for="salary_self6">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column column3">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_spouse_slide6" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_spouse6" readonly style="border:0;"><label for="salary_spouse6">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+			<div class="expense_inc_block heading col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<h3 class="header">Expense Increments vs Age</h3>
+				<div class="expense_block">
+					<div class="salary_row head">
+    					<div class="column column1">
+        					<h5>Years</h5>
+        				</div>
+        				<div class="column column2">
+        					<h5>Increments in Expense</h5>
+        				</div>
+    				</div>
+                    <div class="salary_row body">
+                        <div class="column column1">
+                            <h5>21 - 28 <span>Years</span></h5>
+                        </div>
+                        <div class="column column2">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_exp_slide1" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_exp1" readonly style="border:0;"><label for="salary_exp1">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="salary_row body">
+                        <div class="column column1">
+                            <h5>28 - 35 <span>Years</span></h5>
+                        </div>
+                        <div class="column column2">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_exp_slide2" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_exp2" readonly style="border:0;"><label for="salary_exp2">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="salary_row body">
+                        <div class="column column1">
+                            <h5>35 - 50 <span>Years</span></h5>
+                        </div>
+                        <div class="column column2">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_exp_slide3" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_exp3" readonly style="border:0;"><label for="salary_exp3">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="salary_row body">
+                        <div class="column column1">
+                            <h5>50 - 60 <span>Years</span></h5>
+                        </div>
+                        <div class="column column2">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_exp_slide4" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_exp4" readonly style="border:0;"><label for="salary_exp4">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="salary_row body">
+                        <div class="column column1">
+                            <h5>60 - 80 <span>Years</span></h5>
+                        </div>
+                        <div class="column column2">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_exp_slide5" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_exp5" readonly style="border:0;"><label for="salary_exp5">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="salary_row body">
+                        <div class="column column1">
+                            <h5>80 Plus <span>Years</span></h5>
+                        </div>
+                        <div class="column column2">
+                            <div class="edit_graph_row">
+                                <div class="edit_graph_data"> 
+                                    <div class="age1">           
+                                        <div id="salary_exp_slide6" class="edit_graph_bar" ></div>
+                                        <input type="text" id="salary_exp6" readonly style="border:0;"><label for="salary_exp6">%</label>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+	    </div>
+	</div>
+</div>
+<!--Collapsed Advanced Settings-->
+<script type="text/javascript">
+    $("#advance_settings_block").collapse('hide');        
+</script>
+<script type="text/javascript">
+    //Advance Settings Slider Script    
+    drawAdvanceSettingSlider =function(userFpData,isEditable){
+        $( "#adv_sett_slide1" ).slider({
+          range: "min",
+          value:85,
+          min:1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#adv_sett1" ).val( "" + ui.value );
+          }
+        });
+        
+        $( "#adv_sett_slide2" ).slider({
+          range: "min",
+          value:25,
+          min:1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#adv_sett2" ).val( "" + ui.value );
+          }
+        });
+
+        $( "#adv_sett_slide3" ).slider({
+          range: "min",
+          value:40,
+          min:1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#adv_sett3" ).val( "" + ui.value );
+          }
+        });
+        
+        $( "#adv_sett_slide4" ).slider({
+          range: "min",
+          value:75,
+          min:1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#adv_sett4" ).val( "" + ui.value );
+          }
+        });
+
+        $( "#adv_sett_slide1").slider("value",userFpData.fpmasterassumption.fpmiscassumptions.lifeExpectancy);
+        $( "#adv_sett_slide2").slider("value",userFpData.fpmasterassumption.fpmiscassumptions.rateOfGrowthOfFd);
+        $( "#adv_sett_slide3").slider("value",userFpData.fpmasterassumption.fpmiscassumptions.longTermInflationExpectation);
+        $( "#adv_sett_slide4").slider("value",userFpData.fpmasterassumption.fpmiscassumptions.postRetirementRecurringExpense);
+        
+        $( "#adv_sett1" ).val( "" + $( "#adv_sett_slide1" ).slider( "value" ) );
+        $( "#adv_sett2" ).val( "" + $( "#adv_sett_slide2" ).slider( "value" ) );
+        $( "#adv_sett3" ).val( "" + $( "#adv_sett_slide3" ).slider( "value" ) );
+        $( "#adv_sett4" ).val( "" + $( "#adv_sett_slide4" ).slider( "value" ) );
+
+        if(!isEditable){
+            $( "#adv_sett_slide1" ).off();
+            $( "#adv_sett_slide2" ).off();
+            $( "#adv_sett_slide3" ).off();
+            $( "#adv_sett_slide4" ).off();
+        }
+
+        //Self Salary Sliders
+        $( "#salary_self_slide1" ).slider({
+          range: "min",
+          value:12,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_self1" ).val( "" + ui.value );
+          }
+        });        
+
+        $( "#salary_self_slide2" ).slider({
+          range: "min",
+          value:9,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_self2" ).val( "" + ui.value );
+          }
+        });
+
+        $( "#salary_self_slide3" ).slider({
+          range: "min",
+          value:8,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_self3" ).val( "" + ui.value );
+          }
+        });
+
+        $( "#salary_self_slide4" ).slider({
+          range: "min",
+          value:8,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_self4" ).val( "" + ui.value );
+          }
+        });        
+
+        $( "#salary_self_slide5" ).slider({
+          range: "min",
+          value:8,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_self5" ).val( "" + ui.value );
+          }
+        });
+
+        $( "#salary_self_slide6" ).slider({
+          range: "min",
+          value:8,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_self6" ).val( "" + ui.value );
+          }
+        });
+
+        //Spouse Salary Sliders
+
+        $( "#salary_spouse_slide1" ).slider({
+          range: "min",
+          value:12,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_spouse1" ).val( "" + ui.value );
+          }
+        });
+        
+        $( "#salary_spouse_slide2" ).slider({
+          range: "min",
+          value:9,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_spouse2" ).val( "" + ui.value );
+          }
+        });
+
+        $( "#salary_spouse_slide3" ).slider({
+          range: "min",
+          value:8,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_spouse3" ).val( "" + ui.value );
+          }
+        });
+        
+        $( "#salary_spouse_slide4" ).slider({
+          range: "min",
+          value:8,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_spouse4" ).val( "" + ui.value );
+          }
+        });
+
+        $( "#salary_spouse_slide5" ).slider({
+          range: "min",
+          value:8,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_spouse5" ).val( "" + ui.value );
+          }
+        });
+        
+        $( "#salary_spouse_slide6" ).slider({
+          range: "min",
+          value:8,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_spouse6" ).val( "" + ui.value );
+          }
+        });
+
+        //Expense Sliders
+        $( "#salary_exp_slide1" ).slider({
+          range: "min",
+          value:12,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_exp1" ).val( "" + ui.value );
+          }
+        });
+
+        $( "#salary_exp_slide2" ).slider({
+          range: "min",
+          value:9,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_exp2" ).val( "" + ui.value );
+          }
+        });
+
+        $( "#salary_exp_slide3" ).slider({
+          range: "min",
+          value:8,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_exp3" ).val( "" + ui.value );
+          }
+        });
+
+        $( "#salary_exp_slide4" ).slider({
+          range: "min",
+          value:8,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_exp4" ).val( "" + ui.value );
+          }
+        });
+
+        $( "#salary_exp_slide5" ).slider({
+          range: "min",
+          value:8,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_exp5" ).val( "" + ui.value );
+          }
+        });
+
+        $( "#salary_exp_slide6" ).slider({
+          range: "min",
+          value:8,
+          min:0,//1,
+          max:100,
+          slide: function( event, ui ) {
+            $( "#salary_exp6" ).val( "" + ui.value );
+          }
+        });     
+
+        for(var ageIndex = 0 ; ageIndex < userFpData.fpmasterassumption.fpsalaryexpenseincrement.length; ageIndex++){
+            var tempIndex = ageIndex+1;
+            $( "#salary_self_slide" + tempIndex).slider("value",userFpData.fpmasterassumption.fpsalaryexpenseincrement[ageIndex].selfSalaryIncreaseRate);
+            $( "#salary_spouse_slide" + tempIndex).slider("value",userFpData.fpmasterassumption.fpsalaryexpenseincrement[ageIndex].spouseSalaryIncreaseRate);
+            $( "#salary_exp_slide" + tempIndex).slider("value",userFpData.fpmasterassumption.fpsalaryexpenseincrement[ageIndex].expenseIncreaseRate);            
+            $( "#salary_self" + tempIndex).val( "" + $( "#salary_self_slide" + tempIndex).slider( "value" ) );
+            $( "#salary_spouse" + tempIndex).val( "" + $( "#salary_spouse_slide" + tempIndex).slider( "value" ) );  
+            $( "#salary_exp" + tempIndex).val( "" + $( "#salary_exp_slide" + tempIndex).slider( "value" ) ); 
+            if(!isEditable){
+                $( "#salary_self_slide"+ tempIndex ).off();
+                $( "#salary_spouse_slide"+ tempIndex ).off();
+                $( "#salary_exp_slide" + tempIndex).off();                
+            }       
+        }   
+
+        if(!isEditable){
+            $('.adv_sett_select_disable').attr('disabled','disabled');
+        }
+    }    
+</script>

@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head></head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+	</script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout.xhtml"
+                        xmlns:compo="http://java.sun.com/jsf/composite/composite">
+            <ui:define name="title">Create/Edit Portfolio - MMF</ui:define>
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_user.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+                <link rel="stylesheet" href="#{request.contextPath}/css/no-theme/jquery-ui-1.10.4.custom.min.css" type="text/css" media="screen"/>
+                <script src="#{request.contextPath}/js/jquery-1.10.2.js"></script>
+                <script src="#{request.contextPath}/js/jquery-ui-1.10.4.custom.js"></script>
+                <script src="#{request.contextPath}/js/knockout-3.1.0.js"></script>
+                <script src="#{request.contextPath}/js/knockout.mapping-latest.js"></script>
+                <script src="#{request.contextPath}/pages/v2/js/clevertap.js"></script>
+                <h:form id="frm_create_edit_portfolio" prependId="false">
+                	<script type="text/javascript">
+                		clevertap.event.push("Portfolio Page Visited");
+                		console.log("Portfolio Page Visited");
+                	</script>
+                    <p:remoteCommand name="updateWatches" update="allocation-table" async="true"
+                                     action="#{createEditPortfolioController.updateMarketData}"/>
+                    <p:remoteCommand name="passModifiedTickerIndex" immediate="true"
+                                     action="#{createEditPortfolioController.recieveModifiedTickerIndex()}"/>
+                    <p:remoteCommand name="newAllocationChange" immediate="true"
+                                     action="#{createEditPortfolioController.newAllocationChange()}"
+                                     update="allocation-table pnl-pie-chart"/>
+                    <h:inputHidden value="#{createEditPortfolioController.marketData}" id="market-data"/>
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div id="pad-wrapper">
+                                <div class="row-fluid">
+                                    <h2 class="page-title" style="text-transform:capitalize;"> #{createEditPortfolioController.linkStatus} Model Portfolio </h2>
+                                    <div class="row-fluid four-baseline-margin-bottom">
+                                        <div class="span3 no_margin"><label for="">Portfolio Style</label>
+                                            <div class="ui-select" style="width: 210px;">
+                                                <h:selectOneMenu value="#{createEditPortfolioController.portfolioVO.portfolioStyleSelectedKey}"
+                                                                 id="portfolio_style">
+                                                    <f:selectItems value="#{createEditPortfolioController.portfolioStyle.entrySet()}" var="style"
+                                                                   itemValue="#{style.key}" itemLabel="#{style.value.investorProfile}"/>
+                                                    <f:ajax execute="portfolio-name portfolio_size portfolio_style" event="change"
+                                                            listener="#{createEditPortfolioController.portflioStyleChangeListner}"
+                                                            render="pnl-pie-chart notification-portfolio portfolio-name allocation-table portfolio_list notification-portfolio"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <div class="span3 no_margin"><label for="">Portfolio Size</label>
+                                            <div class="ui-select" style="width: 210px;">
+                                                <h:selectOneMenu value="#{createEditPortfolioController.portfolioVO.portfolioSizeSelectedKey}"
+                                                                 id="portfolio_size">
+                                                    <f:selectItems value="#{createEditPortfolioController.portfolioSize.entrySet()}" var="size"
+                                                                   itemValue="#{size.key}" itemLabel="#{size.value.portfolioSize}"/>
+                                                    <f:ajax execute="portfolio-name portfolio_size portfolio_style" event="change"
+                                                            listener="#{createEditPortfolioController.portflioSizeChangeListner}"
+                                                            render="pnl-pie-chart notification-portfolio portfolio-name allocation-table portfolio_list notification-portfolio"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <div class="span3"><label for="">Name <span style="color:red"><h:outputText value="*" rendered="#{createEditPortfolioController.createPortfolio}"></h:outputText> </span></label>
+                                            <h:inputText value="#{createEditPortfolioController.portfolioVO.portfolioName}"
+                                                         id="portfolio-name" style="width: 150px;"
+                                                         rendered="#{createEditPortfolioController.createPortfolio}"/>
+                                            <h:message for="portfolio-name" styleClass="err_message" 
+                                                       rendered="#{createEditPortfolioController.createPortfolio}"/>
+                                            <h:panelGroup class="ui-select" rendered="#{!createEditPortfolioController.createPortfolio}">
+                                                <h:selectOneMenu value="#{createEditPortfolioController.portfolioSelected}" id="portfolio_list"
+                                                                 valueChangeListener="#{createEditPortfolioController.changePortfoiliotoEditListner}">
+                                                    <f:selectItems value="#{createEditPortfolioController.portfolioNames.entrySet()}"
+                                                                   var="portfolio" itemLabel="#{portfolio.value}"
+                                                                   itemValue="#{portfolio.key}"/>
+                                                    <f:ajax  render="pnl-pie-chart allocation-table portfolio_list notification-portfolio"/>
+                                                </h:selectOneMenu>
+
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="span3"><label for="">Benchmark Index</label>
+                                            <div class="ui-select">
+                                                <h:selectOneMenu value="#{createEditPortfolioController.benchmarkIndexSelected}" id="portfolio_benchmark">
+                                                    <f:selectItems value="#{createEditPortfolioController.benchmarkIndexList.entrySet()}"
+                                                                   var="benchmark" itemLabel="#{benchmark.value}" itemValue="#{benchmark.key}"/>
+                                                    <f:ajax execute="portfolio-name portfolio_benchmark"
+                                                            event="change"
+                                                            listener="#{createEditPortfolioController.benchMarkChangeListner}"
+                                                            render="pnl-pie-chart portfolio_list allocation-table notification-portfolio"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                    </div>                                
+                                </div>
+
+                                <h:panelGroup id="notification-portfolio">
+                                    <h:outputText value="No portfolio created under this style."
+                                                  rendered="#{!createEditPortfolioController.createPortfolio and createEditPortfolioController.noPortfolioToShow}"
+                                                  style="font-weight: bolder; color: green;"/>
+                                </h:panelGroup>
+                                <center>
+                                    <h:messages globalOnly="true" layout="table" errorClass="err_message" infoClass="info_message"/>
+                                </center>
+                                <div class="row-fluid section" style="margin-top: 0;">
+                                    <h3 class="title">Portfolio Allocation</h3>
+                                    <div class="span8">
+                                        <div id="recommended-donut" class="donut-placeholder"></div>
+                                    </div>
+                                    <div class="span6"> </div>
+                                </div>
+
+                                <h:panelGroup id="allocation-table">
+                                    <h:panelGroup rendered="#{createEditPortfolioController.createPortfolio or
+                                                              (!createEditPortfolioController.createPortfolio and !createEditPortfolioController.noPortfolioToShow)}">
+                                        <div class="table-wrapper orders-table hidden-phone">
+                                            <div class="row-fluid scroll" style="margin-top: 36px;">
+                                                <h3 class="title no-margin-bottom" style="width: 99%;">Allocation
+                                                    <!-- Refresh button for allocation table -->
+                                                    <div style=""
+                                                         onclick="updateWatches();" class="btn-flat success refresh-div">
+                                                        Refresh Market Data
+                                                    </div>
+
+                                                </h3>
+                                                <style type="text/css">
+                                                    .refresh-div{
+                                                        float: right;
+                                                        padding: 3px 0px;
+                                                        margin-top: 4px;
+                                                    }
+                                                    .refresh-div:hover{
+                                                        background-color: #D0E788;
+                                                    }
+                                                </style>
+                                                <h:panelGroup id="pnl_allocation_table">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="2" class="align_center"> Asset Class / Security</th>
+                                                                <!-- <th class="align_center">Ticker </th> -->
+                                                                <th class="align_center">Range </th>
+                                                                <th class="border-top align_center"> New Allocation </th>
+                                                                <th class="border-top align_center">CMP </th>
+                                                                <!-- <th class="border-top align_center"> New Price Tolerance </th> -->
+                                                                <th class="border-top align_center"> Minimum Investment</th>
+                                                                <th class="border-top align_center"> Tradability</th>
+                                                                <th class="border-top align_center"> Existing Weight </th>
+                                                                <th class="align_center"> Initial Allocation </th>
+                                                                <th class="align_center"> Initial Set Price </th>
+                                                                <!--<th class="align_center"> Initial Price Tolerance </th> -->
+                                                                <th class="no_lft_border align_center"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- Index -->
+                                                            <h:panelGroup rendered="#{createEditPortfolioController.indexForAllocation}" id="index-pnl">
+                                                                <compo:assetclassallocation assetType="#{createEditPortfolioController.textIndex}"
+                                                                                            newAllocationAsset="#{createEditPortfolioController.portfolioVO.index.newAllocation}"
+                                                                                            exisitingWeightAsset="#{createEditPortfolioController.portfolioVO.index.existingWeight}"
+                                                                                            maximumRange="#{createEditPortfolioController.portfolioVO.index.maximumRange}"
+                                                                                            minimumRange="#{createEditPortfolioController.portfolioVO.index.minimumRange}"
+                                                                                            weightNotInRange="#{createEditPortfolioController.portfolioVO.index.weightNotInRange}"/>
+                                                                <compo:securityscrip securities="#{createEditPortfolioController.portfolioVO.index.securities}"
+                                                                                     asset="#{createEditPortfolioController.textIndex}" id="index_scrips"/>
+                                                            </h:panelGroup>
+                                                            
+                                                            <!-- MidCap -->
+                                                            <h:panelGroup rendered="#{createEditPortfolioController.midcapForAllocation}" id="midcap-pnl">
+                                                                <compo:assetclassallocation assetType="#{createEditPortfolioController.textMidcap}"
+                                                                                            newAllocationAsset="#{createEditPortfolioController.portfolioVO.midcap.newAllocation}"
+                                                                                            exisitingWeightAsset="#{createEditPortfolioController.portfolioVO.midcap.existingWeight}"
+                                                                                            maximumRange="#{createEditPortfolioController.portfolioVO.midcap.maximumRange}"
+                                                                                            minimumRange="#{createEditPortfolioController.portfolioVO.midcap.minimumRange}"
+                                                                                            weightNotInRange="#{createEditPortfolioController.portfolioVO.midcap.weightNotInRange}"/>
+                                                                <compo:securityscrip securities="#{createEditPortfolioController.portfolioVO.midcap.securities}"
+                                                                                     asset="#{createEditPortfolioController.textMidcap}" id="midcap_scrips"/>
+                                                            </h:panelGroup>
+                                                            
+                                                            <!-- EQUITY Diversified-->
+                                                            <h:panelGroup rendered="#{createEditPortfolioController.equityDiversifiedForAllocation}" id="equty-pnl">
+                                                                <compo:assetclassallocation assetType="#{createEditPortfolioController.textEquityDiverified}"
+                                                                                            newAllocationAsset="#{createEditPortfolioController.portfolioVO.equityDiversified.newAllocation}"
+                                                                                            exisitingWeightAsset="#{createEditPortfolioController.portfolioVO.equityDiversified.existingWeight}"
+                                                                                            maximumRange="#{createEditPortfolioController.portfolioVO.equityDiversified.maximumRange}"
+                                                                                            minimumRange="#{createEditPortfolioController.portfolioVO.equityDiversified.minimumRange}"
+                                                                                            weightNotInRange="#{createEditPortfolioController.portfolioVO.equityDiversified.weightNotInRange}"/>
+                                                                <compo:securityscrip securities="#{createEditPortfolioController.portfolioVO.equityDiversified.securities}"
+                                                                                     asset="#{createEditPortfolioController.textEquityDiverified}" id="equity_scrips"/>
+                                                            </h:panelGroup>    
+
+                                                            <!-- Balanced -->
+                                                            <h:panelGroup rendered="#{createEditPortfolioController.balancedForAllocation}">
+                                                                <compo:assetclassallocation assetType="#{createEditPortfolioController.textBalanced}"
+                                                                                            newAllocationAsset="#{createEditPortfolioController.portfolioVO.balanced.newAllocation}"
+                                                                                            exisitingWeightAsset="#{createEditPortfolioController.portfolioVO.balanced.existingWeight}"
+                                                                                            maximumRange="#{createEditPortfolioController.portfolioVO.balanced.maximumRange}"
+                                                                                            minimumRange="#{createEditPortfolioController.portfolioVO.balanced.minimumRange}"
+                                                                                            weightNotInRange="#{createEditPortfolioController.portfolioVO.balanced.weightNotInRange}"/>
+                                                                <compo:securityscrip securities="#{createEditPortfolioController.portfolioVO.balanced.securities}"
+                                                                                     asset="#{createEditPortfolioController.textBalanced}"/>
+                                                            </h:panelGroup>
+                                                            
+                                                            <!-- DEBT - Medium/Long -->
+                                                            <h:panelGroup rendered="#{createEditPortfolioController.debtForAllocation}">
+                                                                <compo:assetclassallocation assetType="#{createEditPortfolioController.textDebt}"
+                                                                                            newAllocationAsset="#{createEditPortfolioController.portfolioVO.debt.newAllocation}"
+                                                                                            exisitingWeightAsset="#{createEditPortfolioController.portfolioVO.debt.existingWeight}"
+                                                                                            maximumRange="#{createEditPortfolioController.portfolioVO.debt.maximumRange}"
+                                                                                            minimumRange="#{createEditPortfolioController.portfolioVO.debt.minimumRange}"
+                                                                                            weightNotInRange="#{createEditPortfolioController.portfolioVO.debt.weightNotInRange}"/>
+                                                                <compo:securityscrip securities="#{createEditPortfolioController.portfolioVO.debt.securities}"
+                                                                                     asset="#{createEditPortfolioController.textDebt}"/>
+                                                            </h:panelGroup>
+                                                            
+                                                            <!-- DEBT - Liquid/Short-->
+                                                            <h:panelGroup rendered="#{createEditPortfolioController.debtLiquidForAllocation}">
+                                                                <compo:assetclassallocation assetType="#{createEditPortfolioController.textDebtLiquid}"
+                                                                                            newAllocationAsset="#{createEditPortfolioController.portfolioVO.debtLiquid.newAllocation}"
+                                                                                            exisitingWeightAsset="#{createEditPortfolioController.portfolioVO.debtLiquid.existingWeight}"
+                                                                                            maximumRange="#{createEditPortfolioController.portfolioVO.debtLiquid.maximumRange}"
+                                                                                            minimumRange="#{createEditPortfolioController.portfolioVO.debtLiquid.minimumRange}"
+                                                                                            weightNotInRange="#{createEditPortfolioController.portfolioVO.debtLiquid.weightNotInRange}"/>
+                                                                <compo:securityscrip securities="#{createEditPortfolioController.portfolioVO.debtLiquid.securities}"
+                                                                                     asset="#{createEditPortfolioController.textDebtLiquid}"/>
+                                                            </h:panelGroup>
+                                                            
+                                                            <!-- Gold -->
+                                                            <h:panelGroup rendered="#{createEditPortfolioController.goldForAllocation}">
+                                                                <compo:assetclassallocation assetType="#{createEditPortfolioController.textGold}"
+                                                                                            newAllocationAsset="#{createEditPortfolioController.portfolioVO.gold.newAllocation}"
+                                                                                            exisitingWeightAsset="#{createEditPortfolioController.portfolioVO.gold.existingWeight}"
+                                                                                            maximumRange="#{createEditPortfolioController.portfolioVO.gold.maximumRange}"
+                                                                                            minimumRange="#{createEditPortfolioController.portfolioVO.gold.minimumRange}"
+                                                                                            weightNotInRange="#{createEditPortfolioController.portfolioVO.gold.weightNotInRange}"/>
+                                                                <compo:securityscrip securities="#{createEditPortfolioController.portfolioVO.gold.securities}"
+                                                                                     asset="#{createEditPortfolioController.textGold}"/>
+                                                            </h:panelGroup>
+                                                            
+                                                            <!-- International-->
+                                                            <h:panelGroup rendered="#{createEditPortfolioController.internationalForAllocation}">
+                                                                <compo:assetclassallocation assetType="#{createEditPortfolioController.textInternational}"
+                                                                                            newAllocationAsset="#{createEditPortfolioController.portfolioVO.international.newAllocation}"
+                                                                                            exisitingWeightAsset="#{createEditPortfolioController.portfolioVO.international.existingWeight}"
+                                                                                            maximumRange="#{createEditPortfolioController.portfolioVO.international.maximumRange}"
+                                                                                            minimumRange="#{createEditPortfolioController.portfolioVO.international.minimumRange}"
+                                                                                            weightNotInRange="#{createEditPortfolioController.portfolioVO.international.weightNotInRange}"/>
+                                                                <compo:securityscrip securities="#{createEditPortfolioController.portfolioVO.international.securities}"
+                                                                                     asset="#{createEditPortfolioController.textInternational}"/>
+                                                            </h:panelGroup>
+                                                            
+                                                            <!-- F&O Derivatives-->
+                                                            <h:panelGroup rendered="#{createEditPortfolioController.fnoForAllocation}">
+                                                                <compo:assetclassallocation assetType="#{createEditPortfolioController.textFO}"
+                                                                                            newAllocationAsset="#{createEditPortfolioController.portfolioVO.fno.newAllocation}"
+                                                                                            exisitingWeightAsset="#{createEditPortfolioController.portfolioVO.fno.existingWeight}"
+                                                                                            maximumRange="#{createEditPortfolioController.portfolioVO.fno.maximumRange}"
+                                                                                            minimumRange="#{createEditPortfolioController.portfolioVO.fno.minimumRange}"
+                                                                                            weightNotInRange="#{createEditPortfolioController.portfolioVO.fno.weightNotInRange}"/>
+                                                                <compo:securityscrip securities="#{createEditPortfolioController.portfolioVO.fno.securities}"
+                                                                                     asset="#{createEditPortfolioController.textFO}"/>
+                                                            </h:panelGroup>
+                                                            
+                                                            <!-- Tax Planning-->
+                                                            <h:panelGroup rendered="#{createEditPortfolioController.taxPlanningForAllocation}">
+                                                                 <compo:assetclassallocation assetType="#{createEditPortfolioController.taxPlanning}"
+                                                                                            newAllocationAsset="#{createEditPortfolioController.portfolioVO.tax_planning.newAllocation}"
+                                                                                            exisitingWeightAsset="#{createEditPortfolioController.portfolioVO.tax_planning.existingWeight}"
+                                                                                            maximumRange="#{createEditPortfolioController.portfolioVO.tax_planning.maximumRange}"
+                                                                                            minimumRange="#{createEditPortfolioController.portfolioVO.tax_planning.minimumRange}"
+                                                                                            weightNotInRange="#{createEditPortfolioController.portfolioVO.tax_planning.weightNotInRange}"/>
+                                                                <compo:securityscrip securities="#{createEditPortfolioController.portfolioVO.tax_planning.securities}"
+                                                                                     asset="#{createEditPortfolioController.taxPlanning}"/>
+                                                            </h:panelGroup>
+
+                                                            <!-- CASH -->
+                                                            <compo:assetclassallocation assetType="Cash"
+                                                                                        newAllocationAsset="#{createEditPortfolioController.portfolioVO.cash.newAllocation}"
+                                                                                        exisitingWeightAsset="#{createEditPortfolioController.portfolioVO.cash.existingWeight}"
+                                                                                        maximumRange="#{createEditPortfolioController.portfolioVO.cash.maximumRange}"
+                                                                                        minimumRange="#{createEditPortfolioController.portfolioVO.cash.minimumRange}"
+                                                                                        weightNotInRange="#{createEditPortfolioController.portfolioVO.cash.weightNotInRange}"/>
+
+                                                        </tbody>
+                                                    </table>
+                                                    <script>
+                                                        //<![CDATA[
+                                                        $(document).ready(function() {
+                                                            $(".new-allocation-txt").keydown(function(e) {
+                                                                //if the letter is not digit then display error and don't type anything
+                                                                if (e.which != 8 && e.which != 0 && e.which != 46 && ((e.which < 48 || e.which > 57) && (e.which > 106 || e.which < 96))) {
+                                                                    //display error message
+                                                                    $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                                                                    return false;
+                                                                }
+                                                            });
+                                                        });
+                                                        //]]>
+                                                    </script>
+
+                                                </h:panelGroup>
+                                            </div>
+                                        </div>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+                            </div>
+                            <div class="button-row">
+                                <h:commandLink id="anchor-save-Portfolio" value="Save Portfolio" styleClass="btn-flat success"
+                                               actionListener="#{createEditPortfolioController.doActionSavePortfolio}"/>
+                                <script type="text/javascript">
+						        $('#anchor-save-Portfolio').on('click',function(){
+						        	clevertap.event.push("Click Save Portfolio");	
+									console.log("Click Save Portfolio");
+						        });
+						        </script>
+                                <h:commandLink value="Cancel" styleClass="btn-flat inverse" action="#{createEditPortfolioController.actionCancel()}"/>
+                            </div>
+                        </div>
+                        <!-- scripts for this page -->
+                        <script src="#{request.contextPath}/js/bootstrap.min.js"></script>
+                        <script type="text/javascript">
+                            $(function() {
+                                $('.dropdown-toggle').dropdown();
+                            });
+                            var $menu = $("#sidebar-nav");
+                            $("#menu-toggler").click(function(e) {
+                                e.stopPropagation();
+                                $menu.toggleClass("display");
+                            });
+                        </script>
+                        <!-- call all plugins -->
+                        <script src="#{request.contextPath}/js/theme.js"></script>
+                        <!-- pie-chart -->
+                        <script src="#{request.contextPath}/lib/flot/jquery.flot.js"></script>
+                        <script src="#{request.contextPath}/lib/flot/jquery.flot.pie.js"></script>
+                        <script src="#{request.contextPath}/js/jquery.flot.tooltip.js"></script>
+
+                        <h:panelGroup id="pnl-pie-chart">
+                            <script type="text/javascript">
+                                // <![CDATA[
+                                var data = JSON.parse('#{createEditPortfolioController.portfolioAllocationJSON}');
+                                console.log("data:" + data);
+                                $.plot('#recommended-donut', data, {
+                                    series: {
+                                        pie: {
+                                            innerRadius: 0.5,
+                                            radius: 0.8,
+                                            show: true,
+                                            label: {
+                                                show: true,
+                                                radius: 0.99,
+                                                formatter: labelFormatter,
+                                                background: {
+                                                    opacity: 1,
+                                                    color: 'transparent'
+                                                },
+                                                threshold: 0
+                                            }, stroke: {
+                                                width: 5,
+                                                color: '#ffffff'
+                                            }
+
+                                        }
+                                    }, legend: {
+                                        show: true
+                                    },
+                                    grid: {
+                                        hoverable: true
+                                    },
+                                    tooltip: true,
+                                    tooltipOpts: {
+                                        content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+                                        shifts: {
+                                            x: 20,
+                                            y: 0
+                                        },
+                                        defaultTheme: false
+                                    }
+                                });
+                                function labelFormatter(label, series) {
+                                    return '<div class="donut-label">' + label + "<br/>" + Math.round(series.percent) + "%</div>";
+                                }
+                                function onLoadBody() {
+                                    if ($('.table-hover tr td').length > 0) {
+                                        $('.table-hover tr td')[0].scrollIntoView();
+                                    }
+
+                                    if ($('.info_message').length > 0) {
+                                        $('.info_message')[0].scrollIntoView();
+                                    }
+                                    if ($('.err_message').length > 0) {
+                                        $('.err_message')[0].scrollIntoView();
+                                    }
+                                    updateWatches();
+                                }
+                                function zeroCheckFocus(elm) {
+                                    if (elm.value == 0) {
+                                        elm.value = '';
+                                    }
+                                }
+
+                                function zeroCheckOut(elm) {
+                                    if (elm.value === '') {
+                                        elm.value = 0;
+                                    }
+                                }
+                                function isNumberKey(evt) {
+                                    var charCode = (evt.which) ? evt.which : event.keyCode;
+                                    if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+                                        return false;
+                                    } else {
+                                        return true;
+                                    }
+                                }
+                                // ]]>
+                            </script>
+                        </h:panelGroup>
+                        <style type="text/css">
+                            .existing-weight{
+                                float: right;
+                                padding-right: 25px;
+                            }
+                            .price-tolerance-combo{
+                                width: 75px;
+                            }
+                            .no-border{
+                                border:none;
+                            }
+                            .red-border{
+                                border:2px solid red !important;
+                            }
+                            .green-border{
+                                border:2px solid green !important;
+                            }
+                            .ui-icon, .ui-widget-content .ui-icon {
+                                background-image: url("#{request.contextPath}/faces/javax.faces.resource/images/ui-icons_616161_256x240.png?ln=primefaces-aristo");
+                            }
+                            #pad-wrapper ul {
+                                list-style: none;
+                            }
+
+                            #pad-wrapper li {
+                                font-size: 18px;
+                                margin-bottom: 24px;
+                                font-style: italic;
+                            }
+
+                            .table thead th {
+                                font-size: 10px;
+                                background-color: #eee;
+                            }
+
+                            label {
+                                display: block;
+                            }
+
+                            input {
+                                width: 60px;
+                            }
+
+                            .table thead:first-child tr:first-child th.border-top {
+                                border-top: 1px solid #aaa;
+                            }
+
+                            .border-bottom {
+                                border-bottom: 1px solid #aaa;
+                            }
+							
+                            td:nth-child(8),th:nth-child(7){
+                                border-left: 1px solid #aaa;
+                            }
+							
+                            td:nth-child(4),th:nth-child(3){
+                                border-left: 1px solid #aaa;
+                            }
+                            
+                            td:nth-child(0),th:nth-child(2){
+                                border-left: 1px solid #aaa;
+                            }
+                            
+                            .ui-select select {
+                                margin-top: 0;
+                            }
+
+                            input[type="text"]{
+                                -webkit-border-radius: 0px;
+                                -moz-border-radius: 0px;
+                                border-radius: 0px;
+                                font-family: "Open Sans", Arial;
+                                font-size: 14px;
+                                font-weight: normal;
+                                line-height: 20px;
+                                padding: 2px;
+                                color: black;
+                                margin: 0px;
+                            }
+                            .ui-autocomplete input{
+                                width: 90px;
+                                font-size: 11px;
+                            }
+
+                            .table td {
+                                border-top-color: #EDF2F7;
+                                vertical-align: middle;
+                            }
+                            .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+                                border: 1px solid #D0E788;
+                                background: #D0E788;
+                            }
+                            .price-tolerance{
+                                width: 45px;
+                            }
+                            .error-msg-box{
+                                background: whitesmoke;padding-left: 3%;margin: 0px auto;width: 50%;
+                            }
+                            .error-msg-box td{
+                                padding-bottom: 1px;
+                            }
+                            .info_message{
+                                font-weight: bolder;
+                                color: green;
+                            }
+                            div[id$=_auto_panel]{
+                                min-width: 375px;
+                            }
+                            #flotTip 
+                            {
+                                padding: 3px 5px;
+                                background-color: #2E8E0C;
+                                z-index: 100;
+                                color: #fff;
+                                box-shadow: 0 0 10px #555;
+                                opacity: .7;
+                                filter: alpha(opacity=70);
+                                border: 2px solid #fff;
+                                -webkit-border-radius: 4px;
+                                -moz-border-radius: 4px;
+                                border-radius: 4px;
+                            }
+                        </style>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

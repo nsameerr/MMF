@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3 Apr, 2014 10:04:19 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.QuestionOptionMappingTb" table="question_option_mapping_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="questionmasterTb" class="com.gtl.mmf.entity.QuestionmasterTb" fetch="select">
+            <column name="questionid" not-null="true" />
+        </many-to-one>
+        <property name="optionid1" type="java.lang.Integer">
+            <column name="optionid_1" />
+        </property>
+        <property name="optionid2" type="java.lang.Integer">
+            <column name="optionid_2" />
+        </property>
+        <property name="optionid3" type="java.lang.Integer">
+            <column name="optionid_3" />
+        </property>
+        <property name="optionid4" type="java.lang.Integer">
+            <column name="optionid_4" />
+        </property>
+        <property name="optionid5" type="java.lang.Integer">
+            <column name="optionid_5" />
+        </property>
+        <property name="optionid6" type="java.lang.Integer">
+            <column name="optionid_6" />
+        </property>
+        <property name="optionid7" type="java.lang.Integer">
+            <column name="optionid_7" />
+        </property>
+        <property name="optionid8" type="java.lang.Integer">
+            <column name="optionid_8" />
+        </property>
+        <property name="optionid9" type="java.lang.Integer">
+            <column name="optionid_9" />
+        </property>
+        <property name="optionid10" type="java.lang.Integer">
+            <column name="optionid_10" />
+        </property>
+    </class>
+</hibernate-mapping>

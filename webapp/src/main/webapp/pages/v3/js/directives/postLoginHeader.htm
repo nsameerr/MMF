@@ -1,0 +1,99 @@
+<header class="navbar-fixed-top">
+			<div class="padding_lr">
+				<button id="open_menu_nav" class="navbar-toggle" type="button">
+					<span class="sr-only"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<button id="close_menu_nav" class="navbar-toggle" type="button">
+					<span class="sr-only"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+					
+				<div class="navbar-header">
+					<div class="logo">
+						<a href="">Manage My Fortune</a>
+					</div>
+				</div>
+				<div class="logout"><a href="" title="Log Out" onclick="javascript:window.location.href=_gc_url_logout"> </a></div>
+				<!--span class="glyphicon glyphicon-share-alt" style="color:#9BA3AD;/* font-size: 2em; */width: 22px;height: 22px;color: white;/* float: left; */margin-right: 15px;font-size: 22px;" onclick="javascript:window.location.href=_gc_url_logout"></span-->
+				<div class="settings">
+					<div style="float: left;margin-right: 10px;color: white;"id="displayOnlyUserName"></div>
+					<span class="gear_icon"> 
+						<!--a href=""></a-->
+						<ul class="nav navbar-nav">
+		                	<li class="dropdown"><a href="" class="dropbtn"></a>
+		                        <ul class="dropdown-menu">
+		                          <li><a href="javascript:openPage('/faces/pages/v3/investor-change-password-login.jsp?faces-redirect=true')" class="changepass" id="changePassword">Change Password</a></li>
+		                          <!-- 
+		                          <li><a href="" class="paymentset">Payment Settings</a></li>
+		                          <li><a href="" class="investorprofile">Investor Profile</a></li>
+		                          <li><a href="" class="rishprofile">Risk Profile</a></li>
+		                          <li><a href="" class="financialplan">Financial Plan</a></li>
+		                           -->
+		                        </ul>
+		                    </li>
+		                </ul>
+					</span>					
+				</div>
+			</div>
+			<section id="hamber_menu_section" class="hamber_menu_section">
+				<div class="nav_menu">
+					<ul>
+						<li style="display: none;" class="sb" id="home">
+							<a class="home" href="javascript:openPage('/faces/pages/v3/investor-dashboard.jsp?faces-redirect=true')">Home</a>
+						</li>
+						<li class="active sb" style="display: none;" id="search">
+							<a class="search" href="javascript:openPage('/faces/pages/v3/advisor-select.jsp?faces-redirect=true')">search portfolio</a>
+						</li>
+						<li style="display: none;" class="sb" id="my_port">
+							<a class="my_port" href="">my portfolio</a>
+						</li>
+						<li style="display: none;" class="sb" id="reports">
+							<a class="reports" href="">reports</a>
+						</li>
+						<li style="display: none;" class="sb" id="ad_service">
+							<a class="ad_service" href="">advisory service contract</a>
+						</li>
+						<li style="display: none;" class="sb" id="alerts">
+							<a class="alerts" href="">alerts</a>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</header>
+
+		<script type="text/javascript">
+		openPage = function(myUrl) {
+			location.href = _gc_url_baseUrl + myUrl;
+		}
+		$(document).ready(function(){
+			/* nav setting drop down start    */	
+			$('ul.nav li.dropdown').hover(function() {
+			  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+			}, function() {
+			  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+			});	
+			/* nav setting drop down end   */
+			$('#open_menu_nav').click(function(){
+				$('#hamber_menu_section').animate({
+					left: '0px'
+				}, 1000);
+				$('#open_menu_nav').hide();
+				$('#close_menu_nav').show();
+			});
+			$('#close_menu_nav').click(function(){
+				$('#hamber_menu_section').animate({
+					left: '-92px'
+				}, 1000);
+				$('#open_menu_nav').show();
+				$('#close_menu_nav').hide();
+			});	
+		});
+
+
+			
+		</script>

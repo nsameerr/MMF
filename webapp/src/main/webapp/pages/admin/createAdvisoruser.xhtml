@@ -1,0 +1,1386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+
+    </head>
+
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout_admin.xhtml">
+            <ui:define name="title">
+                <h:outputText value="#{createUserBean.title} Advisor | ManageMyFortune.com" rendered="#{createUserBean.userDetails.userType=='Yes'}"/>
+                <h:outputText value="#{createUserBean.title} Investor | ManageMyFortune.com" rendered="#{createUserBean.userDetails.userType=='No'}"/>
+            </ui:define>
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_admin.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+
+                <style>
+                    .dob input {                            
+                        width: 300px;
+                    }
+                    .form-page .form-wrapper label {
+                        width: 241px;
+                    }
+                    input[type="text"] {
+                        width: 220px !important;
+                    }
+                    textarea{
+                        width: 400px;
+                    }
+                    .ui-select span6{
+                        margin-left: 0px;
+                        width: 400px;
+                    }
+                    .span6{
+                        width: 400px;
+                    }
+                    select{
+                        width: 400px;
+                    }
+                    .content{
+                        padding-bottom: 0px;
+                    }
+                    .field-box{
+                        width: 169px;
+                    }
+                    .msghidden {
+                        display:none;
+                    }
+                    .msgvisible {
+                        font-size: 13px;
+                        color: #fff;
+                        display: block;
+                        width: 15em;
+                        margin-top:5px;
+                        margin-left:45px;
+                        position:absolute;
+                        background-color:#696d73;
+                        border-radius: 4px;
+                    }
+                    .err_message {
+                        color: red;
+                        padding-left: 0px;
+                    }
+                    .margin_style {
+                        margin-left: 35px;
+                    }
+                    .standing_instruction_select {
+                        width: 7%;
+                    }
+                    .standing_address_select {
+                        width: 18%;
+                    }
+                    @media screen{
+                        .form-page .form-wrapper{
+                            margin-bottom: 0px;
+                        }
+                        .err_message{
+                            padding-left: 0px;
+                        }
+                        .span8{
+                            width: 73%;
+                        }
+                        .row-fluid .span3 {
+                            width: 31%;
+                        }
+                        .row-fluid .span3:first-child {
+                            margin-left:0px!important;
+                        }
+                    }
+                    @media (max-width: 767px){
+                        .row-fluid .span3{
+                            width: 70%;
+                        }
+                        .margin_style{
+                            margin-left: 0px;
+                        }
+                        .standing_instruction_select {
+                            width: 19%;
+                        }
+                        .standing_address_select {
+                            width: 40%;
+                        }
+                    }
+                    @media (max-width: 979px)and (min-width: 768px){
+                        .row-fluid .span3 {
+                            width: 55%;
+                            margin-left: 0px;
+                        }
+                        .margin_style {
+                            margin-left: 0px;
+                        }
+                    }
+                    @media (min-width: 1200px){
+                        .row-fluid .span3 {
+                            width: 23%;
+                        }
+                    }
+                    .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+                        border: 1px solid #D0E788;
+                        background: #D0E788;
+                    }
+                </style>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div id="pad-wrapper" class="form-page">
+                            <h:form id="frm_create_user" enctype="multipart/form-data" >   
+                                <ui:fragment rendered="#{createUserBean.userDetails.userType=='Yes'}">
+                                    <h2 class="page-title">#{createUserBean.title} User - Advisor</h2>
+                                </ui:fragment>
+                                <div class="row no_lft_margin">
+                                    <div class="table-wrapper users-table">
+                                        <table style="border: 1px solid #eee; margin-bottom: 36px" class="table" celpadding="10">
+                                            <thead style="border-top: none;">
+                                                <tr>
+                                                    <th>            
+                                                        <div class="align_center" style="margin-left: 0px;text-align: left">
+                                                            <h:outputLabel  value="REGISTRATION ID"  style="font-size: 11px; font-weight: bold"
+                                                                            rendered="#{!createUserBean.userDetails.exisitngUser}" />
+                                                            <h:outputLabel  value="Customer ID" style="font-size: 11px; font-weight: bold"
+                                                                            rendered="#{createUserBean.userDetails.exisitngUser}" />  
+                                                        </div>
+                                                    </th>
+
+                                                    <th>
+                                                        <div class="align_center" style="margin-left: 0px;text-align: left">DATE OF REGISTRATION</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="first">
+
+                                                    <td>
+                                                        <h:outputLabel value="#{createUserBean.userDetails.masterApplicant.registrationId}"/>
+                                                    </td>
+                                                    <td class="align_right">
+                                                        <h:outputLabel value="#{createUserBean.userDetails.masterApplicant.registerDatetime}">
+                                                            <f:convertDateTime pattern="dd-MM-yyyy"/> 
+                                                        </h:outputLabel >
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div style="line-height:3px">
+                                            <h:message  for="frm_create_user" style="color: red" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <h4 class="title" style="margin-top: 25px;">Process Flow for Advisor</h4>
+                                <div class="row-fluid form-wrapper process_flow">
+                                    <div class="row-fluid form-wrapper">
+                                        <ol class="list-number-styled no_margin">
+                                            <li> 
+                                                <div>
+                                                    <label style="width: 295px">Online Details Submitted
+                                                        <h:selectBooleanCheckbox id="onlinedetails" class="check" value="#{createUserBean.userDetails.onlineDetailsSubmitted}"
+                                                                                 style="margin-top: 0px;height: 15px;margin-right: 15px;">
+                                                            <f:ajax execute="Activate_btn" event="change"
+                                                                    listener="#{createUserBean.checkForAcoountActivateListener()}"
+                                                                    render="btnGroup Activate_btn"/>  
+                                                        </h:selectBooleanCheckbox>
+                                                    </label>
+                                                </div>
+                                            </li>
+
+                                            <li> 
+                                                <div>
+                                                    <label style="width: 295px">SEBI Investment Advisor certificate validated
+                                                        <h:selectBooleanCheckbox id="certificateValidate" class="check" value="#{createUserBean.userDetails.sebiCertificateValidated}"
+                                                                                 style="margin-top: 0px;height: 15px;margin-right: 15px;">
+                                                            <f:ajax execute="Activate_btn" event="change"
+                                                                    listener="#{createUserBean.checkForAcoountActivateListener()}"
+                                                                    render="btnGroup Activate_btn"/>  
+                                                        </h:selectBooleanCheckbox>
+                                                    </label>
+                                                </div>
+                                            </li>
+
+                                            <li> 	
+                                                <div>
+                                                    <label style="width: 295px">Verification call completed
+                                                        <h:selectBooleanCheckbox id="callCompleted" class="check" value="#{createUserBean.userDetails.verificationCcompleted}"
+                                                                                 style="margin-top: 0px;height: 15px;margin-right: 15px;">
+                                                            <f:ajax execute="Activate_btn" event="change"
+                                                                    listener="#{createUserBean.checkForAcoountActivateListener()}"
+                                                                    render="btnGroup Activate_btn"/>  
+                                                        </h:selectBooleanCheckbox>
+                                                    </label>
+                                                </div>
+                                            </li>
+
+                                            <li> 	
+                                                <div>
+                                                    <label style="width: 295px">Account activated
+                                                        <h:selectBooleanCheckbox id="activateed" class="check" value="#{createUserBean.userDetails.accountActivated}"
+                                                                                 style="margin-top: 0px;height: 15px;margin-right: 15px;">
+                                                            <f:ajax execute="Activate_btn" event="change"
+                                                                    listener="#{createUserBean.checkForAcoountActivateListener()}"
+                                                                    render="btnGroup Activate_btn"/>  
+                                                        </h:selectBooleanCheckbox>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>		
+                                <br/><br/>
+                                <div class="row-fluid">
+                                    <h:selectOneRadio  styleClass="radio" class="individualOrCprt" id="individualOrCprt" value="#{createUserBean.userDetails.masterApplicant.indvOrCprt}">
+                                        <f:selectItem  itemLabel="Individual" itemValue="#{true}"/>
+                                        <f:selectItem  itemLabel="Corporate" itemValue="#{false}"/>
+                                        <f:ajax  render="pan_group individual corporate corporate_phn ofc_individual ofc_corporate"/>
+                                    </h:selectOneRadio>
+                                </div>
+
+                                <div class="row-fluid form-wrapper">
+
+                                    <h4 class="title" style="margin-top: 25px;">Personal</h4>
+                                    <div class="row-fluid form-wrapper">
+                                        <div class="span3">
+                                            <label>First Name<span class="fname" style="color:red">*</span></label>
+                                            <h:inputText id="name" required="#{createUserBean.userDetails.masterApplicant.indvOrCprt}" 
+                                                         maxlength="50"
+                                                         requiredMessage="Please enter First Name"
+                                                         validatorMessage="Please enter valid First Name(special charecters,numbers not allowed)"
+                                                         styleClass="span6" value="#{createUserBean.userDetails.masterApplicant.name}">
+                                                <f:validateRegex pattern="[a-zA-Z\s.]*"/>
+                                            </h:inputText><br></br>
+                                            <h:message for="name" styleClass="err_message"></h:message> 
+                                        </div>
+                                        <div class="span3">
+                                            <label>Middle Name</label>
+                                            <h:inputText id="mname" maxlength="50"                                                     
+                                                         validatorMessage="Please enter valid middle name(special charecters,numbers not allowed)"
+                                                         styleClass="span6" value="#{createUserBean.userDetails.masterApplicant.middleName}">
+                                                <f:validateRegex pattern="[a-zA-Z\s.]*"/>
+                                            </h:inputText><br></br>
+                                            <h:message for="mname" styleClass="err_message"></h:message> 
+                                        </div>
+                                        <div class="span3">
+                                            <label>Last Name<span class="lname" style="color:red">*</span></label>
+                                            <h:inputText id="lname" maxlength="50" required="#{createUserBean.userDetails.masterApplicant.indvOrCprt}" 
+                                                         requiredMessage="Please enter Last Name"
+                                                         validatorMessage="Please enter valid Last Name(special charecters,numbers not allowed)"
+                                                         styleClass="span4" value="#{createUserBean.userDetails.masterApplicant.lastName}">
+                                                <f:validateRegex pattern="[a-zA-Z\s.]*"/>
+                                            </h:inputText><br></br>
+                                            <h:message for="lname" styleClass="err_message"></h:message> 
+                                        </div>
+                                    </div>
+
+                                    <div class="row-fluid form-wrapper">
+                                        <div class="span3">
+                                            <label class="block_ele">Organization<span class="org" style="color:red">*</span></label>
+                                            <h:inputText id="org_name" value="#{createUserBean.userDetails.masterApplicant.workOrganization}"
+                                                         styleClass="span6" maxlength="50" required="#{!createUserBean.userDetails.masterApplicant.indvOrCprt}" 
+                                                         requiredMessage="Please specify Organization" validatorMessage="Please specify valid Organization">
+                                                <!-- <f:validateRegex pattern="^$|^[a-zA-Z]+[A-Za-z\s]*$"/>    -->
+                                            </h:inputText><br></br>
+                                            <h:message for="org_name" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3">
+                                            <label>SEBI Investment Advisor Registration No<span style="color:red">*</span></label>
+                                            <h:inputText id="sebiregno" 
+                                                         maxlength="20" required="true"
+                                                         requiredMessage="Please enter SEBI Registration No"
+                                                         styleClass="span6" style="width: 195px;"
+                                                         validatorMessage="Please enter valid registration number"
+                                                         value="#{createUserBean.userDetails.masterApplicant.sebiRegno}">
+                                            </h:inputText><br></br>
+                                            <p:watermark for="sebiregno" value="(combination of a-z,A-Z,0-9 characters only)" />
+                                            <h:message for="sebiregno" styleClass="err_message"></h:message>
+                                        </div>
+                                        <div class="span3">
+                                            <label>Validity of Registration </label>
+                                            <div class="datepicker_box">
+                                                <p:inputText id="validity" maxlength="20" required="true"  
+                                                             requiredMessage="Please select Validity" placeholder = "DD-MM-YYYY"
+                                                             styleClass="span6 datepicker no_lft_margin" value="#{createUserBean.userDetails.qualificationTb.validitySebiCertificate}"  autocomplete="off"
+                                                             converterMessage="Invalid format ( Eg:06-5-2014 )">
+                                                    <f:convertDateTime pattern="dd-MM-yyyy"/> 
+                                                </p:inputText><i class="icon-calendar"></i></div><br></br>
+                                            <h:message for="validity" id="sebi_err_msg" styleClass="err_message"></h:message>
+
+                                        </div>
+                                        <div class="span3">
+                                            (Maximum allowable size 2MB.<br/>Supported formats(pdf, jpeg, png files only))
+                                        </div>
+                                    </div>	
+                                    <h:panelGroup id="pan_group">
+                                        <div class="row-fluid form-wrapper">
+                                            <div  class="span3">
+                                                <h:panelGroup id="individual" rendered="#{createUserBean.userDetails.masterApplicant.indvOrCprt}">
+                                                    <label>Individual PAN Card Number<span style="color:red">*</span></label>
+                                                </h:panelGroup>
+                                                <h:panelGroup id="corporate" rendered="#{!createUserBean.userDetails.masterApplicant.indvOrCprt}">
+                                                    <label>Corporate PAN Card Number<span style="color:red">*</span></label>
+                                                </h:panelGroup>
+                                                <h:inputText value="#{createUserBean.userDetails.masterApplicant.pan}"
+                                                             required="true"
+                                                             requiredMessage="Please enter PAN"
+                                                             validatorMessage="Please enter valid PAN(Eg:AOFBP6688A)"
+                                                             styleClass="span6" maxlength="10" id="panno_in">
+                                                    <f:validateRegex pattern="^$|[A-Za-z]{3}(p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G)[\w][\d]{4}[A-Za-z]"/>
+                                                </h:inputText><br></br>
+                                                <h:message for="panno_in" styleClass="err_message"/>    
+                                            </div> 
+                                            <div class="span3">
+                                                <label>Date of Birth <span style="color:red">*</span> </label>
+                                                <div class="datepicker_box">
+                                                    <p:inputText id="dob" maxlength="20" required="true"  readonly="true"
+                                                                 requiredMessage="Please select Date of Birth" placeholder = "DD-MM-YYYY"
+                                                                 styleClass="span6  no_lft_margin" value="#{createUserBean.userDetails.masterApplicant.dob}"  autocomplete="off"
+                                                                 converterMessage="Invalid format ( Eg:06-5-2014 )">
+                                                        <f:convertDateTime pattern="dd-MM-yyyy"/> 
+                                                    </p:inputText><i class="icon-calendar"></i></div><br></br>
+                                                <h:message for="dob" styleClass="err_message"></h:message>
+                                            </div>
+
+                                            <div class="span3">
+                                                <label style="width: 220px;">Upload Scanned Copy of SEBI Investment Advisor Certification</label>
+                                                <div class="upload_btn ">
+                                                    <span class="btn-flat default">
+                                                        <h:inputFile id="file" value="#{createUserBean.filepart}"/>
+                                                        Browse
+                                                    </span>
+                                                </div>
+                                                <div id="sebi_file"> </div>
+                                                <script type="text/javascript">
+                                                    var sebiFile = '#{createUserBean.userDetails.qualificationTb.sebiCertificatePath eq null ?
+                                                                      'No file chosen': createUserBean.userDetails.qualificationTb.sebiCertificatePath }';
+                                                            $("#sebi_file").html(sebiFile.split('/').pop());
+                                                            $('input[type=file]').change(function(e){
+                                                    $in = $(this);
+                                                            var id = $(this).attr('id');
+                                                            $in.next().html($in.val());
+                                                            if (id == 'frm_create_user:file'){
+                                                    var sebiFile = $in.val().split('\\').pop();
+                                                            $("#sebi_file").html(sebiFile);
+                                                    }
+                                                    });</script>
+                                                <h:message  for="file" styleClass="err_message" />  						
+                                            </div>	
+                                            <h:panelGroup rendered="#{createUserBean.userDetails.downloadSebi}">
+                                                <div class="span3">
+                                                    <label style="width: 220px;">Download Scanned Copy of SEBI Investment Advisor Certification</label>
+                                                    <div class="upload_btn "> 
+                                                        <span class="btn-flat default">
+                                                            <h:commandLink action="dwnldSebi()" style="color: whitesmoke;" actionListener="#{createUserBean.downloadFileListener(1)}" immediate="true">
+                                                                Download</h:commandLink>
+                                                        </span>
+                                                    </div>	
+                                                </div>	
+                                            </h:panelGroup>
+                                            <p:remoteCommand name="dwnldSebi" immediate="true"/>	
+                                        </div>
+                                    </h:panelGroup>    
+                                    <!--
+                                    <h4 class="title" style="margin-top: 25px;">Residential Address</h4>
+                                    <div class="row-fluid form-wrapper">
+
+                                        <div class="span3">
+                                            <label>Address Line1<span style="color:red">*</span> </label>
+                                            <h:inputText id="address_line1" value="{createUserBean.userDetails.homeAddress}"                                                         
+                                                         styleClass="span4" required="true" maxlength="50"
+                                                         requiredMessage="Please enter Home Address "
+                                                         validatorMessage="Please enter valid Home Address">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#\:]*"/>  
+                                            </h:inputText><br></br>
+                                            <h:message for="address_line1" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3">
+                                            <label>Address Line2</label>
+                                            <h:inputText id="address_line2" value="{createUserBean.userDetails.homeAddress_Line1}"                                                         
+                                                         styleClass="span6" required="false" maxlength="20"
+                                                         requiredMessage="Please enter Address Line 2 "
+                                                         validatorMessage="Please enter Address Line 2">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#\:]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:message for="address_line2" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3">
+                                            <label>Landmark</label>
+                                            <h:inputText id="address_landmark" value="{createUserBean.userDetails.homeAddress_Landmark}"                                                         
+                                                         styleClass="span6" required="false" maxlength="20"
+                                                         requiredMessage="Please enter Landmark "
+                                                         validatorMessage="Please enter valid Landmark">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#\:]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:message for="address_landmark" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3">
+                                            <label>Pin Code <span style="color:red">*</span> </label>
+                                            <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         id="pincode" required="true"
+                                                         maxlength="6" style="width: 197px;"
+                                                         requiredMessage="Please enter Pin Code"
+                                                         validatorMessage="Please enter valid Pin Code"
+                                                         styleClass="span6" value="{createUserBean.userDetails.masterApplicant.addressPincode}">
+                                                <f:validateRegex pattern="^$|^([\d]+)?$"/>
+                                            </h:inputText><br></br>
+                                            <h:message for="pincode" styleClass="err_message"></h:message>
+                                        </div> 
+                                    </div>
+                                    <div class="row-fluid form-wrapper">
+
+                                        <div class="span3">
+                                            <label>Country<span style="color:red">*</span></label>
+                                            <div class="ui-select">
+                                                <h:selectOneMenu value="{createUserBean.userDetails.masterApplicant.addressCountry}" style="width: 100%;">
+                                                    <f:selectItems value="{createUserBean.countryList.entrySet()}" 
+                                                                   var="countryList" 
+                                                                   itemLabel="{countryList.value}" itemValue="{countryList.key}"/>
+                                                    <p:ajax event="change" listener="{createUserBean.onChnageCountryHome()}" update="state_panel_group city_panel_group"/> 
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <h:panelGroup id="state_panel_group">
+                                            <div class="span3">
+                                                <label class="margin_style">State <span style="color:red">*</span></label>
+                                                <h:inputText id="state_text" maxlength="50"
+                                                             required="true" styleClass="margin_style"
+                                                             requiredMessage="Please enter State" style="width: 208px!important;"
+                                                             value="{createUserBean.userDetails.masterApplicant.addressState}"
+                                                             rendered="{createUserBean.homeStateListEditable}"
+                                                             validatorMessage="Please enter valid State">
+                                                    <f:validateRegex pattern="^$|[a-zA-Z\s]*"/> 
+                                                </h:inputText><br></br>
+                                                <h:panelGroup rendered="{!createUserBean.homeStateListEditable}">
+                                                    <div class="ui-select margin_style">
+                                                        <h:selectOneMenu value="{createUserBean.userDetails.masterApplicant.addressState}" id="state_list" 
+                                                                         required="true" requiredMessage="Please select State"
+                                                                         style="width: 100%;">
+                                                            <p:ajax event="change" listener="{createUserBean.onChangeState(createUserBean.userDetails.masterApplicant.addressState,1)}" update="city_panel_group"/> 
+                                                           <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                            <f:selectItems value="{createUserBean.homeStateList.entrySet()}" 
+                                                                           var="stateList" itemLabel="{stateList.value}" itemValue="{stateList.value}"/>
+                                                        </h:selectOneMenu>
+                                                    </div><br/>
+                                                </h:panelGroup>
+                                                <h:message for="state_text" styleClass="err_message margin_style"></h:message> 
+                                                <h:message for="state_list" styleClass="err_message margin_style"></h:message> 
+                                            </div>
+                                        </h:panelGroup>
+
+                                        <h:panelGroup id="city_panel_group">
+                                            <div class="span3" style="padding-left: 29px;width: 400px">
+                                                <label class="margin_style">City <span style="color:red">*</span></label>
+                                                <h:inputText id="city_text" maxlength="50"
+                                                             required="true" styleClass="margin_style"
+                                                             requiredMessage="Please enter City" style="width: 208px!important;"
+                                                             value="{createUserBean.userDetails.masterApplicant.addressCity}"
+                                                             rendered="{createUserBean.cityListEditable}"
+                                                             validatorMessage="Please enter valid City">
+                                                    <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                                </h:inputText><br></br>
+                                                <h:panelGroup rendered="{!createUserBean.cityListEditable}">
+                                                    <div class="ui-select margin_style">
+                                                        <h:selectOneMenu value="{createUserBean.userDetails.masterApplicant.addressCity}" id="city_list" 
+                                                                         required="true" requiredMessage="Please select City"
+                                                                         style="width: 100%;">
+                                                            <p:ajax event="change" update="other_group other_city"/> 
+                                                            <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                            <f:selectItems value="{createUserBean.cityList.entrySet()}" 
+                                                                           var="cityList" itemLabel="{cityList.value}" itemValue="{cityList.value}"/>
+                                                        </h:selectOneMenu>
+                                                    </div><br/>
+                                                </h:panelGroup>
+                                                <h:message for="city_text" styleClass="err_message margin_style"></h:message> 
+                                                <h:message for="city_list" styleClass="err_message margin_style"></h:message> 
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup id="other_group">
+                                            <h:panelGroup id="other_city" rendered="{createUserBean.userDetails.masterApplicant.addressCity eq 'Other'}">
+                                                <div class="span3">
+                                                    <label>City Other <span style="color:red">*</span></label>
+                                                    <h:inputText id="res_city" maxlength="50"
+                                                                 required="true" styleClass="span6"
+                                                                 requiredMessage="Please enter City" 
+                                                                 value="{createUserBean.userDetails.masterApplicant.resCityOther}"
+                                                                 validatorMessage="Please enter valid City">
+                                                        <f:validateRegex pattern="^$|[a-zA-Z\s.,\-\\\/\#]*"/> 
+                                                    </h:inputText>
+                                                </div><br></br>
+                                                <h:message for="res_city" styleClass="err_message"></h:message> 
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+
+                                    </div>
+                                    <div class="row-fluid form-wrapper">
+                                        <div class="span3">
+                                            <label>Mobile <span style="color:red">*</span> </label>
+                                            <div class="clearfix inputgrp mobile">
+                                                <h:inputText value="+ 91" readonly="true" />
+                                                <span>&#32;</span>
+                                                <p:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                             id="mobile" required="true" placeholder="(Eg:8622334455)"
+                                                             maxlength="10" 
+                                                             requiredMessage="Please enter Mobile number" styleClass="span6" 
+                                                             value="{createUserBean.userDetails.masterApplicant.mobile}"
+                                                             validatorMessage="Please enter  valid Mobile number">
+                                                    <f:validateRegex pattern="^$|^\d{10}$"/>
+                                                </p:inputText>
+                                            </div><br></br>
+                                            <h:message for="mobile" styleClass="err_message"></h:message>
+                                        </div>
+                                        <div  class="span3">
+                                            <label>Email<span style="color:red">*</span></label>
+                                            <h:inputText value="{createUserBean.userDetails.masterApplicant.email}"
+                                                         required="true" requiredMessage="Please enter Email"
+                                                         styleClass="span6" maxlength="50" id="email-in"
+                                                         validatorMessage="Invalid Email format">
+                                                <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                            </h:inputText><br></br>
+                                            <h:message for="email-in" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3">
+                                            <label>Telephone</label>
+                                            <div class="clearfix inputgrp tel">
+                                                <p:inputText maxlength="4" value="{createUserBean.userDetails.risd}" placeholder="ISD" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
+                                                <p:inputText maxlength="4" value="{createUserBean.userDetails.rstd}" placeholder="STD" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
+                                                <p:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                             id="telephone-number" required="true" 
+                                                             maxlength="7" styleClass="span6"
+                                                             requiredMessage="Please enter Telephone number" 
+                                                             validatorMessage="Please enter valid Telephone number(Eg:04842758595,02222758595)"
+                                                             value="{createUserBean.userDetails.masterApplicant.telephone}">
+                                                    <f:validateRegex pattern="^$|^([\d]+)?$"/>
+                                                </p:inputText>
+                                            </div><br></br>
+                                            <h:message for="telephone-number" styleClass="err_message"></h:message> 
+                                        </div>
+                                    </div>
+                                    -->
+                                    <h4 class="title" style="margin-top: 25px;">Office Details</h4>
+
+
+
+                                    <div class="row-fluid form-wrapper">
+
+                                        <div class="span3">
+                                            <label class="block_ele">Job Title<span style="color:red">*</span></label>
+                                            <h:inputText id="job_title" value="#{createUserBean.userDetails.masterApplicant.jobTitle}"
+                                                         styleClass="span6" maxlength="50" required="true"  requiredMessage="Please specify Job Title"
+                                                         validatorMessage="Please specify valid Job Title">
+                                                <f:validateRegex pattern="^$|^[a-zA-Z]+[A-Za-z\s]*$"/> 
+                                            </h:inputText><br></br>
+                                            <h:message for="job_title" styleClass="err_message"/>
+                                        </div>
+                                    </div>
+
+                                    <!--
+                                    <div class="row-fluid form-wrapper">
+                                        <div class="span3">
+                                            <label style="width: 295px">Same as Residence Address
+                                                <h:selectBooleanCheckbox id="residentadrs" value="{createUserBean.userDetails.masterApplicant.permanentAddress}"
+                                                                         style="margin-top: 0px;height: 15px;margin-right: 15px;">
+                                                    <f:ajax  render="address1 officeaddress"/> 
+                                                </h:selectBooleanCheckbox>
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                    -->
+
+                                    <!--
+                                    <h:panelGroup id="address1">
+                                        <h:panelGroup id="officeaddress" rendered="{!createUserBean.userDetails.masterApplicant.permanentAddress}"> 
+                                        <h:panelGroup id="officeaddress"> -->
+                                    <div class="row-fluid form-wrapper">
+
+                                        <div class="span3" style="width: 443px;">
+                                            <label>Address Line1<span style="color:red">*</span> </label>
+                                            <h:inputText id="officeaddress_line1" value="#{createUserBean.userDetails.officeAddress}"                                                         
+                                                         styleClass="span4" required="true" maxlength="37"
+                                                         requiredMessage="Please enter Office Address"
+                                                         validatorMessage="Please enter valid Resident Address" style="width: 460px!important;">
+                                                <!-- <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#\:]*"/> -->  
+                                            </h:inputText><br></br>
+                                            <h:message for="officeaddress_line1" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3" style="width: 449px;">
+                                            <label>Address Line2</label>
+                                            <h:inputText id="officeaddress_line2" value="#{createUserBean.userDetails.address2_Line1}"                                                         
+                                                         styleClass="span6" required="false" maxlength="37"
+                                                         requiredMessage="Please enter Address Line 2 "
+                                                         validatorMessage="Please enter Address Line 2" style="width: 460px!important;">
+                                            </h:inputText><br></br>
+                                            <h:message for="officeaddress_line2" styleClass="err_message"/>
+                                        </div>
+                                        <!--
+                                        <div class="span3">
+                                            <label>Landmark</label>
+                                            <h:inputText id="officeaddress_landmark" value="{createUserBean.userDetails.address2_Landmark}"                                                         
+                                                         styleClass="span6" required="false" maxlength="20"
+                                                         requiredMessage="Please enter Landmark "
+                                                         validatorMessage="Please enter valid Landmark"> 
+                                            </h:inputText><br></br>
+                                            <h:message for="officeaddress_landmark" styleClass="err_message"/>
+                                        </div>
+                                        -->
+                                    </div>
+                                    <div class="row-fluid form-wrapper">
+
+                                        <div class="span3">
+                                            <label>Country<span style="color:red">*</span></label>
+                                            <div class="ui-select">
+                                                <h:selectOneMenu value="#{createUserBean.userDetails.masterApplicant.address2Country}" style="width: 100%;">
+                                                    <f:selectItems value="#{createUserBean.countryList.entrySet()}" 
+                                                                   var="countryList2" 
+                                                                   itemLabel="#{countryList2.value}" itemValue="#{countryList2.key}"/>
+                                                    <p:ajax event="change" listener="#{createUserBean.onChnageCountryHome2()}" update="officestate_panel_group officecity_panel_group"/> 
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <h:panelGroup id="officestate_panel_group">
+                                            <div class="span3">
+                                                <label class="margin_style">State <span style="color:red">*</span></label>
+                                                <h:inputText id="officestate_text" maxlength="50"
+                                                             required="true" styleClass="margin_style"
+                                                             requiredMessage="Please enter State" style="width: 208px!important;"
+                                                             value="#{createUserBean.userDetails.masterApplicant.address2State}"
+                                                             rendered="#{createUserBean.homeStateList2Editable}"
+                                                             validatorMessage="Please enter valid State">
+                                                    <f:validateRegex pattern="^$|[a-zA-Z\s]*"/> 
+                                                </h:inputText><br></br>
+                                                <h:panelGroup rendered="#{!createUserBean.homeStateList2Editable}">
+                                                    <div class="ui-select margin_style">
+                                                        <h:selectOneMenu value="#{createUserBean.userDetails.masterApplicant.address2State}" id="officestate_list" 
+                                                                         required="true" requiredMessage="Please select State"
+                                                                         style="width: 100%;">
+                                                            <p:ajax event="change" listener="#{createUserBean.onChangeState(createUserBean.userDetails.masterApplicant.address2State,2)}" update="officecity_panel_group"/> 
+                                                            <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                            <f:selectItems value="#{createUserBean.homeStateList2.entrySet()}" 
+                                                                           var="stateList2" itemLabel="#{stateList2.value}" itemValue="#{stateList2.value}"/>
+                                                        </h:selectOneMenu>
+                                                    </div><br/>
+                                                </h:panelGroup>
+                                                <h:message for="officestate_text" styleClass="err_message margin_style"></h:message> 
+                                                <h:message for="officestate_list" styleClass="err_message margin_style"></h:message> 
+                                            </div>
+                                        </h:panelGroup>
+
+                                        <h:panelGroup id="officecity_panel_group">
+                                            <div class="span3">
+                                                <label class="margin_style">City <span style="color:red">*</span></label>
+                                                <h:inputText id="officecity_text" maxlength="50"
+                                                             required="true" styleClass="margin_style"
+                                                             requiredMessage="Please enter City" style="width: 208px!important;"
+                                                             value="#{createUserBean.userDetails.masterApplicant.address2City}"
+                                                             rendered="#{createUserBean.officeCityListEditable}"
+                                                             validatorMessage="Please enter valid City">
+                                                    <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                                </h:inputText><br></br>
+                                                <h:panelGroup rendered="#{!createUserBean.officeCityListEditable}">
+                                                    <div class="ui-select margin_style">
+                                                        <h:selectOneMenu value="#{createUserBean.userDetails.masterApplicant.address2City}" id="officecity_list" 
+                                                                         required="true" requiredMessage="Please select City"
+                                                                         style="width: 100%;">
+                                                            <p:ajax event="change" update="other_offgroup other_ocity"/> 
+                                                            <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                            <f:selectItems value="#{createUserBean.officeCityList.entrySet()}" 
+                                                                           var="cityList2" itemLabel="#{cityList2.value}" itemValue="#{cityList2.value}"/>
+                                                        </h:selectOneMenu>
+                                                    </div><br/>
+                                                </h:panelGroup>
+                                                <h:message for="officecity_text" styleClass="err_message margin_style"></h:message> 
+                                                <h:message for="officecity_list" styleClass="err_message margin_style"></h:message> 
+                                            </div>
+                                        </h:panelGroup>
+
+                                        <h:panelGroup id="other_offgroup">
+                                            <h:panelGroup id="other_ocity" rendered="#{createUserBean.userDetails.masterApplicant.address2City eq 'Other'}">
+                                                <div class="span3">
+                                                    <label>City Other <span style="color:red">*</span></label>
+                                                    <h:inputText id="off_city" maxlength="50"
+                                                                 required="true" styleClass="span6"
+                                                                 requiredMessage="Please enter City" 
+                                                                 value="#{createUserBean.userDetails.masterApplicant.offCityOther}"
+                                                                 validatorMessage="Please enter valid City">
+                                                        <f:validateRegex pattern="^$|[a-zA-Z\s.,\-\\\/\#]*"/> 
+                                                    </h:inputText>
+                                                </div><br></br>
+                                                <h:message for="off_city" styleClass="err_message"></h:message> 
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                        <div class="span3">
+                                            <label>Pin Code <span style="color:red">*</span> </label>
+                                            <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         id="officepincode" required="true"
+                                                         maxlength="6" style="width: 197px;"
+                                                         requiredMessage="Please enter Pin Code"
+                                                         validatorMessage="Please enter valid Pin Code"
+                                                         styleClass="span6" value="#{createUserBean.userDetails.masterApplicant.address2Pincode}">
+                                                <f:validateRegex pattern="^$|^([\d]+)?$"/>
+                                            </h:inputText><br></br>
+                                            <h:message for="officepincode" styleClass="err_message"></h:message>
+                                        </div> 
+                                    </div>
+                                    <h:panelGroup id="corporate_phn">
+                                        <div class="row-fluid form-wrapper">
+                                            <div class="span3">
+                                                <label>Mobile <span style="color:red">*</span> </label>
+                                                <div class="clearfix inputgrp mobile">
+                                                    <h:inputText value="+ 91" readonly="true" />
+                                                    <span>&#32;</span>
+                                                    <p:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                                 id="office_mobile" required="true" placeholder="(Eg:8622334455)"
+                                                                 maxlength="10" 
+                                                                 requiredMessage="Please enter Mobile number" styleClass="span6" 
+                                                                 value="#{createUserBean.userDetails.masterApplicant.address2Mobil}"
+                                                                 validatorMessage="Please enter  valid Mobile number">
+                                                        <f:validateRegex pattern="^$|^\d{10}$"/>
+                                                    </p:inputText>
+                                                </div><br></br>
+                                                <h:message for="office_mobile" styleClass="err_message"></h:message>
+                                            </div>
+                                            <div  class="span3">
+                                                <label>Email<span style="color:red">*</span></label>
+                                                <h:inputText value="#{createUserBean.userDetails.masterApplicant.address2Email}"
+                                                             required="true" requiredMessage="Please enter Email" readonly="true"
+                                                             styleClass="span6" maxlength="50" id="office_email-in"
+                                                             validatorMessage="Invalid Email format">
+                                                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                                </h:inputText><br></br>
+                                                <h:message for="office_email-in" styleClass="err_message"/>
+                                            </div>
+                                            <div class="span3">
+                                                <h:panelGroup id="ofc_corporate" rendered="#{!createUserBean.userDetails.masterApplicant.indvOrCprt}">
+                                                    <label>Office<span style="color:red">*</span></label>
+                                                </h:panelGroup>
+                                                <h:panelGroup id="ofc_individual" rendered="#{createUserBean.userDetails.masterApplicant.indvOrCprt}">
+                                                    <label>Office</label>
+                                                </h:panelGroup>
+                                                <div class="clearfix inputgrp tel">
+                                                    <p:inputText maxlength="3" value="#{createUserBean.userDetails.masterApplicant.telephone2Isd}" placeholder="ISD" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
+                                                    <p:inputText maxlength="4" value="#{createUserBean.userDetails.masterApplicant.telephone2Std}" placeholder="STD" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
+                                                    <p:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                                 id="office_telephone-number" 
+                                                                 required="#{!createUserBean.userDetails.masterApplicant.indvOrCprt}" 
+                                                                 maxlength="8" styleClass="span6"
+                                                                 requiredMessage="Please enter Telephone number" 
+                                                                 validatorMessage="Please enter valid Telephone number(Eg:04842758595,02222758595)"
+                                                                 value="#{createUserBean.userDetails.masterApplicant.telephone2}">
+                                                        <f:validateRegex pattern="^$|^([\d]+)?$"/>
+                                                    </p:inputText>
+                                                </div><br></br>
+                                                <h:message for="office_telephone-number" styleClass="err_message"></h:message> 
+                                            </div>
+                                        </div>
+                                    </h:panelGroup>
+                                    <!--        
+                                    </h:panelGroup>
+                                </h:panelGroup> -->
+
+                                    <!--
+                                    <h4 style="margin-top: 25px;" class="title">Correspondence Address</h4>
+                                    <div class="row-fluid form-wrapper"><div class="span3">
+                                            <label style="width: 291px">Select Address</label>
+                                            <div class="ui-select correspondance_address_select">
+                                                <h:selectOneMenu value="{createUserBean.userDetails.masterApplicant.coresspondenceAddress}" id="Correspondence_list" 
+                                                                 required="true" requiredMessage="Please select Address"
+                                                                 style="width: 100%;">
+                                                    <f:selectItem  itemLabel="Select" itemValue=""/>
+                                                    <f:selectItem  itemLabel="Residence Address" itemValue="Residence Address"/>
+                                                    <f:selectItem  itemLabel="Office Address" itemValue="Office Address"/>
+                                                </h:selectOneMenu>
+                                                <br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    -->
+                                    <h4 class="title " id="investor_trddata" style="margin-top: 25px;">
+                                        Bank Details
+                                    </h4>
+                                    <div class="row-fluid form-wrapper bank_det_copy ">
+                                        <div class="span3">
+                                            <label style="width: 291px">Bank<span style="color:red">*</span></label>
+                                            <div class="ui-select">
+                                                <h:selectOneMenu value="#{createUserBean.userDetails.masterApplicant.bankName}" id="Bank_list" 
+                                                                 required="true" requiredMessage="Please select Bank"
+                                                                 style="width: 100%;">
+                                                    <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                    <f:selectItems value="#{createUserBean.bankList.entrySet()}" 
+                                                                   var="bankList" itemLabel="#{bankList.value}" itemValue="#{bankList.value}"/>
+                                                </h:selectOneMenu>
+                                            </div><br></br>
+                                            <h:message for="Bank_list" styleClass="err_message"/>
+                                        </div>
+
+                                        <div class="span3">
+                                            <label>Account Type<span style="color:red">*</span></label>
+                                            <div class="ui-select">
+                                                <h:selectOneMenu  value="#{createUserBean.userDetails.masterApplicant.bankSubtype}" required="true"
+                                                                  requiredMessage="Please select Account Type"  style="margin-left: 0px;width:100%" 
+                                                                  id="aSubtype">
+                                                    <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                    <f:selectItems value="#{createUserBean.bankSubTypeData.entrySet()}" 
+                                                                   var="bankSubTypeData" 
+                                                                   itemLabel="#{bankSubTypeData.key}" itemValue="#{bankSubTypeData.key}"/>
+                                                </h:selectOneMenu>
+                                            </div><br></br>
+                                            <h:message for="aSubtype" styleClass="err_message"/>
+                                        </div>
+
+                                        <div class="span3">
+                                            <label>Bank Account No:<span style="color:red">*</span></label>
+                                            <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         maxlength="20" required="true"   id="acno"
+                                                         requiredMessage="Please enter Account Number" styleClass="span4"
+                                                         value="#{createUserBean.userDetails.masterApplicant.accountNumber}"  
+                                                         validatorMessage="Please enter valid Account Number">
+                                                <f:validateRegex pattern="^([\d]+)?$"/> 
+                                            </h:inputText><br></br>
+                                            <h:message for="acno" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3">
+                                            <label>Re-enter Bank Account No:<span style="color:red">*</span></label>
+                                            <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         maxlength="20" required="true"   id="re-acno"
+                                                         onmousedown="DisableRightClick(event)" 
+                                                         onkeydown="return DisableCtrlKey(event)"
+                                                         requiredMessage="Please Re-enter Bank Account No" styleClass="span4"
+                                                         value="#{createUserBean.userDetails.re_accountNumber}"  
+                                                         validatorMessage="Please enter valid Account Number">
+                                                <f:validateRegex pattern="^([\d]+)?$"/> 
+                                            </h:inputText><br></br>
+                                            <h:message for="re-acno" styleClass="err_message"/>
+                                        </div>
+                                    </div>						 
+
+                                    <div class="row-fluid form-wrapper">
+                                        <div class="span3">
+                                            <label>IFSC No.<span style="color:red">*</span></label>
+                                            <h:inputText  id="ifcs_code" value="#{createUserBean.userDetails.masterApplicant.ifcsNumber}"
+                                                          styleClass="span6" maxlength="11"  required="true"                                                    
+                                                          validatorMessage="Please enter valid IFSC(Eg:SBIN0002806)"
+                                                          requiredMessage="Please enter IFSC Number" >
+                                                <f:validateRegex pattern="^$|[A-Z|a-z]{4}[0][a-z|A-Z|0-9]{6}$"/> 
+                                                <!--^$|[A-Z|a-z]{4}[0][\d]{6}$  -->
+                                            </h:inputText><br></br>
+                                            <h:message for="ifcs_code" styleClass="err_message"/>
+                                        </div>
+
+                                        <div class="span3">
+                                            <label>MICR No.<span style="color:red">*</span></label>
+                                            <h:inputText  onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                          maxlength="9" id="micr" required="true" requiredMessage="Please enter MICR Number "
+                                                          styleClass="span4" value="#{createUserBean.userDetails.masterApplicant.micrNumber}" 
+                                                          validatorMessage="Please enter valid MICR Number"  >
+                                                <f:validateRegex pattern="^$|^[0-9]+"/>
+                                            </h:inputText><br></br>
+                                            <h:message for="micr" styleClass="err_message"/>
+                                        </div>
+                                    </div>								
+
+
+                                    <div class="row-fluid form-wrapper">
+
+                                        <div class="span3">
+                                            <label>Address Line1<span style="color:red">*</span> </label>
+                                            <h:inputText id="bankaddress_line1" value="#{createUserBean.userDetails.masterApplicant.bankBuilding}"                                                         
+                                                         styleClass="span4" required="true" maxlength="50"
+                                                         requiredMessage="Please enter Bank address "
+                                                         validatorMessage="Please enter valid Resident address">
+                                            </h:inputText><br></br>
+                                            <h:message for="bankaddress_line1" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3">
+                                            <label>Address Line2</label>
+                                            <h:inputText id="bankaddress_line2" value="#{createUserBean.userDetails.masterApplicant.bankStreet}"                                                         
+                                                         styleClass="span6" required="false" maxlength="50"
+                                                         requiredMessage="Please enter Address Line 2 "
+                                                         validatorMessage="Please enter Address Line 2">
+                                            </h:inputText><br></br>
+                                            <h:message for="bankaddress_line2" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3">
+                                            <label>Landmark</label>
+                                            <h:inputText id="bankaddress_landmark" value="#{createUserBean.userDetails.masterApplicant.bankArea}"                                                         
+                                                         styleClass="span6" required="false" maxlength="50"
+                                                         requiredMessage="Please enter Landmark "
+                                                         validatorMessage="Please enter valid Landmark"> 
+                                            </h:inputText><br></br>
+                                            <h:message for="bankaddress_landmark" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3">
+                                            <label>Pin Code <span style="color:red">*</span> </label>
+                                            <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"
+                                                         id="bankAddrpincode" required="true"
+                                                         maxlength="6" style="width: 197px;"
+                                                         requiredMessage="Please enter Pin Code"
+                                                         validatorMessage="Please enter valid Pin Code"
+                                                         styleClass="span6" value="#{createUserBean.userDetails.masterApplicant.bankPincode}">
+                                                <f:validateRegex pattern="^$|^([\d]+)?$"/>
+                                            </h:inputText><br></br>
+                                            <h:message for="bankAddrpincode" styleClass="err_message"></h:message>
+                                        </div> 
+                                    </div>
+                                    <div class="row-fluid form-wrapper">
+
+                                        <div class="span3">
+                                            <label>Country</label>
+                                            <div class="ui-select">
+                                                <h:selectOneMenu value="#{createUserBean.userDetails.masterApplicant.bankCountry}" style="width: 100%;">
+                                                    <f:selectItems value="#{createUserBean.countryList.entrySet()}" 
+                                                                   var="bcountryList" 
+                                                                   itemLabel="#{bcountryList.value}" itemValue="#{bcountryList.key}"/>
+                                                    <p:ajax event="change" listener="#{createUserBean.onChnageCountryBank()}" update="bankstate_panel_group bankcity_panel_group"/> 
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <h:panelGroup id="bankstate_panel_group">
+                                            <div class="span3">
+                                                <label class="margin_style">State</label>
+                                                <h:inputText id="bankstate_text" maxlength="50"
+                                                             required="true" styleClass="margin_style"
+                                                             requiredMessage="Please enter State" style="width: 208px!important;"
+                                                             value="#{createUserBean.userDetails.masterApplicant.bankState}"
+                                                             rendered="#{createUserBean.stateListBanktEditable}"
+                                                             validatorMessage="Please enter valid State">
+                                                    <f:validateRegex pattern="^$|[a-zA-Z\s]*"/> 
+                                                </h:inputText><br></br>
+                                                <h:panelGroup rendered="#{!createUserBean.stateListBanktEditable}">
+                                                    <div class="ui-select margin_style">
+                                                        <h:selectOneMenu value="#{createUserBean.userDetails.masterApplicant.bankState}" id="bankstate_list" 
+                                                                         required="true" requiredMessage="Please select State"
+                                                                         style="width: 100%;">
+                                                            <p:ajax event="change" listener="#{createUserBean.onChangeState(createUserBean.userDetails.masterApplicant.bankState,3)}" update="bankcity_panel_group"/> 
+                                                            <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                            <f:selectItems value="#{createUserBean.stateListBank2.entrySet()}" 
+                                                                           var="bstateList" itemLabel="#{bstateList.value}" itemValue="#{bstateList.value}"/>
+                                                        </h:selectOneMenu>
+                                                    </div><br/>
+                                                </h:panelGroup>
+                                                <h:message for="bankstate_text" styleClass="err_message margin_style"></h:message> 
+                                                <h:message for="bankstate_list" styleClass="err_message margin_style"></h:message> 
+                                            </div>
+                                        </h:panelGroup>
+
+                                        <h:panelGroup id="bankcity_panel_group">
+                                            <div class="span3" style="padding-left: 29px;width: 400px">
+                                                <label class="margin_style">City</label>
+                                                <h:inputText id="bank_text" maxlength="50"
+                                                             required="true" styleClass="margin_style"
+                                                             requiredMessage="Please enter City" style="width: 208px!important;"
+                                                             value="#{createUserBean.userDetails.masterApplicant.bankCity}"
+                                                             rendered="#{createUserBean.cityListBank2Editable}"
+                                                             validatorMessage="Please enter valid City">
+                                                    <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                                </h:inputText><br></br>
+                                                <h:panelGroup rendered="#{!createUserBean.cityListBank2Editable}">
+                                                    <div class="ui-select margin_style">
+                                                        <h:selectOneMenu value="#{createUserBean.userDetails.masterApplicant.bankCity}" id="bcityList" 
+                                                                         required="true" requiredMessage="Please select City"
+                                                                         style="width: 100%;">
+                                                            <p:ajax event="change" update="other_bnkgroup other_bnkcity"/> 
+                                                            <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                            <f:selectItems value="#{createUserBean.cityListBank2.entrySet()}" 
+                                                                           var="bcityList" itemLabel="#{bcityList.value}" itemValue="#{bcityList.value}"/>
+                                                        </h:selectOneMenu>
+                                                    </div><br/>
+                                                </h:panelGroup>
+                                                <h:message for="bank_text" styleClass="err_message margin_style"></h:message> 
+                                                <h:message for="bcityList" styleClass="err_message margin_style"></h:message> 
+                                            </div>
+                                        </h:panelGroup>
+
+                                        <h:panelGroup id="other_bnkgroup">
+                                            <h:panelGroup id="other_bnkcity" rendered="#{createUserBean.userDetails.masterApplicant.bankCity eq 'Other'}">
+                                                <div class="span3">
+                                                    <label>City Other <span style="color:red">*</span></label>
+                                                    <h:inputText id="bnk_city" maxlength="50"
+                                                                 required="true" styleClass="span6"
+                                                                 requiredMessage="Please enter City" 
+                                                                 value="#{createUserBean.userDetails.masterApplicant.bnkCityOther}"
+                                                                 validatorMessage="Please enter valid City">
+                                                        <f:validateRegex pattern="^$|[a-zA-Z\s.,\-\\\/\#]*"/> 
+                                                    </h:inputText>
+                                                </div><br></br>
+                                                <h:message for="bnk_city" styleClass="err_message"></h:message> 
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+
+                                    <h4 class="title" style="margin-top: 25px;"> Qualification Information</h4>		
+                                    <div class="row-fluid qualification">
+                                        <div class="span3" style="width: 23%!important;margin-left: 6px !important;">
+                                            <label style="display : block;">Qualification</label>
+                                        </div>
+                                        <div class="span3" style="width: 23%!important;">
+                                            <label style="display : block;">Institute</label>
+                                        </div>
+                                        <div class="span3" style="width: 23%!important;">
+                                            <label style="display : block;">Year</label>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid qualification">
+                                        <div class="span3" style="width: 23%!important;">
+                                            <h:inputText id="qualification" value="#{createUserBean.userDetails.qualificationTb.primaryQualificationDegree}" class="span6 text_select" maxlength="20"                                                        
+                                                         styleClass="span6" required="false"
+                                                         requiredMessage="Please enter Qualificaiton "
+                                                         validatorMessage="Please enter valid Entry">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                            </h:inputText>
+                                            <br></br>
+                                            <h:message for="qualification" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3" style="width: 23%!important;">
+                                            <h:inputText id="Institute" value="#{createUserBean.userDetails.qualificationTb.primaryQualificationInstitute}"  class="span6 text_select"    maxlength="50"                                                   
+                                                         styleClass="span6" required="false"
+                                                         requiredMessage="Please enter Institute "
+                                                         validatorMessage="Please enter valid Entry">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:message for="Institute" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3" style="width: 13%!important;">
+                                            <div class="field-box">
+                                                <div class="ui-select" style="float: left;clear: left;width: 85%!important;">
+                                                    <h:selectOneMenu   value="#{createUserBean.userDetails.qualificationTb.primaryQualificationYear}">
+                                                        <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                        <f:selectItems value="#{createUserBean.yearList.entrySet()}" 
+                                                                       var="yearList" itemLabel="#{yearList.value}" itemValue="#{yearList.value}"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--    Qualification id is commented according to the client request
+                                                                                    <div class="span3" style="width: 23%!important;">
+                                                                                        <label style="display : block;">Qualification ID</label>
+                                                                                        <div class="field-box">
+                                                                                            <h:inputText id="InstituteId" value="{createUserBean.userDetails.qualificationTb.primaryQualificationId}" maxlength="10"                                                        
+                                                                                                         required="false" style="width: 75% !important;"
+                                                                                                         requiredMessage="Please enter Institute Id "
+                                                                                                         validatorMessage="Please enter valid Entry">
+                                                                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                                                                            </h:inputText><br></br>
+                                                                                            <h:message for="InstituteId" styleClass="err_message"/>
+                                                                                        </div>
+                                                                                    </div>  -->
+                                    </div>	
+
+                                    <div class="row-fluid qualification">
+                                        <div class="span3" style="width: 23%!important;">
+                                            <h:inputText id="qualification2" value="#{createUserBean.userDetails.qualificationTb.secondaryQualificationDegree}" class="span6 text_select" maxlength="20"                                                        
+                                                         styleClass="span6" required="false"
+                                                         requiredMessage="Please enter Qualificaiton "
+                                                         validatorMessage="Please enter valid Entry">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:message for="qualification2" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3" style="width: 23%!important;">
+                                            <h:inputText id="Institute2" value="#{createUserBean.userDetails.qualificationTb.secondaryQualificationInstitute}"  class="span6 text_select"    maxlength="50"                                                   
+                                                         styleClass="span6" required="false"
+                                                         requiredMessage="Please enter Institute "
+                                                         validatorMessage="Please enter valid Entry">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:message for="Institute2" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3" style="width: 13%!important;">
+                                            <div class="field-box">
+                                                <div class="ui-select" style="float: left;clear: left;width: 85%!important;">
+                                                    <h:selectOneMenu   value="#{createUserBean.userDetails.qualificationTb.secondaryQualificationYear}">
+                                                        <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                        <f:selectItems value="#{createUserBean.yearList.entrySet()}" 
+                                                                       var="syearList" itemLabel="#{syearList.value}" itemValue="#{syearList.value}"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--    Qualification id is commented according to the client request
+                                                                                    <div class="span3" style="width: 23%!important;">
+                                                                                        <div class="field-box">
+                                                                                            <h:inputText id="InstituteId2" value="{createUserBean.userDetails.qualificationTb.secondaryQualificationId}" maxlength="10"                                                        
+                                                                                                         required="false" style="width: 75% !important;"
+                                                                                                         requiredMessage="Please enter Institute Id "
+                                                                                                         validatorMessage="Please enter valid Entry">
+                                                                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                                                                            </h:inputText><br></br>
+                                                                                            <h:message for="InstituteId2" styleClass="err_message"/>
+                                                                                        </div>
+                                                                                    </div>  -->
+                                    </div>
+
+
+
+
+                                    <div class="row-fluid qualification">
+                                        <div class="span3" style="width: 23%!important;">
+                                            <h:inputText id="qualification3" value="#{createUserBean.userDetails.qualificationTb.tertiaryQualificationDegree}" class="span6 text_select" maxlength="20"                                                        
+                                                         styleClass="span6" required="false"
+                                                         requiredMessage="Please enter Qualificaiton "
+                                                         validatorMessage="Please enter valid Entry">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:message for="qualification3" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3" style="width: 23%!important;">
+                                            <h:inputText id="Institute3" value="#{createUserBean.userDetails.qualificationTb.tertiaryQualificationInstitute}"  class="span6 text_select"    maxlength="50"                                                   
+                                                         styleClass="span6" required="false"
+                                                         requiredMessage="Please enter Institute "
+                                                         validatorMessage="Please enter valid Entry">
+                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                            </h:inputText><br></br>
+                                            <h:message for="Institute3" styleClass="err_message"/>
+                                        </div>
+                                        <div class="span3" style="width: 13%!important;">
+                                            <div class="field-box">
+                                                <div class="ui-select" style="float: left;clear: left;width: 85%!important;">
+                                                    <h:selectOneMenu   value="#{createUserBean.userDetails.qualificationTb.tertiaryQualificationYear}">
+                                                        <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue=""/>
+                                                        <f:selectItems value="#{createUserBean.yearList.entrySet()}" 
+                                                                       var="tyearList" itemLabel="#{tyearList.value}" itemValue="#{tyearList.value}"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--    Qualification id is commented according to the client request
+                                                                                    <div class="span3" style="width: 23%!important;">
+                                                                                        <div class="field-box">
+                                                                                            <h:inputText id="InstituteId3" value="{createUserBean.userDetails.qualificationTb.tertiaryQualificationId}" maxlength="10"                                                        
+                                                                                                         required="false" style="width: 75% !important;"
+                                                                                                         requiredMessage="Please enter Institute Id "
+                                                                                                         validatorMessage="Please enter valid Entry">
+                                                                                                <f:validateRegex pattern="^$|[a-zA-Z0-9\s.,\-\\\/\#]*"/> 
+                                                                                            </h:inputText><br></br>
+                                                                                            <h:message for="InstituteId3" styleClass="err_message"/>
+                                                                                        </div>
+                                                                                    </div>  -->
+                                    </div>
+
+                                    <div class="span3" style="width: 100%;margin-left: 0px;">
+                                        <input type="checkbox" id="delete_user_chk[]" onclick="callRemoteValueChange();" style="margin-top: 0px;"/>
+                                        <span style="color: red;margin-left: 10px;">Select to remove the user permanently</span>
+                                    </div>
+
+                                    <div class="datepicker datepicker-dropdown dropdown-menu" style="display: none; top: 553px; left: 708px; z-index: 10;"><div class="datepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">April 2014</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">30</td><td class="day old">31</td><td class="day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td><td class="day">5</td></tr><tr><td class="day">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td><td class="day">11</td><td class="day">12</td></tr><tr><td class="day">13</td><td class="day">14</td><td class="day">15</td><td class="day">16</td><td class="day">17</td><td class="day">18</td><td class="day">19</td></tr><tr><td class="day">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td><td class="day">24</td><td class="day">25</td><td class="day">26</td></tr><tr><td class="day">27</td><td class="day">28</td><td class="day">29</td><td class="day">30</td><td class="day new">1</td><td class="day new">2</td><td class="day new">3</td></tr><tr><td class="day new">4</td><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td><td class="day new">9</td><td class="day new">10</td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">2014</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month active">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">2010-2019</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year active">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr></tfoot></table></div></div>
+                                    <div class="button-row">
+                                        <h:panelGroup id= "btnGroup" rendered="#{!createUserBean.isNOTMailVerifiedUser()}">
+
+
+                                            <h:commandLink styleClass="btn-flat success" value="Update" id="update_btn"
+                                                           rendered ="#{createUserBean.userDetails.exisitngUser}"
+                                                           actionListener="#{createUserBean.doActionUpdateUser}"
+                                                           onclick="return formValidationCheck();"
+                                                           action="#{createUserBean.createOrUpdateUser}"/>
+                                            <h:commandLink styleClass="btn-flat success" value="Finalize" id="Activate_btn"
+                                                           rendered="#{createUserBean.userDetails.exisitngUser?
+                                                                       createUserBean.activateAccount and
+                                                                       !createUserBean.userActive : false}"
+                                                           actionListener="#{createUserBean.doActionActivateUser}"
+                                                           onclick="return formValidationCheck();"
+                                                           action="#{createUserBean.getredirectPage()}">
+                                            </h:commandLink>
+                                            <h:commandLink styleClass="btn-flat success" value="Create" id="create_btn"
+                                                           rendered="#{!createUserBean.userDetails.exisitngUser}"
+                                                           actionListener="#{createUserBean.doActionCreateUser}"
+                                                           onclick="return formValidationCheck();"
+                                                           action="#{createUserBean.createOrUpdateUser}"/>
+                                            <h:commandLink styleClass="btn-flat inverse" value="Cancel" 
+                                                           action="#{createUserBean.backToList}" immediate="true"/>
+
+                                            <h:commandLink styleClass="btn-flat inverse" value="Delete User" 
+                                                           actionListener="#{createUserBean.onDeleteUser()}"
+                                                           action="#{createUserBean.getredirectPage()}"
+                                                           onclick="return deleteConfirm('#{createUserBean.userDetails.isHaveRealtions()}');" 
+                                                           immediate="true"/>
+
+                                        </h:panelGroup>
+                                    </div>  
+
+                                    <script src="#{request.contextPath}/js/bootstrap.datepicker.js"></script>
+                                    <script type="text/javascript">
+
+                                                                       var $j = jQuery.noConflict();
+                                                                       function  callRemoteValueChange() {
+                                                                       var isCheked = $('input[id="delete_user_chk[]"]:checked').length > 0;
+                                                                               onRadioValueChange([{name: 'delOption', value: isCheked}]);
+                                                                       }
+                                                               function mover1() {
+                                                               document.getElementById("msgHighlights1").className = "msgvisible";
+                                                               }
+                                                               function mout1() {
+                                                               document.getElementById("msgHighlights1").className = "msghidden";
+                                                               }
+                                                               function mover2() {
+                                                               document.getElementById("msgHighlights2").className = "msgvisible";
+                                                               }
+                                                               function mout2() {
+                                                               document.getElementById("msgHighlights2").className = "msghidden";
+                                                               }
+                                                               function deleteConfirm(value) {
+                                                               if (value === 'true') {
+                                                               var ret = confirm("The deleted user having some relations with other users.Delete will remove the entire record from the database.Would you like to continue?");
+                                                                       if (ret) {
+                                                               startPageSpinner();
+                                                               } else {
+                                                               stopPageSpinner();
+                                                               }
+                                                               return ret;
+                                                               } else {
+                                                               startPageSpinner();
+                                                                       return true;
+                                                               }
+                                                               }
+                                                               $j("input:checkbox").click(function() {
+                                                               if ($(this).is(":checked")) {
+                                                               var group = "input:checkbox[name='" + $(this).attr("name") + "']";
+                                                                       $(group).prop("checked", false);
+                                                                       $(this).prop("checked", true);
+                                                               } else {
+                                                               $j(this).prop("checked", false);
+                                                               }
+                                                               });
+                                                                       $j(".datepicker_box .icon-calendar").click(function(){
+                                                               $j(this).prev(".datepicker").trigger("click").trigger("focus");
+                                                               });
+                                                                       $j('.datepicker').datepicker({
+                                                               format: 'dd-mm-yyyy'
+                                                               }).on('changeDate', function(ev) {
+                                                               $j(this).datepicker('hide');
+                                                                       var input = $(this);
+                                                                       var id = $(this).attr('id');
+                                                                       if (id == 'frm_create_user:validity'){
+                                                               var date1 = new Date();
+                                                                       var a1 = Date.parse(date1.toDateString());
+                                                                       var b1 = new Date(a1).getTime();
+                                                                       var exampleDate1 = input.val().toString();
+                                                                       var parts1 = exampleDate1.split('-');
+                                                                       var psdt1 = new Date(parts1[2], parts1[1] - 1, parts1[0]).getTime();
+                                                                       if (b1 > psdt1){
+                                                               $(input).val("");
+                                                                       alert('Past date cannot be selected');
+                                                               }
+                                                               }
+                                                               });</script>
+
+                                    <script type="text/javascript">
+
+                                                function startSpinner() {
+                                                startPageSpinner();
+                                                }
+
+                                        function DisableRightClick(event)
+                                        {
+                                        //For mouse right click 
+                                        if (event.button == 2)
+                                        {
+                                        alert("Please Re-enter Account Number");
+                                        }
+                                        }
+                                        function DisableCtrlKey(e){
+                                        var code = (document.all) ? event.keyCode:e.which;
+                                                var message = "Please Re-enter Account Number";
+                                                // look for CTRL key press
+                                                if (parseInt(code) == 17) {
+                                        alert(message);
+                                                window.event.returnValue = false;
+                                        }
+                                        }
+
+
+                                        var sebiFile = '#{createUserBean.userDetails.qualificationTb.sebiCertificatePath eq null ?
+                                                          'No file chosen': createUserBean.userDetails.qualificationTb.sebiCertificatePath }';
+                                                $("#sebi_file").html(sebiFile.split('/').pop());
+                                                $('input[type=file]').change(function(e){
+                                        $in = $(this);
+                                                var id = $(this).attr('id');
+                                                $in.next().html($in.val());
+                                                if (id == 'frm_create_user:file'){
+                                        var sebiFile = $in.val().split('\\').pop();
+                                                $("#sebi_file").html(sebiFile);
+                                        }
+                                        });
+                                                $('.individualOrCprt').click(function () {
+                                        if (document.getElementById('frm_create_user:individualOrCprt:0').checked){
+                                        $(".org").hide();
+                                                $(".fname").show();
+                                                $(".lname").show();
+                                        } else{
+                                        $(".org").show();
+                                                $(".fname").hide();
+                                                $(".lname").hide();
+                                        }
+                                        });
+                                                $(document).ready(function(){
+                                        if (document.getElementById('frm_create_user:individualOrCprt:0').checked){
+                                        $(".org").hide();
+                                                $(".fname").show();
+                                                $(".lname").show();
+                                        } else{
+                                        $(".org").show();
+                                                $(".fname").hide();
+                                                $(".lname").hide();
+                                        }
+                                        });
+                                                function  formValidationCheck() {
+                                                var today = new Date();
+                                                        var tdyPrsd = Date.parse(today.toDateString());
+                                                        var tdyDate = new Date(tdyPrsd).getTime();
+                                                        var inputdt = document.getElementById('frm_create_user:validity').value;
+                                                        var partSebi = inputdt.split('-');
+                                                        var sebi = new Date(partSebi[2], partSebi[1] - 1, partSebi[0]).getTime();
+                                                        if (tdyDate > sebi){
+                                                document.getElementById('frm_create_user:sebi_err_msg').innerHTML = "Validity expired";
+                                                        document.getElementById('frm_create_user:sebi_err_msg').style.color = 'red';
+                                                        return false;
+                                                }
+                                                }
+                                    </script>
+
+                                </div>  
+                            </h:form>
+                            <h:form>
+                                <p:remoteCommand name="onRadioValueChange" action="#{createUserBean.processRadioValueChange()}" immediate="true"/>
+                                <script type="text/javascript">
+
+                                    var $j = jQuery.noConflict();
+                                            function  callRemoteValueChange() {
+                                            var isCheked = $('input[id="delete_user_chk[]"]:checked').length > 0;
+                                                    onRadioValueChange([{name: 'delOption', value: isCheked}]);
+                                            }
+
+                                </script>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

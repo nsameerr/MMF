@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 31, 2016 1:04:51 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.FpFinancialAssetUserInputDetailsTb" table="fp_financial_asset_user_input_details_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="customerId" type="string">
+            <column name="customer_id" length="50" />
+        </property>
+        <property name="financialAssetId" type="java.lang.Integer">
+            <column name="financial_asset_id" />
+        </property>
+        <property name="financialAssetName" type="string">
+            <column name="financial_asset_name" length="150" />
+        </property>
+        <property name="amount" type="java.lang.Integer">
+            <column name="amount" />
+        </property>
+    </class>
+</hibernate-mapping>

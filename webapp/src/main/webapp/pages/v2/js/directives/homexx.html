@@ -1,0 +1,206 @@
+<style>
+	.txtRupee{
+		background-image: url('img/icon_rupee.png');
+		background-repeat: no-repeat;
+		background-position: left center; 
+		background-size: auto 20px;
+		padding-left: 25px !important;
+		padding-bottom: 30px;
+	}
+	.calender{
+		background-image: url('img/icon_calender.png');
+		background-repeat: no-repeat;
+		background-position: right center; 
+		background-size: auto 20px;
+		padding-right: 25px !important;
+		padding-bottom: 30px;
+	}
+	
+	.icheckbox_square-green{
+		top: -7px;
+	    right: -15px;
+	}
+	    
+
+
+.nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+     zoom:1; /* hasLayout ie7 trigger */
+}
+
+.nav-tabs, .nav-pills {
+    text-align:center;
+}
+
+.nav.nav-tabs li{
+	font-size: 24px;
+	font-weight: bolder;
+	width: 350px;
+}
+
+.nav.nav-tabs li a{
+	color: #666666;
+	background-color: #EEEEEE;
+}
+.nav.nav-tabs li.active a{
+	color: #4AAE3C;
+	background-color: #ffffff;
+}
+
+.bullet{
+	font-size: 44px;
+    color: #4aae3c;
+    font-weight: 300;
+    display: inline-block;
+    margin-right: 8px;	
+}
+
+.content{
+	font-size: 14px;
+    color: #666666;
+}
+			
+</style>
+
+
+<div id="divContent">
+    <div class="container-fluid" style="background-color: #4AAE3C !important;">
+        <div class="container">
+            <div class="row" style="margin-top:50px; margin-bottom:50px">
+                <div class="col-md-6 row">
+                    <div class="container-fluid col-md-12">
+                        <h3 style="color:white !important">We connect you with the best-in-class Investment Advisors to manage your fortune.<br><br></h3>
+                        <h6 style="color:white !important">Let the industry experts at ManageMyFortune 
+							guide you through the market ups-and-downs 
+							to help you realize your life aspirations.<br><br><br>
+						</h6>
+                    </div>
+                    <div class="col-md-12">
+                        <a href="javascript:$('#carousel-example-vertical').carousel(2);" class="btn btn-flat" style="width:100%; text-align: center; background-color: #0C95BE; border:0px solid white;">
+                            <h5 style="color:#ffffff">Register Now</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6"><img src="img/landing-laptop.jpg" style="width:100%">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="padding:0px !important">
+        <ul class="nav nav-tabs" style="background-color: #4AAE3C !important; padding:0px !important;">
+            <li class="active"><a data-toggle="tab" href="#home">For Investors</a></li>
+            <li><a data-toggle="tab" href="#menu1">For Investment Advisors</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="home" class="container tab-pane fade in active">
+                <div class="row" style="padding: 10px">
+                	<div class="col-md-6">
+                		<div class="pull-right">
+						    <table style="width: 400px">
+						    	<tr>
+						    		<td class="bullet">1.</td>
+						    		<td class="content">Select <b>Free</b> system recommended investment advisoryservice OR Find trusted and skilled <b>SEBI</b> registered<b>Investment Advisors</b></td>
+						    	</tr>
+						    	<tr>
+						    		<td class="bullet">2.</td>
+						    		<td class="content">Receive <b>customized</b> investment advice matching your <b>Risk Profile</b></td>
+						    	</tr>
+						    	<tr>
+						    		<td class="bullet">3.</td>
+						    		<td class="content">Execute trades at <b>competitive brokerage</b> rates</td>
+						    	</tr>
+						    	<tr>
+						    		<td class="bullet">4.</td>
+						    		<td class="content">Always be in <b>control</b> of your money in own account</td>
+						    	</tr>
+						    </table>
+                		</div>
+                	</div>
+                	<div class="col-md-6">
+                		<img alt="" src="img/mmf-tab-image.jpg" height="323px">
+                	</div>
+                </div>
+            </div>
+            <div id="menu1" class="container tab-pane fade">
+                <div class="row" style="padding: 10px">
+                	<div class="col-md-6">
+                		<div class="pull-right">
+						    <table style="width: 400px">
+						    	<tr>
+						    		<td class="bullet">1.</td>
+						    		<td class="content"><b>Grow</b> your business <b>exponentially</b> at <b>zero</b> cost targeting awider audience</b></td>
+						    	</tr>
+						    	<tr>
+						    		<td class="bullet">2.</td>
+						    		<td class="content">Earn <b>stable & upfront</b> fees instead of volatile brokeragecommissions</td>
+						    	</tr>
+						    	<tr>
+						    		<td class="bullet">3.</td>
+						    		<td class="content">Focus on <b>advisory</b> service instead of dealing with tradeexecution</td>
+						    	</tr>
+						    	<tr>
+						    		<td class="bullet">4.</td>
+						    		<td class="content">Access <b>Tools & Research</b> to ease your investmentadvisoryprocess</td>
+						    	</tr>
+						    </table>
+                		</div>
+                	</div>
+                	<div class="col-md-6">
+                		<img alt="" src="img/mmf-tab-image.jpg"  height="323px">
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    this is modalbody
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+$( '.js-float-label-wrapper' ).FloatLabel();
+togglePasswordType = function(obj){
+	if(obj.value==''){
+		obj.setAttribute('type', 'text');
+	}
+	else{
+		obj.setAttribute('type', 'password');
+	}
+	return;
+}
+
+$(':input').each(function(){
+    var self = $(this);
+    label = self.next();
+    label_text = label.text();
+    //label.remove();
+    self.iCheck({
+    checkboxClass: 'icheckbox_square-green',
+    radioClass: 'iradio_square-green'
+    });
+       
+});
+</script>
+
+
+
+

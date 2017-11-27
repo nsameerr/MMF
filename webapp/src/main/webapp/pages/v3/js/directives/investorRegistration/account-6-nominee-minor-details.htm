@@ -1,0 +1,244 @@
+<!-- <!DOCTYPE html>
+[if IE 8]> <html class="ie8 oldie"> <![endif]
+[if gt IE 8]><!
+<html>
+<![endif]
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manage My Fortune</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/highcharts.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/custom.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="shortcut icon" href="images/favicon.ico">
+HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+WARNING: Respond.js doesn't work if you view the page via file://
+[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+    <![endif]
+</head>
+
+<body>
+	<div class="body_bg investor_brand">
+		Header Section
+		<header class="navbar-fixed-top">
+			<div class="padding_lr">
+				<div class="navbar-header">
+					<div class="logo">
+						<a href="">Manage My Fortune</a>
+					</div>
+				</div>
+				<div class="settings">
+					<span class="gear_icon"> <a href=""></a>
+					</span>
+					<button id="open_menu_nav" class="navbar-toggle" type="button">
+						<span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+					<button id="close_menu_nav" class="navbar-toggle" type="button">
+						<span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+				</div>
+			</div>
+			<section id="hamber_menu_section" class="hamber_menu_section">
+				<div class="nav_menu">
+					<ul>
+						<li><a class="home" href="">Home</a></li>
+						<li class="active"><a class="search" href="">search portfolio</a></li>
+						<li><a class="my_port" href="">my portfolio</a></li>
+						<li><a class="reports" href="">reports</a></li>
+						<li><a class="ad_service" href="">advisory service contract</a></li>
+						<li><a class="alerts" href="">alerts</a></li>
+					</ul>
+				</div>
+			</section>
+		</header>
+		End
+
+		<div class="container-fluid middle-section content_bg_shade">
+			left column start 
+
+			left column end
+
+			<div id="content_column">
+				<div class="content_column_in account_open">
+					<div class="pgh account-h">Open a free Account</div>
+					<br> -->
+<div class="content_box account_bg">
+
+	<div class="account_open_row">
+		<h3>We want to know more about your nominee</h3>
+	</div>
+
+	<div class="accfrmsec">
+
+		<div class="accfrm_row">
+			<div class="align-left">
+				<b>Is Nominee a Minor</b> &nbsp; &nbsp;
+				<div class="chkbox">
+					<input type="radio" id="nmdyes" name="nmdedit" checked ng-model="data.minorExist" ng-value="true" ng-change="onChangeMinorExist()" ng-disabled="data.nomineeExist == false"/>
+					<label for="nmdyes">Yes</label>
+					<input type="radio" id="nmdno" name="nmdedit" ng-model="data.minorExist" ng-value="false" ng-change="onChangeMinorExist()" ng-disabled="data.nomineeExist == false"/>
+					<label for="nmdno">No</label>
+				</div>
+			</div>
+		</div>
+		<div id="minor_details" ng-show="data.nomineeExist==true && data.minorExist == true">
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<input type="text" id="minorGuard" name="minorGuard" placeholder="Name of Guardian" ng-model="data.minorGuard" class="alphaWithSpace" maxlength="30">
+			</div>
+			<div class="accfrm_row_c2">
+				<!-- <select name="mnrReltn" id="mnrReltn" ng-model="data.mnrReltn">
+					<option value="" selected>Relationship with Guardian</option>
+					<option value="Father">Father</option>
+					<option value="Mother">Mother</option>
+					<option value="Other">Other</option>
+				</select> -->
+				<input type="text" id="mnrReltn" name="mnrReltn" placeholder="Relationship with Guardian" ng-model="data.mnrReltn" class="alphaWithSpace" maxlength="30">
+			</div>
+		</div>
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<!-- <div class="col_in1">Date of Birth</div>
+				<div class="col_in2">
+					<input type="text" id="calendar" name="calendar" class="calendar_icon my_calender" placeholder="">
+				</div> -->
+				<input id="mnrMob" name="mnrMob" placeholder="Mobile Number" class="numericOnly" type="text" required ng-model="data.mnrMob" maxlength="10">
+			</div>
+			<div class="accfrm_row_c2">
+				<input type="text" id="mnrEmail" name="mnrEmail" placeholder="Email" ng-model="data.mnrEmail">
+			</div>
+		</div>
+		<div class="accfrm_row mobile_block">
+			<h4>Address</h4>
+		</div>
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<input type="text" id="mnrAdrs1" name="mnrAdrs1" placeholder="Address Line 1" ng-model="data.mnrAdrs1" maxlength="37">
+			</div>
+			<div class="accfrm_row_c2">
+				<input type="text" id="mnrAdrs2" name="mnrAdrs2" placeholder="Address Line 2" ng-model="data.mnrAdrs2" maxlength="37">
+			</div>
+		</div>
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<select name="mnrState" id="mnrState" ng-model="data.mnrState" class="selectState" ng-change="getStateWiseCites('#mnrState','#mnrCity')" ng-options="item for item in globalStateList">
+					<option value="" selected>State</option>
+				</select>
+			</div>
+			<div class="accfrm_row_c2">
+				<select name="mnrCity" id="mnrCity" ng-model="data.mnrCity" ng-options="item for item in globalCityOptions track by item">
+					<option value="" selected>City</option>
+				</select>
+			</div>
+		</div>
+
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<input type="text" id="mnrPincode" class="numericOnly" name="mnrPincode" placeholder="Pin Code" ng-model="data.mnrPincode" maxlength="6">
+			</div>
+			<div class="accfrm_row_c2">
+				<select name="mnrCountry" id="mnrCountry" ng-model="mnrCountry" ng-options="item.name for item in globalCountryList track by item.value" ng-disabled="true">
+					<option value="" selected>Country</option>
+				</select>
+			</div>
+		</div>
+
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<select name="mnrProof" id="mnrProof" ng-model="data.mnrProof">
+					<option value="" selected>Proof of Identification</option>
+					<option value="Photograph and Signature">Photograph and Signature</option>
+					<option value="PAN">Pan Card</option>
+					<option value="Aadhar">Aadhar</option>
+				</select>
+			</div>
+			
+				<div class="accfrm_row_c2" ng-show="data.mnrProof=='PAN'">
+					<input id="mnrPan" name="mnrPan" type="text" class="alphaNumericOnly required" maxlength="10" placeholder="PAN Number" ng-model="data.mnrPan">
+				</div>
+				<div class="accfrm_row_c2" ng-show="data.mnrProof=='Aadhar'">
+					<input id="mnrAadhar" type="text" class="numericOnly required" maxlength="12" placeholder="UID/Aadhar" ng-model="data.mnrAadhar">
+				</div>
+			
+		</div>
+		<div class="accfrm_row">
+				<div class="accfrm_row_c1">
+					<div class="col_in1">Date of Birth</div>
+					<div class="col_in2">
+						<input type="text" id="nomineemnrDob" name="nomineemnrDob" class="calendar_icon my_calendar" placeholder="" ng-model="data.mnrDob">
+					</div>
+				</div>
+		</div>
+
+
+	</div>
+	</div>
+
+
+	<div class="account_open_row text-center">
+		<input type="submit" name="back" id="back" value="Back" class="back btnPrev" ng-click="goPrev();">
+		&nbsp;
+		<input type="submit" name="next" id="next" value="Next" class="btnNext" ng-click="goNext();">
+	</div>
+
+</div>
+<!-- </div>
+			</div>
+
+		</div>
+
+		Footer Section
+		<footer class="inner_class">
+			<div class="footer">
+				<div class="social_icons">
+					<a class="facebook" href="#"><i class="fa fa-facebook"></i></a><a class="twitter" href="#"><i class="fa fa-twitter"></i></a><a class="google_plus" href="#"><i class="fa fa-google-plus"></i></a>
+				</div>
+				<ul class="footer_links">
+					<li><a href="#">About Us</a></li>
+					<li><a href="#">Contact Us</a></li>
+					<li><a href="#">Legal Terms</a></li>
+					<li><a href="#">Privacy Policy</a></li>
+				</ul>
+				<h6 class="copyright">
+					©
+					<script type="text/javascript">
+						var now = new Date();
+						var d = now.getFullYear();
+						document.write(d);
+					</script>
+					MMF Investor Registration Pvt. Ltd.
+				</h6>
+			</div>
+		</footer>
+		End
+
+	</div>
+	calendar scripts start
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$(function() {
+			$("#calendar").datepicker();
+		});
+	</script>
+	calendar scripts end
+
+</body>
+</html>
+ -->

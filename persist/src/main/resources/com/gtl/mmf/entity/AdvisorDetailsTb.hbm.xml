@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 27, 2015 12:31:09 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.AdvisorDetailsTb" table="advisor_details_tb" catalog="mmfdb">
+        <id name="advisorId" type="int">
+            <column name="advisor_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="masterAdvisorTb" class="com.gtl.mmf.entity.MasterAdvisorTb" update="false" insert="false" fetch="select">
+            <column name="advisor_id" not-null="true" unique="true" />
+        </many-to-one>
+        <property name="registrationId" type="string">
+            <column name="registration_id" length="50" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" not-null="true" />
+        </property>
+        <property name="dominantStyle" type="java.lang.Integer">
+            <column name="dominant_style" />
+        </property>
+        <property name="maxReturns90Days" type="big_decimal">
+            <column name="max_returns_90_days" precision="10" />
+        </property>
+        <property name="maxReturns1Year" type="big_decimal">
+            <column name="max_returns_1_year" precision="10" />
+        </property>
+        <property name="outperformance" type="big_decimal">
+            <column name="outperformance" precision="10" />
+        </property>
+        <property name="outperformanceCountCompleted" type="java.lang.Integer">
+            <column name="outperformance_count_completed" />
+        </property>
+        <property name="outperformanceCountInprogress" type="java.lang.Integer">
+            <column name="outperformance_count_inprogress" />
+        </property>
+        <property name="outperformanceCount" type="java.lang.Integer">
+            <column name="outperformance_count" />
+        </property>
+        <property name="totalPortfoliosManaged" type="java.lang.Integer">
+            <column name="total_portfolios_managed" />
+        </property>
+        <property name="customerRating" type="java.lang.Integer">
+            <column name="customer_rating" />
+        </property>
+        <property name="avgClientRating" type="big_decimal">
+            <column name="avg_client_rating" precision="5" />
+        </property>
+    </class>
+</hibernate-mapping>

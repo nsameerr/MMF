@@ -1,0 +1,21 @@
+CREATE TABLE `portfolio_details_audit_tb` (
+  `portfolio_details_audit_id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `portfolio_audit_id` INT(10) UNSIGNED DEFAULT NULL,
+  `portfolio_details_id` INT(10) DEFAULT NULL,
+  `portfolio_id` INT(10) DEFAULT NULL,
+  `asset_class_id` SMALLINT(6) DEFAULT NULL,
+  `range_from` DECIMAL(5,2) DEFAULT NULL,
+  `range_to` DECIMAL(5,2) DEFAULT NULL,
+  `new_weight` DECIMAL(5,2) DEFAULT NULL,
+  `current_weight` DECIMAL(5,2) DEFAULT NULL,
+  `initial_weight` DECIMAL(5,2) DEFAULT NULL,
+  `rebalance_required` TINYINT(1) DEFAULT NULL,
+  `rebalance_reqd_date` DATETIME DEFAULT NULL,
+  `current_value` DECIMAL(12,2) DEFAULT NULL,
+  `new_allocation` DECIMAL(5,2) DEFAULT '0.00',
+  `last_updateon` DATETIME DEFAULT NULL,
+  `activity_type` VARCHAR(200) DEFAULT NULL,
+  PRIMARY KEY (`portfolio_details_audit_id`),
+  KEY `portfolio_details_audit_tb_fk_1` (`portfolio_audit_id`),
+  CONSTRAINT `portfolio_details_audit_tb_fk_1` FOREIGN KEY (`portfolio_audit_id`) REFERENCES `portfolio_audit_tb` (`portfolio_audit_id`)
+);

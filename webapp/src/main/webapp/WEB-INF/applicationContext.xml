@@ -1,0 +1,62 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd" >
+		
+    <context:component-scan base-package="com.gtl.mmf.controller,com.gtl.mmf.quickbooks.helper" />
+		
+    <!-- Aspect -->
+    <bean id="logingAspect" class="com.gtl.mmf.LogingAspect"/>
+    <aop:config>
+        <aop:aspect id="aspectLoggging" ref="logingAspect" >		
+            <aop:pointcut id="pointCutBefore" expression="execution(* com.gtl.mmf.controller.*.*(..)) 
+                                                             &amp;&amp; !execution(* *.set*(..))  &amp;&amp; !execution(* *.get*())  &amp;&amp; !execution(* *.is*())"/>
+            <aop:pointcut id="persistPointCut" expression="execution(public * com.gtl.mmf.dao.*.*(..))" />
+            <aop:pointcut id="servicePointCut" expression="execution(public * com.gtl.mmf.bao.*.*(..))" />
+            <aop:before method="logBefore" pointcut-ref="pointCutBefore" />
+            <aop:after method="logAfter" pointcut-ref="pointCutBefore" />
+            <aop:before method="logBefore" pointcut-ref="servicePointCut" />
+            <aop:after method="logAfter" pointcut-ref="servicePointCut" />
+            <aop:before method="logBefore" pointcut-ref="persistPointCut" />
+            <aop:after method="logAfter" pointcut-ref="persistPointCut" />            
+        </aop:aspect>
+    </aop:config> 
+		
+    <bean class="com.gtl.mmf.service.util.BeanLoader"/>	
+    <!--<bean class="com.gtl.mmf.service.vo.UserDetailsVO" id="userDetailsVO" scope="request"></bean>-->
+    
+    <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+        <property name="scopes">
+            <map>
+                <entry key="view">
+                    <bean class="com.gtl.mmf.spring.customscope.ViewScope" />
+                </entry>
+            </map>
+        </property>
+    </bean>
+    
+    
+    <!-- Audit Aspect -->
+    <bean id="auditAspect" class="com.gtl.mmf.AuditAspect"/> 
+    <bean id="customerPortfolioAuditAspect" class="com.gtl.mmf.CustomerPortfolioAuditAspect"/> 
+    <aop:config> 
+        <aop:aspect id="aspectAudit" ref="auditAspect">		 
+            <aop:pointcut id="pointCutAfterReturn" expression="execution(* com.gtl.mmf.bao.ICreateEditPortfolioBAO.updatePortfolio(..))"/>   
+            <aop:after-returning method="afterReturning" returning="retVal" pointcut-ref="pointCutAfterReturn"/> 
+            <aop:pointcut id="pointCutBeforeEdit" expression="execution(* com.gtl.mmf.bao.ICreateEditPortfolioBAO.updatePortfolio(..))"/> 
+            <aop:before method="beforeEdit" pointcut-ref="pointCutBeforeEdit"/>   
+        </aop:aspect>
+        <aop:aspect id="aspectCustomerPortfolioAudit" ref="customerPortfolioAuditAspect">
+            <aop:pointcut id="pointCutBeforeUpadte" expression="execution(* com.gtl.mmf.bao.ICreateEditPortfolioBAO.updatePortfolio(..))"/> 
+            <aop:before method="beforeAssign" pointcut-ref="pointCutBeforeUpadte"/> 
+        </aop:aspect>
+    </aop:config> 
+
+</beans>

@@ -1,0 +1,51 @@
+Steps to create Databse, Tables, Stored Procs etc for MMF
+---------------------------------------------------------
+
+step 1:- navigate to src\sql folder in command prompt.
+step 2:- Execute following command to create user(mmfuser) and database(mmfdb) and set privileges. 
+mysql -u <root user> -p < user.sql (Enter Mysql username and password))
+step 3:-Run the following command to create tables,procedures,functions and seed 
+mysql -u mmfuser -p < mmf.sql    (Enter passsword as 'mmfuser')
+
+
+Steps to create database and tables to represent Back Office (This is for testing of Back Offce interfacing)
+------------------------------------------------------------------------------------------------------------
+
+step 1:- navigate to src\sql\backofiicetables folder in command prompt.
+step 2:- Execute the following command to create a user(mmfuser) and database (mmf_backoffice_db) set privileges. 
+mysql -u <root user> -p < createbodb.sql
+step 3:-Run the following command to create tables,procedures,functions and seed 
+mysql -u mmfuser -p < usebodb.sql
+
+NOTE:-
+1. In case of ERROR CODE : 1071
+    ERROR 1071 (42000): Specified key was too long; max key length is 767 bytes
+    1.1 Open mysql command prompt, check whether innodb_large_prefix = OFF by executing below query
+			show variables like '%prefix%';
+	1.2 To enable innodb_large_prefix,execute following query in MySQL prompt
+			set global innodb_file_format = BARRACUDA;
+			set global innodb_large_prefix = ON;
+	1.3 For table having too long unique key, use following statment after CREATE TABLE statement
+			ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+			
+				Eg:- CREATE TABLE temp_registration_tb(
+						`id` INT(11) NOT NULL AUTO_INCREMENT,
+						`email` VARCHAR(100) NOT NULL,
+						`password` VARCHAR(100) NOT NULL,
+						`user_type` VARCHAR(20) NOT NULL,
+						 mail_verified BOOLEAN,
+						 verificationCode VARCHAR(500) NOT NULL,
+						PRIMARY KEY (`id`),
+						UNIQUE KEY `temp_registration_tb_uk_1` (`verificationCode`,`email`)
+					)ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+2. An Advisor with username 'roboadvisor@managemyfortune.com' is created in the database(mmfdb) by default.
+   So any changes/modifications done on the below specified tables(Where user data is present) may lead to data issues 
+   unless and until the modifications are applied in the corresponding seed file.
+   
+   2.1 master_applicant_tb
+   2.2 master_advisor_qualification_tb
+   2.3 master_advisor_tb
+   2.4 advisor_details_tb
+   
+   Refer '\. rl_9.0/seed/ROBOADVISOR.sql' for your understanding.

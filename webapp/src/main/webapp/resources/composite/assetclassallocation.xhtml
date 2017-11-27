@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="assetType" type="java.lang.String" required="true"/>
+        <cc:attribute name="newAllocationAsset" type="java.lang.String" required="true"/>
+        <cc:attribute name="exisitingWeightAsset" type="java.lang.String" required="true"/>
+        <cc:attribute name="maximumRange" type="java.lang.Double" required="true"/>
+        <cc:attribute name="minimumRange" type="java.lang.Double" required="true"/>
+        <cc:attribute name="weightNotInRange" type="java.lang.Boolean" required="true"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <tr style="color: #{cc.attrs.weightNotInRange ? 'red' : ''}">
+            <!-- Asset Class -->
+            <th colspan="2" style="width: 25%;">#{cc.attrs.assetType.toUpperCase()}</th>
+            
+            <!-- Ticker -->
+            <!-- <th></th> -->
+            
+            <!-- Range -->
+            <th style="width: 9%;text-align: center;">
+                <h:outputText value="#{cc.attrs.minimumRange}"><f:convertNumber integerOnly="true"/></h:outputText> -
+                <h:outputText value="#{cc.attrs.maximumRange}"><f:convertNumber integerOnly="true"/></h:outputText>%
+            </th>
+            
+            <!-- New Allocation -->
+            <th style="width: 15%;">
+                <h:inputText value="#{cc.attrs.newAllocationAsset}" readonly="true"
+                             styleClass="#{((cc.attrs.minimumRange gt cc.attrs.newAllocationAsset) or
+                                           (cc.attrs.maximumRange lt cc.attrs.newAllocationAsset))? 'red-border' : 'green-border'}">
+                </h:inputText><span>%</span>
+            </th>
+            
+            <!-- CMP -->
+            <th style="width: 7%;"></th>
+            
+            <!-- Minimum investment -->
+            <th style="width: 7%;"></th>
+            
+            <!-- Tradability -->
+            <th style="width: 4%;"></th>
+            
+            <!-- Exisitng weight -->
+            <th style="width: 4%;"></th>
+            <!--
+            <th>
+                <h:outputText value="{cc.attrs.exisitingWeightAsset}%" class="existing-weight">
+                    <f:convertNumber pattern="#0.00"/>
+                </h:outputText>
+            </th>
+            -->
+            
+            <!-- Initial Allocation -->
+            <th style="width: 11%;"></th>
+            
+            <!-- Initial set price-->
+            <th style="width: 11%;"></th>
+            
+            <!-- Initial Price Tolerance -->
+            <!-- <th></th> -->
+            
+            <!-- Add button -->
+            <th style="width: 11%;">
+                <div style="float: right;font-weight: bolder;">
+                    
+                    <h:commandButton actionListener="#{createEditPortfolioController.doActionAddSecurity}"
+                                     action="#{createEditPortfolioController.actionAddRemoveSecurity}"
+                                     style="position: absolute;z-index: 1;border: 0px;background: none;"
+                                     type="button" rendered="#{cc.attrs.assetType ne 'Cash'}">
+                        <i class="icon-plus" style="position: relative;"></i>
+                        <f:param name="assetType" value="#{cc.attrs.assetType}"/>
+                    </h:commandButton>
+                </div>
+            </th>
+            
+        </tr>
+    </cc:implementation>
+</html>

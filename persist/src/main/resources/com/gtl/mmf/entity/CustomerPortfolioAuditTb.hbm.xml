@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 Jul, 2014 3:17:58 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerPortfolioAuditTb" table="customer_portfolio_audit_tb" catalog="mmfdb">
+        <id name="customerPortfolioAuditId" type="java.lang.Integer">
+            <column name="customer_portfolio_auditId" />
+            <generator class="identity" />
+        </id>
+        <property name="customerPortfolioId" type="java.lang.Integer">
+            <column name="customer_portfolio_id" />
+        </property>
+        <property name="relationId" type="java.lang.Integer">
+            <column name="relation_id" />
+        </property>
+        <property name="customerId" type="java.lang.Integer">
+            <column name="customer_id" />
+        </property>
+        <property name="omsLoginId" type="string">
+            <column name="oms_login_id" length="40" />
+        </property>
+        <property name="advisorId" type="java.lang.Integer">
+            <column name="advisor_id" />
+        </property>
+        <property name="portfolioId" type="java.lang.Integer">
+            <column name="portfolio_id" />
+        </property>
+        <property name="currentValue" type="java.lang.Float">
+            <column name="current_value" precision="8" />
+        </property>
+        <property name="portfolio90DayReturns" type="java.lang.Float">
+            <column name="portfolio_90_day_returns" precision="5" />
+        </property>
+        <property name="portfolio1YearReturns" type="java.lang.Float">
+            <column name="portfolio_1_year_returns" precision="5" />
+        </property>
+        <property name="adviserComment" type="string">
+            <column name="adviser_comment" length="65535" />
+        </property>
+        <property name="customerComment" type="string">
+            <column name="customer_comment" length="65535" />
+        </property>
+        <property name="outperformance" type="java.lang.Integer">
+            <column name="outperformance" />
+        </property>
+        <property name="advisorPortfolioStartValue" type="big_decimal">
+            <column name="advisor_portfolio_start_value" precision="12" />
+        </property>
+        <property name="benchmarkStartValue" type="big_decimal">
+            <column name="benchmark_start_value" precision="12" />
+        </property>
+        <property name="advisorPortfolioReturnsFromStart" type="java.lang.Float">
+            <column name="advisor_portfolio_returns_from_start" precision="5" />
+        </property>
+        <property name="benchmarkReturnsFromStart" type="java.lang.Float">
+            <column name="benchmark_returns_from_start" precision="5" />
+        </property>
+        <property name="rebalanceRequired" type="java.lang.Boolean">
+            <column name="rebalance_required" />
+        </property>
+        <property name="rebalanceReqdDate" type="timestamp">
+            <column name="rebalance_reqd_date" length="19" />
+        </property>
+        <property name="lastUpdated" type="timestamp">
+            <column name="last_updated" length="19" />
+        </property>
+        <property name="status" type="java.lang.Boolean">
+            <column name="status" />
+        </property>
+        <property name="portfolioValue" type="java.lang.Float">
+            <column name="portfolio_value" precision="8" />
+        </property>
+        <property name="commentFreq" type="java.lang.Integer">
+            <column name="comment_freq" />
+        </property>
+        <property name="noRebalanceStatus" type="java.lang.Boolean">
+            <column name="no_rebalance_status" />
+        </property>
+        <property name="cashAmount" type="java.lang.Float">
+            <column name="cash_amount" precision="12" scale="0" />
+        </property>
+        <property name="portfolioModified" type="java.lang.Boolean">
+            <column name="portfolio_modified" />
+        </property>
+        <property name="lastExecutionUpdate" type="timestamp">
+            <column name="LastExecutionUpdate" length="19" />
+        </property>
+        <property name="isFirstDayPerfmanceCalc" type="boolean">
+            <column name="is_first_day_perfmance_calc" not-null="true" />
+        </property>
+        <property name="lastUpdateOn" type="timestamp">
+            <column name="last_update_on" length="19" />
+        </property>
+        <property name="activityType" type="string">
+            <column name="activity_type" length="200" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

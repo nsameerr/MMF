@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <ui:composition>
+            <footer class="footer">
+                <style>
+                    .footer{
+                        text-transform: none;
+                    }
+                </style>
+                <div class="container">
+                    <div class="sitemap">
+                        <ul class="footerlinkslist">
+                            <li> 
+                                <span class="head">Legal Documents</span>
+                                <ul class="footersublinks">
+                                    <li> <a href="#{request.contextPath}/faces/pages/privacy_policy.xhtml"
+                                            target="_blank">Privacy Policy</a></li>		
+                                    <li> <a href="#{request.contextPath}/faces/pages/terms_and_conditions.xhtml"
+                                            target="_blank">Terms of Use</a></li>												
+                                    <li> <a href="#{request.contextPath}/faces/pages/subscriber_agreement.xhtml"
+                                            target="_blank">Subscriber Agreement</a></li>
+                                    <li> <a href="#{request.contextPath}/faces/pages/advisor_agreement.xhtml"
+                                            target="_blank">Advisor Agreement</a></li>
+                                    <li> <a href="#{request.contextPath}/faces/pages/advisor_investor_agreement.xhtml"
+                                            target="_blank">Advisor-Investor Agreement</a></li>						
+                                </ul>	
+                            </li>  
+                            <li> 
+                                <span class="head">About ManageMyFortune</span>
+                                <ul class="footersublinks">
+                                    <li><a href="#{request.contextPath}/faces/pages/static_about_us.xhtml">About Us</a></li>		
+                                    <li><a href="#{request.contextPath}/faces/pages/static_contact_us.xhtml">Contact Us</a></li>												
+                                    <li><a href="#{request.contextPath}/faces/pages/static_help.xhtml">Help &amp; Support</a></li>					
+                                </ul>	
+                            </li>  
+                            <li> 
+                                <span class="head">Connect</span>
+                                <ul class="footersublinks">
+                                    <li><a href="https://www.facebook.com/ManageMyFortune">Facebook</a></li>		
+                                    <li><a href="https://twitter.com/ManageMyFortune">Twitter</a></li>												
+                                    <li><a href="https://www.linkedin.com/company/managemyfortune-com-mmf-financial-advisors-private-ltd">LinkedIn</a></li>					
+                                </ul>	
+                            </li>           			
+                        </ul>                      
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="span4" style="float:right;">
+                        © 2013 MMF Financial Advisors Pvt. Ltd. All rights reserved.
+                    </div>
+                </div>
+            </footer>
+        </ui:composition>
+    </body>
+</html>

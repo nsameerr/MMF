@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25 Jul, 2016 11:23:38 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerTwrPortfolioReturnTb" table="customer_twr_portfolio_return_tb" catalog="mmfdb">
+        <id name="customerTwrId" type="java.lang.Integer">
+            <column name="customer_twr_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="customerPortfolioDetailsTb" class="com.gtl.mmf.entity.CustomerPortfolioDetailsTb" fetch="select">
+            <column name="customer_portfolio_details_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="masterCustomerTb" class="com.gtl.mmf.entity.MasterCustomerTb" fetch="select">
+            <column name="customer_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customerAdvisorMappingTb" class="com.gtl.mmf.entity.CustomerAdvisorMappingTb" fetch="select">
+            <column name="relation_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customerPortfolioTb" class="com.gtl.mmf.entity.CustomerPortfolioTb" fetch="select">
+            <column name="customer_portfolio_id" not-null="true" />
+        </many-to-one>
+        <property name="assetId" type="short">
+            <column name="asset_id" not-null="true" />
+        </property>
+        <property name="marketValue5d" type="big_decimal">
+            <column name="market_value_5d" precision="11" />
+        </property>
+        <property name="assetReturn5d" type="big_decimal">
+            <column name="asset_return_5d" precision="7" />
+        </property>
+        <property name="rcmReturn5d" type="big_decimal">
+            <column name="rcm_return_5d" precision="7" />
+        </property>
+        <property name="marketValue1m" type="big_decimal">
+            <column name="market_value_1m" precision="11" />
+        </property>
+        <property name="assetReturn1m" type="big_decimal">
+            <column name="asset_return_1m" precision="7" />
+        </property>
+        <property name="rcmReturn1m" type="big_decimal">
+            <column name="rcm_return_1m" precision="7" />
+        </property>
+        <property name="marketValue3m" type="big_decimal">
+            <column name="market_value_3m" precision="11" />
+        </property>
+        <property name="assetReturn3m" type="big_decimal">
+            <column name="asset_return_3m" precision="7" />
+        </property>
+        <property name="rcmReturn3m" type="big_decimal">
+            <column name="rcm_return_3m" precision="7" />
+        </property>
+        <property name="marketValue6m" type="big_decimal">
+            <column name="market_value_6m" precision="11" />
+        </property>
+        <property name="assetReturn6m" type="big_decimal">
+            <column name="asset_return_6m" precision="7" />
+        </property>
+        <property name="rcmReturn6m" type="big_decimal">
+            <column name="rcm_return_6m" precision="7" />
+        </property>
+        <property name="marketValueYtd" type="big_decimal">
+            <column name="market_value_ytd" precision="11" />
+        </property>
+        <property name="assetReturnYtd" type="big_decimal">
+            <column name="asset_return_ytd" precision="7" />
+        </property>
+        <property name="rcmReturnYtd" type="big_decimal">
+            <column name="rcm_return_ytd" precision="7" />
+        </property>
+        <property name="marketValue1y" type="big_decimal">
+            <column name="market_value_1y" precision="11" />
+        </property>
+        <property name="assetReturn1y" type="big_decimal">
+            <column name="asset_return_1y" precision="7" />
+        </property>
+        <property name="rcmReturn1y" type="big_decimal">
+            <column name="rcm_return_1y" precision="7" />
+        </property>
+        <property name="marketValue5y" type="big_decimal">
+            <column name="market_value_5y" precision="11" />
+        </property>
+        <property name="assetReturn5y" type="big_decimal">
+            <column name="asset_return_5y" precision="7" />
+        </property>
+        <property name="rcmReturn5y" type="big_decimal">
+            <column name="rcm_return_5y" precision="7" />
+        </property>
+        <property name="marketValue10y" type="big_decimal">
+            <column name="market_value_10y" precision="11" />
+        </property>
+        <property name="assetReturn10y" type="big_decimal">
+            <column name="asset_return_10y" precision="7" />
+        </property>
+        <property name="rcmReturn10y" type="big_decimal">
+            <column name="rcm_return_10y" precision="7" />
+        </property>
+        <property name="marketValueAll" type="big_decimal">
+            <column name="market_value_all" precision="11" />
+        </property>
+        <property name="assetReturnAll" type="big_decimal">
+            <column name="asset_return_all" precision="7" />
+        </property>
+        <property name="rcmReturnAll" type="big_decimal">
+            <column name="rcm_return_all" precision="7" />
+        </property>
+    </class>
+</hibernate-mapping>

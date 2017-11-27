@@ -1,0 +1,140 @@
+
+<!-- pd Modal -->
+<div class="modal fade" id="pdmyModal" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Modal Header</h4>
+			</div>
+			<div class="modal-body">
+				<table>
+					<tr>
+						<td>
+							<div style="width: 330px;">
+								<div id="pdwebcam"></div>
+								<div style="margin: 5px;">
+									<img src="webcamlogo.png" style="vertical-align: text-top" /> <select id="pdcameraNames" size="1" onChange="pdchangeCamera()" style="width: 245px; font-size: 10px; height: 25px;">
+									</select>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div style="width: 200px; float: right">
+								<p>
+									<textarea id="pdformfield" style="width: 190px; height: 70px; display: none;"></textarea>
+								</p>
+								<p>
+									<img id="pdimage" style="width: 200px; height: 153px;" ng-show="scriptcamsrc=='pd'"/>
+									<img id="cadimage" style="width: 200px; height: 153px;" ng-show="scriptcamsrc=='cad'"/>
+									<img id="padimage" style="width: 200px; height: 153px;" ng-show="scriptcamsrc=='pad'"/>
+									<img id="bdimage" style="width: 200px; height: 153px;" ng-show="scriptcamsrc=='bd'"/>
+								</p>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div style="width: 135px;">								
+								<p ng-show="scriptcamsrc=='pd'">
+									<button class="btn btn-small" id="pdbtn2" onclick="pdimgToServer()">Snapshot to Server</button>
+								</p>
+								<p ng-show="scriptcamsrc=='cad'">
+									<button class="btn btn-small" id="cadbtn2" onclick="cadimgToServer()">Snapshot to Server</button>
+								</p>
+								<p ng-show="scriptcamsrc=='pad'">
+									<button class="btn btn-small" id="padbtn2" onclick="padimgToServer()">Snapshot to Server</button>
+								</p>
+								<p ng-show="scriptcamsrc=='bd'">
+									<button class="btn btn-small" id="bdbtn2" onclick="bdimgToServer()">Snapshot to Server</button>
+								</p>
+							</div>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script>
+$(document).ready(function() {
+	$("#pdwebcam").scriptcam({
+		showMicrophoneErrors : false,
+		onError : onError,
+		cornerRadius : 20,
+		cornerColor : 'e3e5e2',
+		onWebcamReady : onWebcamReady,
+		uploadImage : 'upload.gif',
+		onPictureAsBase64 : pd_base64_tofield_and_image
+	});
+});
+function pd_base64_tofield() {
+	$('#pdformfield').val($.scriptcam.getFrameAsBase64());
+}
+;
+function pd_base64_toimage() {
+	if (angular.element($('#pdformfield')).scope().scriptcamsrc == 'pd')
+		$('#pdimage').attr("src", "data:image/png;base64," + $.scriptcam.getFrameAsBase64());
+	else if (angular.element($('#pdformfield')).scope().scriptcamsrc == 'cad')
+		$('#cadimage').attr("src", "data:image/png;base64," + $.scriptcam.getFrameAsBase64());
+	else if (angular.element($('#pdformfield')).scope().scriptcamsrc == 'pad')
+		$('#padimage').attr("src", "data:image/png;base64," + $.scriptcam.getFrameAsBase64());
+	else if (angular.element($('#pdformfield')).scope().scriptcamsrc == 'bd')
+		$('#bdimage').attr("src", "data:image/png;base64," + $.scriptcam.getFrameAsBase64());
+	
+}
+;
+function pd_base64_tofield_and_image(b64) {
+	$('#pdformfield').val(b64);
+	$('#pdformfield').val($.scriptcam.getFrameAsBase64());
+	$('#pdimage').attr("src", "data:image/png;base64," + b64);
+}
+;
+function pdchangeCamera() {
+	$.scriptcam.changeCamera($('#pdcameraNames').val());
+}
+function onError(errorId, errorMsg) {
+	$("#pdbtn1").attr("disabled", true);
+	$("#pdbtn2").attr("disabled", true);
+	alert(errorMsg);
+}
+function onWebcamReady(cameraNames, camera, microphoneNames, microphone, volume) {
+	$.each(cameraNames, function(index, text) {
+		$('#pdcameraNames').append($('<option></option>').val(index).html(text))
+	});
+	$('#pdcameraNames').val(camera);
+}
+function pdimgToServer() {
+	pd_base64_tofield();
+	pd_base64_toimage();
+	angular.element($('#pdformfield')).scope().uploadPanCardScriptCam();
+}
+
+function cadimgToServer() {
+	pd_base64_tofield();
+	pd_base64_toimage();
+	angular.element($('#pdformfield')).scope().uploadCorsAdressScriptCam();
+}
+
+function padimgToServer() {
+	pd_base64_tofield();
+	pd_base64_toimage();
+	angular.element($('#pdformfield')).scope().uploadPrmntAdressScriptCam();
+}
+
+function bdimgToServer() {
+	pd_base64_tofield();
+	pd_base64_toimage();
+	angular.element($('#pdformfield')).scope().uploadBankProofScriptCam();
+}
+</script>

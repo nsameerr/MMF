@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 25, 2014 10:10:34 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerPortfolioLogTb" table="customer_portfolio_log_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="masterCustomerTb" class="com.gtl.mmf.entity.MasterCustomerTb" fetch="select">
+            <column name="customer_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customerPortfolioTb" class="com.gtl.mmf.entity.CustomerPortfolioTb" fetch="select">
+            <column name="customer_portfolio_id" not-null="true" />
+        </many-to-one>
+        <property name="logDate" type="timestamp">
+            <column name="log_date" length="19" not-null="true" />
+        </property>
+        <property name="openingPortfolioValue" type="big_decimal">
+            <column name="opening_portfolio_value" precision="12" />
+        </property>
+        <property name="closingPortfolioValue" type="big_decimal">
+            <column name="closing_portfolio_value" precision="12" />
+        </property>
+        <property name="cashOnClosing" type="big_decimal">
+            <column name="cash_on_closing" precision="12" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25 Jul, 2016 11:23:38 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerPortfolioDetailsTb" table="customer_portfolio_details_tb" catalog="mmfdb">
+        <id name="customerPortfolioDetailsId" type="java.lang.Integer">
+            <column name="customer_portfolio_details_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="portfolioDetailsTb" class="com.gtl.mmf.entity.PortfolioDetailsTb" fetch="select">
+            <column name="portfolio_details_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="masterAssetTb" class="com.gtl.mmf.entity.MasterAssetTb" fetch="select">
+            <column name="asset_class_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customerPortfolioTb" class="com.gtl.mmf.entity.CustomerPortfolioTb" fetch="select">
+            <column name="customer_portfolio_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="portfolioTb" class="com.gtl.mmf.entity.PortfolioTb" fetch="select">
+            <column name="portfolio_id" not-null="true" />
+        </many-to-one>
+        <property name="rangeFrom" type="java.lang.Float">
+            <column name="range_from" precision="5" />
+        </property>
+        <property name="rangeTo" type="java.lang.Float">
+            <column name="range_to" precision="5" />
+        </property>
+        <property name="currentWeight" type="java.lang.Float">
+            <column name="current_weight" precision="5" />
+        </property>
+        <property name="newAllocation" type="java.lang.Float">
+            <column name="new_allocation" precision="5" />
+        </property>
+        <property name="currentAllocation" type="java.lang.Float">
+            <column name="current_allocation" precision="5" />
+        </property>
+        <set name="customerTwrPortfolioReturnTbs" table="customer_twr_portfolio_return_tb" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="customer_portfolio_details_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerTwrPortfolioReturnTb" />
+        </set>
+        <set name="customerPortfolioSecuritiesTbs" table="customer_portfolio_securities_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_portfolio_details_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerPortfolioSecuritiesTb" />
+        </set>
+    </class>
+</hibernate-mapping>

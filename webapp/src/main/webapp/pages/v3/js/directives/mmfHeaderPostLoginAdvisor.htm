@@ -1,0 +1,126 @@
+<header class="navbar-fixed-top" ng-controller="AdvisorNotification" data-ng-init="initHeaderController()">
+			<div class="padding_lr">
+				<button id="open_menu_nav" class="navbar-toggle" type="button">
+					<span class="sr-only"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<button id="close_menu_nav" class="navbar-toggle" type="button">
+					<span class="sr-only"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+					
+				<div class="navbar-header">
+					<div class="logo">
+						<a href="">Manage My Fortune</a>
+					</div>
+				</div>
+				<div class="logout"><a href="" title="Log Out" onclick="javascript:window.location.href=_gc_url_logout"> </a></div>
+				<div class="settings">
+					<span class="gear_icon"> 
+						<ul class="nav navbar-nav" id="advisorSetting" style="display: none;">
+		                	<li class="dropdown"><a href="" class="dropbtn"></a>
+		                        <ul class="dropdown-menu">
+			                        <li><a href="javascript:openPage('/faces/pages/v3/investor-change-password-login.jsp?faces-redirect=true')" class="changepass" id="changePassword">Change Password</a></li>
+			                        <li><a href="javascript:openPage('/faces/pages/v3/advisorProfile.jsp?faces-redirect=true')" class="investorprofile" id="updatePersonalProfile">Update Profile</a></li>
+			                        <li ng-if="linkedInConnected == false"><a ng-href="{{linkedInUrl}}"  target="_self" class="financialplan" id="connectLinkedIn">Connect LinkedIn</a></li>
+		                        </ul>
+		                    </li>
+		                </ul>		                
+					</span>					
+				</div>
+				<div class="alert_notification">
+					<a href="#"> &nbsp;</a>
+					<span id="notification_count" ng-model="notificationCount" ng-show="notificationCount>0">{{notificationCount}}</span>
+					<ul class="nav navbar-nav">
+				        <li class="dropdown"><a class="dropbtn"></a> 
+				            <ul class="dropdown-menu">				              
+				              <li ng-repeat="item in advisorNotificationspoup" ng-click="notificationCTA($index + '_true')">
+				              	<a href="" >{{item.notificationMessage}} </br>{{item.elapsedTimeMsg}}</a> <!-- style="width: auto" -->
+				              </li>
+				            </ul>
+				        </li>
+					</ul>
+				</div>
+				<div style="float: right;margin-right: 10px;color: white;"id="displayOnlyUserName"></div>
+			</div>
+			<section id="hamber_menu_section" class="hamber_menu_section">
+				<div class="nav_menu">
+					<ul>
+						<li style="display: none;" class="sb" id="home">
+							<!-- /faces/pages/advisordashboard.xhtml?faces-redirect=true -->
+							<a class="home" href="javascript:openPage('/faces/pages/v3/advisorDashboard.jsp?faces-redirect=true')">Home</a>
+						</li>
+						<li style="display: none;" class="sb" id="search"><!-- active -->
+							<a class="search" href="javascript:openCreateEditPortfolioPage(true)">Create portfolio</a>
+						</li>
+						<li style="display: none;" class="sb" id="my_port">
+							<a class="my_port"  href="javascript:openCreateEditPortfolioPage(false)">Edit Portfolio</a>
+						</li>
+						<li style="display: none;" class="sb" id="reports">
+							<a class="reports" href="">reports</a>
+						</li>
+						<li style="display: none;" class="sb" id="ad_service">
+							<a class="ad_service" href="">advisory service contract</a>
+						</li>
+						<li style="display: none;" class="sb" id="alerts">
+							<a class="alerts" href="">alerts</a>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</header>
+
+		<script type="text/javascript">
+		openPage = function(myUrl) {
+			location.href = _gc_url_baseUrl + myUrl;
+		}
+		openCreateEditPortfolioPage = function(createMode){	//true for create and false for edit
+			$.ajax({
+				type: 'POST',
+				url : _gc_url_createEditPortfolio,
+				data: "portfolioCreate="+createMode,
+				success: function(rdata){
+					try{
+						//Redirect to Create/Edit Portfolio Page
+						if(rdata != ""){
+							location.href = _gc_url_baseUrl + rdata;
+						}
+					}catch(e){
+						console.error(e);
+					}								
+				},
+				error: function(xhr, textStatus, error){
+					console.log(xhr.statusText);
+					console.log(textStatus);
+					console.log(error);
+				}
+			});
+		}
+		$(document).ready(function(){
+			/* nav setting drop down start    */	
+			$('ul.nav li.dropdown').hover(function() {
+			  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+			}, function() {
+			  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+			});	
+			/* nav setting drop down end   */
+			$('#open_menu_nav').click(function(){
+				$('#hamber_menu_section').animate({
+					left: '0px'
+				}, 1000);
+				$('#open_menu_nav').hide();
+				$('#close_menu_nav').show();
+			});
+			$('#close_menu_nav').click(function(){
+				$('#hamber_menu_section').animate({
+					left: '-92px'
+				}, 1000);
+				$('#open_menu_nav').show();
+				$('#close_menu_nav').hide();
+			});	
+		});			
+		</script>

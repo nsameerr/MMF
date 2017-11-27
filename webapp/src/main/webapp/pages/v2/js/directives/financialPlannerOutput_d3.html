@@ -1,0 +1,1244 @@
+<style>
+lable{
+	margin-left: 12px !important;
+}
+
+#rsSalarySavingsRate .rs-handle  {
+    background-color: transparent;
+    border: 8px solid transparent;
+    border-right-color: black;
+    margin: -6px 0px 0px 14px !important;
+    border-width: 6px 104px 6px 4px;
+}
+#rsSalarySavingsRate .rs-handle:before  {
+    display: block;
+    content: " ";
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    background: black;
+    right: -11px;
+    bottom: -11px;
+    border-radius: 100px;
+}
+#rsSalarySavingsRate .rs-tooltip  {
+    top: 120%;
+    font-size: 20px;
+}
+#rsSalarySavingsRate .rs-tooltip div  {
+    text-align: center;
+    background: orange;
+    color: white;
+    border-radius: 4px;
+    padding: 1px 5px 2px;
+    margin-top: 4px;
+}
+#rsSalarySavingsRate .rs-range-color  {
+    background-color: #DB5959;
+}
+#rsSalarySavingsRate .rs-path-color  {
+    background-color: #F0C5C5;
+}
+
+#rsSalarySavingsRate{
+	margin-top:9px;
+}
+
+.dataTables_scroll
+{
+    overflow:auto; 
+    width: 100%;
+}
+
+.dataTables_filter{
+	display: none !important;
+}
+
+.highcharts-range-selector-buttons{
+	display: none !important;
+}
+
+.rs-range-color{
+	background-color: #7BDB7B !important;
+}
+.rs-path-color{
+	background-color: #ECECEC !important;
+}
+
+.rs-control{
+	display: inline-block;
+}
+
+#datatable thead tr th {
+background-image:url('img/thumbs.png');
+}
+
+.rs-inner {
+display:none !important;
+	border:0px !important;
+}
+
+.rs-container{
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-inne{
+
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+.rs-block{
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-path{
+
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-handle{
+	margin-top: 20px !important
+}
+
+
+#divRiskProfile{
+	background-image:url('img/riskometer_bg.png');
+	background-size: 500px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+
+.rs-seperator{
+	border: 0px;
+}
+
+select{
+	background-color: rgba(0,0,0,0);
+	padding:5px;
+	margin:5px;
+}
+
+td{
+	padding-right :5px;
+}
+th{
+	padding-right :5px;
+}
+
+.txtRupee{
+	background-image: url('img/icon_rupee.png');
+	background-repeat: no-repeat;
+	background-position: left center; 
+	background-size: auto 20px;
+	padding-left: 25px !important;
+	padding-bottom: 30px;
+}
+
+.rs-tooltip-text{
+	margin-left: -180px !important;
+    margin-top: -170px !important;
+    padding: 5px !important;
+    background-color: #2E709F !important;
+    border-radius: 25px;
+    color: white;
+    height: 50px;
+    width: 50px;
+}
+
+.irs-single {
+    display: none !important;
+}
+
+.txtRupee{
+		background-image: url('img/icon_rupee.png');
+		background-repeat: no-repeat;
+		background-position: left center; 
+		background-size: auto 20px;
+		padding-left: 25px !important;
+		padding-bottom: 30px;
+	}
+	.calender{
+		background-image: url('img/icon_calender.png');
+		background-repeat: no-repeat;
+		background-position: right center; 
+		background-size: auto 20px;
+		padding-right: 25px !important;
+		padding-bottom: 30px;
+	}
+	
+	table.dataTable.no-footer {
+    border-bottom: 0px solid #111 !important;
+}
+
+.nav-tabs li a {
+    color: gray;
+}
+
+
+.active a {
+    font-weight: bold;
+}
+
+
+svg {
+	font: 10px sans-serif;
+}
+
+.area {
+	fill: rgba(244, 93, 76, 0.8);
+	clip-path: url(#clip);
+}
+
+.areaAsset {
+	fill: rgba(161, 219, 178, 0.8);
+	clip-path: url(#clip);
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+.axis {
+    background: #000;
+}
+
+.axis line, .axis path {
+    fill: none;
+    stroke: #333;
+}
+
+.brush .extent {
+	stroke: #fff;
+	fill-opacity: .125;
+	shape-rendering: crispEdges;
+}
+
+.lolipop.marker.goalDesc{
+	position:absolute;
+	background-color: #ffffff;
+	border: 1px solid black;
+	padding: 10px;
+	display: none;
+	box-shadow: 1px 1px 3px #888;
+	border-radius: 5px;
+}
+	
+	
+</style>
+<div class="row-fluid">
+	<h2 class="page-title">Financial Planner Output</h2>
+</div>
+<div id="divLoading"  style="display:none">Loading...</div>
+<div id="divContent">
+	<div class="row">
+		<div class="col-md-8" style="margin-bottom: 20px;">
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" onClick="">Chart</a></li>
+				<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onClick="">Table</a></li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane fade in active" id="home">
+					<div id="chartRangeFilter_dashboard_div" style="border: 0px solid #ccc; text-align: left;">
+						<table class="columns" style="width:100%">
+				            <tr><td style="text-align: center; font-size: large;"><b>Assets vs Expenditure</b></td></tr>
+				            <tr>
+				            	<td style="text-align: center; padding:auto">
+				            		<table style=" margin-left: auto;margin-top: -30px;">
+				            			<tr>
+				            				<td style="border-left: 20px solid #C8F1C8;">&nbsp;Assets</td>
+				            				<td style="width:10px"></td>
+				            				<td style="border-left: 20px solid #FBBEBC;">&nbsp;Expenditure</td>
+				            			</tr>
+				            		</table>
+				            	</td>
+				            </tr>
+				            <tr>
+				            	<td id="box">
+					            	<div id="financialOutputChart" style="width: 100%; height: 340px;"></div>
+				            	</td>
+				            </tr>
+				            <tr><td><div id="financialOutputChartControl" style="width: 100%; height: 100px; margin-top: -70px;"></div></td></tr>
+				        </table>
+			        </div>
+			        <script>
+			        
+			        /*var chart = c3.generate({
+			        	data: {
+			        		x:'Age',
+			        	    columns: [
+					        	      ['Age', 20,21,22,23,24,25,26,27,28,29,30,31,32],
+					        	      ['Assets', 30, 20, 50, 40, 60, 50, 200, 130, 90, 240, 130, 220],
+					        	      ['Liabiity', 200, 130, 90, 240, 130, 220, 30, 20, 50, 40, 60, 50],
+					        	      ['Goals', 300, 0, 0, 0, 0, 320, 0, 0, 0, 340, 0, 0],
+					        	      ['GoalsBar', 300, 0, 0, 0, 0, 320, 0, 0, 0, 340, 0, 0]
+					        	    ],
+			        	    point: {r:10},
+			        	    type: 'area',
+			        	    types: {
+			        	      Goals :'scatter',
+			        	      GoalsBar : 'bar'
+			        	    },
+			        	    groups: [
+			        	      ['Assets', 'Liabiity']
+			        	    ]
+			        	  },
+			        	  subchart: {
+			        	    show: true
+			        	  },
+			        	  bar: {
+			        		  width: 10
+			        		}
+					});
+			        
+			        
+			        $( ".c3-circles-Goals .c3-circle" ).each(function( index ) {
+			        	if(chart.data()[2].values[index].value==0){
+			        		$( this ).css('display','none');
+			        	}
+			        	else{
+			        		$(this).attr('r','30');
+			        	}
+			        });
+			        
+			        
+			        
+			        
+			        //$('.c3-circles-Goals .c3-circle').attr('r','20')
+					*/
+					
+					
+			        
+			        </script>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="profile">
+					<div id="table_div"  style="width:100% ; height: 380px;  margin: 0 auto;overflow:auto;">Loading ...</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-4">
+			<div class="panel panel-default container-fluid">
+				<div class="panel-heading row">
+					<b>Edit Inputs</b>
+				</div>
+				<div class="panel-body">
+					<div id="divRiskProfile" style="height: 285px; padding-top: 100px; width: 100%; text-align: center; margin-top:-50px">
+						<div id="rsSalarySavingsRate" style="height: 320px !important; width:500px !important;"></div>
+					</div>
+					<div style="text-align: left;margin-top:-50px;">Saving Rate</div>
+					<div style="margin-right: 20px; margin-top:-30px; margin-bottom:10px;">
+						<input id="range_score"/>
+						<span id="value_score" class="pull-right" style="margin-right:-35px;margin-top: -50px">0%</span>
+					</div>
+					<div style="text-align: left;">Allocation to ManageMyFortune</div>
+					<div style="margin-right: 20px; margin-top:-30px; margin-bottom:10px;">
+						<input id="range_allocationMMF"/>
+						<span id="value_allocationMMF" class="pull-right" style="margin-right:-35px;margin-top: -50px">100%</span>
+					</div>
+					<div style="text-align: left;">Retirement Age</div>
+					<div style="margin-right: 20px; margin-top:-30px; margin-bottom:-10px;">
+						<input id="range_RetirementAge"/>
+						<span id="value_RetirementAge" class="pull-right" style="margin-right:-35px;margin-top: -50px">60</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-12">
+			<div class="panel panel-default container-fluid">
+				<div class="panel-heading row">
+					<div class="col-md-11"><b>Life Goals</b></div>
+					<div class="col-md-1  pull-right"  style="width:52px;!important"><a href="javascript:toggleCollaps('#iconLifeGoals','#divLifeGoals');" class="btn btn-success"><span id="iconLifeGoals" class="glyphicon glyphicon-chevron-down pull-right" style="right:0px"></span></a></div>
+				</div>
+				<div class="panel-body" id="divLifeGoals"  >
+					<table style="width: auto" class="lifegoals" id="lifegoals">
+						<tr>
+							<th>&nbsp;&nbsp;Life&nbsp;Goals&nbsp;&nbsp;&nbsp;&nbsp;</th>
+							<th>Frequency&nbsp;&nbsp;&nbsp;&nbsp;</th>
+							<th>Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+							<th>Current&nbsp;value&nbsp;&nbsp;&nbsp;&nbsp;</th>
+							<th>Loan&nbsp;(Y/N)&nbsp;&nbsp;&nbsp;&nbsp;</th>
+							<td style="width:100%"></td>
+						</tr>
+						<tr>
+							<td>				
+								<select id="lgOptions" class="lgOptions" name="test">
+								    <option value="1" data-iconurl="img/icon_selfMarriage.png">Self Marriage</option>
+								    <option value="8" data-iconurl="img/icon_selfStudy.png">Self Higher study</option>
+								    <option value="3" data-iconurl="img/icon_bike.png">Two Wheeler</option>
+								    <option value="4" data-iconurl="img/icon_car.png">Car</option>
+								    <option value="5" data-iconurl="img/icon_home.png">House</option>
+								    <option value="6" data-iconurl="img/icon_vacation.png">Domestic vacation</option>
+								    <option value="7" data-iconurl="img/icon_vacation.png">International vacation</option>
+								    <option value="9" data-iconurl="img/icon_selfStudy.png">Children Higher Study</option>
+								    <option value="2" data-iconurl="img/icon_childrenMarriage.png">Children Marriage</option>
+								    <option value="0" data-iconurl="img/icon_others.png">Others</option>
+								</select>
+								<input id="lgOther" class="lgOther" type="text" id="txtOthers" style="display:none">
+							</td>
+							<td>
+								<select id="lgFrequency" class="lgFrequency" name="testx">
+								    <option value="0" >Only once</option>
+								    <option value="1" >Once every year</option>
+								    <option value="2" >Once in two year</option>
+								    <option value="3" >Once in three year</option>
+								    <option value="4" >Once in four year</option>
+								    <option value="5" >Once in five year</option>
+								 </select>
+							</td>
+							<td>
+								<input type="text" class="form-control lgYear calender" aria-describedby="basic-addon1">
+							</td>
+							<td width=400>
+								<input type="text" class="form-control lgAmount txtRupee" aria-describedby="basic-addon1">
+							</td>
+							<td style="padding-top:20px">
+								<input type="checkbox" class="lgLoan" name="my-checkbox">
+							</td>
+							<td width=100>
+								<img src="img/x.png" id="btnRemoveRow" width="30px" style="cursor:pointer;">
+							</td>
+						</tr>
+					</table>
+					
+					<br><img id="btnAddRow" src="img/addRow.png" width="30px" style="cursor: pointer;">
+					<button type="button" class="btn-flat inverse small" onclick="javascript:makeJsonLifeGoals();">Update</button>
+					<script type="text/javascript">
+					$('.selectpicker').selectpicker({size: 4});
+					
+					</script>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="panel panel-default container-fluid">
+				<div class="panel-heading row">
+					<div class="col-md-11"><b>Advance Settings</b></div>
+					<div class="col-md-1  pull-right"  style="width:52px;!important"><a href="javascript:toggleCollaps('#iconFATCA','#divFATCA');" class="btn btn-success"><span id="iconFATCA" class="glyphicon glyphicon-chevron-down pull-right" style="right:0px"></span></a></div>
+				</div>
+				<div class="panel-body container-fluid" id="divFATCA"  style="display:none">
+					<div class="row-fluid">
+						<div  class="col-md-12" >
+								<table>
+									<tr>
+										<td style="width:50%; vertical-align: top;" class="well">
+											<table  class="well">
+												<tr style="margin:10px">
+													<th>Life&nbsp;Expectancy</th>
+													<td id="as1"><script>getSelectBox('#as1','lifeExpentancy','lifeExpentancy',0,100,85);</script></td>
+												</tr>
+												<tr style="margin:10px">
+													<th style="width:150px;">Rate&nbsp;at&nbsp;which&nbsp;non&nbsp;invested&nbsp;amount&nbsp;grows&nbsp;(%)</th>
+													<td id="as2"><script>getSelectBox('#as2','rateOfGrowthOfFd','rateOfGrowthOfFd',0,100,7);</script></td>
+													<td style="width: 100%"></td>
+												</tr>
+												<tr style="margin:10px">
+													<th>What&nbsp;is&nbsp;your&nbsp;long&nbsp;term&nbsp;inflation&nbsp;expectation&nbsp;(%)</th>
+													<td id="as4"><script>getSelectBox('#as4','longTermInflationExpectation','longTermInflationExpectation',0,100,5);</script></td>
+												</tr>
+												<tr style="margin:10px">
+													<th>Recurring&nbsp;Expense&nbsp;level&nbsp;post&nbsp;retirement</th>
+													<td id="as5"><script>getSelectBox('#as5','postRetirementRecurringExpense','postRetirementRecurringExpense',0,100,75);</script></td>
+												</tr>
+											</table>
+										</td>
+										<td style="width:10px;"></td>
+										<td style="width:50%; vertical-align: top;" class="well">
+											<table>
+												<tr>
+													<th>Loan For</th>
+													<th>Number of Years</th>
+													<th>Interest Rates</th>
+													<th>Downpayment (in %)</th>
+												</tr>
+												<tr>
+													<td>Education 
+														<input type="hidden" class="loanForID" value="1">
+														<input type="hidden" class="loanForDesc" value="Education Loan">
+													</td>
+													<td id="lf1"><script>getSelectBox('#lf1','loanNumberOfYears','loanNumberOfYears',0,100,10);</script></td>
+													<td id="lf2"><script>getSelectBox('#lf2','loanIntrestRate','loanIntrestRate',0,100,12);</script></td>
+													<td id="lf3"><script>getSelectBox('#lf3','loanDownpayment','loanDownpayment',0,100,10);</script></td>
+												</tr>
+												<tr>
+													<td>Marriage (Personal Loan) 
+														<input type="hidden" class="loanForID" value="4">
+														<input type="hidden" class="loanForDesc" value="Personal Loan">
+													</td>
+													<td id="lf4"><script>getSelectBox('#lf4','loanNumberOfYears','loanNumberOfYears',0,100,5);</script></td>
+													<td id="lf5"><script>getSelectBox('#lf5','loanIntrestRate','loanIntrestRate',0,100,15);</script></td>
+													<td id="lf6"><script>getSelectBox('#lf6','loanDownpayment','loanDownpayment',0,100,10);</script></td>
+												</tr>
+												<tr>
+													<td>House 
+														<input type="hidden" class="loanForID" value="2">
+														<input type="hidden" class="loanForDesc" value="House Loan">
+													</td>
+													<td id="lf7"><script>getSelectBox('#lf7','loanNumberOfYears','loanNumberOfYears',0,100,20);</script></td>
+													<td id="lf8"><script>getSelectBox('#lf8','loanIntrestRate','loanIntrestRate',0,100,10);</script></td>
+													<td id="lf9"><script>getSelectBox('#lf9','loanDownpayment','loanDownpayment',0,100,10);</script></td>
+												</tr>
+												<tr>
+													<td>Car 
+														<input type="hidden" class="loanForID" value="2">
+														<input type="hidden" class="loanForDesc" value="Car Loan">
+													</td>
+													<td id="lf10"><script>getSelectBox('#lf10','loanNumberOfYears','loanNumberOfYears',0,100,5);</script></td>
+													<td id="lf11"><script>getSelectBox('#lf11','loanIntrestRate','loanIntrestRate',0,100,13);</script></td>
+													<td id="lf12"><script>getSelectBox('#lf12','loanDownpayment','loanDownpayment',0,100,10);</script></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+								<br>
+								<table>
+									<tr>
+										<td style="width:50%; vertical-align: top;" class="well">
+											<table cellspacing=10>
+									      		<tr>
+									      			<th>
+									      				Salary Increment vs Age
+									      			</th>
+									      			<th>
+									      				21-28
+									      				<input type="hidden" class="lowerLimitAge" value="21">
+									      				<input type="hidden" class="upperLimitAge" value="28">
+									      			</th>
+									      			<th>
+									      				28-35
+									      				<input type="hidden" class="lowerLimitAge" value="28">
+									      				<input type="hidden" class="upperLimitAge" value="35">
+									      			</th>
+									      			<th>
+									      				35-50
+									      				<input type="hidden" class="lowerLimitAge" value="35">
+									      				<input type="hidden" class="upperLimitAge" value="50">
+									      			</th>
+									      			<th>
+									      				50-60
+									      				<input type="hidden" class="lowerLimitAge" value="50">
+									      				<input type="hidden" class="upperLimitAge" value="60">
+									      			</th>
+									      			<th>
+									      				60-80
+									      				<input type="hidden" class="lowerLimitAge" value="60">
+									      				<input type="hidden" class="upperLimitAge" value="80">
+									      			</th>
+									      			<th>
+									      				80+
+									      				<input type="hidden" class="lowerLimitAge" value="80">
+									      				<input type="hidden" class="upperLimitAge" value="150">
+									      			</th>
+									      		</tr>
+									      		<tr>
+									      			<th>Increments In Self Salary (%)</th>
+									      			<td id="td1"><script>getSelectBox('#td1','selfSalaryIncreaseRate','selfSalaryIncreaseRate',0,100,15);</script></td>
+									      			<td id="td2"><script>getSelectBox('#td2','selfSalaryIncreaseRate','selfSalaryIncreaseRate',0,100,12);</script></td>
+									      			<td id="td3"><script>getSelectBox('#td3','selfSalaryIncreaseRate','selfSalaryIncreaseRate',0,100,8);</script></td>
+									      			<td id="td4"><script>getSelectBox('#td4','selfSalaryIncreaseRate','selfSalaryIncreaseRate',0,100,6);</script></td>
+									      			<td id="td5"><script>getSelectBox('#td5','selfSalaryIncreaseRate','selfSalaryIncreaseRate',0,100,0);</script></td>
+									      			<td id="td6"><script>getSelectBox('#td6','selfSalaryIncreaseRate','selfSalaryIncreaseRate',0,100,0);</script></td>
+									      		</tr>
+									      		<tr>
+									      			<th>Increments In Spouse Salary (%)</th>
+									      			<td id="td7"><script>getSelectBox('#td7','spouseSalaryIncreaseRate','spouseSalaryIncreaseRate',0,100,15);</script></td>
+									      			<td id="td8"><script>getSelectBox('#td8','spouseSalaryIncreaseRate','spouseSalaryIncreaseRate',0,100,12);</script></td>
+									      			<td id="td9"><script>getSelectBox('#td9','spouseSalaryIncreaseRate','spouseSalaryIncreaseRate',0,100,8);</script></td>
+									      			<td id="td10"><script>getSelectBox('#td10','spouseSalaryIncreaseRate','spouseSalaryIncreaseRate',0,100,6);</script></td>
+									      			<td id="td11"><script>getSelectBox('#td11','spouseSalaryIncreaseRate','spouseSalaryIncreaseRate',0,100,0);</script></td>
+									      			<td id="td12"><script>getSelectBox('#td12','spouseSalaryIncreaseRate','spouseSalaryIncreaseRate',0,100,0);</script></td>
+									      		</tr>
+									      	</table>
+										</td>
+										<td style="width:10px;"></td>
+										<td style="width:50%; vertical-align: top;" class="well">
+											<table cellspacing=10>
+									      		<tr>
+									      			<th>
+									      				Expense Increment vs Age
+									      			</th>
+									      			<th>21-28</th>
+									      			<th>28-35</th>
+									      			<th>35-50</th>
+									      			<th>50-60</th>
+									      			<th>60-80</th>
+									      			<th>80+</th>
+									      		</tr>
+									      		<tr>
+									      			<th>Increments In Expense (%)</th>
+									      			<td id="td13"><script>getSelectBox('#td13','expenseIncreaseRate','expenseIncreaseRate',0,100,15);</script></td>
+									      			<td id="td14"><script>getSelectBox('#td14','expenseIncreaseRate','expenseIncreaseRate',0,100,12);</script></td>
+									      			<td id="td15"><script>getSelectBox('#td15','expenseIncreaseRate','expenseIncreaseRate',0,100,12);</script></td>
+									      			<td id="td16"><script>getSelectBox('#td16','expenseIncreaseRate','expenseIncreaseRate',0,100,10);</script></td>
+									      			<td id="td17"><script>getSelectBox('#td17','expenseIncreaseRate','expenseIncreaseRate',0,100,8);</script></td>
+									      			<td id="td18"><script>getSelectBox('#td18','expenseIncreaseRate','expenseIncreaseRate',0,100,2);</script></td>
+									      		</tr>
+									      		<tr><td>&nbsp;</td></tr>
+									      		<tr><td>&nbsp;</td></tr>
+									      	</table>
+										</td>
+									</tr>
+								</table>
+						      	<br><br><br>
+								<button type="button" class="btn-flat inverse" onclick="javascript:makeJsonAdvanceSettings();">Update</button>
+							</div>
+						
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6">
+				<a href="userProfile.html" class="btn-flat inverse" style="width:100%; text-align: center;">
+					<h4 style="color:#ffffff">Edit your response</h4>
+				</a>
+			</div>
+			<div class="col-md-6">
+				<a href="javascript:alert('Goto next page')" class="btn-flat success" style="width:100%; text-align: center;">
+					<h4 style="color:#ffffff">Save and Submit</h4>
+				</a>
+			</div>
+		</div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel"></h4>
+					</div>
+					<div class="modal-body">
+						this is modalbody
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+					</div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<script>
+	$(function() {
+	
+	    var selectBox = $("select").selectBoxIt();
+	
+	  });
+		
+		$("[name='my-checkbox']").bootstrapSwitch({
+			'size':'mini',
+			'onText':'Yes',
+			'offText':'No'
+		});
+	</script>
+
+	<script type="text/javascript">
+		var index=1;
+		$(document).ready(function(){
+			$("#btnAddRow").click(function(){
+		        $("#lifegoals").append('<tr><td><select id="lgOptions" class="lgOptions" name="test"> <option value="1" data-iconurl="img/icon_selfMarriage.png">Self Marriage</option> <option value="8" data-iconurl="img/icon_selfStudy.png">Self Higher study</option> <option value="3" data-iconurl="img/icon_bike.png">Two Wheeler</option> <option value="4" data-iconurl="img/icon_car.png">Car</option> <option value="5" data-iconurl="img/icon_home.png">House</option> <option value="6" data-iconurl="img/icon_vacation.png">Domestic vacation</option> <option value="7" data-iconurl="img/icon_vacation.png">International vacation</option> <option value="9" data-iconurl="img/icon_selfStudy.png">Children Higher Study</option> <option value="2" data-iconurl="img/icon_childrenMarriage.png">Children Marriage</option> <option value="0" data-iconurl="img/icon_others.png">Others</option></select><input id="lgOther" class="lgOther" type="text" id="txtOthers" style="display:none"></td><td><select id="lgFrequency" class="lgFrequency" name="testx"> <option value="0" >Only once</option> <option value="1" >Once every year</option> <option value="2" >Once in two year</option> <option value="3" >Once in three year</option> <option value="4" >Once in four year</option> <option value="5" >Once in five year</option> </select></td><td><input type="text" class="form-control lgYear calender" aria-describedby="basic-addon1"></td><td width=400><input type="text" class="form-control lgAmount txtRupee" aria-describedby="basic-addon1"></td><td><input type="checkbox" class="lgLoan" name="my-checkbox"></td><td width=100><img src="img/x.png" id="btnRemoveRow" width="30px"></td></tr>');
+		        
+		        $("[name='my-checkbox']").bootstrapSwitch({
+		    		'size':'mini',
+		    		'onText':'Yes',
+		    		'offText':'No'
+		    	});
+		        
+		        $(function() {
+		        	var selectBox = $("select").selectBoxIt();
+				});
+		        addEventToLoanDropDown();
+		        $('.clFinalYear').datetimepicker();
+			    $('.lgYear').datetimepicker({
+			    	viewMode: 'years',
+			    	format: 'YYYY'
+			    });
+			});
+			
+			addEventToLoanDropDown = function(){
+		    	//alert();
+		    	$('select.lgOptions').each(function( index ) {
+			    	$(this).on('change', function (e) {
+			    	    var optionSelected = $("option:selected", this);
+			    	    var valueSelected = this.value;
+			    	    toggleOthers(index,valueSelected)
+			    	});
+		    	});
+		    }
+		    addEventToLoanDropDown();
+		    
+		    
+		    toggleOthers = function(opIndex,valueSelected){
+		    	$('.lgOther').each(function(index) {
+	    	    	if(opIndex == index){
+	    	    		if(valueSelected == 0){
+	    	    	    	$(this).css('display','block');
+	    	    	    }
+	    	    	    else{
+	    	    	    	$(this).css('display','none');
+	    	    	    }
+	    	    	}
+	        	});
+		    }
+		    
+		    if(localStorage.getItem("lifeGoalsTable") != null){
+				//$('#lifegoals').html('');
+				//$('#lifegoals').html(localStorage.getItem("lifeGoalsTable"));
+			}
+		    
+		    
+		    $("#lifegoals").on('click', '#btnRemoveRow', function(){
+		        $(this).parent().parent().remove();
+		    });
+		    
+		    $('.calender').datetimepicker({
+		    	viewMode: 'years',
+		    	format: 'YYYY'
+		    });
+		    
+		});
+		
+		$('.txtRupee').autoNumeric('init',{vMin: '0',vMax: '9999999999'}); 
+		$('[data-submenu]').submenupicker();
+	</script>
+
+<script>
+
+function addAxesAndLegend(svg, xAxis, yAxis, margin, chartWidth, chartHeight) {
+	var legendWidth = 0,
+		legendHeight = 70;
+
+	// clipping to make sure nothing appears behind legend
+	svg.append('clipPath')
+		.attr('id', 'axes-clip')
+		.append('polygon')
+		.attr('points', (-margin.left) + ',' + (-margin.top) + ' ' +
+			(chartWidth - legendWidth - 1) + ',' + (-margin.top) + ' ' +
+			(chartWidth - legendWidth - 1) + ',' + legendHeight + ' ' +
+			(chartWidth + margin.right) + ',' + legendHeight + ' ' +
+			(chartWidth + margin.right) + ',' + (chartHeight + margin.bottom) + ' ' +
+			(-margin.left) + ',' + (chartHeight + margin.bottom));
+
+	var axes = svg.append('g')
+		.attr('clip-path', 'url(#axes-clip)');
+
+	axes.append('g')
+		.attr('class', 'x axis')
+		.attr('transform', 'translate(0,' + chartHeight + ')')
+		.call(xAxis);
+
+	axes.append('g')
+		.attr('class', 'y axis')
+		.call(yAxis)
+		.append('text')
+		.attr('transform', 'rotate(-90)')
+		.attr('y', 6)
+		.attr('dy', '.71em')
+		.style('text-anchor', 'end');
+
+	//.text('Assets, Liability');
+
+	/*var legend = svg.append('g')
+	  .attr('class', 'legend')
+	  .attr('transform', 'translate(' + (chartWidth - legendWidth) + ', 0)');
+
+	legend.append('rect')
+	  .attr('class', 'legend-bg')
+	  .attr('width',  legendWidth)
+	  .attr('height', legendHeight);
+
+	legend.append('rect')
+	  .attr('class', 'outer')
+	  .attr('width',  75)
+	  .attr('height', 20)
+	  .attr('x', 10)
+	  .attr('y', 10);
+
+	legend.append('text')
+	  .attr('x', 115)
+	  .attr('y', 25)
+	  .text('Assets');
+
+	legend.append('rect')
+	  .attr('class', 'inner')
+	  .attr('width',  75)
+	  .attr('height', 20)
+	  .attr('x', 10)
+	  .attr('y', 40);
+
+	legend.append('text')
+	  .attr('x', 115)
+	  .attr('y', 55)
+	  .text('Liability');*/
+}
+
+function addAxesAndLegendControl(svg, xAxis, yAxis, margin, chartWidth, chartHeight) {
+	var legendWidth = 0,
+		legendHeight = 70;
+
+	// clipping to make sure nothing appears behind legend
+	svg.append('clipPath')
+		.attr('id', 'axes-clip')
+		.append('polygon')
+		.attr('points', (-margin.left) + ',' + (-margin.top) + ' ' +
+			(chartWidth - legendWidth - 1) + ',' + (-margin.top) + ' ' +
+			(chartWidth - legendWidth - 1) + ',' + legendHeight + ' ' +
+			(chartWidth + margin.right) + ',' + legendHeight + ' ' +
+			(chartWidth + margin.right) + ',' + (chartHeight + margin.bottom) + ' ' +
+			(-margin.left) + ',' + (chartHeight + margin.bottom));
+
+	var axes = svg.append('g')
+		.attr('clip-path', 'url(#axes-clip)');
+
+	axes.append('g')
+		.attr('class', 'x axis')
+		.attr('transform', 'translate(0,' + chartHeight + ')')
+		.call(xAxis);
+}
+var areaAsset = 0;
+var areaLiability = 0;
+
+function drawPaths(svg, data, x, y) {
+	var upperOuterArea = d3.svg.area()
+		.interpolate('basis')
+		.x(function(d) {
+			return x(d.age) || 1;
+		})
+		.y0(function(d) {
+			return y(d.liability);
+		})
+		.y1(function(d) {
+			return y(d.asset);
+		});
+	
+	if(areaLiability==0){
+		areaLiability=upperOuterArea
+	}
+
+	var upperInnerArea = d3.svg.area()
+		.interpolate('basis')
+		.x(function(d) {
+			return x(d.age) || 1;
+		})
+		.y0(function(d) {
+			return y(d.asset);
+		})
+		.y1(function(d) {
+			return y(0);
+		});
+	if(areaAsset==0){
+		areaAsset=upperInnerArea
+	}
+
+	var medianLine = d3.svg.line()
+		.interpolate('basis')
+		.x(function(d) {
+			return x(d.age);
+		})
+		.y(function(d) {
+			return y(0);
+		});
+
+	var lowerInnerArea = d3.svg.area()
+		.interpolate('basis')
+		.x(function(d) {
+			return x(d.age) || 1;
+		})
+		.y0(function(d) {
+			return y(0);
+		})
+		.y1(function(d) {
+			return y(0);
+		});
+
+	var lowerOuterArea = d3.svg.area()
+		.interpolate('basis')
+		.x(function(d) {
+			return x(d.age) || 1;
+		})
+		.y0(function(d) {
+			return y(0);
+		})
+		.y1(function(d) {
+			return y(0);
+		});
+
+	svg.datum(data);
+
+	svg.append('path')
+		.attr('class', 'area upper outer upperOuterArea')
+		.attr('d', upperOuterArea)
+		.attr('clip-path', 'url(#rect-clip)');
+
+	svg.append('path')
+		.attr('class', 'area lower outer')
+		.attr('d', lowerOuterArea)
+		.attr('clip-path', 'url(#rect-clip)');
+
+	svg.append('path')
+		.attr('class', 'area upper inner upperInnerArea')
+		.attr('d', upperInnerArea)
+		.attr('clip-path', 'url(#rect-clip)');
+
+	svg.append('path')
+		.attr('class', 'area lower inner')
+		.attr('d', lowerInnerArea)
+		.attr('clip-path', 'url(#rect-clip)');
+
+	svg.append('path')
+		.attr('class', 'median-line')
+		.attr('d', medianLine)
+		.attr('clip-path', 'url(#rect-clip)');
+}
+
+function addMarker(marker, svg, chartHeight, x) {
+	var radius = 15,
+		xPos = x(marker.age) - radius - 3,
+		yPosStart = chartHeight - radius - 3,
+		yPosEnd = 40;
+	//yPosEnd = (marker.liability*chartHeight)/maxAssetLiabilityValue + (chartHeight-marker.liability) ;
+	//yPosEnd = 0;
+		//console.log(chartHeight + ">"+radius+ ">"+yPosStart+">"+yPosEnd)
+
+	var markerG = svg.append('g')
+		.attr('class', 'lolipop marker client')
+		.attr('transform', 'translate(' + xPos + ', ' + yPosStart + ')')
+		.attr('opacity', 0);
+
+	markerG.transition()
+		.duration(500)
+		.attr('transform', 'translate(' + xPos + ', ' + yPosEnd + ')')
+		.attr('opacity', 1);
+
+	markerG.append('path')
+		.attr('d', 'M' + radius + ',' + (chartHeight - yPosStart) + 'L' + radius + ',' + (chartHeight - yPosStart))
+		.transition()
+		.duration(500)
+		.attr('d', 'M' + radius + ',' + (chartHeight - yPosEnd) + 'L' + radius + ',' + (radius * 2));
+
+	markerG.append('circle')
+		.attr('class', 'marker-bg')
+		.attr('cx', radius)
+		.attr('cy', radius)
+		.attr('r', radius);
+	
+	//markerG.append("rect","text")
+	//	.attr('class', 'lolipop marker goalDescBackground')
+	//    .attr("width", 100)
+	//    .attr("height", 30)
+	//	.attr('x', radius*2 + 10)
+	//	.attr('y', 0)
+	//	.attr('rx', 10)
+	//	.attr('ry', 10)
+	//   .style("fill", "black")
+    //	.style("display", "none");
+	
+	//markerG.append('text')
+	//		.attr('x', radius*2 + 35)
+	//		.attr('y', 15)
+	///		.attr('class', 'lolipop marker goalDesc')
+	//		.style('fill', '#ffffff')
+	//		.text(marker.goal)
+	//		.style("display", "none");
+
+	var html = '<div class="lolipop marker goalDesc"><b>Age</b> : '+marker.age+'<br><b>Assets</b> : '+marker.asset+'<br><b>Expenses</b> : '+marker.liability+'<br><b>Goal</b> : '+marker.goal+'</div>';
+	var $html = $(html);
+	$('#box').append($html);
+	
+	markerG.append("svg:image")
+	    .attr('x', 1)
+		.attr('y', 1)
+		.attr('class', 'lolipop marker goalIcon')
+	   	.attr('width', 28)
+	   	.attr('height', 28)
+		.attr("xlink:href", 'img/icon_car.png');
+	
+	addEventsOnMarkers();	
+}
+
+function addEventsOnMarkers(){
+	$('.lolipop.marker.goalIcon').each(function( iconIndex ) {
+		$(this).hover(
+			function(event) {
+					//$('.lolipop.marker.goalDescBackground').each(function( bgIndex ) {
+					//	if(iconIndex==bgIndex){
+					//		$(this).css('display','block');
+					//	}
+					//});
+					
+					$('.lolipop.marker.goalDesc').each(function( descIndex ) {
+						if(iconIndex==descIndex){
+							//$(this).css('display','block');
+							$(this).css({'top':event.screenY-260,'left':event.screenX+20,'display':'block'});
+						}
+					});
+			}, 
+			function() {
+					$('.lolipop.marker.goalDescBackground').each(function( bgIndex ) {
+						if(iconIndex==bgIndex){
+							$(this).css('display','none');
+						}
+					});
+					$('.lolipop.marker.goalDesc').each(function( descIndex ) {
+						if(iconIndex==descIndex){
+							$(this).css('display','none');
+						}
+					});
+			});
+		
+  	});
+	
+	$('.lolipop.marker.goalIcon')
+}
+
+function startTransitions(svg, chartWidth, chartHeight, rectClip, markers, x) {
+	markers.forEach(function(marker, i) {
+		setTimeout(function() {
+			addMarker(marker, svg, chartHeight, x);
+		}, 100 + 500 * i);
+	});
+}
+
+function makeChart(data, markers) {
+	var svgWidth = 850,
+		svgHeight = 300,
+		margin = {
+			top: 20,
+			right: 0,
+			bottom: 40,
+			left: 60
+		},
+		chartWidth = svgWidth - margin.left - margin.right,
+		chartHeight = svgHeight - margin.top - margin.bottom;
+
+	var x = d3.scale.linear().range([0, chartWidth])
+		.domain(d3.extent(data, function(d) {
+			return d.age;
+		})),
+		y = d3.scale.linear().range([chartHeight, 0])
+		.domain([0, d3.max(data, function(d) {
+			return maxAssetLiabilityValue;
+		})]);
+
+	var xAxis = d3.svg.axis().scale(x).orient('bottom')
+		.innerTickSize(-chartHeight).outerTickSize(0).tickPadding(10).tickFormat(function(d) {
+              if (d % 1 == 0) {
+                return d3.format('.f')(d)
+              } else {
+                return ""
+              }
+            }),
+		
+		yAxis = d3.svg.axis().scale(y).orient('left')
+		.innerTickSize(-chartWidth).outerTickSize(0).tickPadding(10);
+	
+	$('#financialOutputChart').html('');
+
+	var svg = d3.select('#financialOutputChart').append('svg')
+		.attr('width', svgWidth)
+		.attr('height', svgHeight)
+		.append('g')
+		.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+	// clipping to start chart hidden and slide it in later
+	var rectClip = svg.append('clipPath')
+		.attr('id', 'rect-clip')
+		.append('rect')
+		.attr('width', 0)
+		.attr('height', chartHeight);
+	
+	
+	var svgWidth2 = 850,
+		svgHeight2 = 100,
+		margin2 = {
+			top: 20,
+			right: 0,
+			bottom: 40,
+			left: 60
+		},
+		chartWidth2 = svgWidth2 - margin2.left - margin2.right,
+		chartHeight2 = svgHeight2 - margin2.top - margin2.bottom;
+	
+	var x2 = d3.scale.linear().range([0, chartWidth2])
+		.domain(d3.extent(data, function(d) {
+			return d.age;
+		})),
+		y2 = d3.scale.linear().range([chartHeight2, 0])
+		.domain([0, d3.max(data, function(d) {
+			return d.liability;
+		})]);
+	
+	var xAxis2 = d3.svg.axis().scale(x2).orient('bottom')
+		.innerTickSize(-chartHeight2).outerTickSize(0).tickPadding(10),
+		yAxis2 = d3.svg.axis().scale(y2).orient('left')
+		.innerTickSize(-chartWidth2).outerTickSize(0).tickPadding(10);
+	
+	
+	$('#financialOutputChartControl').html('');
+	var svg2 = d3.select('#financialOutputChartControl').append('svg')
+		.attr('width', svgWidth2)
+		.attr('height', svgHeight2)
+		.append('g')
+		.attr('transform', 'translate(' + margin2.left + ',' + margin2.top + ')');
+	
+	
+	var brush = d3.svg.brush()
+	.x(x2)
+	.on("brushstart", brushstarted)
+	.on("brush", brushed)
+	.on("brushend", brushended);
+	
+	drawPaths(svg, data, x, y);
+
+	addAxesAndLegend(svg, xAxis, yAxis, margin, chartWidth, chartHeight);
+	startTransitions(svg, chartWidth, chartHeight, rectClip, markers, x);
+
+	drawPaths(svg2, data, x2, y2);
+	addAxesAndLegendControl(svg2, xAxis2, yAxis2, margin2, chartWidth2, chartHeight2);
+	
+	// clipping to start chart hidden and slide it in later
+	
+	var rectClip2 = svg2.append('clipPath')
+					.attr('id', 'rect-clip')
+					.append('rect')
+					.attr('width', 0)
+					.attr('height', chartHeight2);
+	
+	
+	
+	var leftHandle = svg2.append("image")
+				  .attr("xlink:href", "img/dragIconRoundBig.png")
+				  .attr("width", 30)
+				  .attr("height", 30)
+				  .attr("x",-100)
+				  .attr("y", (chartHeight2/2)-15);
+	
+	var rightHandle = svg2.append("image")
+	  .attr("xlink:href", "img/dragIconRoundBig.png")
+	  .attr("width", 30)
+	  .attr("height", 30)
+	  .attr("x",-100)
+	  .attr("y", (chartHeight2/2)-15);
+
+
+	svg2.append("g")
+	    .attr("class", "x brush")
+	    .call(brush)
+	  .selectAll("rect")
+	    .attr("y", 0)
+	    .attr("height", chartHeight2 + 7);
+	
+	function brushstarted(){
+		//svg.select(".lolipop").style("display", "none");
+		$('.lolipop').css('display','none');
+		d3.select(".lolipop").html("");
+		d3.select(".lolipop").selectAll("*").remove();
+	}
+	
+	function brushed() {
+		//$('.lolipop').css('display','none');
+		$('.lolipop.marker').remove();
+		x.domain(brush.empty() ? x2.domain() : brush.extent());
+		svg.select(".upperOuterArea").attr("d", areaAsset);
+		svg.select(".upperInnerArea").attr("d", areaLiability);
+		svg.select(".x.axis").call(xAxis);
+		  
+		var ext = brush.extent();
+		if(x2(ext[0]) == x2(ext[1])){
+			leftHandle.attr("x",-100);
+			rightHandle.attr("x",-100);
+		}
+		else{
+			leftHandle.attr("x",x2(ext[0])-15);
+			rightHandle.attr("x",x2(ext[1])-15);
+		}
+	}
+	
+	function brushended() {
+		startTransitions(svg, chartWidth, chartHeight, rectClip, markers, x);  	
+	}
+}
+
+
+var gRawData;
+var gMarkers;
+var maxAssetLiabilityValue = 0;
+d3.json(_gc_url_fpo_get_assetExpenditureChart, function(error, rawData) {
+	if (error) {
+		console.error(error);
+		return;
+	}
+	else{
+		gRawData = rawData;
+		processChartData(rawData)
+	}
+	
+	
+});
+
+function processChartData(rawData){
+	var data ="";
+	for(i=0;i<rawData.totalFinAsset.length;i++){
+		if(!data==""){
+			data=data+','	
+		}
+		
+		if(rawData.totalFinAsset[i] > maxAssetLiabilityValue){maxAssetLiabilityValue=rawData.totalFinAsset[i]}
+		if(rawData.totalLiabilities[i] > maxAssetLiabilityValue){maxAssetLiabilityValue=rawData.totalLiabilities[i]}
+
+		data=data+'{"age": '+rawData.age[i]+', "asset" : '+rawData.totalFinAsset[i]+', "liability": '+rawData.totalLiabilities[i]+'}'
+		//data=data+'{"age": '+rawData.age[i]+', "asset" : '+rawData.totalLiabilities[i]+', "liability": '+rawData.totalFinAsset[i]+'}'
+	}
+	
+	data='['+data+']';
+	data=JSON.parse(data);
+	console.log(data);
+	
+	var markers ="";
+	for(i=0;i<rawData.lifeGoals.length;i++){
+		for(j=0;j<rawData.age.length;j++){
+			if(rawData.age[j] == rawData.lifeGoals[i].age){
+				if(!markers==""){
+					markers=markers+','
+				}
+				markers=markers+'{"age": '+rawData.lifeGoals[i].age+', "goalID" : '+rawData.lifeGoals[i].goalDescriptionId+', "goal": "'+rawData.lifeGoals[i].goalDescription+'", "asset": '+rawData.totalFinAsset[j]+', "liability": '+rawData.totalLiabilities[j]+'}'
+			}
+		}
+	}
+	
+	markers='['+markers+']';
+	markers=JSON.parse(markers);
+	console.log(markers);
+	
+	makeChart(data, markers);
+}
+
+
+function getUserDataFromChache(){
+	userDataInput = localStorage.getItem("userDataInput");
+	userDataInput = JSON.parse(userDataInput);
+	console.log(userDataInput);
+	
+	userDataOutput = localStorage.getItem("userDataOutput");
+	userDataOutput = JSON.parse(userDataOutput);
+	console.log(userDataOutput);
+	
+	var scoreRate = userDataOutput;
+}
+//FinancialPlannerOutput.... editRiskScore, editSavingsRate, editAllocationToMMF, editRetirmentAge, editAssumptions, editLifeGoals,  
+</script>
+	

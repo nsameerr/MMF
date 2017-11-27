@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head></head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                            new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                        j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');
+        </script>
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+        <!-- End Google Tag Manager -->
+
+        <ui:composition template="/pages/template/content_page_layout.xhtml"
+                        xmlns:compo="http://java.sun.com/jsf/composite/composite">
+            <ui:define name="title">Sell Portfolio</ui:define>
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_user.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+                <script>
+
+                    // Switch between add or redeem
+                    function switchAddOrRedeemFund(p) {
+                        // $('#add-redeem-btn').css('display', 'inline-block');
+                        if (p === true) {
+                            switchAddRedeem([{name: 'AddRedeem', value: '#{true}'}]);
+                            $('#add-reduce-spn').text("ADD");
+                        } else {
+                            switchAddRedeem([{name: 'AddRedeem', value: '#{false}'}]);
+                            $('#add-reduce-spn').text("REDUCE");
+                        }
+                    }
+                    // Setting default selections.
+                    function setDefaultSelection() {
+                        addFund = '#{addRedeemFundsController.addRedeemFundsVO.addFund}';
+                        if (addFund === 'true') {
+                            switchAddOrRedeemFund(true);
+                        } else if (addFund === 'false') {
+                            switchAddOrRedeemFund(false);
+                        }
+                    }
+                    // onoad 
+                    function onLoadBody() {
+                        updateWatches();
+                        setDefaultSelection();
+                    }
+                </script>
+                <style>
+                    @media (max-width: 767px) {
+                        .row-fluid.scroll{
+                            overflow :auto;
+                        }
+                    }
+                </style>
+                <h:form id="frm-addredeem" prependId="false">
+                    <p:remoteCommand name="updateWatches" async="true" action="#{addRedeemFundsController.updateWatches}"
+                                     update="market-data current-value-txt portfolio-pnl" oncomplete="javascript:updateWatchesOnComplete();"/>
+                    <p:remoteCommand name="switchAddRedeem" action="#{addRedeemFundsController.switchAddRedeem}"/>
+                    <p:remoteCommand name="addOrRedeemFundCalc" action="#{addRedeemFundsController.calculateFundAfterAddRedeem}"
+                                     process="@all" update="error-console portfolio-pnl final-value-txt modify"/> 
+                    <!-- process="@all" update="error-console portfolio-pnl balance-fund-available-txt final-value-txt modify"/> -->
+                    <!-- process="@all" update="error-console portfolio-pnl balance-fund-available-txt final-value-txt"/> -->
+
+                    <h:inputHidden value="#{addRedeemFundsController.marketData}" id="market-data"/>
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div id="pad-wrapper">
+                                <div class="row-fluid">
+                                    <h2 class="page-title"> Sell Portfolio</h2>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span6">
+                                        <label for="">Name <strong>
+                                                <h:outputText value="#{addRedeemFundsController.addRedeemFundsVO.portfolioName}"/></strong>
+                                        </label>
+                                    </div>
+                                    <div class="span6">
+                                        <label for="">Benchmark Index <strong>
+                                                <h:outputText value="#{addRedeemFundsController.addRedeemFundsVO.benchmarkIndexName}"/></strong>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span6">
+                                        <label for="">Current Portfolio Value<strong>
+                                                <i class="rupees"><span class="WebRupee">Rs.</span></i> 
+                                                <h:outputText value="#{addRedeemFundsController.addRedeemFundsVO.currentValue}"
+                                                              id="current-value-txt">
+                                                    <f:convertNumber pattern="##,##,##0.00"/>
+                                                </h:outputText>
+                                            </strong>
+                                        </label>
+                                    </div>
+                                    <!--
+                                    <div class="span6">
+                                        <label for="">Cash Balance<strong>
+                                                <i class="rupees"><span class="WebRupee">Rs.</span></i>  <h:outputText value="{addRedeemFundsController.balanceAvailable}"
+                                                                  id="balance-fund-available-txt">
+                                                    <f:convertNumber pattern="##,##,##0.00"/>
+                                                </h:outputText>
+                                            </strong>
+                                        </label>
+                                    </div>
+                                    -->
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span6" style="border-bottom: 1px solid #eee;">
+                                        <!-- Add or redeem combo -->
+                                        <div class="btn-group" style="margin-top: 7px; float:left;">
+                                            <span class="btn glow" id="add-reduce-spn">Amount to be sold :</span>
+                                            <!--
+                                            <span class="btn glow" id="add-reduce-spn">Add/Reduce</span>
+                                            <button class="btn glow dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" onclick="switchAddOrRedeemFund(true);">ADD</a></li>
+                                                <li><a href="#" onclick="switchAddOrRedeemFund(false);">Reduce Portfolio By</a></li>
+                                            </ul>
+                                            -->
+                                        </div>
+                                        <span class="pos_relative cal_box">
+                                            <span class="rupee_symbol rupee"><i class="rupees"><span class="WebRupee">Rs.</span></i></span>
+                                            <h:inputText  id="addredeem-inp" maxlength="8" value="#{addRedeemFundsController.addRedeemFundsVO.addRedeemFund}"
+                                                          style="width: 35%;margin-top: 1%;float:left;" required="true"/>
+                                            <span onclick="addOrRedeemFundCalc();" id="add-redeem-btn" class="add-redeem-spn" style="display: inline-block;text-align: center; width: 80px; background-color: #EEE;float:left;padding: 5px !important;">ReCalculate</span>
+                                        </span>
+                                    </div>
+                                    <div class="span6" style="padding-bottom: 27px;border-bottom: 1px solid #eee;">
+                                        <label for="">Final Portfolio Value: <strong>
+                                                <i class="rupees"><span class="WebRupee">Rs.</span></i> <h:outputText value="#{addRedeemFundsController.addRedeemFundsVO.finalValue}" id="final-value-txt">
+                                                    <f:convertNumber pattern="##,##,##0.00"/>
+                                                </h:outputText>
+                                            </strong>
+                                        </label>
+                                    </div>
+                                </div>
+                                <h:panelGroup id="error-console">
+                                    <h:messages globalOnly="true" layout="table" errorClass="err_message"/>
+                                </h:panelGroup>
+
+                                <div class="table-wrapper orders-table">
+                                    <div class="row-fluid scroll">
+
+                                        <h3 class="title no-margin-bottom" style="width: 99%;">
+                                            <!-- Refresh button for allocation table -->
+                                            <div style="margin-left: 79%; padding: 5px 4px;"
+                                                 onclick="updateWatches();" class="btn-flat success refresh-div">
+                                                Refresh Market Data
+                                            </div>
+
+                                        </h3>
+                                        <h:panelGroup id="portfolio-pnl">
+                                            <table class="table table-hover"  id="portfolio-table">
+                                                <thead>
+                                                    <tr class="top-row">
+                                                        <th colspan="2" class="head">Assets</th>
+                                                        <th class="head current" colspan="4">Current</th>
+                                                        <th class="head recommended" colspan="2">Recommended</th>
+                                                        <th colspan="2" class="head">Sell Transaction</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="align_center">Asset class</th>
+                                                        <th class="align_center">Asset name</th>
+                                                        <th class="left-border align_center">units</th>
+                                                        <th class="align_center" style="width: 8%;">price</th>
+                                                        <th class="align_center" style="width: 8%;">weight</th>
+                                                        <th class="align_center" style="width: 8%;">value</th>
+                                                        <th class="left-border align_center">allocation</th>
+                                                        <th class="align_center">range</th>
+                                                        <!-- <th class="align_center">price</th> -->
+                                                        <!-- <th class="left-border align_center">price tolerance</th> -->
+                                                        <!-- <th class="align_center">buy/sell</th> -->
+                                                        <th class="left-border align_center">units</th>
+                                                        <th class="left-border align_center">amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="#{addRedeemFundsController.addRedeemFundsVO.portfolioDetailsVOs}" var="asset">
+                                                        <tr class="subhead">
+                                                            <th>#{asset.assetClassName.toUpperCase()}</th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th  class="align_right">
+                                                                <h:outputText value="#{asset.currentWeight}%" rendered="#{asset.assetClassName == 'Cash'}">
+                                                                    <f:convertNumber pattern="#0.00"/>
+                                                                </h:outputText>
+                                                            </th>
+                                                            <th class="align_right">
+                                                                <ui:fragment rendered="#{asset.assetClassName == 'Cash'}">
+                                                                    <i class="rupees"> <span class="WebRupee">Rs.</span></i>
+                                                                    <h:outputText rendered="#{asset.assetClassName == 'Cash'}"
+                                                                                  value="#{addRedeemFundsController.balanceAvailable}">
+                                                                        <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2"/>
+                                                                    </h:outputText>
+                                                                </ui:fragment>
+                                                            </th>  
+                                                            <th class="align_right">
+                                                                <h:outputText value="#{asset.newAllocation}">
+                                                                    <f:convertNumber pattern="#00.00"/>
+                                                                </h:outputText>%
+                                                            </th>
+                                                            <th class="align_right">
+                                                                <h:outputText value="#{asset.minimumRange}">
+                                                                    <f:convertNumber pattern="#0"/>
+                                                                </h:outputText>
+                                                                - 
+                                                                <h:outputText value="#{asset.maximumRange}">
+                                                                    <f:convertNumber pattern="#0"/>
+                                                                </h:outputText>%
+                                                            </th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>  
+                                                        <ui:repeat value="#{asset.securities}" var="security">
+                                                            <tr>
+                                                                <!-- Asset name -->
+                                                                <td colspan="2" style="padding-left: 25px !important;">#{security.scripDecription}</td>
+                                                                <!-- Current units -->
+                                                                <td class="align_right">#{security.executedUnits}</td>
+                                                                <!-- Current price -->
+                                                                <td class="align_right">
+                                                                    <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                                    <!-- color: {security.cmpTextColor};-->
+                                                                    <h:outputText value="#{security.currentPrice}" style="float: right;">
+                                                                        <f:convertNumber  pattern="##,##0.0000"/>
+                                                                    </h:outputText>
+                                                                </td>
+                                                                <!-- current weight -->
+                                                                <td class="align_right" >
+                                                                    <h:outputText value="#{security.currentWeight}%" >
+                                                                        <f:convertNumber pattern="#0.00"/>
+                                                                    </h:outputText>
+                                                                </td>
+                                                                <!-- current value -->
+                                                                <td class="align_right" >
+                                                                    <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                                    <h:outputText value="#{security.currentValue}" >
+                                                                        <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2"/>
+                                                                    </h:outputText>
+                                                                </td>
+                                                                <!-- recommended allocation -->
+                                                                <td class="align_right">
+                                                                    <h:outputText value="#{security.newAllocation}">
+                                                                        <f:convertNumber pattern="#00.00"/>
+                                                                    </h:outputText>%
+                                                                </td>
+                                                                <!-- recommended range -->
+                                                                <td></td>
+                                                                <!-- recommended price 
+                                                                <td class="align_right">
+                                                                     <i class="rupees"><span class="WebRupee">Rs.</span></i> <h:outputText value="{security.initialPrice}" style="float: right;">
+                                                                      <f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+                                                                    </h:outputText>
+                                                                </td>
+                                                                -->
+                                                                <!-- price tolerance 
+                                                                <td class="align_right">+/-{security.newToleranceNegativeRange}%</td>
+                                                                -->
+                                                                <!-- buy / sell 
+                                                                <td style="float: right;color: {security.buySellTextColor};">{security.buysellStatusText}</td> -->
+                                                                <!-- units to be sold -->
+                                                                <td class="align_right">#{security.transactUnits}</td>
+                                                                <!-- transact amounts -->
+                                                                <td>
+                                                                    <h:graphicImage id="status" url="#{security.buysellStatusText eq 'SELL'?'/img/left.png':'/img/greenArrow.png'}"
+                                                                                    style="height: 16px;width:16px;" 
+                                                                                    rendered="#{security.buysellStatusText eq 'SELL' || security.buysellStatusText eq 'BUY'}">
+                                                                    </h:graphicImage>
+                                                                    <span style="float: right;">
+                                                                        <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                                        <h:outputText value="#{security.transactionAmount == null ? 0.0 : security.transactionAmount}" >
+                                                                            <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2" pattern="#0.00"/>
+                                                                        </h:outputText>
+                                                                    </span>
+                                                                </td>
+                                                            </tr>
+                                                        </ui:repeat>
+                                                    </c:forEach>
+                                                    <tr class="subhead">
+                                                        <th>TOTAL</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th>
+                                                            <span style="float: right;">
+                                                                <h:outputText 
+                                                                    value="#{addRedeemFundsController.addRedeemFundsVO.toatalWeight}%">
+                                                                    <f:convertNumber pattern="#0.00"/>
+                                                                </h:outputText>
+                                                            </span>
+                                                        </th>
+                                                        <th>
+                                                            <span style="float: right;">
+                                                                <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                                <h:outputText 
+                                                                    value="#{addRedeemFundsController.addRedeemFundsVO.currentValue}">
+                                                                    <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2"/>
+                                                                </h:outputText>
+                                                            </span>
+                                                        </th>
+                                                        <th class="align_right">100%</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th>
+                                                            <span style="float: right;">
+                                                                <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                                <h:outputText 
+                                                                    value="#{addRedeemFundsController.addRedeemFundsVO.totalTransAmt == null 
+                                                                             ? 0.0 
+                                                                             : addRedeemFundsController.addRedeemFundsVO.totalTransAmt}"
+                                                                    style="padding-right: 25%;">
+                                                                    <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2"/>
+                                                                </h:outputText>
+                                                            </span>
+                                                        </th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <span style="color:red">*</span>
+                                                        <h:outputText value="Cash Include blocked amount" class="align_left">
+                                                        </h:outputText>
+                                                    </td>  
+                                                </tr>
+                                            </table>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-row" >
+                            <!-- comment for the purpose to "block placing order from add/redeem page"  -->
+                            <h:panelGroup id="modify">
+                                <h:commandLink value="Execute" styleClass="btn-flat success"
+                                               rendered="#{addRedeemFundsController.isexecuteportfolio() and !addRedeemFundsController.holiday_Venue}"
+                                               actionListener="#{addRedeemFundsController.doActionModifyAllocation}" action="#{addRedeemFundsController.actionRedirect}">
+                                    <f:param name="excute_order_or_refresh" value="execute"/>
+                                </h:commandLink>
+                            </h:panelGroup>
+                            <!--
+                            <h:commandLink value="Add Fund" styleClass="btn-flat success"
+                                           actionListener="{addRedeemFundsController.doActionAddFund}" action="{addRedeemFundsController.actionRedirect}"/>
+                            -->
+
+                            <h:commandLink value="Cancel" immediate="true" styleClass="btn-flat inverse"
+                                           actionListener="#{addRedeemFundsController.doActionCancel}" action="#{addRedeemFundsController.actionRedirect}"/>
+                        </div>
+                    </div>
+                    <style>
+                        .add-redeem-spn{
+                            border: 1px solid #D0DDE9;
+                            padding: 4px;
+                            border-radius: 7px;
+                            cursor: pointer;
+                            display: none;
+                            width: 70px;
+                            background-color: #EEE;
+                        }
+                        .add-redeem-spn:hover{
+                            background-color: #FFF;
+                        }
+
+                    </style>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

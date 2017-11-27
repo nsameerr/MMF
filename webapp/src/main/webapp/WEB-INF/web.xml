@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <display-name>MMF</display-name>
+    <!-- For custom error page -->
+    <!--
+    <error-page>
+        <error-code>404</error-code>
+        <location>/faces/pages/error.xhtml</location>
+    </error-page>
+    -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/faces/pages/error.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/faces/pages/error.xhtml</location>
+    </error-page>
+    <!-- End of custom error page -->
+    
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>classpath:log4j.properties</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>allowedOrigins</param-name>
+        <!-- Allowed domain origin for development/UAT -->
+         <param-value>http://localhost:8080,http://uat.fliplabs.net</param-value> 
+        <!-- Allowed domain origin for Production -->
+        <!--<param-value>http://managemyfortune.com,http://www.managemyfortune.com</param-value>-->
+    </context-param>
+    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>com.gtl.mmf.controller.AdminServlet</servlet-class>
+    </servlet>
+    <filter>
+        <filter-name>SessionFilter</filter-name>
+        <filter-class>com.gtl.mmf.common.SessionFilter</filter-class>
+        <init-param>
+            <param-name>avoid-urls</param-name>
+            <param-value>
+                /faces/pages/twofactor_login2.xhtml,/pages/init_reg_success.xhtml,/pages/pdfViewV2.xhtml,/faces/pages/login.xhtml,/faces/pages/twofactor_login.xhtml,/faces/pages/init_reg.xhtml,/faces/pages/init_reg_success.xhtml,/faces/pages/init_reg_verify.xhtml,/faces/pages/init_reg_check.xhtml,/faces/pages/reg_advisor_profile.xhtml,/faces/pages/reg_investor_profile.xhtml,/faces/pages/reg_investor_profile2.xhtml,/faces/pages/static_about_us.xhtml,/faces/pages/static_contact_us.xhtml,/faces/index.xhtml,/faces/pages/admin/index.xhtml,/index.xhtml,/faces/pages/forgot_password.xhtml,/faces/pages/reset_pass_success.xhtml,/faces/pages/admin/admin_forgotpwd.xhtml,/faces/pages/make_payment.xhtml,/faces/pages/pdfView.xhtml,/faces/pages/static_help.xhtml,/faces/pages/terms_and_conditions.xhtml,/faces/pages/privacy_policy.xhtml,/faces/pages/advisor_agreement.xhtml,/faces/pages/advisor_investor_agreement.xhtml,/faces/pages/subscriber_agreement.xhtml,/faces/pages/message.xhtml,/faces/pages/changePassword.xhtml,/faces/pages/change_pass_success.xhtml,/faces/pages/change_pass_success_advisor.xhtml
+            </param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>*.xhtml</url-pattern>
+        <!--    <url-pattern>*.jsp</url-pattern>  -->
+        <!--    <url-pattern>*.html</url-pattern> -->
+    </filter-mapping>
+    <listener>
+        <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Production</param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:sprg-main-cfg.xml,	
+            /WEB-INF/applicationContext-BAO.xml,             
+            /WEB-INF/applicationContext-DAO.xml,
+            /WEB-INF/applicationContext.xml,
+            /WEB-INF/mvc-dispatcher-servlet.xml,
+            /WEB-INF/quartz-job.xml
+        </param-value>
+    </context-param>
+    <!-- JSF Mapping -->
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>LookupDataLoaderServlet</servlet-name>
+        <servlet-class>com.gtl.mmf.common.LookupDataLoaderServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>Authenticate</servlet-name>
+        <servlet-class>com.gtl.mmf.common.Authenticate</servlet-class>
+    </servlet>
+    <!--
+    <servlet>  
+        <servlet-name>RiskProfile</servlet-name>    
+        <servlet-class>com.gtl.mmf.riskprofile.RiskProfileController</servlet-class> 
+    </servlet>  
+    -->
+    <servlet>
+        <servlet-name>RegistrationVerificationServlet</servlet-name>
+        <servlet-class>com.gtl.mmf.common.RegistrationVerificationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImageCaptchaServlet</servlet-name>
+        <servlet-class>com.gtl.mmf.common.ImageCaptchaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MmfPaymentResponse</servlet-name>
+        <servlet-class>com.gtl.mmf.common.MmfPaymentResponse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.faces</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <!--     <servlet-mapping> -->
+    <!--         <servlet-name>Faces Servlet</servlet-name> -->
+    <!--         <url-pattern>*.jsp</url-pattern> -->
+    <!--     </servlet-mapping> -->
+    <!--     <servlet-mapping> -->
+    <!--         <servlet-name>Faces Servlet</servlet-name> -->
+    <!--         <url-pattern>*.html</url-pattern> -->
+    <!--     </servlet-mapping> -->
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LookupDataLoaderServlet</servlet-name>
+        <url-pattern>/LookupDataLoaderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Authenticate</servlet-name>
+        <url-pattern>/Authenticate</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>faces/index.xhtml</welcome-file>
+    </welcome-file-list>
+    <!-- JasperReports Servlet -->
+    <servlet>
+        <servlet-name>PdfServlet</servlet-name>
+        <servlet-class>net.sf.jasperreports.j2ee.servlets.PdfServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>JExcelApiServlet</servlet-name>
+        <servlet-class>net.sf.jasperreports.j2ee.servlets.JExcelApiServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RtfServlet</servlet-name>
+        <servlet-class>net.sf.jasperreports.j2ee.servlets.RtfServlet</servlet-class>
+    </servlet>
+    <!-- JasperReports Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>PdfServlet</servlet-name>
+        <url-pattern>/PDF</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JExcelApiServlet</servlet-name>
+        <url-pattern>/EXCEL</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RtfServlet</servlet-name>
+        <url-pattern>/RTF</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrationVerificationServlet</servlet-name>
+        <url-pattern>/RegistrationVerificationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageCaptchaServlet</servlet-name>
+        <url-pattern>/generateCaptcha</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MmfPaymentResponse</servlet-name>
+        <url-pattern>/MmfPaymentResponse</url-pattern>
+    </servlet-mapping>
+    <!-- 	
+    <servlet-mapping> 
+       <servlet-name>RiskProfile</servlet-name> 
+       <url-pattern>/RiskProfile</url-pattern> 
+    </servlet-mapping>
+    -->
+        
+    <servlet>
+        <servlet-name>RestService</servlet-name>
+        <!-- For Oracle GlassFish Server 4 -->
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <!-- For Oracle GlassFish Server 3.1.2.2 -->
+        <!--<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>-->
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <!--<param-name>com.sun.jersey.config.property.packages</param-name>-->
+            <param-value>com.gtl.mmf.common</param-value>
+        </init-param>
+        <init-param>
+            <!-- For file upload -->
+            <param-name>jersey.config.server.provider.classnames</param-name>
+            <param-value>org.glassfish.jersey.media.multipart.MultiPartFeature</param-value>
+        </init-param>
+        <load-on-startup>3</load-on-startup>
+    </servlet>
+<!--     <servlet> -->
+<!--         <servlet-name>RiskProfile</servlet-name> -->
+<!--         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class> -->
+<!--         <init-param> -->
+<!--             <param-name>jersey.config.server.provider.packages</param-name> -->
+<!--             <param-value>com.gtl.mmf.riskprofile</param-value> -->
+<!--         </init-param> -->
+<!-- 	 </servlet> -->
+
+<!-- 	<servlet> -->
+<!--         <servlet-name>RiskProfile</servlet-name> -->
+<!--         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class> -->
+<!--         <init-param> -->
+<!--             <param-name>org.glassfish.jersey.config.property.packages</param-name> -->
+<!--             <param-value> -->
+<!--                 com.gtl.mmf.riskprofile -->
+<!--             </param-value> -->
+<!--         </init-param> -->
+<!--         <load-on-startup>1</load-on-startup> -->
+<!--     </servlet> -->
+
+<!--     <servlet-mapping> -->
+<!--         <servlet-name>RiskProfile</servlet-name> -->
+<!--         <url-pattern>/RiskProfile</url-pattern> -->
+<!--     </servlet-mapping> -->
+    
+    <servlet-mapping>
+        <servlet-name>RestService</servlet-name>
+        <url-pattern>/service/*</url-pattern>
+    </servlet-mapping>
+    
+<!--    <servlet> -->
+<!--        <servlet-name>mvc-dispatcher</servlet-name> -->
+<!--        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
+<!--        <load-on-startup>1</load-on-startup> -->
+<!--    </servlet> -->
+
+<!--    <servlet-mapping> -->
+<!--        <servlet-name>mvc-dispatcher</servlet-name> -->
+<!--        <url-pattern>/rest/*</url-pattern> -->
+<!--    </servlet-mapping> -->
+
+<!--    <context-param> -->
+<!--        <param-name>contextConfigLocation</param-name> -->
+<!--        <param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value> -->
+<!--    </context-param> -->
+
+    <servlet>  
+        <servlet-name>springrest</servlet-name>  
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
+        <load-on-startup>1</load-on-startup>  
+    </servlet>  
+  
+    <servlet-mapping>  
+        <servlet-name>springrest</servlet-name>  
+        <url-pattern>/RiskProfile</url-pattern>
+        <url-pattern>/RiskProfileOutput</url-pattern>
+        <url-pattern>/FinancialPlanner</url-pattern>
+        <url-pattern>/FinancialPlannerOutput</url-pattern>
+        <url-pattern>/RiskProfiles</url-pattern>
+        <url-pattern>/portfolioSearchV2</url-pattern>
+        <url-pattern>/paservice/getPortfolioStyleMap</url-pattern>
+        <url-pattern>/paservice/getInitData</url-pattern>
+        <url-pattern>/paservice/getCustomerAdvisorMapping</url-pattern>
+        <url-pattern>/paservice/onPortfolioSelectChange</url-pattern>
+        <url-pattern>/servicecontract</url-pattern>
+        <url-pattern>/paservice/saveAllocatedPortfolio</url-pattern>
+        <url-pattern>/twoFactorLogin</url-pattern>
+    </servlet-mapping>  
+    
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+    
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    <context-param>
+        <param-name>mmfproperties</param-name>
+        <!-- for development -->
+		<!-- param-value>/home/bhagyashree-mmf/mmf/config/mmf.properties</param-value -->
+        <!--<param-value>D:\config\mmf.properties</param-value>-->
+        <!-- for production/UAT/pre-production --> 
+        <param-value>/home/mmf/config/mmf.properties</param-value>
+    </context-param>
+    <context-param>
+        <description>configuration options 
+            values:
+            1)system      :-  Tells properties files should be taken from 
+            from path specified in 'mmfproperties'.
+                                      
+            2)application :-  Tells properties files should be taken from 
+            where the application is deployed.
+        </description>
+        <param-name>ConfigurationOption</param-name>
+        <param-value>system</param-value>
+    </context-param>
+    <!-- Captcha service for Development-->
+    <!--
+    <context-param>
+        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+        <param-value>6Lci4icTAAAAABgt8AmFVFhjFJTCxjKnyzIETzum</param-value>
+    </context-param>
+    <context-param>
+        <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+        <param-value>6Lci4icTAAAAADHEV-SEBL-bw1JQ0a2CPnpRW9fS</param-value>
+    </context-param>
+    -->
+    <!-- Captcha service for UAT-->
+    
+    <context-param>
+        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+        <param-value>6Lde3SETAAAAANa_r8AP9Ha8nxfHdQCI4tNWRg5q</param-value>
+    </context-param>
+    <context-param>
+        <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+        <param-value>6Lde3SETAAAAAM3BOVnyfLEVmKs4MHUC6-AGbGtr</param-value>
+    </context-param>
+    
+    <!-- Captcha service for production -->
+	<!--
+    <context-param>
+        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+        <param-value>6Ld9OQoTAAAAAOEmzuQZqTQ3i7vDjwLN9xDim_cA</param-value>
+    </context-param>
+    <context-param>
+        <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+        <param-value>6Ld9OQoTAAAAAMCP2_Iqfm5N1MSrsFNfMV-72nq3</param-value>
+    </context-param> -->
+     <!-- Captcha service for pre-production -->
+    <!-- <context-param>
+        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+        <param-value>6LcbRQgUAAAAAPKn9KNGY0fKHucv5_4FI7HAPhgd</param-value>
+    </context-param> -->
+    
+    <!-- Captcha service for pre-production -->
+    <!-- 
+    <context-param>
+        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+        <param-value>6LcbRQgUAAAAAPKn9KNGY0fKHucv5_4FI7HAPhgd</param-value>
+    </context-param> 
+    -->
+    <!-- Captcha service for pre-production -->
+    <!-- 
+    <context-param>
+        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+        <param-value>6LcbRQgUAAAAAPKn9KNGY0fKHucv5_4FI7HAPhgd</param-value>
+    </context-param> 
+    -->
+</web-app>

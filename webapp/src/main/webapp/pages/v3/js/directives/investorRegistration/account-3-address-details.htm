@@ -1,0 +1,253 @@
+<div class="content_box">
+
+	<div class="account_open_row">
+		<h3>Address Details</h3>
+	</div>
+    <div class="note">Note : Please ensure that your address matches uploaded proof</div>
+	<div class="accfrmsec">
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<select name="cproof" id="cproof" ng-model="cproof" ng-options="item.name for item in addressProofOptions track by item.value" ng-change="onChangeCProof()">
+					<option value="" selected>Select your Proof of Address</option>
+				</select>
+			</div>
+			<div class="accfrm_row_c2" ng-show="data.cproof == 'Driving Licence' ||  data.cproof == 'Passport' ||  data.cproof == 'Registered Lease/Sale Agreement of Residence'">
+				<div class="col_in1">Validity Date</div>
+				<div class="col_in2">
+					<input type="text" id="cvalidity" name="calendar" class="calendar_icon cal_validity" placeholder="" ng-model="data.cvalidity" >
+				</div>
+			</div>
+		</div>
+
+		<div class="accfrm_row mobile_block">
+			<h5>Take a photo or Upload an image of your Proof of Address</h5>
+		</div>
+
+		<div class="accfrm_row upload_row">
+
+			<div class="accfrm_row_c1">
+				<!--camera start -->
+				<div class="camera-sec">
+					<span id="fileselector_camera"> <label class="upload_outer" ng-click="onLabelClick('coraddr');" for="corsFilePathx">
+							<div class="camera_icon">&nbsp;</div> <input type="file" capture="camera" accept="image/*" id="corsFilePath" name="cameraInput" ng-model="data.corsFilePath" onchange="angular.element(this).scope().uploadCorsAdress('camicon')" style="display:none;">
+							<div class="uploadtxt">
+								<span class="mobile_hide">Take a photo of your </span>Proof of Address
+							</div>
+					</label>
+					</span>
+					<div class="ortxt">or</div>
+				</div>
+				<!--camera end -->
+			</div>
+
+			<div class="accfrm_row_c2">
+				<span id="fileselector"> <label class="upload_outer" for="corsFilePathFU">
+						<div class="upload_icon">&nbsp;</div> <input id="corsFilePathFU" type="file" onchange="angular.element(this).scope().uploadCorsAdress('uploadicon')" accept=".jpeg,.pdf,.PNG,.jpg,.PDF,.png,.JPEG,.JPG" style="display: none">
+						<div class="uploadtxt">
+							Upload <span class="mobile_hide">your Proof of Address</span>
+						</div>
+				</label>
+				</span>
+			</div>
+			<div class="mobile_hide" style="width: 50%;margin-left: 275px;"><h5>OR</h5></div>
+		</div>
+
+		<div class="accfrm_row" ng-show="data.corsFilePath!='' && data.corsFilePath !=null && data.corsFilePath != undefined">
+			<div class="tick">
+				<span class="glyphicon glyphicon-paperclip"></span>{{data.corsFilePath.split('/')[data.corsFilePath.split('/').length-1]}}
+			</div>
+		</div>
+
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<h4>Please verify your information</h4>
+			</div>
+			<!-- <div class="accfrm_row_c2">
+				Edit Details Manually
+				<div class="chkbox">
+					<input type="radio" id="adyes" name="adedit" ng-model="adedit" value="yes" />
+					<label for="adyes">Yes</label>
+					<input type="radio" id="adno" name="adedit"  ng-model="adedit" value="no"/>
+					<label for="adno">No</label>
+				</div>
+			</div> -->
+		</div>
+
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<input type="text" id="caddressline1" name="caddressline1" placeholder="Address Line 1" ng-model="data.caddressline1"  maxlength="37" ng-disabled="adedit=='no'">
+			</div>
+			<div class="accfrm_row_c2">
+				<input type="text" id="caddressline2" name="caddressline2" placeholder="Address Line 2" ng-model="data.caddressline2" maxlength="37" ng-disabled="adedit=='no'">
+			</div>
+		</div>
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<select name="cstate" id="cstate" ng-model="data.cstate" class="selectState" ng-change="getStateWiseCites('#cstate','#ccity')" ng-disabled="adedit=='no'" ng-options="item for item in globalStateList">
+					<option value="" selected>State</option>
+				</select>
+			</div>
+			<div class="accfrm_row_c2">
+				<select name="ccity" id="ccity" ng-model="data.ccity" class="selectCity" ng-disabled="adedit=='no'" ng-options="item for item in globalCityOptions track by item" ng-change="onChangeCorCity()">
+					<option value="" selected="selected">City</option>
+				</select>				
+			</div>
+		</div>
+
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<input type="text" id="cpincode" name="cpincode" placeholder="Pin Code" ng-model="data.cpincode" maxlength="6" class="numericOnly" ng-disabled="adedit=='no'">
+			</div>
+			<div class="accfrm_row_c2">
+				<select name="country" id="country" ng-model="country" class="selectCountry" ng-disabled="true" ng-options="item.name for item in globalCountryList track by item.value">
+					<option value="" >Select Country</option>
+					<!-- <option value="IN">India</option>
+					<option value="">USA</option> -->
+				</select>
+			</div>
+		</div>
+
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<input id="mobile" name="mobile" placeholder="Mobile Number"  class = "numericOnly" type="text" required ng-model="data.mobile" maxlength="10" ng-disabled="adedit=='no'" >
+			</div>
+			<div class="accfrm_row_c2">
+				<input id="htelephone" name="htelephone" placeholder="Landline Number" type="text" class="numericOnly" maxlength="13" ng-disabled="adedit=='no'" ng-model="data.htelephone">
+			</div>
+		</div>
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<input type="text" id="email" name="email" placeholder="Email" ng-model="data.email" ng-disabled="true" ng-blur="isValidEmailAddress(data.email)">
+			</div>
+		</div>
+
+
+		<div class="account_open_row">
+			<div class="registration_ck">
+				<input type="checkbox" name="permenentAddress" id="permenentAddress" value="I have a different permanent address" ng-model="data.permenentAddress" ng-true-value="'true'" ng-false-value="'false'">
+				<label for="permenentAddress"></label> I have a different permanent address <br>
+			</div>
+		</div>
+
+		<!-- permanent address start -->
+		<div class="permanent-adrsec" id="ptaddrs">
+			<div class="accfrm_row">
+				<h4>Permanent Address Details</h4>
+			</div>
+			<div class="accfrm_row">
+				<div class="accfrm_row_c1">
+					<input type="text" id="paddressline1" name="paddressline1" placeholder="Address Line 1" ng-model="data.paddressline1" maxlength="37">
+				</div>
+				<div class="accfrm_row_c2">
+					<input type="text" id="paddressline2" name="paddressline2" placeholder="Address Line 2" ng-model="data.paddressline2" maxlength="37">
+				</div>
+			</div>
+
+			<div class="accfrm_row">
+				<div class="accfrm_row_c1">
+					<select name="pstate" id="pstate" ng-model="data.pstate" class="selectState" ng-change="getStateWiseCites('#pstate','#pcity')" ng-options="item for item in globalStateList">
+						<option value="" selected>State</option>
+					</select>
+				</div>
+				<div class="accfrm_row_c2">
+					<select name="pcity" id="pcity" ng-model="data.pcity" class="selectCity" ng-options="item for item in globalCityOptions track by item" >
+						<option value="" selected>City</option>
+					</select>
+				</div>
+			</div>
+
+
+			<div class="accfrm_row">
+				<div class="accfrm_row_c1">
+					<input type="text" id="ppin" name="ppin" placeholder="Pin Code" ng-model="data.ppin" maxlength="6" class="numericOnly">
+				</div>
+				<div class="accfrm_row_c2">
+					<select name="pcountry" id="pcountry" ng-model="pcountry" class="selectCountry" ng-options="item.name for item in globalCountryList track by item.value" ng-disabled="true">
+						<option value="" >Select Country</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="accfrm_row">
+				<div class="accfrm_row_c1">
+					<select name="pproof" id="pproof" ng-model="pproof" ng-options="item.name for item in addressProofOptions track by item.value" ng-change="onChangePProof()">
+						<option value="" selected>Select your Proof of Address</option>
+					</select>
+				</div>
+				<div class="accfrm_row_c2" ng-show="data.pproof == 'Driving Licence' ||  data.pproof == 'Passport' ||  data.pproof == 'Registered Lease/Sale Agreement of Residence'">
+					<div class="col_in1">Validity Date</div>
+					<div class="col_in2">
+						<input type="text" id="pvalidity" name="calendar" class="calendar_icon cal_validity" placeholder="" ng-model="data.pvalidity" >
+					</div>
+				</div>
+			</div>
+			<div class="accfrm_row mobile_block">
+				<h5>Take a photo or Upload an image of your Proof of Address</h5>
+			</div>
+
+			<div class="accfrm_row upload_row">
+
+				<div class="accfrm_row_c1">
+					<!--camera start -->
+					<div class="camera-sec">
+						<span id="fileselector_camera"> <label class="upload_outer" for="prmntFilePathx" ng-click="onLabelClick('peraddr');">
+								<div class="camera_icon">&nbsp;</div> <input type="file" capture="camera" accept="image/*" id="prmntFilePath" name="prmntFilePath" style="display: none;" onchange="angular.element(this).scope().uploadPrmntAdress('camicon')">
+								<div class="uploadtxt">
+									<span class="mobile_hide">Take a photo of your </span>Proof of Address
+								</div>
+						</label>
+						</span>
+						<div class="ortxt">or</div>
+					</div>
+					<!--camera end -->
+				</div>
+
+				<div class="accfrm_row_c2">
+					<span id="fileselector"> <label class="upload_outer" for="prmntFilePathFU">
+							<div class="upload_icon">&nbsp;</div> <input id="prmntFilePathFU" type="file" onchange="angular.element(this).scope().uploadPrmntAdress('uploadicon')" accept=".jpeg,.pdf,.PNG,.jpg,.PDF,.png,.JPEG,.JPG" style="display: none">
+							<div class="uploadtxt">
+								Upload <span class="mobile_hide">your Proof of Address</span>
+							</div>
+					</label>
+					</span>
+				</div>
+				<div class="mobile_hide" style="width: 50%;margin-left: 275px;"><h5>OR</h5></div>
+			</div>
+			<div class="accfrm_row" ng-show="data.prmntFilePath!='' && data.prmntFilePath !=null && data.prmntFilePath != undefined">
+				<div class="tick">
+					<span class="glyphicon glyphicon-paperclip"></span>{{data.prmntFilePath.split('/')[data.prmntFilePath.split('/').length-1]}}
+				</div>
+			</div>
+			<!--<div class="accfrm_row">
+				<div class="accfrm_row_c1">
+					<input id="pmnt_mobile_number" name="pmnt_mobile_number" placeholder="Mobile Number" type="number" required>
+				</div>
+				<div class="accfrm_row_c2">
+					<input id="pmnt_landline_number" name="pmnt_landline_number" placeholder="Landline Number" type="number">
+				</div>
+			</div>
+
+			<div class="accfrm_row">
+    <div class="accfrm_row_c1"> <input type="text" id="pmnt_email" name="pmnt_email" placeholder="Email" > </div>	
+</div>-->
+
+		</div>
+		<!-- permanent address end -->
+
+
+	</div>
+
+	<div class="account_open_row text-center">
+		<input type="submit" name="back" id="back" value="Back" class="back btnPrev" ng-click="goPrev();">
+		&nbsp;
+		<input type="submit" name="next" id="next" value="Next" class="btnNext" ng-click="goNext();">
+	</div>
+
+</div>

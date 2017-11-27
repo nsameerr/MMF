@@ -1,0 +1,792 @@
+/* Written By developer 2 */
+
+/* Font Declaration */
+
+@font-face {
+	font-family: 'ProximaNova-Light'; src: url('../fonts/proximanovalight.eot'), url('../fonts/proximanovalight.woff') format('woff'), url('../fonts/proximanovalight.ttf') format('truetype')
+}
+/* End */
+
+/* Custom Styles */
+
+a:hover, a:focus, a:active { outline: none }
+select::-ms-expand { display: none }
+
+/* Header Section */
+
+header.navbar-fixed-top { background: #4aae3c; height: 50px; padding: 13px 0px }
+header.navbar-fixed-top .padding_lr { padding: 0px 15px }
+header.navbar-fixed-top .logo { background: transparent url('../images/main_logo.png') no-repeat scroll center center; width: 120px; height: 28px; display: inline-block; overflow: hidden }
+header.navbar-fixed-top .logo a { display: block; width: 100%; height: 100%; text-indent: -15em }
+header.navbar-fixed-top .settings { float: right; }
+header.navbar-fixed-top .settings .gear_icon { background: transparent url('../images/gear_icon.png') no-repeat scroll center center / cover; display: inline-block; width:20px; height: 20px; margin-right:10px }
+header.navbar-fixed-top .settings .gear_icon a { display: block; width: 100%; height: 100%  }
+section.hamber_menu_section { background: #252424; width: 92px; height: calc(100vh - 50px); position: absolute; left: 0; top: 50px }
+section.hamber_menu_section .nav_menu { position: relative; height: 100%; overflow-y: auto; border-right:1px solid #121212; }
+section.hamber_menu_section .nav_menu ul { width: 100%; display: block; list-style: none; height: auto; padding: 0px; margin: 0px; text-align: center; font-family: 'ProximaNova-Semibold'; font-size: 11px; text-transform: uppercase }
+section.hamber_menu_section .nav_menu ul li { position: relative; display: inline-block; padding: 0px; width: 100%; height: auto  }
+section.hamber_menu_section .nav_menu ul li a { color: #949292; display: block; width: 100%; height: auto; border-bottom: 1px solid #121212; padding: 52px 15px 15px; line-height: 15px; transition: all 0.3s ease 0s; font-weight: bold; border-left: 2px solid transparent; background-color: #252424 !important }
+section.hamber_menu_section .nav_menu ul li a.home { background: url('../images/home_menu_icon.png') no-repeat scroll center 22px }
+section.hamber_menu_section .nav_menu ul li a.search { background: url('../images/search_menu_icon.png') no-repeat scroll center 22px }
+section.hamber_menu_section .nav_menu ul li a.my_port { background: url('../images/my_port_menu_icon.png') no-repeat scroll center 22px }
+section.hamber_menu_section .nav_menu ul li a.reports { background: url('../images/reports_menu_icon.png') no-repeat scroll center 22px }
+section.hamber_menu_section .nav_menu ul li a.ad_service { background: url('../images/adservice_menu_icon.png') no-repeat scroll center 22px }
+section.hamber_menu_section .nav_menu ul li a.alerts { background: url('../images/alerts_menu_icon.png') no-repeat scroll center 22px }
+
+section.hamber_menu_section .nav_menu ul li a.ltuser { background: url('../images/user_menu_icon.png') no-repeat scroll center 22px }
+section.hamber_menu_section .nav_menu ul li a.leads { background: url('../images/leads_menu_icon.png') no-repeat scroll center 15px }
+section.hamber_menu_section .nav_menu ul li a.ltsettings { background: url('../images/ltsettings_menu_icon.png') no-repeat scroll center 22px }
+
+
+
+section.hamber_menu_section .nav_menu ul li.active a, section.hamber_menu_section .nav_menu ul li a:hover { color: #dedede; border-left: 2px solid #4aae3c; background-color: #1a1919 !important }
+section.hamber_menu_section .nav_menu ul li.active a.home, section.hamber_menu_section .nav_menu ul li a.home:hover { background-image: url('../images/home_menu_icon_on.png') }
+section.hamber_menu_section .nav_menu ul li.active a.search, section.hamber_menu_section .nav_menu ul li a.search:hover { background-image: url('../images/search_menu_icon_on.png') }
+section.hamber_menu_section .nav_menu ul li.active a.my_port, section.hamber_menu_section .nav_menu ul li a.my_port:hover { background-image: url('../images/my_port_menu_icon_on.png') }
+section.hamber_menu_section .nav_menu ul li.active a.reports, section.hamber_menu_section .nav_menu ul li a.reports:hover { background-image: url('../images/reports_menu_icon_on.png') }
+section.hamber_menu_section .nav_menu ul li.active a.ad_service, section.hamber_menu_section .nav_menu ul li a.ad_service:hover { background-image: url('../images/adservice_menu_icon_on.png') }
+section.hamber_menu_section .nav_menu ul li.active a.alerts, section.hamber_menu_section .nav_menu ul li a.alerts:hover { background-image: url('../images/alerts_menu_icon_on.png') }
+
+section.hamber_menu_section .nav_menu ul li.active a.ltuser, section.hamber_menu_section .nav_menu ul li a.ltuser:hover { background-image: url('../images/user_menu_icon_on.png') }
+section.hamber_menu_section .nav_menu ul li.active a.leads, section.hamber_menu_section .nav_menu ul li a.leads:hover { background-image: url('../images/leads_menu_icon_on.png') }
+
+
+section.hamber_menu_section .nav_menu ul li.active a.ltsettings, section.hamber_menu_section .nav_menu ul li a.ltsettings:hover { background-image: url('../images/ltsettings_menu_icon_on.png') }
+
+.navbar-toggle { margin: 0px 10px 0px 5px; padding: 2px 0px }
+.navbar-toggle .icon-bar { background: #fff; height: 3px; width: 20px }
+#close_menu_nav { display: none }
+
+/* End */
+
+/* Output View Page */
+
+/* Page Header */
+
+main.inner_page { min-height: 100vh; padding: 50px 0px 20px 92px; background: #dedede; background: -webkit-linear-gradient(#dedede, #e5e5e5, #ecebeb, #f2f2f2, #f5f5f5); background: -o-linear-gradient(#dedede, #e5e5e5, #ecebeb, #f2f2f2, #f5f5f5); background: -moz-linear-gradient(#dedede, #e5e5e5, #ecebeb, #f2f2f2, #f5f5f5); background: linear-gradient(#dedede, #e5e5e5, #ecebeb, #f2f2f2, #f5f5f5); position: relative }
+.scroll-to-bottom { background: #fff; border-radius: 4px; bottom: 5%; color: #4aae3c; cursor: pointer; font-size: 20px; padding: 2px 10px; position: fixed; right: 10px; transition: all 0.1s linear 0s; z-index: 100; border: 1px solid rgba(0,0,0,0.3); display: none }
+.scroll-to-bottom:hover { background: #fff; opacity: 0.8 }
+.scroll-to-top { background: #fff; border-radius: 4px; bottom: 5%; color: #4aae3c; cursor: pointer; font-size: 20px; padding: 2px 10px; position: fixed; right: 10px; transition: all 0.1s linear 0s; z-index: 100; border: 1px solid rgba(0,0,0,0.3); display: none }
+.scroll-to-top:hover { background: #fff; opacity: 0.8 }
+.page_header_section { background: #fff; height: 50px; padding: 0px 15px }
+.page_header_section h3 { font-family: 'ProximaNova-Bold'; font-size: 23px; color: #9e9e9e; text-transform: capitalize; position: relative; margin: 0px; padding: 12px 0px 12px 40px }
+.page_header_section h3.finance_pln { background: transparent url('../images/finance_plan_icon.png') no-repeat scroll left center }
+.page_header_section h3:after { content:''; background: #4aae3c; width: 150px; height: 3px; position: absolute; bottom: -1px; left: 0px }
+.page_header_section h3.finance_pln.hdsearch { background: transparent url('../images/investor_portfolio_icon.png') no-repeat scroll left center }
+.page_header_section h3.finance_pln.hdashboard { background: transparent url('../images/dashboard_icon.png') no-repeat scroll 5px center }
+.page_header_section h3.finance_pln.hdinvestor { background: transparent url('../images/icon-investor.png') no-repeat scroll left center }
+.page_header_section h3.hdupdate_user { background: transparent url('../images/hd_user_icon.png') no-repeat scroll 5px center; }
+
+section.page_body_section { padding: 0px 20px }
+
+/* End */
+
+/* Chart Section */
+
+.chart_section { background: #fff; width: 100%; height: auto; margin: 20px 0px 0px; border-radius: 5px; display: table; box-shadow: 0px 2px 5px rgba(0,0,0,0.2); padding: 0px 0px 20px }
+.chart_section .high_chart { width: 60%; float: left; border-right: 1px solid #e6e6e6 }
+.chart_section .meter_chart { width: 40%; float: left }
+.chart_section .chart_head { font-family: 'ProximaNova-Light'; font-size: 22px; color: #172416; margin: 0px; padding: 25px 15px 20px 35px; border-bottom: 1px solid #e6e6e6 } 
+.chart_section .high_chart .tab_controls { padding: 25px 30px; text-align: center }
+.chart_section .high_chart .tab_controls .nav-tabs { border-radius: 4px; border: 1px solid #4aae3c; width: 250px; margin: 0 auto; font-family: 'ProximaNova-Semibold'; font-size: 12px }
+.chart_section .high_chart .tab_controls .nav-tabs li { width: 50% }
+.chart_section .high_chart .tab_controls .nav-tabs li a { color: #666; background: transparent; border: none; border-radius: 0px; margin: 0px }
+.chart_section .high_chart .tab_controls .nav-tabs li.active a { color: #fff; background: #4aae3c }
+.chart_section .high_chart .tab_controls .note { font-family: 'ProximaNova-Regular'; font-size: 13px; color: #fe0303; margin: 25px 0px 0px }
+.chart_section .high_chart .tab_controls .tab-content { margin: 20px 0px }
+.chart_section .high_chart tspan { font-size: 14px !important }
+.chart_section .high_chart text { color: #8e8e8e !important; fill: #8e8e8e !important; font-family: 'ProximaNova-Regular' }
+.chart_section .high_chart .highcharts-credits, .chart_section .high_chart .highcharts-title { display: none }
+.chart_section .high_chart .highcharts-axis-title { font-size: 15px }
+.chart_section .high_chart .highcharts-container { width:100% !important; height:100% !important }
+.chart_section .high_chart .x_axis_head { position: relative; text-align: center; z-index: 1; width: 93.5%; margin: 0px 0px 0px 6%  }
+.chart_section .high_chart .x_axis_head:before { content:''; background: #c4c4c4; width: 100%; height: 1px; position: absolute; top: 50%; left: 0; z-index: -1 }
+.chart_section .high_chart .x_axis_head h5 { font-family: 'ProximaNova-Regular'; font-size: 15px; color: #8e8e8e; margin: 0px; padding: 0px; display: inline-block; width: auto; background: #fff; padding: 0px 15px }
+.chart_section .high_chart .legend { font-family: 'ProximaNova-Regular'; font-size: 12px; color: #8e8e8e; margin: 20px 0px 0px }
+.chart_section .high_chart .legend .leg { margin: 0px 15px 0px 0px; position: relative; padding: 0px 0px 0px 15px }
+.chart_section .high_chart .legend .leg:before { content: '';  width: 10px; height: 10px; position: absolute; left: 0; top: 0; border-radius: 2px }
+.chart_section .high_chart .legend .leg_4 { padding-left: 20px }
+.chart_section .high_chart .legend .leg_1:before { background: #4aae3c }
+.chart_section .high_chart .legend .leg_2:before { background: #195b6c }
+.chart_section .high_chart .legend .leg_3:before { background: #fdba18 }
+.chart_section .high_chart .legend .leg_4:before { background: #fff; border-radius: 50%; border: 1px solid rgba(0,0,0,0.5); width: 13px; height: 13px; top: -2px; box-shadow: 0px 1px 3px rgba(0,0,0,0.6) }
+.chart_section .high_chart .range_block { margin: -10px 0px 25px; color: #333333; font-family: 'ProximaNova-Semibold'; font-size: 13px }
+.chart_section .high_chart .range_block label { margin: 0px 7px }
+.chart_section .high_chart .range_block .age_drop { width: 50px; height: 22px; background: #fff url('../images/select_arr.png') no-repeat scroll 89% center; border: 1px solid #b7b7b7; appearance: none; -webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; -o-appearance: none; border-radius: 3px; padding: 2px 15px 0px 10px; line-height: 12px } 
+.chart_section .high_chart .list_table .list_row { width: 100%; display: table; width: 100% }
+.chart_section .high_chart .list_table .head { border-top: 2px solid #f3f3f3; border-bottom: 2px solid #dddddd; font-family: 'ProximaNova-Semibold' }  
+.chart_section .high_chart .list_table .column { margin: 0px; display: table-cell; border-right: 1px solid #e5e5e5; padding: 15px 12px }
+.chart_section .high_chart .list_table .column:last-child { border-right: none }
+.chart_section .high_chart .list_table .column h5 { color: #8e8e8e;  font-size: 15px; margin: 0 }
+.chart_section .high_chart .list_table .column1 { width: 15% }
+.chart_section .high_chart .list_table .column2 { width: 25%; padding: 5px 12px }
+.chart_section .high_chart .list_table .column3 { width: 30% }
+.chart_section .high_chart .list_table .column4 { width: 30% }  
+.chart_section .high_chart .list_table .odd { background: #f3f3f3; font-family: 'ProximaNova-Bold' }
+.chart_section .high_chart .list_table .even { background: #fff; font-family: 'ProximaNova-Bold' } 
+.chart_section .high_chart .list_table .body h5 { color: #666; font-size: 13px }
+.chart_section .high_chart .list_table .body .column4 h5 { color: #006666 }
+.chart_section .high_chart .list_table .body .column2 { vertical-align: middle }
+.chart_section .high_chart .list_table .goal_icon { float: left; display: inline-block; width: 30px; height: 20px; background: transparent no-repeat scroll center center; margin: 0px 0px 0px 5px }
+.chart_section .high_chart .list_table .status_ok { float: left; display: inline-block; width: 30px; height: 20px; background: transparent url('../images/status_ok_icon.png') no-repeat scroll center center; margin: 0px 0px 0px 5px }
+.chart_section .high_chart .list_table .more_details { float: right; display: inline-block; width: 30px; height: 20px; background: transparent url('../images/more_icon.png') no-repeat scroll center center; cursor: pointer }
+.chart_section .high_chart .list_table .popover { background: #fff; box-shadow: 0px 5px 5px rgba(0,0,0,0.5); border: 1px solid #fff; border-radius: 5px; font-family: 'ProximaNova-Semibold'; padding: 25px }
+.chart_section .high_chart .list_table .status_ok + .more_details + .popover .popover-title { color: #4aae3c }
+.chart_section .high_chart .list_table .popover .popover-title { background: #fff; border: none; font-size: 19px; color: #f76900; padding: 0px }
+.chart_section .high_chart .list_table .popover .popover-content { padding: 10px }
+.chart_section .high_chart .list_table .popover .popover-content .goal_name { background: transparent no-repeat scroll left center; color: #434141; font-size: 15px; margin: 10px 0px; padding: 0px 0px 0px 25px }
+.chart_section .high_chart .list_table .popover .popover-content .goal_duration { font-size: 18px; color: #434141; margin: 10px 0px }
+.chart_section .high_chart .list_table .popover .popover-content h6 { font-family: 'ProximaNova-Regular'; font-size: 12px; color: #9d9d9d; margin: 20px 0px 0px } 
+.chart_section .high_chart .list_table .popover .popover-content .goal_amount { font-size: 24px; color: #434141; margin: 5px 0px }  
+.chart_section .high_chart .list_table .popover .popover-content .goal_amount i {font-size: 20px; margin-right: 3px }
+.chart_section .high_chart .list_table .popover .popover-content .goal_loan { background: transparent url('../images/loan_icon.png') no-repeat scroll left center; font-size: 15px; color: #434141; margin: 10px 0px; padding: 0px 0px 0px 20px }  
+.chart_section .meter_chart .gauge_section { text-align: center; margin: 25px 0px 0px; border-bottom: 1px solid #dedede; padding: 0px 0px  25px }
+.chart_section .meter_chart .gauge_section .edit_inputgraphtxt { width: 100%; font-size: 24px }
+.chart_section .meter_chart .gauge_section .gauge__value tspan { font-size: 54px; color: #2a2828 }
+.chart_section .meter_chart .slider_section { margin: 30px 0px 15px; padding: 0px 15px; display: table; width: 100% }
+.chart_section .meter_chart .slider_section .edit_graph_row { width: 100%; margin: 0px; font-size: 15px; font-weight: bold; color: #636363 }
+.chart_section .meter_chart .slider_section .edit_graph_data { margin: 0px; width: 100% }
+.chart_section .meter_chart .slider_section .edit_graph_bar { width: 75% }
+.chart_section .meter_chart .slider_section .edit_graph_data label { font-size: 25px; font-weight: bold; color: #2a2828 }
+.chart_section .meter_chart .slider_section .edit_graph_data input { margin-left: 30px; font-size: 27px; width: 50px !important }
+.chart_section .meter_chart .slider_section .ui-state-default { width: 20px; height: 20px; margin-top: -1px }
+.chart_section .meter_chart .button_set { margin: 25px 0px 0px; clear: both; text-align: right; width: 87%; font-family: 'ProximaNova-Bold'; font-size: 14px }
+.chart_section .meter_chart .button_set .cancel { background: #7c7c7c; border: 1px solid #7c7c7c; color: #fff; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; transition: all 0.3s ease 0s; width: 110px; margin-right: 7px; box-shadow: 0px 3px 3px rgba(0,0,0,0.3) }
+.chart_section .meter_chart .button_set .save_ed { background: #4aae3c; border: 1px solid #4aae3c; color: #fff; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; transition: all 0.3s ease 0s; width: 110px; box-shadow: 0px 3px 3px rgba(0,0,0,0.3) }  
+.chart_section .meter_chart .button_set .cancel:hover { background: #fff; color: #7c7c7c }
+.chart_section .meter_chart .button_set .save_ed:hover { background: #7c7c7c; color: #fff; border: 1px solid #7c7c7c }
+
+/* End */
+
+/* Life Goal Section */
+
+.life_goal_section { background: #fff; width: 100%; height: auto; margin: 25px 0px 0px; border-radius: 5px; display: table; box-shadow: 0px 2px 5px rgba(0,0,0,0.2); padding: 0px 0px 0px }
+.life_goal_section .header_block { position: relative; width: 100%; height: auto; padding: 20px 15px 10px; display: table }
+.life_goal_section .header_block h4 { font-family: 'ProximaNova-Light'; font-size: 22px; color: #172416; margin: 0px; /* float: left; */ padding: 5px 0px 5px 20px }
+.life_goal_section .header_block a h4:after { content:'_'; display: inline-block; width: 30px; height: 30px; position: absolute; right: 5px; top: 10%; color: #4aae3c; font-size: 30px; font-family: 'ProximaNova-Bold' }
+.life_goal_section .header_block a.collapsed h4:after { content:'+'; display: inline-block; width: 30px; height: 30px; position: absolute; right: 5px; top: 25%; color: #4aae3c; font-size: 30px; font-family: 'ProximaNova-Bold' }
+.life_goal_section .goals_table .goals_row { display: table; width: 100%; height: auto } 
+.life_goal_section .goals_table .head { font-family: 'ProximaNova-Semibold'; background: #565656  }
+.life_goal_section .goals_table .head .column h5 { color: #fff; font-size: 13px }
+.life_goal_section .goals_table .column { margin: 0px; display: table-cell; padding: 12px 20px }
+.life_goal_section .goals_table .head .column { border-right: 1px solid #676767 }
+.life_goal_section .goals_table .body .column { border-right: 1px solid #e5e5e5 }  
+.life_goal_section .goals_table .column:last-child { border-right: none }
+.life_goal_section .goals_table .column1 { width: 20% }
+.life_goal_section .goals_table .column2 { width: 20% }
+.life_goal_section .goals_table .column3 { width: 15% }
+.life_goal_section .goals_table .column4 { width: 20% }
+.life_goal_section .goals_table .column5 { width: 25% }
+.life_goal_section .goals_table .column:last-child { border-right: none }
+.life_goal_section .goals_table .column h5 { color: #434141; margin: 0; font-size: 14px }
+.life_goal_section .goals_table .body .column { font-family: 'ProximaNova-Light'; vertical-align: middle }
+.life_goal_section .goals_table .body .column .goal_select { appearance: none; -webkit-appearance: none; -o-appearance: none; -moz-appearance: none; -ms-appearance: none; font-weight: bold; color: #434141; font-size: 14px; width: 100%; border-bottom: 1px solid #cccccc; background: #fff url('../images/select_arr.png') no-repeat scroll 98% center; margin: 0px; padding: 2px 20px 0px 2px }
+.life_goal_section .ui-state-default { width: 19px; height: 19px; margin-top: -1px }
+.life_goal_section .edit_graph_row { float: none; width: 100%; margin: 5px 0px }
+.life_goal_section .edit_graph_data { float: none; margin: 0px }
+.life_goal_section .edit_graph_bar { float: none; width: 100%; margin: 0px }
+.life_goal_section .edit_graph_data input.estim_amt { color: #434141; font-size: 20px; font-family: 'ProximaNova-Regular'; width: 90% !important; margin-left: 5px; margin-bottom: 2px } 
+.life_goal_section .edit_graph_data label { margin: 0px }
+.life_goal_section .edit_graph_data label i { font-size: 17px; color: #434141; font-weight: normal; margin: 0px }  
+.life_goal_section .goals_table .body .column1 { font-family: 'ProximaNova-Bold' }  
+.life_goal_section .goals_table .body .column5 { vertical-align: middle; padding-top: 20px  }
+.life_goal_section .goals_table .switch_tog { width: 75%; float: left }
+.life_goal_section .goals_table .ed_del { width: 25%; float: left }
+.life_goal_section .goals_table .switch { width: 100%; }
+.life_goal_section .goals_table .switch .nav-tabs { padding: 0; margin: 0px 0px 0px 20px; list-style: none; border: 1px solid #a1a1a1; display: table; font-family: 'ProximaNova-Regular'; font-size: 13px; border-radius: 4px; width: 100%; text-align: center; background: #fff; position: relative }
+.life_goal_section .goals_table .switch .nav-tabs li { float: left; width: 50%; margin-bottom: 0px }
+.life_goal_section .goals_table .switch .nav-tabs li a { padding: 5px 15px; color: #717171; display: inline-block; width: 100%; transition: all 0.3s ease 0s; cursor: pointer; border: none; border-radius: 0px; background: transparent; border: none}
+.life_goal_section .goals_table .switch .nav-tabs li.active a { color: #fff; background: #4aae3c }
+.life_goal_section .goals_table .switch .nav-tabs li.active:first-child a:before { content:''; background: transparent url('../images/saving_sw_icon.png') no-repeat scroll center center; width: 15px; height: 15px; display: inline-block; position: absolute; top: 7px; left: -20px }
+.life_goal_section .goals_table .switch .nav-tabs li.active:last-child a:before { content:''; background: transparent url('../images/loan_sw_icon.png') no-repeat scroll center center; width: 15px; height: 15px; display: inline-block; position: absolute; top: 7px; left: -100%; margin-left: -20px }
+.life_goal_section .goals_table .ed_del { padding: 4px 0px; text-align: right }
+.life_goal_section .goals_table .ed_del .edit { display: inline-block; font-family: 'ProximaNova-Regular'; font-size: 13px; margin-right: 15px } 
+.life_goal_section .goals_table .ed_del .edit a { color: #4aae3c; position: relative; cursor: pointer } 
+.life_goal_section .goals_table .ed_del .edit a:hover { text-decoration: underline }
+.life_goal_section .goals_table .ed_del .edit a:after { content:''; background: #8d8d8d; width: 1px; height: 9px; display: inline-block; position: absolute; top: 2px; right: -11px }
+.life_goal_section .goals_table .ed_del .delete a { color: #ff5757; opacity: 1; font-family: 'ProximaNova-Regular'; font-size: 13px; cursor: pointer } 
+.life_goal_section .goals_table .body .column1 h5 { font-family: 'ProximaNova-Bold'; font-size: 14px }
+.life_goal_section .goals_table .body .column2 h5, .life_goal_section .goals_table .body .column3 h5 { font-family: 'ProximaNova-Regular'; font-size: 14px }
+.life_goal_section .goals_table .body .column4 h5 { font-family: 'ProximaNova-Regular'; font-size: 20px }
+.life_goal_section .goals_table .body .column4 h5 i { font-size: 16px }
+.life_goal_section .goals_table .body .column5 h5 { font-family: 'ProximaNova-Regular'; font-size: 14px; padding-left: 20px; float: left }  
+.life_goal_section .goals_table .body .column5 h5.savings { background: transparent url('../images/saving_sw_icon.png') no-repeat scroll left top }
+.life_goal_section .goals_table .body .column5 h5.loan { background: transparent url('../images/loan_sw_icon.png') no-repeat scroll left top }
+.life_goal_section .goals_table .ed_del.uneditable { float: right; padding: 0px; margin: -2px 0px 0px; width: auto }  
+.life_goal_section .add_row_blk { padding: 10px 20px 20px 40px; display: table; width: 100% }
+.life_goal_section .add_row_blk .add_row { float: left; width: 31px; height: 31px; display: inline-block; background: transparent url('../images/plus_btn_icon.png') no-repeat scroll center center; cursor: pointer } 
+.life_goal_section .goals_table .column1 { padding-left: 40px }
+.life_goal_section .goals_table .body .column span.head_mobile { display: none }
+
+/* End */  
+
+/* Advance Settings Section */
+
+.advance_settings_section { background: #fff; width: 100%; height: auto; margin: 25px 0px 0px; border-radius: 5px; display: table; box-shadow: 0px 2px 5px rgba(0,0,0,0.2); padding: 0px 0px 0px }
+.advance_settings_section .header_block { position: relative; width: 100%; height: auto; padding: 20px 15px 10px; display: table }
+.advance_settings_section .header_block h4 { font-family: 'ProximaNova-Light'; font-size: 22px; color: #172416; margin: 0px; /*float: left; */padding: 5px 0px 5px 20px }
+.advance_settings_section .header_block a h4:after { content:'_'; display: inline-block; width: 30px; height: 30px; position: absolute; right: 5px; top: 10%; color: #4aae3c; font-size: 30px; font-family: 'ProximaNova-Bold' }
+.advance_settings_section .header_block a.collapsed h4:after { content:'+'; display: inline-block; width: 30px; height: 30px; position: absolute; right: 5px; top: 25%; color: #4aae3c; font-size: 30px; font-family: 'ProximaNova-Bold' }
+.advance_settings_section #advance_settings_block { border-top: 1px solid #e6e6e6; width: 100%; position: relative; padding: 0px }
+.advance_settings_section #advance_settings_block:after { content: ''; background: #e6e6e6; width: 1px; height: 100%; position: absolute; top: 0; bottom: 0; left: 50% }
+.advance_settings_section .slider_block {  padding: 45px 30px; /* border-right: 1px solid #e6e6e6 */ }
+.advance_settings_section .slider_block .slider_row { padding: 0px; margin: 10px 0px }
+.advance_settings_section .slider_block .content { padding: 0px 30px 0px 0px }
+.advance_settings_section .slider_block .content h5 { padding: 0px; margin: 0; font-family: 'ProximaNova-Semibold'; font-size: 14px; color: #565656 }
+.advance_settings_section .slider_block .slider { padding: 0px 0px 0px 30px }
+.advance_settings_section .slider_block .slider .edit_graph_row { margin: 0px; width: 100% }
+.advance_settings_section .slider_block .slider .edit_graph_data { margin: 0px; width: 100% }
+.advance_settings_section .slider_block .slider .edit_graph_data input { font-family: 'ProximaNova-Light'; font-size: 20px; color: #434141 }
+.advance_settings_section .slider_block .slider .edit_graph_data label { font-family: 'ProximaNova-Light'; font-size: 20px; color: #999999 }
+.advance_settings_section .slider_block .slider .edit_graph_bar { width: 75% }
+.advance_settings_section .table_block { padding: 20px 20px 0px }
+.advance_settings_section .table_block .adv_table_row { display: table; width: 100% }
+.advance_settings_section .table_block .head { background: #aaaaaa; color: #fff }
+.advance_settings_section .table_block .head .column h5 { font-family: 'ProximaNova-Semibold'; font-size: 13px }
+.advance_settings_section .table_block .adv_table_row .column { display: table-cell; padding: 13px 20px; border-right: 1px solid #dbdbdb }
+.advance_settings_section .table_block .adv_table_row .column1 { width: 30% }
+.advance_settings_section .table_block .adv_table_row .column2 { width: 22.5% }
+.advance_settings_section .table_block .adv_table_row .column3 { width: 22.5% }
+.advance_settings_section .table_block .adv_table_row .column4 { width: 25% }
+.advance_settings_section .table_block .body .column h5 { font-family: 'ProximaNova-Semibold'; font-size: 14px; color: #565656; margin: 0; padding: 0 }
+.advance_settings_section .table_block .body .column h5 span.sub_title { font-family: 'ProximaNova-Regular'; font-size: 13px; color: #666666; display: block; margin: 3px 0px 0px }
+.advance_settings_section .table_block .body .column .adv_sett_select { appearance: none; -webkit-appearance: none; -o-appearance: none; -moz-appearance: none; -ms-appearance: none; width: 100%; border-bottom: 1px solid #cccccc; background: #fff url('../images/select_arr.png') no-repeat scroll 98% center; margin: 0px; padding: 2px 20px 0px 2px; font-family: 'ProximaNova-Semibold'; font-size: 14px; color: #565656 }
+.advance_settings_section .table_block .adv_table_row:last-child .column { padding-bottom: 40px }  
+.advance_settings_section .table_block .adv_table_row .column:last-child { border-right: none }
+
+/* End */
+
+/* Increments Section */
+
+.increment_section { background: #fff; width: 100%; height: 200px; margin: 25px 0px 0px; border-radius: 5px; display: table; box-shadow: 0px 2px 5px rgba(0,0,0,0.2); padding: 0px 0px 0px; position: relative }
+.increment_section:after { content: ''; background: #e6e6e6; width: 1px; height: 100%; position: absolute; top: 0; bottom: 0; left: 50% }
+.increment_section .salary_inc_block { padding: 25px 15px 25px 35px }
+.increment_section .expense_inc_block { padding: 25px 15px 25px 20px }
+.increment_section .heading .header { font-family: 'ProximaNova-Light'; font-size: 23px; color: #565656; margin: 0px 0px 25px; padding: 0 }
+.increment_section .salary_row { display: table; width: 100% }
+.increment_section .salary_row .column { display: table-cell; padding: 12px 15px; border-right: 1px solid #dbdbdb; vertical-align: middle }
+.increment_section .body .column { padding-top: 20px; padding-bottom: 20px; }
+.increment_section .salary_row .column:last-child { border-right: none }
+.increment_section .salary_row .column1 { width: 20% }
+.increment_section .salary_row .column2 { width: 40% }
+.increment_section .salary_row .column3 { width: 40% }
+.increment_section .head { background: #aaaaaa; color: #fff }
+.increment_section .head .column h5 { font-family: 'ProximaNova-Semibold'; font-size: 13px }
+.increment_section .body .column h5 { font-family: 'ProximaNova-Semibold'; font-size: 14px; color: #565656 }
+.increment_section .body .column h5 span { font-family: 'ProximaNova-Regular'; color: #666666 }
+.increment_section .body .edit_graph_row { margin: 0px; width: 100% }
+.increment_section .body .edit_graph_data { margin: 0px; width: 100% }
+.increment_section .body .edit_graph_data input { font-family: 'ProximaNova-Light'; /*font-size: 20px;*/ font-size:17px; color: #434141 }
+.increment_section .body .edit_graph_data label { font-family: 'ProximaNova-Light'; /*font-size: 20px;*/ font-size:17px; color: #999999 }
+.increment_section .body .edit_graph_bar { width: 75% }
+.increment_section .expense_block .salary_row .column1 { width: 50% }
+.increment_section .expense_block .salary_row .column2 { width: 50% }
+
+/* End */
+  
+/* End */
+
+/* Footer Section */
+
+footer.inner_class { background: #f5f5f5; width: 100%; padding: 0px 0px 0px 92px; position: relative; height: auto; display: table }
+footer.inner_class .footer { padding: 25px 20px; font-family: 'ProximaNova-Regular'; font-size: 12px; color: #6b6b6b; display: table-cell; width: 100% } 
+footer.inner_class .footer .copyright { float: right; margin: 0px; padding: 5px 0px }
+footer.inner_class .footer .footer_links { list-style: none; margin: 0; padding: 0px 20px; float: right }
+footer.inner_class .footer .footer_links li { display: inline-block; position: relative; padding: 0px 15px 0px 10px }
+footer.inner_class .footer .footer_links li:first-child { padding-left: 0px }
+footer.inner_class .footer .footer_links li:last-child { padding-right: 0px }
+footer.inner_class .footer .footer_links li:after { content:''; background: #ababab; width: 2px; height: 10px; position: absolute; top: 7px; right: 0 }
+footer.inner_class .footer .footer_links li:last-child:after { content: none }
+footer.inner_class .footer .footer_links li a { color: #6b6b6b }
+footer.inner_class .footer .footer_links li a:hover { text-decoration: underline }
+footer.inner_class .footer .social_icons { float: right }
+footer.inner_class .footer .social_icons a { display: inline-block; color: #818181; width: 18px; height: 15px; margin: 0px 12px 0px 0px; transition: all 0.3s ease 0s }
+footer.inner_class .footer .social_icons a i { font-size: 15px; padding: 2px 0px }
+footer.inner_class .footer .social_icons a.twitter i { font-size: 17px }
+footer.inner_class .footer .social_icons a.facebook:hover { color: #3b5998 }
+footer.inner_class .footer .social_icons a.twitter:hover { color: #00aced }
+footer.inner_class .footer .social_icons a.google_plus:hover { color: #d34836 }
+
+/* End */
+
+/* Investor Header Section */
+
+.investor_profile header.navbar-fixed-top { background: #3295c9 }
+.investor_profile section.hamber_menu_section .nav_menu ul li.active a, .investor_profile section.hamber_menu_section .nav_menu ul li a:hover { color: #dedede; border-left: 2px solid #3295c9; background-color: #1a1919 !important }
+.investor_profile section.hamber_menu_section .nav_menu ul li.active a.home, .investor_profile section.hamber_menu_section .nav_menu ul li a.home:hover { background-image: url('../images/inv_home_menu_icon_on.png') }
+.investor_profile section.hamber_menu_section .nav_menu ul li.active a.search, .investor_profile section.hamber_menu_section .nav_menu ul li a.search:hover { background-image: url('../images/inv_search_menu_icon_on.png') }
+.investor_profile section.hamber_menu_section .nav_menu ul li.active a.my_port, .investor_profile section.hamber_menu_section .nav_menu ul li a.my_port:hover { background-image: url('../images/inv_my_port_menu_icon_on.png') }
+.investor_profile section.hamber_menu_section .nav_menu ul li.active a.reports, .investor_profile section.hamber_menu_section .nav_menu ul li a.reports:hover { background-image: url('../images/inv_reports_menu_icon_on.png') }
+.investor_profile section.hamber_menu_section .nav_menu ul li.active a.ad_service, .investor_profile section.hamber_menu_section .nav_menu ul li a.ad_service:hover { background-image: url('../images/inv_adservice_menu_icon_on.png') }
+.investor_profile section.hamber_menu_section .nav_menu ul li.active a.alerts, .investor_profile section.hamber_menu_section .nav_menu ul li a.alerts:hover { background-image: url('../images/inv_alerts_menu_icon_on.png') }
+.investor_profile section.hamber_menu_section .nav_menu ul li.active a.ltuser, .investor_profile section.hamber_menu_section .nav_menu ul li a.ltuser:hover { background-image: url('../images/inv_user_menu_icon_on.png') }
+.investor_profile section.hamber_menu_section .nav_menu ul li.active a.leads, .investor_profile section.hamber_menu_section .nav_menu ul li a.leads:hover { background-image: url('../images/inv_leads_menu_icon_on.png') }
+.investor_profile section.hamber_menu_section .nav_menu ul li.active a.ltsettings, .investor_profile section.hamber_menu_section .nav_menu ul li a.ltsettings:hover { background-image: url('../images/inv_ltsettings_menu_icon.png') }
+
+.investor_profile .page_header_section h3.finance_pln { background: transparent url('../images/investor_portfolio_icon.png') no-repeat scroll left center }
+.investor_profile .page_header_section h3:after { background: #3295c9 }
+.investor_profile .page_header_section h3.profile { background: transparent url('../images/finance_plan_icon.png') no-repeat scroll left center }
+.investor_profile .page_header_section h3.dashboard_advisor { background: transparent url('../images/dashboard-icon-advisor.png') no-repeat scroll left center }
+.investor_profile .scroll-to-bottom, .investor_profile .scroll-to-top { color: #3295c9 }
+
+/* End */
+
+/* Investor Allocate Profile Section */
+
+.portfolio_section { background: #fff; width: 100%; height: auto; margin: 20px 0px 0px; border-radius: 5px; display: table; box-shadow: 0px 2px 5px rgba(0,0,0,0.2); padding: 0px }
+.portfolio_section .allocate_prt_section { background: transparent; padding: 0px 30px; height: auto }
+.portfolio_section .section_head { padding: 30px 0px 20px; border-bottom: 1px solid #dedede }  
+.portfolio_section .section_head h3 { font-family: 'ProximaNova-Light'; font-size: 23px; color: #495049; margin: 0; padding: 0px }
+.portfolio_section .req_prt_block { border-bottom: 1px solid #e5e5e5; padding: 0px 0px 30px }
+.portfolio_section .req_prt_block h5 { font-family: 'ProximaNova-Semibold'; font-size: 14px; color: #424141; margin: 0; padding: 15px 10px; border-bottom: 1px solid #e8e8e8 }
+.portfolio_section .req_prt_block .entry_row { display: table; width: 100%; padding: 0px 10px; margin: 20px 0px }
+.portfolio_section .req_prt_block .entry_row .labels, .portfolio_section .req_prt_block .entry_row .selects { padding: 0px; display: table-cell; vertical-align: middle }
+.portfolio_section .req_prt_block .entry_row .labels h6 { font-family: 'ProximaNova-Regular'; font-size: 14px; color: #636363; margin: 0; padding: 0px }
+.portfolio_section .req_prt_block .entry_row .selects select { appearance: none; -webkit-appearance: none; -o-appearance: none; -moz-appearance: none; -ms-appearance: none; font-weight: bold; color: #434141; font-size: 14px; width: 100%; border-bottom: 1px solid #cccccc; background: #fff url('../images/select_arr.png') no-repeat scroll 98% center; margin: 0px; padding: 2px 20px 0px 5px !important; font-family: 'ProximaNova-Regular'; font-weight: normal; width: 75% }
+.pie_chart_section { display: table; width: 100%; height: 100% }
+.pie_chart_section .heading { font-family: 'ProximaNova-Bold'; font-size: 14px; color: #636363; margin: 15px 0px }
+.pie_chart_section .pie_chart { padding: 0px }
+.pie_chart_section .pie_chart .circle_chart { padding: 0px; width: 100% }
+.pie_chart_section .highcharts-button, .pie_chart_section .highcharts-credits, .pie_chart_section .pie_chart .circle_chart .highcharts-legend .highcharts-point { display: none }
+.pie_chart_section .pie_chart .circle_chart .highcharts-title { font-family: 'ProximaNova-Bold'; color: #f78a09 !important; fill: #f78a09 !important }
+.pie_chart_section .pie_chart .circle_chart .highcharts-title tspan { font-size: 24px; font-weight: bold; line-height: 30px }  
+.pie_chart_section .pie_chart .circle_chart .highcharts-legend-nav-active { fill: #3295c9 !important }
+.pie_chart_section .pie_chart .circle_chart .leg_blk { margin-bottom: 8px }
+.pie_chart_section .pie_chart .circle_chart .perc_blk { color: #fff; font-family: 'ProximaNova-Semibold'; font-size: 16px; padding: 5px 10px; width: 70px; height: 30px; text-align: right; display: inline-block; border-radius: 3px }
+.pie_chart_section .pie_chart .circle_chart .perc_blk_cnt { color: #565656; font-family: 'ProximaNova-Bold'; font-size: 14px; padding-left: 10px }
+.portfolio_table {  margin: 0px auto 0px}  
+.portfolio_table .table_row { display: table; width: 100% }
+.portfolio_table .table_row.head { background: #e8e8e8 }
+.portfolio_table .table_row .column { display: table-cell; padding: 12px 15px; vertical-align: middle }
+.portfolio_table .table_row .column1 { width: 35%  }
+.portfolio_table .table_row .column2 { width: 25% }
+.portfolio_table .table_row .column3 { width: 40% }
+.portfolio_table .table_row.head h5 { font-family: 'ProximaNova-Semibold'; font-size: 14px; color: #424141 }
+.portfolio_table .table_row.body { background: transparent; border-bottom: 1px solid #e5e5e5 }
+.portfolio_table .table_row.body h5 { font-family: 'ProximaNova-Regular'; font-size: 14px; color: #636363 }
+.portfolio_table .edit_graph_row { margin: 0px; width: 100% }
+.portfolio_table .edit_graph_data { margin: 0px; width: 100% }
+.portfolio_table .edit_graph_bar { margin-top: 8px; width: 70% }
+.portfolio_table .edit_graph_data input { width: 23px !important}
+.portfolio_table .edit_graph_data input, .portfolio_table .edit_graph_data input + label { color: #636363; font-family: 'ProximaNova-Semibold'; font-size: 13px; }
+.investor_profile .age1 .ui-slider-horizontal .ui-slider-range-min { background: #3295c9 }
+.investor_profile .button_set { margin: 25px 0px 30px; clear: both; text-align: center; width: 100%; font-family: 'ProximaNova-Bold'; font-size: 14px }
+.investor_profile .button_set .cancel { background: #7c7c7c; border: 1px solid #7c7c7c; color: #fff; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; transition: all 0.3s ease 0s; width: 130px; margin-right: 10px; box-shadow: 0px 3px 3px rgba(0,0,0,0.3) }
+.investor_profile .button_set .save_ed { background: #ff7e00; border: 1px solid #ff7e00; color: #fff; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; transition: all 0.3s ease 0s; width: 130px; box-shadow: 0px 3px 3px rgba(0,0,0,0.3) }  
+.investor_profile .button_set .cancel:hover { background: #fff; color: #7c7c7c }
+.investor_profile .button_set .save_ed:hover { background: #fff; color: #ff7e00 }
+
+/* End */
+
+/* Investor Financial Planner Section */
+
+.portfolio_section .financial_plr_section { background: transparent; padding: 0px 30px; height: auto; box-shadow: -5px 0px 10px rgba(0,0,0,0.2) }
+.financial_plr_section .high_chart_blk { margin: 40px auto }
+.financial_plr_section .high_chart_blk tspan { font-size: 14px !important }
+.financial_plr_section .high_chart_blk text { color: #8e8e8e !important; fill: #8e8e8e !important; font-family: 'ProximaNova-Regular' }
+.financial_plr_section .high_chart_blk .highcharts-credits, .financial_plr_section .high_chart_blk .highcharts-title, .financial_plr_section .high_chart_blk .highcharts-button-symbol { display: none }
+.financial_plr_section .high_chart_blk .highcharts-axis-title { font-size: 15px }
+.financial_plr_section .high_chart_blk .highcharts-container { width:100% !important; height:100% !important }
+.financial_plr_section .high_chart_blk .x_axis_head { position: relative; text-align: center; z-index: 1; width: 93.5%; margin: 0px 0px 0px 6%  }
+.financial_plr_section .high_chart_blk .x_axis_head:before { content:''; background: #c4c4c4; width: 100%; height: 1px; position: absolute; top: 50%; left: 0; z-index: -1 }
+.financial_plr_section .high_chart_blk .x_axis_head h5 { font-family: 'ProximaNova-Regular'; font-size: 15px; color: #8e8e8e; margin: 0px; padding: 0px; display: inline-block; width: auto; background: #fff; padding: 0px 15px }
+.financial_plr_section .high_chart_blk .legend { font-family: 'ProximaNova-Regular'; font-size: 12px; color: #8e8e8e; margin: 20px 0px 0px; text-align: center }
+.financial_plr_section .high_chart_blk .legend .leg { margin: 0px 15px 0px 0px; position: relative; padding: 0px 0px 0px 15px }
+.financial_plr_section .high_chart_blk .legend .leg:before { content: '';  width: 10px; height: 10px; position: absolute; left: 0; top: 0; border-radius: 2px }
+.financial_plr_section .high_chart_blk .legend .leg_4 { padding-left: 20px }
+.financial_plr_section .high_chart_blk .legend .leg_1:before { background: #4aae3c }
+.financial_plr_section .high_chart_blk .legend .leg_2:before { background: #195b6c }
+.financial_plr_section .high_chart_blk .legend .leg_3:before { background: #fdba18 }
+.financial_plr_section .high_chart_blk .legend .leg_5:before { background: #000000 }
+.financial_plr_section .high_chart_blk .legend .leg_4:before { background: #fff; border-radius: 50%; border: 1px solid rgba(0,0,0,0.5); width: 13px; height: 13px; top: -2px; box-shadow: 0px 1px 3px rgba(0,0,0,0.6) }
+.financial_plr_section .inv_resp_blk { box-shadow: none; border-radius: none; margin: 25px auto }
+.financial_plr_section .inv_resp_blk .header_block { background: #e8e8e8; padding: 10px 0px }
+.financial_plr_section .inv_resp_blk .header_block a h4:after { top: 0% }
+.financial_plr_section .inv_resp_blk .header_block a.collapsed h4:after { top: 25% }
+.financial_plr_section .inv_resp_blk .resp_list { margin: 0px; padding: 15px; font-family: 'ProximaNova-Regular'; font-size: 14px; color: #6b6b6b; list-style-position: outside }
+.financial_plr_section .inv_resp_blk .resp_list li { line-height: 20px; margin-bottom: 20px; padding-left: 5px }
+.financial_plr_section .inv_resp_blk .resp_list li .descp { display: block; padding: 5px 0px 5px; font-family: 'ProximaNova-Semibold'; color: #313131 }
+
+/* End */
+
+/* Investor Portfolio About Page */
+
+section.page_body_section .breadcrumb_menu ul { list-style-type: none; margin:0px; padding:15px 0px; font-family:'ProximaNova-Regular'; font-size: 14px; color: #888787 } 
+section.page_body_section .breadcrumb_menu ul li { display: inline-block; position: relative }
+section.page_body_section .breadcrumb_menu ul li:after { content: '/'; margin-left: 7px; margin-right: 2px  }
+section.page_body_section .breadcrumb_menu ul li:last-child:after { content: none }
+section.page_body_section .breadcrumb_menu ul li a { color: #888787 }
+section.page_body_section .breadcrumb_menu ul li a:hover { text-decoration: underline }
+
+.about_profile_section { background: #fff; width: 100%; height: auto; margin: 0px; border-top-left-radius: 5px; border-top-right-radius: 5px; display: table; border-bottom: 4px solid #a0a0a0 }
+.about_profile_section .about_head { font-family: 'ProximaNova-Light'; font-size: 22px; color: #172416; margin: 0px; padding: 20px 15px 20px 30px } 
+.about_profile_section .profile_block { min-height: 130px; background: #424141; padding: 0px }
+.about_profile_section .profile_block .column1 { background: #252424; min-height: inherit; padding: 15px 30px; color:#959595; }
+.about_profile_section .profile_block .profile_name { position: relative; width: 100%;  }
+.about_profile_section .profile_block .profile_name figure { position: absolute; width: 57px; height: 57px; border-radius: 50%; margin: 5px 0px }
+.about_profile_section .profile_block .profile_name figure img { width: 100%; max-width: 100%; height: 100%; border-radius: 50% }
+.about_profile_section .profile_block .profile_name .dp_names { padding: 10px 0px 10px 80px }
+.about_profile_section .profile_block .profile_name .dp_names h4 { font-family: 'ProximaNova-Bold'; font-size: 18px; color: #ffffff; margin: 0px; padding: 0px; line-height: 25px }
+.about_profile_section .profile_block .profile_name .dp_names h5 { font-family: 'ProximaNova-Regular'; font-size: 13px; color: #999999; margin: 0px; padding: 0px; line-height: 20px; font-weight: bold }
+.about_profile_section .profile_block .column2 { padding: 30px }
+.about_profile_section .profile_block .column2 .details { list-style-type: none; font-family: 'ProximaNova-Regular'; font-size: 13px; color: #959595; padding: 0px; margin: 0px; display: table; width: 100% }
+.about_profile_section .profile_block .column2 .details li { display: table-cell; position: relative; padding-right: 30px }
+.about_profile_section .profile_block .column2 .details li:after { content: ''; background: #3c3b3b; width: 1px; height: 40px; position: absolute; top: 0%; right: 30px }
+.about_profile_section .profile_block .column2 .details li:last-child:after { content: none }
+.about_profile_section .profile_block .column2 .details li span { display: block; font-family: 'ProximaNova-Bold'; font-size: 13px; color: #d9d9d9 }
+.about_profile_section .profile_block .moderate_btn { display: inline-block; text-align: center; border: 1px solid #f19717; font-family: 'ProximaNova-Regular'; font-size: 13px; color: #f19717; border-radius: 25px; padding: 2px 20px; transition: all 0.3s ease 0s }
+.about_profile_section .profile_block .moderate_btn:hover { padding: 2px 30px }
+.about_profile_section .profile_block .column3 { padding: 30px; text-align: center }
+.about_profile_section .profile_desc { padding: 0px }
+.about_profile_section .profile_desc .content { padding: 30px; position: relative }
+.about_profile_section .profile_desc .content:after { content: ''; background: #e6e6e6; width: 1px; height: 80%; position: absolute; right: 0; top: 10% }
+.about_profile_section .profile_desc .content p { color: #6c6c6c; font-family: 'ProximaNova-Regular'; font-size: 14px }
+.about_profile_section .profile_desc .content h5 { color: #636363; font-family: 'ProximaNova-Regular'; font-size: 13px; text-transform: uppercase; margin: 20px 0px 0px } 
+.about_profile_section .profile_desc .content h4 { color: #313131; font-family: 'ProximaNova-Regular'; font-size: 24px; margin: 10px 0px 0px }
+.about_profile_section .profile_desc .content h4 i { font-size: 20px }
+.about_profile_section .profile_desc .linked_in_prfl { display: inline-block; margin: 25px 0px; border: 1px solid #007ab9; border-radius: 4px; padding: 3px 12px; font-family: 'ProximaNova-Semibold'; font-size: 13px; color: #646464}
+.about_profile_section .profile_desc .linked_in_prfl a { color: #007ab9 }
+.about_profile_section .profile_desc .linked_in_prfl a:hover { text-decoration: underline }
+.about_profile_section .profile_desc .tabs_blk { padding: 30px; position: relative }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs { font-family: 'ProximaNova-Bold'; font-size: 14px; display:table; width:100%; border-bottom: none; /*text-transform:uppercase;*/ }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li { display: table-cell; position: relative; border-bottom: 2px solid #e5e5e5; text-align: left; width: 25% }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li.active, .about_profile_section .profile_desc .tabs_blk .nav-tabs li:hover { border-bottom: 2px solid #3295c9 }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li.active a { color: #333333; background: transparent; border: 1px solid transparent; }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li a { color: #999999; padding: 10px 20px 10px 10px }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li:first-child a { padding-left: 0px }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li a:hover { color: #333333; background: transparent; border: 1px solid transparent }
+.about_profile_section .profile_desc .tabs_blk .tabs_table { width: 100%; display: table; margin:30px 0px  20px 0px }
+.about_profile_section .profile_desc .tabs_blk .tabs_table .tabs_column { display: table-cell }
+.about_profile_section .profile_desc .tabs_blk .tabs_table .tabs_column h5 { font-family: 'ProximaNova-Semibold'; font-size: 15px; color: #999999; margin: 0px; line-height: 20px }
+.about_profile_section .profile_desc .tabs_blk .tabs_table .tabs_column h5.black { color: #333333; font-family: 'ProximaNova-Regular'; }
+
+/* Investor Portfolio About Page edit */
+.about_profile_section .profile_block .column2 .details input { display: block; color:#d9d9d9; border-bottom:1px solid #959595; margin-bottom:10px; }
+.about_profile_section .tabs_column input { color:#333333; border-bottom:1px solid #e5e5e5; margin-top:5px; width:90%; }
+.about_profile_section .profile_desc .asset_amount { color: #333333; font-family: 'ProximaNova-Regular'; float:left; width:100%; }
+.about_profile_section .profile_desc .asset_amount input {color: #434141;font-size:24px; font-family: 'ProximaNova-Regular'; width:90% !important; margin-left:5px; }
+.about_profile_section .profile_desc .asset_amount i { font-size:20px; }
+.about_profile_section .profile_desc .asset_amount .edit_graph_bar { width:100%; }
+.about_profile_section .profile_block .chkbox { float:left; text-align:center; border:1px solid #3295c9; border-radius:4px; margin:0;font-size:13px; white-space:nowrap; background:#3295c9; margin-right:5px; }
+.about_profile_section .profile_block .chkbox input[type=radio] { display:none; cursor:pointer; }
+.about_profile_section .profile_block .chkbox input[type=radio] + label { margin:0; background:#fff; height:25px; line-height:25px; width:50%; float:left; cursor:pointer; color:#7c7c7c; border-radius:2px;  padding:0 10px; transition: all 0.1s ease 0.1s; }
+.about_profile_section .profile_block .chkbox input[type=radio]:checked + label { color:#ffffff; border-radius:2px; background:#3295c9;  }
+/*.about_profile_section .profile_block .profile_name .dob_field { background:url(../images/calendar-blue.png) #fff no-repeat right 3px; cursor:pointer; padding:2px 5px; margin-top:5px; width:130px; margin-left:5px; }*/
+.about_profile_section .profile_block .column2 .details li:first-child { /* width:170px !important; display:inherit; */  } 
+
+.about_profile_section .profile_desc .content textarea { padding:5px 3px; border-bottom:1px solid #e5e5e5; display:block; width:100%; }
+.about_profile_section .profile_desc .content .filed_desc { padding:5px 3px; border-bottom:1px solid #e5e5e5; display:block; width:100%; }
+.about_profile_section .profile_desc .update_btn { background: #ff7e00; border: 1px solid #ff7e00; color: #fff; padding:5px 15px; border-radius: 4px; text-transform: uppercase; transition: all 0.3s ease 0s; /*width: 110px;*/ box-shadow: 0px 3px 3px rgba(0,0,0,0.3); margin-left:10px; }  
+.about_profile_section .profile_desc .update_btn:hover { background:#fff; color:#ff7e00; border: 1px solid #ff7e00 }
+
+.investor_profile_edit .about_profile_section .profile_desc .tabs_blk .nav-tabs li.active, .investor_profile_edit .about_profile_section .profile_desc .tabs_blk .nav-tabs li:hover { border-bottom:2px solid #4aae3c; }
+
+.about_profile_section .upload_row { margin-top:0px; position:relative; top:-5px;  }
+.about_profile_section .upload_row .upload_icon { width:25px; height:24px; background:url(../images/upload-icon.png) #000 no-repeat center; background-size:55%; float:left; border-radius:20%; border:1px solid #ebebeb; margin:15px 5px 0px 0px; }
+.about_profile_section .upload_row .upload_icon:hover { border:1px solid #4aae3c; }
+.about_profile_section .upload_row .upload_outer { cursor:pointer; }
+.about_profile_section .upload_row .uploadtxt { font-size:13px; color:#fff; white-space: nowrap; margin:17px 0px 0px 0px; font-family: 'ProximaNova-Semibold';  }
+.about_profile_section .upload_row #fileselector { margin:0px; }
+.about_profile_section .upload_row #upload-file-selector { display:none; }
+.about_profile_section .upload_row .margin-correction { margin-right:0px; }
+
+
+
+/* End */
+
+/* Investor Portfolio Chart Section */
+
+.inv_portfolio .chart_section { margin: 0px; box-shadow: none; border-radius: 0px; border-bottom: 4px solid #a0a0a0 }
+.inv_portfolio .chart_section .high_chart .tab_controls .nav-tabs { border-radius: 4px; border: 1px solid #3295c9; width: 250px; margin: 0 auto; font-family: 'ProximaNova-Semibold'; font-size: 12px }
+.inv_portfolio .chart_section .high_chart .tab_controls .nav-tabs li { width: 50% }
+.inv_portfolio .chart_section .high_chart .tab_controls .nav-tabs li a { color: #666; background: transparent; border: none; border-radius: 0px; margin: 0px }
+.inv_portfolio .chart_section .high_chart .tab_controls .nav-tabs li.active a { color: #fff; background: #3295c9 }
+
+/* End */
+
+/* Investor Portfolio Life Goal Section */
+
+.inv_portfolio .life_goal_section { margin: 0px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px }
+.inv_portfolio .life_goal_section .goals_table .goals_row { border-bottom: 1px solid #e5e5e5 }
+.inv_portfolio .life_goal_section .goals_table .head { background: #dddddd } 
+.inv_portfolio .life_goal_section .goals_table .head .column { border-right: 1px solid #c6c6c6 }
+.inv_portfolio .life_goal_section .goals_table .head .column:last-child { border-right: none }
+.inv_portfolio .life_goal_section .goals_table .head .column h5 { color: #434141 }
+.investor_profile.inv_portfolio .button_set { margin:30px auto 33px auto }
+.slider_section.unmoveable .ui-slider-handle { display: none }
+
+/* End */
+
+.uneditable.portfolio_table .edit_graph_data .ui-slider-handle { display: none }
+.uneditable.button_set { margin: 25px 0px 30px; clear: both; text-align: center; width: 100%; font-family: 'ProximaNova-Bold'; font-size: 14px }
+.uneditable.button_set .cancel { background: #7c7c7c; border: 1px solid #7c7c7c; color: #fff; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; transition: all 0.3s ease 0s; width: 130px; margin-right: 10px; box-shadow: 0px 3px 3px rgba(0,0,0,0.3) }
+.uneditable.button_set .save_ed { background: #4aae3c; border: 1px solid #4aae3c; color: #fff; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; transition: all 0.3s ease 0s; width: 130px; box-shadow: 0px 3px 3px rgba(0,0,0,0.3) }  
+.uneditable.button_set .cancel:hover { background: #fff; color: #7c7c7c }
+.uneditable.button_set .save_ed:hover { background: #7c7c7c; color: #fff; border: 1px solid #7c7c7c }
+
+
+.inv_advance_settings_section { border-radius: 0px }
+.inv_advance_settings_section .header_block { padding: 15px 20px; background: #e8e8e8  }
+.inv_advance_settings_section .header_block h4 { padding: 0px }
+.inv_advance_settings_section .header_block a h4:after { top: 0% }
+.inv_advance_settings_section .header_block a.collapsed h4:after { top: 25% }
+.inv_advance_settings_section #advance_settings_block:after, .inv_advance_settings_section .increment_section:after { content: none }
+.inv_advance_settings_section .table_block, .inv_advance_settings_section .increment_section .salary_inc_block, .inv_advance_settings_section .increment_section .expense_inc_block { padding-left: 0px; padding-right: 0px }
+.inv_advance_settings_section .increment_section .heading .header { padding-left: 20px }
+
+.inv_chart_section .meter_chart { width: inherit }
+
+
+/*.investor_dashboard .circle_chart .highcharts-container span { font-size:18px; }
+.investor_dashboard .circle_chart .highcharts-container tspan { font-size:16px; }*/
+.circle_chart .highcharts-container tspan { font-size:16px; }
+
+
+
+
+
+
+
+
+/* End */
+
+/* Media Queries */
+
+@media screen and (max-width: 1600px)
+{
+.increment_section .body .edit_graph_bar { width: 70% }
+.advance_settings_section .slider_block .slider .edit_graph_bar { width: 70% }
+}
+
+@media screen and (max-width: 1370px)
+{
+.increment_section .body .edit_graph_bar { width: 65% }
+.advance_settings_section .slider_block .slider .edit_graph_bar { width: 65% }
+.portfolio_table .edit_graph_bar { width: 65% }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li { width: auto }
+}
+
+@media screen and (max-width: 1280px)
+{
+.increment_section .body .edit_graph_bar { width: 60% }
+.portfolio_table .edit_graph_bar { width: 60% }
+}
+
+@media screen and (max-width: 1199px)
+{
+.navbar-toggle { display: block; float:left; }
+section.hamber_menu_section { left: -92px }
+main.inner_page, footer.inner_class { padding-left: 0px } 
+.chart_section .meter_chart .slider_section .edit_graph_data input { margin-left: 10px; font-size: 23px }
+.chart_section .chart_head { padding: 20px 15px 15px 15px; font-size: 20px }
+.chart_section .high_chart .tab_controls { padding: 25px 15px }
+.chart_section .meter_chart .gauge_section .gauge__value tspan { font-size: 50px }
+.chart_section .meter_chart .gauge_section .edit_inputgraphtxt { font-size: 21px }
+.chart_section .meter_chart .slider_section .edit_graph_data label { font-size: 18px }
+.life_goal_section .goals_table .column1, .life_goal_section .add_row_blk { padding-left: 15px }
+.life_goal_section .header_block h4 { font-size: 20px; padding: 0px 0px 5px 0px }
+.advance_settings_section .header_block h4 { font-size: 20px; padding: 0px 0px 5px 0px }
+.advance_settings_section .slider_block { padding-left: 15px; padding-right: 15px }
+.advance_settings_section .slider_block .slider .edit_graph_bar { width: 60% }
+.advance_settings_section .table_block .adv_table_row .column { padding: 13px }
+.increment_section .heading .header { font-size: 20px }
+.increment_section .salary_inc_block, .increment_section .expense_inc_block { padding: 20px 15px }
+.increment_section .body .edit_graph_bar { width: 55% }
+.portfolio_section .section_head h3 { font-size: 20px }
+.financial_plr_section .inv_resp_blk .header_block h4 { padding: 0px 20px }
+.financial_plr_section .inv_resp_blk .header_block a h4:after { top: -15% }
+.financial_plr_section .inv_resp_blk .header_block a.collapsed h4:after { top: 15% }
+.about_profile_section .about_head { font-size: 20px; padding: 15px }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li:last-child { /*margin-top: 10px*/ }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li:last-child a { padding-left: 0px }
+.about_profile_section .profile_block .column1 { padding: 15px }
+.about_profile_section .profile_block .column2, .about_profile_section .profile_block .column3, .about_profile_section .profile_desc .content, .about_profile_section .profile_desc .tabs_blk { padding: 30px 15px }
+}
+
+@media screen and (max-width: 980px)
+{
+.life_goal_section .goals_table .switch_tog { width: 90% }
+.life_goal_section .goals_table .ed_del { width: 100%; text-align: center }
+.life_goal_section .edit_graph_data input.estim_amt { width: 85% !important }
+.advance_settings_section .slider_block .slider .edit_graph_bar { width: 55% }
+.increment_section .body .edit_graph_bar { width: 50% }
+
+
+.increment_section .salary_row .column { padding: 12px 10px; }
+.advance_settings_section .slider_block .slider .edit_graph_data input { font-size:16px; margin-left:10px; }
+.advance_settings_section .slider_block .slider .edit_graph_data label { font-size:16px; }
+.increment_section .body .edit_graph_data input { font-size:16px; margin-left:10px; }
+.increment_section .body .edit_graph_data label { font-size:16px; }
+
+
+}
+
+@media screen and (max-width: 800px)
+{
+.advance_settings_section .slider_block .slider .edit_graph_bar { width: 50% }
+.increment_section .body .edit_graph_bar { width: 44% }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li:nth-child(3) { /*margin-top: 10px */}
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li:nth-child(3) a { padding-left: 0px }
+.chart_section .meter_chart .slider_section .edit_graph_bar { width: 70% }
+
+
+
+
+}
+
+@media screen and (max-width: 767px)
+{
+header.navbar-fixed-top .navbar-header { float: left }
+.navbar-toggle { margin: 0px 10px 0px 0px; }
+header.navbar-fixed-top .logo { /*background-image: url('../images/mobile_logo.png')*/ }
+footer.inner_class .footer { padding: 25px 15px }
+footer.inner_class .footer .footer_links { float: left; padding: 0px }
+footer.inner_class .footer .copyright { float: left; width: 100%  }
+section.page_body_section  { padding: 0px 15px }
+.chart_section .high_chart, .chart_section .meter_chart { width: 100% }
+.chart_section .chart_head { text-align: center; font-size: 18px }
+.chart_section .high_chart .legend .leg { display: block; text-align: left }
+.chart_section .high_chart .legend .leg:before { top: 5px }
+.chart_section .high_chart .legend .leg_4:before { top: 4px }
+.page_header_section h3 { font-size: 18px; padding: 15px 0px 15px 40px }
+.chart_section .meter_chart .slider_section .edit_graph_bar { width: 85% }
+.chart_section .high_chart .list_table .head { border-bottom: none; border-top: 1px solid #f3f3f3 }
+.chart_section .high_chart .list_table .head .column h5 { transform: rotate(270deg); padding: 15px 0px; width: 80% }
+.chart_section .high_chart .list_table .head .column { vertical-align: middle; padding: 15px 30px }
+#list_view { margin: 0px -15px }
+.life_goal_section .header_block { border-bottom: 1px solid #d6d6d6 }
+.life_goal_section .header_block h4 { font-size: 18px }
+.life_goal_section .goals_table .head { display: none }
+.life_goal_section .goals_table .body .column { border-right: none; width: 100%; display: block; padding: 3px 0px } 
+.life_goal_section .goals_table .goals_row.body { border-bottom: 1px solid #d6d6d6; padding: 15px 0px 20px }
+.life_goal_section .goals_table { padding: 0px 20px }
+.life_goal_section .edit_graph_row { margin: 5px 0px 10px }
+.life_goal_section .goals_table .switch_tog { width: 75%; float: left }
+.life_goal_section .goals_table .ed_del { width: auto; float: right }
+.life_goal_section .goals_table .body .column span.head_mobile { display: inline-block }
+.life_goal_section .goals_table .body .column .goal_select { margin-bottom: 15px }
+.life_goal_section .goals_table .body .column1 .goal_select { margin-top: 15px }
+.advance_settings_section .header_block h4 { font-size: 18px }
+.advance_settings_section .slider_block { padding: 15px }
+.advance_settings_section .slider_block .content, .advance_settings_section .slider_block .slider { padding: 0px }
+.advance_settings_section .slider_block .slider .edit_graph_bar { width: 75% }
+.advance_settings_section .slider_block .slider .edit_graph_data input, .advance_settings_section .slider_block .slider .edit_graph_data label { font-size:16px; margin-left:10px; /*margin-left:5px; */ }
+.advance_settings_section .table_block { padding: 15px 0px }
+.advance_settings_section .table_block .head .column h5 { transform: rotate(270deg); display: inline-block; width: auto; padding: 30px 0px }
+.advance_settings_section #advance_settings_block:after { content: none }
+.increment_section:after { content: none }
+.increment_section .heading .header { font-size: 18px; margin-bottom: 10px; text-align: center }
+.increment_section .salary_inc_block .salary_row.head .column1 { display: none }
+.increment_section .salary_inc_block .salary_row.body .column { border-right: none }
+.increment_section .salary_inc_block .salary_row.body .column1 { width: 100%; display: block; padding-top: 7px; padding-bottom: 7px; text-align: center }
+.increment_section .salary_inc_block .salary_row.body .column2 { width: 50%; display: block; float: left }
+.increment_section .salary_inc_block .salary_row.body .column3 { width: 50%; display: block; float: left }
+.increment_section .salary_inc_block .salary_row.body .column { /*padding: 10px 15px;*/ padding: 10px 10px }
+.increment_section .body .edit_graph_bar { width: 75% }
+.increment_section .salary_inc_block, .increment_section .expense_inc_block { padding: 20px 0px }
+.portfolio_section .section_head h3 { font-size: 18px; padding-left: 10px }
+.portfolio_section .section_head { padding: 15px 0px 10px }
+.portfolio_section .allocate_prt_section { padding: 0px }
+.portfolio_section .req_prt_block .entry_row .selects { margin-top: 5px }
+.portfolio_table .table_row.head h5 { transform: rotate(270deg); display: inline-block; width: 80px; padding: 30px 0px }
+.pie_chart_section .heading { padding-left: 10px }
+.portfolio_section .req_prt_block .entry_row .selects select { width: 100% }
+.portfolio_table .edit_graph_data input { margin-left: 10px }
+.pie_chart_section .pie_chart .circle_chart .highcharts-title tspan { font-size: 18px }
+.pie_chart_section .pie_chart .circle_chart .perc_blk { width: 50px }
+.portfolio_section .financial_plr_section { padding: 0px 15px }
+.about_profile_section .about_head { font-size: 18px }
+.about_profile_section .profile_desc .content, .about_profile_section .profile_desc .tabs_blk { padding: 15px }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li:nth-child(3), .about_profile_section .profile_desc .tabs_blk .nav-tabs li:last-child { margin-top: 0px }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li:nth-child(3) a,.about_profile_section .profile_desc .tabs_blk .nav-tabs li:last-child a { /*padding-left: 10px*/  }
+
+header.navbar-fixed-top .settings .gear_icon { margin-right:5px; }
+
+.increment_section .body .edit_graph_data input { font-size:15px; margin-left:10px; }
+.increment_section .body .edit_graph_data label { font-size:15px; }
+
+
+}
+
+@media screen and (max-width: 640px) {
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li a {  padding:5px 8px; }
+
+
+}
+
+@media screen and (max-width: 480px)
+{
+.chart_section .meter_chart .slider_section .edit_graph_bar { width: 80% }
+.chart_section .high_chart .list_table .head .column { vertical-align: middle; padding: 15px 18px }
+.edit_graph_data input, .edit_graph_data input:focus { text-align: left;  }
+.increment_section .body .edit_graph_bar { width: 70% }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li:last-child { /*margin-top: 10px*/ }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li:last-child a { /*padding-left: 0px */}
+
+}
+
+@media screen and (max-width: 479px)
+{
+footer.inner_class .footer .social_icons { float: left }
+.increment_section .body .edit_graph_bar { width: 55% }
+.portfolio_table .edit_graph_bar { width: 55% }
+.financial_plr_section .inv_resp_blk .header_block a h4:after { top: 0% }
+.financial_plr_section .inv_resp_blk .header_block a.collapsed h4:after { top: 25% }
+.about_profile_section .profile_block .column2 .details li { display: block; padding-bottom:15px; }
+
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li:nth-child(3) { margin-top:0px }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li:nth-child(3) a { /*padding-left: 10px */}
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li { width:50% }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li:nth-child(2) { /*margin-top: -20px*/ }
+
+/*.about_profile_section .profile_desc .tabs_blk .tabs_column h5 { display:block; }
+.about_profile_section .profile_desc .tabs_blk .tabs_column h5.black { display:block; }
+*/
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li { width:100%;  }
+.about_profile_section .profile_desc .tabs_blk .nav-tabs li a { padding:10px 0px; }
+.about_profile_section .profile_desc .tabs_blk .tabs_table { background:#fff; display:table; }
+.about_profile_section .profile_desc .tabs_blk .tabs_table .tabs_column { display:inherit; padding-bottom:10px; }
+
+
+.about_profile_section .profile_block .column2 .details li:after { content:none; }
+
+}
+
+@media screen and (max-width: 375px)
+{
+.chart_section .meter_chart .slider_section .edit_graph_bar { width: 95% }
+.chart_section .high_chart .list_table .head .column { vertical-align: middle; padding: 15px 10px }
+.chart_section .meter_chart .slider_section .edit_graph_bar { width: 75% }
+.advance_settings_section .table_block .head .column h5 { padding: 20px 0px }
+
+}
+
+@media screen and (max-width: 360px)
+{
+footer.inner_class .footer .footer_links li:last-child { padding-left: 0px }
+}
+
+@media screen and (max-width: 320px)
+{
+.chart_section .high_chart .list_table .head .column { vertical-align: middle; padding: 15px 8px }
+.chart_section .meter_chart .slider_section .edit_graph_bar { width: 70% }
+.chart_section .high_chart .list_table .popover { margin-left: -20px }
+.advance_settings_section .table_block .adv_table_row .column { padding: 13px 7px }
+.increment_section .body .edit_graph_bar { width: 45% }
+.portfolio_table .edit_graph_bar { width: 48% }
+.portfolio_table .table_row.head h5 { width: 60px }
+}
+
+@media screen and (max-width: 300px)
+{
+.portfolio_table .edit_graph_bar { width: 40% }
+}
+
+
+
+/* End */
+
+
+
+
+

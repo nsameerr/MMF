@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 15, 2016 5:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.FpInsuranceDetailsUserInputsTb" table="fp_insurance_details_user_inputs_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="customerId" type="string">
+            <column name="customer_id" length="50" />
+        </property>
+        <property name="insuranceType" type="string">
+            <column name="insurance_type" length="20" />
+        </property>
+        <property name="insuranceName" type="string">
+            <column name="insurance_name" length="50" />
+        </property>
+        <property name="insuranceCover" type="java.lang.Integer">
+            <column name="insurance_cover" />
+        </property>
+        <property name="annualPremium" type="java.lang.Integer">
+            <column name="annual_premium" />
+        </property>
+        <property name="finalYearOfPayment" type="java.lang.Integer">
+            <column name="final_year_of_payment" />
+        </property>
+    </class>
+</hibernate-mapping>

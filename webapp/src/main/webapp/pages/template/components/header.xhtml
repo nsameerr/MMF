@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title></title>
+        <script src="#{request.contextPath}/pages/v2/js/clevertap.js"></script>
+    </head>
+    <body>
+        <ui:composition>
+            <h:form id="frm_header">
+                <ui:param name="isAdviser" value="#{headerController.advisorUser}"/>     
+                <div class="navbar navbar-inverse">
+                    <div class="navbar-inner">
+                        <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <ul class="nav pull-right">
+                            <li class="hidden-phone">
+                            </li>
+                            <h:panelGroup rendered="#{isAdviser and headerController.advisorNotificationsPopup.size()>0}">
+                                <li class="notification-dropdown ">
+                                    <a href="#" class="trigger">
+
+                                        <i class="icon-warning-sign"></i>
+                                        <span class="count">
+                                            <h:outputText value="#{headerController.advisorNotificationsPopup.size()}"/>
+                                        </span>
+                                    </a>
+                                    <div class="pop-dialog">
+                                        <div class="pointer right">
+                                            <div class="arrow"></div>
+                                            <div class="arrow_border"></div>
+                                        </div>
+                                        <div class="body">
+                                            <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                                            <div class="notifications">
+                                                <h3>You have <h:outputText value="#{headerController.advisorNotificationsPopup.size()}"/> new notification</h3>
+                                                <p:remoteCommand name="selectNotification" actionListener="#{headerController.doActionRedirectToADV()}"
+                                                                 action="#{headerController.getRedirectToADV()}">
+                                                </p:remoteCommand>
+                                                <ui:repeat value="#{headerController.advisorNotificationsPopup}"
+                                                           var="notification"
+                                                           rendered="#{headerController.advisorNotificationsPopup.size()>0}">
+                                                    <div class="item">  
+                                                        <div  onclick="selectNotification([{name: 'index',
+                                                                        value: '#{headerController.advisorNotificationsPopup.indexOf(notification)}_true'}]);">
+                                                            <h:outputLabel  class="icon-signin"/>
+                                                            <span>
+                                                                <h:outputText  value="#{notification.notificationMessage}" 
+                                                                               style="cursor: pointer;"/>
+                                                            </span>
+                                                            <span class="time"><i class="icon-time"></i> #{notification.elapsedTimeMsg}</span>
+                                                            <a href=""></a>
+                                                        </div>                                  
+                                                    </div>
+                                                </ui:repeat>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{!isAdviser and headerController.investorNotificationspoup.size()>0}">
+                                <li class="notification-dropdown ">
+                                    <a href="#" class="trigger">
+                                        <i class="icon-warning-sign"></i>
+                                        <span class="count">
+                                            <h:outputText value="#{headerController.investorNotificationspoup.size()}"/>
+                                        </span>
+                                    </a>
+                                    <div class="pop-dialog">
+                                        <div class="pointer right">
+                                            <div class="arrow"></div>
+                                            <div class="arrow_border"></div>
+                                        </div>
+                                        <div class="body">
+                                            <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                                            <div class="notifications">
+                                                <h3>You have <h:outputText value="#{headerController.investorNotificationspoup.size()}"/> new notification</h3>
+                                                <p:remoteCommand name="selectNotification" action="#{headerController.getRedirectToINV()}"/>
+                                                <ui:repeat value="#{headerController.investorNotificationspoup}"
+                                                           var="notification"
+                                                           rendered="#{headerController.investorNotificationspoup.size()>0}">
+                                                    <div class="item">
+                                                        <div class=""> 
+                                                            <h:outputLabel  class="icon-signin"/>
+                                                            <span>
+                                                                <h:commandLink style="color: rgb(54, 54, 54);"
+                                                                               actionListener="#{headerController.doActionRedirectToINV()}"
+                                                                               action="#{headerController.getRedirectToINV()}">
+                                                                    #{notification.notificationMessage}
+                                                                    <f:param name="index" value='#{headerController.investorNotificationspoup.indexOf(notification)}_true'/>
+                                                                </h:commandLink>
+                                                            </span>     
+                                                            <span class="time"><i class="icon-time"></i>#{notification.elapsedTimeMsg}.</span>
+                                                        </div>
+                                                    </div>
+                                                </ui:repeat>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </h:panelGroup>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle " data-toggle="dropdown">
+                                    #{headerController.userName}
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <h:commandLink 
+                                            value="Personal info" 
+                                            actionListener="#{headerController.onClickPersonalInfo()}"  
+                                            action="#{headerController.navPersonalInfo()}"/>
+                                    </li>
+                                    <li>
+                                        <h:commandLink 
+                                            value="Change Password" 
+                                            actionListener="#{headerController.onClickChangePassword()}"  
+                                            action="#{headerController.navChangePassword()}"/>
+                                    </li>
+                                    <li>
+                                        <h:panelGroup rendered="#{!headerController.linkedInConnected}">
+                                            <a onmouseover="mover()" onmouseout="mout()"
+                                               href="#{headerController.url}" target="_self">Connect LinkedIN</a>
+                                        </h:panelGroup>
+                                    </li>
+                                    <h:panelGroup rendered="#{!isAdviser}">
+                                        <li>
+                                            <h:commandLink 
+                                                value="Today's Order" 
+                                                actionListener="#{headerController.onClickTodaysOrder()}"
+                                                onclick="javascript:startSpinner();"
+                                                action="#{headerController.redirectURL()}"/>
+                                        </li>
+                                        <li>
+                                            <h:commandLink 
+                                                value="Today's Trade" 
+                                                actionListener="#{headerController.onClickTodaysTrade()}"
+                                                onclick="javascript:startSpinner();"
+                                                action="#{headerController.redirectURL()}"/>
+                                        </li>
+                                        <li>
+                                            <h:commandLink 
+                                                value="Portfolio Summary" 
+                                                actionListener="#{headerController.onClickPortfolioSummary()}"
+                                                onclick="javascript:startSpinner();"
+                                                action="#{headerController.redirectURL()}"/>
+                                        </li>
+                                        <li>
+                                            <h:commandLink 
+                                                value="Rejection Report" 
+                                                actionListener="#{headerController.onClickRejectionReport()}"
+                                                onclick="javascript:startSpinner();"
+                                                action="#{headerController.redirectURL()}"/>
+                                        </li>
+                                        <li>
+                                            <h:commandLink 
+                                                value="Sync Buying Power" 
+                                                actionListener="#{headerController.onClickSinkBp()}"
+                                                onclick="javascript:startSpinner();"
+                                                action="#{headerController.redirectURL()}"/>
+                                        </li>
+                                        <li>
+                                            <a href="#" id="fund_transfer" onclick="javascript:fundTransfer();">
+                                                Fund Transfer to GBNPP</a>
+                                        </li>
+                                        <li>
+                                            <h:commandLink 
+                                                value="Update Personal Profile" 
+                                                action="#{headerController.updatePersonalInvInfo()}"/>
+                                        </li>
+                                    </h:panelGroup>
+                                      <h:panelGroup rendered="#{isAdviser}">
+                                      		<li>
+                                        	<h:commandLink 
+                                            value="Update Personal Profile" 
+                                            action="#{headerController.updatePersonalInfo()}"/>
+                                           
+                                        </li>
+                                      </h:panelGroup>
+                                    <!--<li><a href="#">Account settings</a></li>-->
+                                </ul>
+                            </li>
+                            <li class="settings  dropdown">
+                                <a href="#" role="button">
+                                    <i class="icon-cog"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Connect Social Networks</a></li>
+                                </ul>
+                            </li>
+                            <li class="settings " style="cursor: pointer;">
+                                <h:commandLink id="anchor-Logout" action="#{headerController.logout}">
+                                    <i class="icon-share-alt"></i>
+                                </h:commandLink>
+                                <script type="text/javascript">
+                                		$('#frm_header\\:anchor-Logout').click(function () { 
+											clevertap.logout();
+											console.log('Clicked Logout...');
+										});
+								</script>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    //fund transfer to geojit
+                    function fundTransfer() {
+                        var serviceUrl_payin, form, hiddenField;
+                        serviceUrl_payin = '#{headerController.fundTransferUrl}';
+                        form = document.createElement("form");
+                        form.setAttribute("method", "post");
+                        form.setAttribute("action", serviceUrl_payin);
+                        form.setAttribute("target", "_blank");
+                        hiddenField = document.createElement("input");
+                        hiddenField.setAttribute("type", "hidden");
+                        hiddenField.setAttribute("id", "user_id");
+                        hiddenField.setAttribute("visibility", "hidden");
+                        hiddenField.setAttribute("name", "user_id");
+                        hiddenField.setAttribute("value", "#{headerController.omsUserId}");//pass OMS user id
+                        form.appendChild(hiddenField);
+                        // Not entirely sure if this is necessary
+                        document.body.appendChild(form);
+                        form.submit();
+                    }
+                </script>
+
+            </h:form>
+        </ui:composition>
+    </body>
+</html>

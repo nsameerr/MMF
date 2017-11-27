@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                            new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                        j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout.xhtml"
+                        xmlns:compo="http://java.sun.com/jsf/composite/composite">
+            <ui:define name="title">View Portfolio | ManageMyFortune.com</ui:define>
+            <ui:define name="sidebar">
+                <ui:include src="/pages/template/components/sidebar_user.xhtml" />
+            </ui:define>           
+            <ui:define name="content">
+            <script src="#{request.contextPath}/pages/v2/js/clevertap.js"></script>
+                <h:form id="view_portfolio_form">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div id="pad-wrapper">
+                                <div class="row-fluid">
+                                    <h2 class="page-title">
+                                        View Portfolio
+                                    </h2>
+                                </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="align_center">
+                                                Name
+                                            </th>
+                                            <th class="align_center">
+                                                Benchmark Index
+                                            </th>
+                                            <th class="align_center">
+                                                Portfolio Style
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="first">
+                                            <td class="align_center" style="padding: 8px;max-width: 210px;">
+                                                #{viewPortFolioController.customerPortfolioVO.portfolioName}</td>
+                                            <td class="align_center" style="padding: 8px;">
+                                                #{viewPortFolioController.customerPortfolioVO.benchmarkName}</td>
+                                            <td class="align_center" style="padding: 8px;">
+                                                #{viewPortFolioController.customerPortfolioVO.porfolioStyleName}</td>
+                                        </tr>                     
+                                    </tbody>
+                                </table>
+
+                                <div class="row-fluid section" style="margin-top: 0;">
+                                    <div class="span6" style="width:100%">
+                                        <h3 class="title">Portfolio Allocation</h3>
+                                        <div id="recommended-donut" class="donut-placeholder"></div>
+                                    </div>
+                                </div>
+                                <div class="table-wrapper orders-table hidden-phone">
+                                    <div class="row-fluid">
+                                        <h3 class="title no-margin-bottom" style="width: 99%;">
+                                            Asset Allocation
+                                        </h3>                 
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th class="">
+                                                        Asset Class
+                                                    </th>
+                                                    <th class="">
+                                                        <span class="line"></span>Ticker
+                                                    </th>
+                                                    <th class="">
+                                                        <span class="line"></span> Range
+                                                    </th>
+                                                    <th class="border-top">
+                                                        <span class="line"></span>Allocation
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach items="#{viewPortFolioController.portfolioDetailsVOList}" var="assetList">
+                                                    <tr class="sub-head">
+                                                        <th>#{assetList.assetClassName}</th>
+                                                        <th></th>
+                                                        <th style="padding-left: 10px;">
+                                                            <h:outputText value="#{assetList.minimumRange}">
+                                                                <f:convertNumber pattern="#00"/>
+                                                            </h:outputText>
+                                                            - 
+                                                            <h:outputText value="#{assetList.maximumRange}">
+                                                                <f:convertNumber pattern="#00"/>
+                                                            </h:outputText> %
+                                                        </th>
+                                                        <th style="padding-left: 40px;">
+                                                            <h:outputText value="#{assetList.newAllocation}">
+                                                                <f:convertNumber pattern="#00"/>
+                                                            </h:outputText> %
+                                                        </th>
+                                                    </tr>
+                                                    <ui:repeat value="#{assetList.securities}" var="securitiesList">
+                                                        <tr class="first">
+                                                            <td style="padding: 8px;max-width: 210px;">#{securitiesList.scripDecription}</td>
+                                                            <td style="padding: 8px;">#{securitiesList.securityId}</td>
+                                                            <td style="padding: 8px;"></td>
+                                                            <td style="padding: 8px;padding-left: 40px;">
+                                                                <h:outputText value="#{securitiesList.newAllocation}">
+                                                                    <f:convertNumber pattern="#00"/>
+                                                                </h:outputText> %
+                                                            </td>
+                                                        </tr>
+                                                    </ui:repeat>                   
+                                                </c:forEach>
+                                                <!-- row -->                       
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-row">
+                            <h:commandLink id="anchor-rebalance-Portfolio" value="Rebalance Portfolio"
+                                           rendered="#{viewPortFolioController.customerPortfolioVO.rebalanceRequired}" actionListener="#{viewPortFolioController.reBalanceportfolio}"
+                                           action="#{viewPortFolioController.getredirectionUrl()}"
+                                           styleClass="btn-flat success"/>
+                            <script type="text/javascript">
+						        $('#anchor-rebalance-Portfolio').on('click',function(){
+						        	clevertap.event.push("Rebalance Portfolio");	
+									console.log("Click Rebalance Portfolio");
+						        });
+						    </script>
+                            <h:commandLink value="Skip" rendered="#{viewPortFolioController.customerPortfolioVO.rebalanceRequired}" actionListener="#{viewPortFolioController.skipPortfolio}"
+                                           action="#{viewPortFolioController.getredirectionUrl()}"
+                                           styleClass="btn-flat inverse"/>
+                        </div>
+                    </div>
+                </h:form>
+                <style type="text/css">
+                    #pad-wrapper ul {
+                        list-style: none;
+                    }
+
+                    #pad-wrapper li {
+                        font-size: 18px;
+                        margin-bottom: 24px;
+                        font-style: italic;
+                    }
+
+                    .table thead th {
+                        font-size: 11px;
+                    }
+
+                    label {
+                        display: block;
+                    }
+
+                    .ui-select select {
+                        margin-top: 0;
+                    }
+                    #flotTip 
+                    {
+                        padding: 3px 5px;
+                        background-color: #2E8E0C;
+                        z-index: 100;
+                        color: #fff;
+                        box-shadow: 0 0 10px #555;
+                        opacity: .7;
+                        filter: alpha(opacity=70);
+                        border: 2px solid #fff;
+                        -webkit-border-radius: 4px;
+                        -moz-border-radius: 4px;
+                        border-radius: 4px;
+                    }   
+                </style>
+                <!--[if lt IE 9]>-->
+                <script src="#{request.contextPath}/js/modernizr.js"></script>
+
+                <!-- scripts for this page -->
+                <script src="#{request.contextPath}/js/jquery.js"></script>
+                <script src="#{request.contextPath}/js/bootstrap.min.js"></script>
+                <script type="text/javascript">
+                    $(function() {
+                        $('.dropdown-toggle').dropdown();
+                    });
+                    $(function() {
+                        $('#sidebar-nav.').addClass('display');
+                    });
+                </script>
+                <script src="#{request.contextPath}/js/jquery-ui-1.10.2.custom.min.js"></script>
+
+                <!-- call all plugins -->
+                <script src="#{request.contextPath}/js/theme.js"></script>
+
+
+                <!-- pie-chart -->
+                <script src="#{request.contextPath}/lib/flot/jquery.flot.js"></script>
+                <script src="#{request.contextPath}/lib/flot/jquery.flot.pie.js"></script>
+                <script src="#{request.contextPath}/js/jquery.flot.tooltip.js"></script>
+                <script type="text/javascript">
+
+                    data = JSON.parse('#{viewPortFolioController.pieChartData()}');
+
+                    $.plot('#recommended-donut', data, {
+                        series: {
+                            pie: {
+                                innerRadius: 0.5,
+                                show: true,
+                                label: {
+                                    show: true,
+                                    radius: 0.99,
+                                    formatter: labelFormatter,
+                                    background: {
+                                        opacity: 1,
+                                        color: 'transparent'
+                                    },
+                                    threshold: 0
+                                },
+                                stroke: {
+                                    width: 5,
+                                    color: '#ffffff'
+                                }
+
+                            }
+                        }, legend: {
+                            show: false
+                        },
+                        grid: {
+                            hoverable: true
+                        },
+                        tooltip: true,
+                        tooltipOpts: {
+                            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+                            shifts: {
+                                x: 20,
+                                y: 0
+                            },
+                            defaultTheme: false
+                        }
+                    });
+
+                    function labelFormatter(label, series) {
+                        return '<div class="donut-label">' + label + '<br/>' + Math.round(series.percent) + '%</div>';
+                    }
+
+                </script>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

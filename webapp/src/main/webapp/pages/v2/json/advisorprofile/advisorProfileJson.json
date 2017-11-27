@@ -1,0 +1,42 @@
+{
+  "userProfilePic": "https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png",
+  "userRating": "5",
+  "firstName": "sumeet",
+  "middleName": "prakash",
+  "lastName": "pol",
+  "oneLineDesc": "this is one line description about me",
+  "sebiCertificateNo": "1234567890ABCDEF",
+  "sebiCertificateValidity": "16-08-2020",
+  "currentJobTitle": "Software Engg",
+  "currentOrg": "MMF Pvt.Ltd.",
+  "email":"polsumeet3666@gmail.com",
+  "previousOrg": [
+    {
+      "orgName": "xyz pvt ldt 1",
+      "title": "engg 1",
+      "fromDate": "03-03-2014",
+      "toDate": "03-030-2015"
+    },
+    {
+      "orgName": "xyz pvt ldt 2",
+      "title": "engg 2",
+      "fromDate": "03-03-2015",
+      "toDate": "03-030-2016"
+    }
+  ],
+  "qualificationDetails": [
+    {
+      "degree": "degree 1",
+      "institute": "institute 1",
+      "year": "2015"
+    },
+    {
+      "degree": "degree 2",
+      "institute": "institute 2",
+      "year": "2016"
+    }
+  ],
+  "linkedInProfileLink": "https://linkedIn.in/polsumeet3666",
+  "aboutMe": "500 characters of about me",
+  "philosophy": "500 characters of my investment logic"
+}

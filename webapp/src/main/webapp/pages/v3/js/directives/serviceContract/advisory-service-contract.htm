@@ -1,0 +1,245 @@
+    <style type="text/css">
+        .wid_80 {
+            width: 80px;
+        }
+        .advMsg {
+            margin-left: 30px;
+        }
+        .invMsg {
+            margin-left: 0px;
+        }
+    </style>
+    <!-- Start : Advisory Service Contract :  Advisor View-->    
+	<main class="inner_page">
+    	<div class="scroll-to-bottom" style="display: block">
+        	<i class="fa fa-angle-down"></i>
+        </div>
+        <div class="scroll-to-top">
+        	<i class="fa fa-angle-up"></i>
+        </div>
+        <div class="page_header_section">
+        	<h3 class="finance_pln">Advisory Service Contract </h3>
+        </div>
+        <section class="page_body_section">
+        	<div class="portfolio_section service_contract" ng-controller="AdvisoryServiceContract"  data-ng-init="init()">
+            	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="section_head">
+                            <h3>Service Contract</h3>
+                    </div>
+                </div>                
+                <div class="contract_left_section col-lg-8 col-md-8 col-sm-6 col-xs-12">                	                                  
+                    <div class="contract_row">
+                    	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 value"> <h4>Portfolio Assigned</h4>{{contractData.allocatedPortfolio.portfolioName}}<!--  TestCust5K  --></div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 value"> <h4>Allocated Investment</h4> <i class="fa fa-inr"></i> {{formatInputString(contractData.allocatedFunds) }} <!-- 1,00,000 --> </div>
+                    </div>                    
+                    <div class="contract_row smtxt">
+                    	<h4>Management Fee</h4>                        
+                        <div class="chkbox"> 
+                            <input type="radio" id="mfee02" name="mfee" value="fixed" checked /><label for="mfee02">Fixed</label> 
+                            <input type="radio" id="mfee01" name="mfee" value="variable" /><label for="mfee01">Variable</label> <br>
+                        </div>
+                        <div class="clearfix"></div><br>
+                        <div class="managementFee" id="mfeeDiv01" style="display: none;">
+                            <select id="mfeeVarAmount" ng-model="mgmtFeeVariableAmount" ng-options="value as key for (key, value) in mgmtFeeVariableAmountList"></select> <!-- style="width: 50px;" -->
+                            AUM per annum, payable proportionately on a 
+                            <select ng-model="varAUMPayableFrequency" 
+                            ng-options="value as key for (key, value) in aumPayableFrequencyList"
+                            disabled="disabled"></select>
+                            basis
+                        </div>
+                        <div class="managementFee" id="mfeeDiv02" > 
+                            <input type="text" id="mfeeFixedAmount" ng-model="mgmtFeeFixedAmount" class="wid_80 numericOnly" maxlength="5" placeholder="Fixed Fee">
+                            per annum, payable proportionately on a
+                            <select ng-model="fixAUMPayableFrequency"                                    
+                            ng-options="value as key for (key, value) in aumPayableFrequencyList"
+                            disabled="disabled"></select>       
+                            basis
+                        </div>
+                    </div>
+                    <div class="contract_row smtxt">
+                    	<h4>Performance Fee</h4>                        
+                        	<!-- <input type="text" value="20" name="pfexe" id="pfexe" class="wid_50" maxlength="3" > -->
+                            <input id="pFeePercent" type="text" 
+                                ng-model="performanceFeePercent" ng-init="performanceFeePercent = 20" ng-disabled="filterTag"
+                                class="wid_50 numericWithDecimal" maxlength="5">
+                            % of profits exceeding 
+                            <!-- <input type="text" value="12" name="return" id="return" class="wid_50" maxlength="3">  -->
+                            <input id="pFeeThreshold" type="text" 
+                                ng-model="performanceFeeThreshold" ng-init="performanceFeeThreshold = 12"
+                                ng-disabled="filterTag" 
+                                class="wid_50 numericWithDecimal" maxlength="5">
+                            % returns per annum, payable on a 
+                            <select ng-model="pFeeFrequency"                                     
+                            ng-options="value as key for (key, value) in aumPayableFrequencyList"
+                            disabled="disabled"></select>
+                            basis
+                    </div>
+                    <div class="contract_row smtxt">
+                    	<h4>Exit Load </h4>                        
+                        	<!-- <input type="text" value="5" name="aum" id="aum" class="wid_50" maxlength="3" > -->
+                            <input id="eLFeePercent" type="text" 
+                                ng-model="exitLoadFeePercent" ng-init="exitLoadFeePercent = 5" 
+                                ng-disabled="filterTag"
+                                class="wid_50 numericWithDecimal" maxlength="5">
+                            % of AUM of portfolio redeemed before 
+                            <!-- <input type="text" value="12" name="month" id="month" class="wid_50" maxlength="2">  -->
+                            <input  id="eLDuration" type="text" 
+                                ng-model="exitLoadDuration" ng-init="exitLoadDuration = 12" 
+                                ng-disabled="filterTag"
+                                class="wid_50 numericOnly" maxlength="2">
+                            months                              
+                    </div>
+                    <div class="contract_row">
+                    	<div class="clm1">
+                            <h4>Duration</h4> 
+                            <select id="cDurationCount" ng-model="ContractDurationCount" 
+                                ng-options="value as key for (key, value) in contractDurationList"                                
+                                ng-change="changeExitLoadDuration()"
+                                ng-disabled="filterTag"><!--  style="width: 50px;" -->
+                            </select>
+                            <select id="cDurationFreq" ng-model="ContractDuration" 
+                                    ng-options="value as key for (key, value) in contractDurationFrequencyList"
+                                    disabled="disabled"
+                                    ng-change="changeExitLoadDuration()"
+                                    ng-disabled="filterTag"></select>
+                         </div>
+                         <div class="clm2">
+                            <h4>Contract Start Date</h4> 
+							<!-- <input type="text" id="calendar" name="calendar" class="calendar_icon_blue" placeholder="" > -->
+                            <input id="contractDate" type="text" class="calendar_icon_blue" value=""
+                                ng-disabled="filterTag" placeholder="DD-MM-YYYY"> <!--calender  -->
+                         </div>
+                    </div>
+                    <div class="contract_row"> 
+                        <div class="col-lg-9 col-md-10 col-sm-12 col-xs-12 nopadding"><textarea name="comments" id="comments" placeholder="{{reviewCommentPlaceholder}}" ng-model="reviewComment"></textarea></div>                   	
+                        
+                    </div>
+                    <div class="contract_row"> 
+					        <input type="checkbox" id="advisorInvestorAgreement" value="" > <label for="advisorInvestorAgreement"></label>  I / We hereby agree to <a href="/pages/advisor_investor_agreement.xhtml?faces-redirect=true" target="_blank">Advisor - Investor Agreement</a><!--   <br><br> -->
+    				</div>                                                                                                                        
+                    
+                    
+                    <div class="button_set">
+						<form>
+							<input type="submit" name="back" id="button-action-0" value="Back" class="cancel" ng-click="callToAction(0)"/>
+                            <input type="submit" name="submit" id="button-action-1" value="Submit" class="save_ed" ng-click="callToAction(1)"/>
+                            <!-- Disabled Withdraw Functionality for Advisor -->
+                            <!-- <input type="submit" name="withdraw" id="button-action-2" value="Withdraw" class="cancel" ng-click="callToAction(2)"/> -->
+						</form>
+					</div>                    
+                    <!-- <div class="msg_box success"> <span class="glyphicon glyphicon-ok"></span> Success message </div>
+                    <div class="msg_box alert"> <span> ! </span> Alert message</div>
+                    <div class="msg_box error"> <span class="glyphicon glyphicon-remove"></span> Error message </div> -->      
+                </div>
+                
+                <div class="conversation_section col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                	<div class="sectionhead"><h4>Conversation</h4></div>
+                    <div class="conversation_area">
+                        <div class="conversation_row" ng-repeat="item in reviewConversationDisplay" ng-class="{'advMsg': item.isAdv ==true}"  >
+                    <!-- ng-class="{'advMsg': item.isAdv ==true}  ng-class="item.isAdv == false ? 'advMsg' : 'invMsg' " ng-class="{'invMsg': item.isAdv ==false}"-->
+                            <div class="clm1" >
+                                <div class="conphoto" style="background: #4aae3c;padding: 5px" ng-show="item.isAdv == false">
+                                    <!-- <img src="images/conversation_user1.png" alt=""> -->
+                                    <span class="round glyphicon glyphicon-user" style="color:white"></span>
+                                </div>
+                                <div class="conphoto" style="background: #3295c9;padding: 5px" ng-show="item.isAdv == true">
+                                    <!-- <img src="images/conversation_user1.png" alt=""> -->
+                                    <span class="round glyphicon glyphicon-user" style="color:white" ></span>
+                                </div>
+                            </div>
+                            <div class="clm2">
+                                <dt>{{item.name}}</dt>
+                                {{item.msg}}
+                            </div>
+                        </div>
+                    	<!-- <div class="conversation_row">
+                        	<div class="clm1"> 
+                        		<div class="conphoto"> <img src="images/conversation_user1.png" alt=""></div>
+                            </div>
+                            <div class="clm2">
+                            	<dt>12 Feb 2017</dt> 
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu eros elementum, dapibus tellus ac, tincidunt libero.
+                            </div>
+                        </div>                        
+                        <div class="conversation_row">
+                        	<div class="clm1"> 
+                        		<div class="conphoto"> <img src="images/conversation_user2.png" alt=""></div>
+                            </div>
+                            <div class="clm2">
+                            	<dt>12 Feb 2017</dt> 
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu eros elementum, dapibus tellus ac, tincidunt libero.
+                            </div>
+                        </div>                        
+                        <div class="conversation_row">
+                        	<div class="clm1"> 
+                        		<div class="conphoto"> <img src="images/conversation_user1.png" alt=""></div>
+                            </div>
+                            <div class="clm2">
+                            	<dt>12 Feb 2017</dt> 
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu eros elementum, dapibus tellus ac, tincidunt libero.
+                            </div>
+                        </div>                        
+                        <div class="conversation_row">
+                        	<div class="clm1"> 
+                        		<div class="conphoto"> <img src="images/conversation_user2.png" alt=""></div>
+                            </div>
+                            <div class="clm2">
+                            	<dt>12 Feb 2017</dt> 
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu eros elementum, dapibus tellus ac, tincidunt libero.
+                            </div>
+                        </div> -->
+                    </div>                                        
+            	</div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                  </div>
+                  <div class="modal-body">
+                    this is modalbody
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+                  </div>
+                </div>
+              </div>
+            </div>          
+        </section>
+    </main>
+    <!-- End : Advisory Service Contract :  Advisor View-->
+    
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+        //Calendar Script
+        $( "#contractDate" ).datepicker({ dateFormat: 'dd-mm-yy',changeMonth: true,changeYear: true, minDate: 0, yearRange: "0:+1" });
+        //Show or Hide DIV based on Radio Button
+        $("input[name$='mfee']").click(function() {
+            var test = $(this).val();
+            var id;
+            if(test === 'fixed'){
+                id=2;
+            }
+            if(test === 'variable'){
+                id=1;
+            }
+            $("div.managementFee").hide();
+            $("#mfeeDiv0" + id).show();
+        });
+        //Input Field Validation
+        $('.numericOnly').keypress(function(key) {
+            if(key.charCode < 48 || key.charCode > 57) 
+                return false;
+        });
+        $(".numericWithDecimal").on("keypress",function (event) {
+            $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });   
+    });
+    </script>

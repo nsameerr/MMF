@@ -1,0 +1,250 @@
+<!--Output View Page -->
+	<style>
+		.about_profile_section {
+		    background: #fff;
+		    width: 100%;
+		    height: auto;
+		    margin: 10px 0px 0px 0px;
+		    border-top-left-radius: 5px;
+		    border-top-right-radius: 5px;
+		    display: table;
+		    border-bottom: 4px solid #a0a0a0;
+		}
+	</style>
+    <main class="inner_page">
+        <div class="scroll-to-bottom" style="display: block">
+            <i class="fa fa-angle-down"></i>
+        </div>
+        <div class="scroll-to-top">
+            <i class="fa fa-angle-up"></i>
+        </div>
+        <div class="page_header_section">
+            <h3 class="finance_pln">Investor Profile</h3>
+        </div>
+        <section class="page_body_section">
+            <!--div class="breadcrumb_menu">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Investor Profile</a></li>
+                </ul>
+            </div-->
+            <div class="about_profile_section">
+                <h4 class="about_head" ng-cloak>About {{investor.profile.firstName}} {{investor.profile.lastName}}</h4>
+                <div class="profile_block col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="column1 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="profile_name">
+                            <figure>
+                                <!-- <img src="images/dp_icon.png" class="dp_pic" alt="Profile Pictures" /> -->
+                                <img   id="investorProfilePic" ng-src="{{investor.pic}}" class="dp_pic" alt="Profile Picture" />
+                            </figure>
+                            <div class="dp_names">
+                                <h4 ng-cloak>{{investor.profile.firstName}} {{investor.profile.lastName}}</h4>
+                                <h5  ng-if="investor.profile.masterCustomerQualificationTb.oneLineDesc != null && investor.profile.masterCustomerQualificationTb.oneLineDesc != ''" ng-cloak> {{investor.profile.masterCustomerQualificationTb.oneLineDesc}}</h5> <!--HeadLine-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column2 col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <ul class="details">
+                            <li>Marital Status:<span ng-cloak>{{investor.profile.maritalStatus}}</span></li> <!--Single-->
+                            <li>DOB :<span ng-cloak>{{investor.profile.dob | date : 'MMMM d , yyyy'}}</span></li><!--Apr 1, 1990-->
+                           <!--  <li>Aadhar:<span>123443214321</span></li>
+                            <li>PAN:<span>AQXPC6160A</span></li>     -->
+                        </ul>
+                    </div>
+                    <!-- <div class="column3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <a class="moderate_btn" href="">Moderately Aggresive</a>
+                    </div> -->
+                </div>
+                <div class="profile_desc col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="content col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <p  ng-if="investor.profile.masterCustomerQualificationTb.aboutMe != null && investor.profile.masterCustomerQualificationTb.aboutMe != ''">{{investor.profile.masterCustomerQualificationTb.aboutMe}}   
+                        </p>    <!--Nunc tincidunt velit enim, ut suscipit tortor scelerisque quis. In convallis varius orci ut ullamcorper. Quisque ac interdum diam. Praesent pulvinar et nunc vel scelerisque. Duis sit amet ipsum nibh.-->
+                        <h5><!-- Asset Allocated --></h5>
+                        <h5>Total Funds</h5>
+                        <h4 ng-cloak><i class="fa fa-inr" aria-hidden="true"></i>{{formatInputString(investor.profile.totalFunds)}}<!-- 50,000 --></h4>
+                        <span class="linked_in_prfl">View Investor Profile on <a ng-href="{{investor.linkedinProfile.publicProfileUrl}}" target="_blank">Linkedin</a></span>
+                        <!--href="" -->
+                    </div>  
+                    <div class="tabs_blk col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#profile_tab1">Qualifications</a></li>
+                            <li><a data-toggle="tab" href="#profile_tab2">Professional Details</a></li>                            
+                        </ul>
+                        <div class="tab-content">
+                            <div id="profile_tab1" class="tab-pane fade in active">    <!--Qualifications-->
+                                <div class="tabs_table">   
+                                    <div class="tabs_column" ng-cloak>
+                                        <h5>Degree</h5>   
+                                        <!-- <h5 class="black">MBA - Finance</h5>     -->
+                                        <h5 class="black">{{investor.profile.masterCustomerQualificationTb.primaryQualificationDegree}}</h5>
+                                        <h5 class="black">{{investor.profile.masterCustomerQualificationTb.secondaryQualificationDegree}}</h5>
+                                        <h5 class="black">{{investor.profile.masterCustomerQualificationTb.tertiaryQualificationDegree}}</h5>
+                                    </div>
+                                    <div class="tabs_column" ng-cloak>
+                                        <h5>Year</h5> 
+                                        <!-- <h5 class="black">1998</h5> -->
+                                        <h5 class="black">{{investor.profile.masterCustomerQualificationTb.primaryQualificationYear}}</h5>
+                                        <h5 class="black">{{investor.profile.masterCustomerQualificationTb.secondaryQualificationYear}}</h5>
+                                        <h5 class="black">{{investor.profile.masterCustomerQualificationTb.tertiaryQualificationYear}}</h5>
+                                    </div>
+                                    <div class="tabs_column" ng-cloak>
+                                        <h5>Institute</h5> 
+                                        <!-- <h5 class="black">Ashford University</h5> -->
+                                        <h5 class="black">{{investor.profile.masterCustomerQualificationTb.primaryQualificationInstitute}}</h5>
+                                        <h5 class="black">{{investor.profile.masterCustomerQualificationTb.secondaryQualificationInstitute}}</h5>
+                                        <h5 class="black">{{investor.profile.masterCustomerQualificationTb.tertiaryQualificationInstitute}}</h5>
+                                    </div>
+                                </div>                                                                                         
+                            </div>
+                            <div id="profile_tab2" class="tab-pane fade">  <!--Professional Details-->
+                                <div class="tabs_table">
+                                    <div class="tabs_column">
+                                        <h5>Company</h5>
+                                        <!-- <h5 class="black">CapGemini</h5> -->
+                                        <h5 class="black">{{investor.profile.workOrganization}}</h5>
+                                    </div>
+                                    <div class="tabs_column">
+                                        <h5>Title</h5>
+                                        <!-- <h5 class="black">Senior Engineer L2</h5> -->
+                                        <h5 class="black">{{investor.profile.jobTitle}}</h5>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart_section">
+                <div class="high_chart">
+                    <h4 class="chart_head">Financial Planner Output</h4>
+                    <div class="tab_controls">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#chart_view">Chart View</a></li>
+                            <li><a data-toggle="tab" href="#list_view">List View</a></li>
+                        </ul>
+                        <h6 class="note">Do not let your wealthline fall to zero</h6>
+                        <div class="tab-content">
+                            <div id="chart_view" class="tab-pane fade in active">
+                                <div id="inv_portfolio_high_chart" class="">
+                                </div>
+                                <!-- <div class="x_axis_head">
+                                    <h5>Age</h5>
+                                </div> -->
+                                <div class="legend">
+                                    <span class="leg leg_1">Total Wealth</span>
+                                    <!-- <span class="leg leg_2">Wealth with FD Investments</span> -->
+                                    <span class="leg leg_3">Annual Expenditure</span>
+                                    <span class="leg leg_4">Life Goals</span>
+                                </div>
+                            </div>
+                            <div id="list_view" class="tab-pane fade">
+                                <!-- <div class="range_block">
+                                    <label>Age Range:</label>
+                                    <select class="age_drop">
+                                        <option>45</option>
+                                        <option>46</option>
+                                    </select>
+                                    <label>To</label>
+                                    <select class="age_drop">
+                                        <option>50</option>
+                                        <option>51</option>
+                                    </select>
+                                    <label>Years</label>
+                                </div> -->
+                                <!--Table View-->
+                                <financial-planner-table-view></financial-planner-table-view>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="meter_chart">
+                    <h4 class="chart_head">Risk Profile Output</h4> 
+                    <div class="gauge_section">                        
+                        <!-- <script>                            
+                        </script> -->
+                        <div class="edit_inputgraphtxt"> <!-- Moderate --> </div>
+                    </div>
+                    <div class="slider_section unmoveable">
+                        <div class="edit_graph_row">Saving Rate<br>
+                            <div class="edit_graph_data"> 
+                                <div class="age1">           
+                                    <div id="inv_slider-range-min" class="edit_graph_bar" ></div>
+                                    <input type="text" id="inv_age" readonly style="border:0;"><label for="inv_age">%</label>
+                                </div>      
+                            </div>
+                        </div>
+                        <div class="edit_graph_row">Allocation to MMF<br>
+                            <div class="edit_graph_data"> 
+                                <div class="age1">           
+                                    <div id="inv_slider-range-min2" class="edit_graph_bar" ></div>
+                                    <input type="text" id="inv_age2" readonly style="border:0;"><label for="inv_age2">%</label>
+                                </div>      
+                            </div>
+                        </div>
+                        <div class="edit_graph_row">Retirement Age<br>
+                            <div class="edit_graph_data"> 
+                                <div class="age1">           
+                                    <div id="inv_slider-range-min3" class="edit_graph_bar" ></div>
+                                    <input type="text" id="inv_age3" readonly style="border:0;"><label for="inv_age3"></label>
+                                </div>      
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="life_goal_section">
+                <div class="header_block">
+                    <h4>Life Goals</h4>
+                </div>
+                <div class="collapse in">
+                    <div class="goals_table">
+                        <div class="goals_row head">
+                            <div class="column column1">
+                                <h5>Life Goals</h5>
+                            </div>
+                            <div class="column column2">
+                                <h5>Frequency</h5>
+                            </div>
+                            <div class="column column3">
+                                <h5>Years of Realization</h5>
+                            </div>
+                            <div class="column column4">
+                                <h5>Current Estimated Amount</h5>
+                            </div>
+                            <div class="column column5">
+                                <h5>Loan/Savings</h5>
+                            </div>
+                        </div>
+                        
+                        <div id="added_goal_row" class="goals_row body" ng-repeat="lg in investor.financialPlanner.lifeGoals | orderBy:'-yearofRealization':true" ng-cloak>
+                            <div class="column column1">
+                                <h5>{{lg.goalDescription}}<!-- Domestic Vacation --></h5>
+                            </div>
+                            <div class="column column2">
+                                <h5><span class="head_mobile">Frequency </span>{{lg.frequencyDesc}} <!-- Once in two year --></h5>
+                            </div>
+                            <div class="column column3">
+                                <h5><span class="head_mobile">Years of Realization </span>{{lg.yearofRealization}} <!-- 2017 --></h5>
+                            </div>
+                            <div class="column column4">
+                                <h5><span class="head_mobile">Estimated Amount </span> <i class="fa fa-inr"></i> {{formatInputString(lg.estimatedAmount) }}<!-- 5000000 --></h5>
+                            </div>
+                            <div class="column column5">
+                                <h5 ng-class=" lg.loanYesNo == 'Yes' ? 'loan' : 'savings' "><!-- Loan -->{{lg.loanYesNo == 'Yes' ? 'Loan' : 'Savings'}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="button_set" ng-if="actionText.length != 0">
+                    <!-- <form> -->
+                        <input type="submit" id="button-0" value="Reject" class="cancel" ng-click="callToAction(investor.profile.customerId, 0)"/>
+                        <input type="submit" id="button-1" value="Accept" class="save_ed" ng-click="callToAction(investor.profile.customerId, 1)"/>
+                    <!-- </form> -->
+                </div>
+                <!-- Response Message Div -->
+                <!-- <div class="row" ></div>   -->
+                <div class="msg_box error" style="display:none;" ng-attr-id="{{'div-'+investor.profile.customerId}}"> <span class="glyphicon glyphicon-remove"></span><!--  Error message --> </div>
+            </div>
+        </section>
+    </main>
+<!-- End-->

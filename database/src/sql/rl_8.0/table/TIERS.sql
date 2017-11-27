@@ -1,0 +1,7 @@
+CREATE TABLE `tiers`(
+tierID INT AUTO_INCREMENT,
+tierName VARCHAR(100),
+rangeStart VARCHAR(15),
+rangeEnd VARCHAR(15),
+PRIMARY KEY(tierID));
+

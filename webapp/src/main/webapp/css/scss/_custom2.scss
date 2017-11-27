@@ -1,0 +1,158 @@
+.table td.green {
+	color: #92d050;
+}
+.table td.red {
+	color: #ff0000;
+}
+.table td.yellow {
+	color: #FFD500;
+}
+.table td.grey {
+	color: #cacaca;
+}
+
+// .hidden_div {
+// 	opacity: 0.5;
+// }
+.bank_det_copy  input[type="password"] {
+	width: 180px !important
+}
+.pad-left {
+	padding-left: 20px;
+}
+.no_br_right {
+	border-right: 0px !important;
+}
+.btn_disabled {
+	pointer-events : none;
+	opacity: 0.6;
+}
+.btn_enabled {
+	pointer-events: auto;
+	opacity: 1;
+}
+.icon-ok-circle {
+	font-size: 15px;
+	&.success {
+		color: #4AAE43 !important;
+	}
+}
+#adv_reg_form {
+	.qualification {
+		.select_box {
+			display: inline-block;
+		}
+		.text_select {
+			width: 100% !important;
+			margin-left: 0px;
+		}
+	}
+	.agreement {
+		text-align: center;
+		padding: 10px 0px;
+	}
+	.off-details {
+		.block_ele {
+			display: block;
+		}
+	}
+	.submit_btn {
+		&.disabled {
+			pointer-events : none;
+			opacity: 0.6;
+		}
+	}
+}
+#frm_new_user_list {
+	.icon-ok-circle {
+		font-size: 15px;
+	}
+}
+#frm_create_user {
+	.disabled {
+		pointer-events : none;
+		opacity: 0.5;
+	}
+	.select_box {
+		display: inline-block;
+	}
+	.text_select {
+		width: 100% !important;
+		margin-left: 0px;
+	}
+	.list-number-styled {
+		list-style-position: inside;
+		display: inline-block;
+		label {
+			display: inline;
+		}
+		.check {
+			float: right;
+			margin-top: 4px;
+		}
+	}
+	.client_table {
+		.one_line {
+			display: inline-block;
+			input[type=checkbox] {
+				margin-left: 10px;
+				margin-bottom: 5px;
+				float: none;
+			}
+			&.change_width {
+				width: 135px;
+			}
+		}
+		.second-line {
+			display: block;
+			label {
+				display: inline-block;
+			}
+			input[type=checkbox] {
+				margin-left: 10px;
+			}
+		}
+		input[type=checkbox] {
+			float: right;
+			margin-left: 15px;
+		}
+		label {
+			display: block;
+		}
+		.reject {
+			label {
+				display: block;
+			}
+		}
+		.rej_reason {
+			display: block;
+			width: 100%;
+			input {
+				width: 100px !important;
+				display: inline-block;
+				/* float: left; */
+				margin-left: 15px;
+				margin-bottom: 0px;
+			}
+		}
+	}
+}
+#adv_profile {
+	.adv-profile {
+		.field-box {
+			display: inline-block;
+		}
+	}
+	.allo_text {
+		width: 100px !important;
+		margin-left: 0px !important;
+	}
+}
+.text_with_select {
+	display: inline-block;
+	width: 140px !important;
+	margin-left: 20px !important;
+}
+.select_with_text {
+	display: inline-block !important;
+}

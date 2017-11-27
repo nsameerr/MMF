@@ -1,0 +1,150 @@
+<div class="content_box account_bg">
+
+	<div class="account_open_row">
+		<h3>Bank Details</h3>
+	</div>
+	<div class="note">Note : Please ensure that account holder name is printed on the cheque</div>
+	<div class="accfrmsec">
+
+		<div class="accfrm_row mobile_block">
+			<h5>Take a photo or Upload an image of a cancelled Bank Cheque</h5>
+		</div>
+
+
+		<div class="accfrm_row upload_row">
+
+			<div class="accfrm_row_c1">
+				<!--camera start -->
+				<div class="camera-sec">
+					<span id="fileselector_camera"> <label class="upload_outer" for="bankFilePathx" ng-click="onLabelClick('bank');">
+							<div class="camera_icon">&nbsp;</div> <input type="file" capture="camera" accept="image/*" id="bankFilePath" name="bankFilePath" style="display: none;" onchange="angular.element(this).scope().uploadBankProof('camicon')">
+							<div class="uploadtxt">
+								<span class="mobile_hide">Take a photo of Cancelled</span>Cheque
+							</div>
+					</label>
+					</span>
+					<div class="ortxt">or</div>
+				</div>
+				<!--camera end -->
+			</div>
+
+			<div class="accfrm_row_c2">
+				<span id="fileselector"> <label class="upload_outer" for="bankFilePathFU">
+						<div class="upload_icon">&nbsp;</div> <input id="bankFilePathFU" type="file" onchange="angular.element(this).scope().uploadBankProof('uploadicon')" accept=".jpeg,.pdf,.PNG,.jpg,.PDF,.png,.JPEG,.JPG" style="display:none;">
+						<div class="uploadtxt">
+							Upload <span class="mobile_hide">a cancelled Bank Cheque</span>
+						</div>
+				</label>
+				</span>
+			</div>
+			<div class="mobile_hide" style="width: 50%;margin-left: 275px;"><h5>OR</h5></div>
+		</div>
+		
+		<div class="accfrm_row" ng-show="data.bankFilePath!='' && data.bankFilePath !=null && data.bankFilePath != undefined">
+			<div class="tick">
+				<span class="glyphicon glyphicon-paperclip"></span>{{data.bankFilePath.split('/')[data.bankFilePath.split('/').length-1]}}
+			</div>
+		</div>
+
+
+		<!-- <div class="registration_ck">
+			<input type="checkbox" name="ck2" id="ck2" value="Enter Details Manually" checked>
+			<label for="ck2"></label> Enter Details Manually <br> <br>
+		</div> -->
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<input type="text" id="bifsc" name="bifsc" placeholder="IFSC CODE" ng-model="data.bifsc" maxlength="11" 
+				ng-blur="validateIFSC(this);fetchBankDetails();">
+			</div>
+			<div class="accfrm_row_c2">
+				<input type="text" id="bmicr" name=" bmicr" placeholder="MICR No" ng-model="data.bmicr" maxlength="9" class="numericOnly">
+			</div>
+		</div>
+		
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<select id="bankname" class="selectBank" name="bankname" ng-model="data.bankname" ng-options="item for item in globalBankList">
+							<option value="" selected="selected">Select Bank</option>
+				</select>
+			</div>
+			<div class="accfrm_row_c2">
+				<div class="align-left">
+					<b>Account Type</b> &nbsp; &nbsp;
+					<div class="chkbox">
+						<input type="radio" id="savings" name="ac_type" checked ng-model="data.accountType" value="Savings Account"/>
+						<label for="savings">Savings</label>
+						<input type="radio" id="current" name="ac_type" ng-model="data.accountType" value="Current Account" />
+						<label for="current">Current</label> <br>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<input type="password" id="accno" class="numericOnly" name="accno" placeholder="Account No" ng-model="data.accno" maxlength="20">
+			</div>
+			<div class="accfrm_row_c2">
+				<input type="text" id="reAccno" class ="numericOnly" name="reAccno" placeholder="Re enter Account No" ng-model="data.reAccno" maxlength="20" onblur="javascript:reValidateAccno(this);">
+			</div>
+		</div>
+
+		
+
+
+		<!-- Bank address start -->
+		<div class="accfrm_row">
+			<br>
+			<h4>Bank Address Details</h4>
+		</div>
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<input type="text" id="baddressline1" name="baddressline1" placeholder="Address Line 1" ng-model="data.baddressline1" maxlength="37">
+			</div>
+			<div class="accfrm_row_c2">
+				<input type="text" id="baddressline2" name="baddressline2" placeholder="Address Line 2" ng-model="data.baddressline2" maxlength="37">
+			</div>
+		</div>
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<select name="bstate" id="bstate" class="selectState" ng-model="data.bstate" ng-change="getStateWiseCites('#bstate','#bcity')" ng-options="item for item in globalStateList">
+					<option value="" selected>State</option>
+				</select>
+			</div>
+			<div class="accfrm_row_c2">
+				<select name="bcity" id="bcity" ng-model="data.bcity" ng-options="item for item in globalCityOptions track by item">
+					<option value="" selected>City</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="accfrm_row">
+			<div class="accfrm_row_c1">
+				<input type="text" id="bpincode" class="numericOnly" name="bpincode" placeholder="Pin Code" ng-model="data.bpincode" maxlength="6">
+			</div>
+			<div class="accfrm_row_c2">
+				<select name="bcountry" id="bcountry" ng-model="bcountry" ng-options="item.name for item in globalCountryList track by item.value" ng-disabled="true">
+					<option value="" selected>Country</option>	
+				</select>
+			</div>
+		</div>
+		<!-- Bank address end -->
+
+		<!--<div class="accfrm_row">
+	<div class="bank-details"> <h3>Your Bank Details</h3> 
+    	<div class="bank-details-c1"><span>Bank Name</span> <br> HDFC Bank <br>  <span>Branch</span> <br> Mahadevapura </div>
+        <div class="bank-details-c2"><span>Bank Name</span> <br> 116, Bazaar St, Corporation Industrial Estate, <br> Mahadevapura, Bengaluru, <br> Karnataka 560016</div>
+    </div>
+</div>-->
+	</div>
+
+
+	<div class="account_open_row text-center">
+		<input type="submit" name="back" id="back" value="Back" class="back btnPrev" ng-click="goNext();">
+		&nbsp;
+		<input type="submit" name="next" id="next" value="Submit" ng-click="goNext();submitForm();">
+	</div>
+
+</div>

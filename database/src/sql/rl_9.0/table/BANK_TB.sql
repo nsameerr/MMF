@@ -1,0 +1,12 @@
+CREATE TABLE `bank_tb`(
+`id` INT AUTO_INCREMENT,
+`bank` VARCHAR(100) NOT NULL,
+`ifsc` VARCHAR(20) NOT NULL,
+`branch` VARCHAR(100) NOT NULL,
+`address` VARCHAR(200) NOT NULL,
+`contact` VARCHAR(20) NOT NULL,
+`city` VARCHAR(50) NOT NULL,
+`district` VARCHAR(50) NOT NULL,
+`state` VARCHAR(50) NOT NULL,
+UNIQUE KEY `bank_tb_uk_1` (`ifsc`),
+PRIMARY KEY(id));

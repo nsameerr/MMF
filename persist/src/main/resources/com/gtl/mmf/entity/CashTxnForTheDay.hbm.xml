@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Sep, 2016 5:47:11 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CashTxnForTheDay" table="cash_txn_for_the_day" catalog="mmfdb">
+        <id name="idCashTxn" type="java.lang.Integer">
+            <column name="id_cash_txn" />
+            <generator class="identity" />
+        </id>
+        <property name="customerId" type="int">
+            <column name="customer_id" not-null="true" />
+        </property>
+        <property name="customerPortfolioId" type="int">
+            <column name="customer_portfolio_id" not-null="true" />
+        </property>
+        <property name="datetime" type="timestamp">
+            <column name="datetime" length="19" not-null="true" />
+        </property>
+        <property name="securityName" type="string">
+            <column name="security_name" length="50" />
+        </property>
+        <property name="venueCode" type="string">
+            <column name="venue_code" length="20" />
+        </property>
+        <property name="venueScriptcode" type="string">
+            <column name="venue_scriptcode" length="20" />
+        </property>
+        <property name="units" type="java.lang.Float">
+            <column name="units" precision="15" scale="4" />
+        </property>
+        <property name="cashFlow" type="java.lang.Float">
+            <column name="cash_flow" precision="15" scale="4" />
+        </property>
+    </class>
+</hibernate-mapping>

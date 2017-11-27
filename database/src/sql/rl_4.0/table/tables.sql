@@ -1,0 +1,18 @@
+\. rl_4.0/table/PORTFOLIO_AUDIT_TB.sql
+SELECT "rl_4.0/table/PORTFOLIO_AUDIT_TB.sql completed" AS "";
+\. rl_4.0/table/PORTFOLIO_DETAILS_AUDIT_TB.sql
+SELECT "rl_4.0/table/PORTFOLIO_DETAILS_AUDIT_TB.sql completed" AS "";
+\. rl_4.0/table/PORTFOLIO_SECURITIES_AUDIT_TB.sql
+SELECT "rl_4.0/table/PORTFOLIO_SECURITIES_AUDIT_TB.sql completed" AS "";
+\. rl_4.0/table/CUSTOMER_PORTFOLIO_DETAILS_TB.sql
+SELECT "rl_4.0/table/CUSTOMER_PORTFOLIO_DETAILS_TB.sql completed" AS "";
+\. rl_4.0/table/CUSTOMER_PORTFOLIO_SECURITIES_TB.sql
+SELECT "rl_4.0/table/CUSTOMER_PORTFOLIO_SECURITIES_TB.sql completed" AS "";
+\. rl_4.0/table/CUSTOMER_TRANSACTION_ORDER_DETAILS_TB.sql
+SELECT "rl_4.0/table/CUSTOMER_TRANSACTION_ORDER_DETAILS_TB.sql completed" AS "";
+\. rl_4.0/table/CUSTOMER_TRANSACTION_EXECUTION_DETAILS_TB.sql
+SELECT "rl_4.0/table/CUSTOMER_TRANSACTION_EXECUTION_DETAILS_TB.sql completed" AS "";
+\. rl_4.0/table/BENCHMARK_PERFORMANCE_TB.sql
+SELECT "rl_4.0/table/BENCHMARK_PERFORMANCE_TB.sql completed" AS "";
+\. rl_4.0/table/ALTERS.sql
+SELECT "rl_4.0/table/ALTERS.sql completed" AS "";

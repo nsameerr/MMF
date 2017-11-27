@@ -1,0 +1,19 @@
+{
+  "custTestimonials": [
+    {
+      "name": "john doe",
+      "msg": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non tempor augue. Mauris pellentesque lacinia malesuada. Sed aliquet ex id bibendum ultrices. ",
+      "pic": "https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png"
+    },
+    {
+      "name": "sam doe",
+      "msg": "Proin in euismod nibh. Duis ut nibh semper, pulvinar augue ac, bibendum lacus. Quisque ullamcorper tellus massa. Phasellus eleifend orci vel tortor mollis molestie",
+      "pic": "https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png"
+    },
+    {
+      "name": "jane doe",
+      "msg": "Nullam eget fermentum justo. Proin eu justo quis velit eleifend maximus. Sed elementum venenatis velit. Sed vel ligula leo.",
+      "pic": "https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png"
+    }
+  ]
+}

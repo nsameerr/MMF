@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+
+        <title></title>
+
+        <!-- bootstrap --><link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet"/>
+
+
+        <!-- global styles -->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/layout.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/elements.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/icons.css"/>
+
+        <!-- libraries -->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/lib/font-awesome.css"/>
+
+        <!-- this page specific styles -->
+        <link rel="stylesheet" href="#{request.contextPath}/css/compiled/signup.css" type="text/css" media="screen"/>
+
+        <!-- open sans font -->
+        <link
+            href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800'
+            rel='stylesheet' type='text/css'/>
+
+        <!--[if lt IE 9]>-->
+        <script src="js/modernizr.js"></script>
+
+    </h:head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+	</script>
+        <!-- End Google Tag Manager -->
+        
+        <div class="header">
+            <h:commandLink action="/index" immediate="true">
+                <h:graphicImage url="/img/logo.png" class="logo"/>
+            </h:commandLink>
+        </div>
+        <ui:composition template="/pages/template/content_page_layout_linkedin.xhtml">
+            <ui:define name="title">Make Payment</ui:define>
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_user_linkedin.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+                <h:form id="payement">
+                    <style>
+                        .radio{
+                            margin: 0px auto;
+                            width: 210px;
+                            margin-left: 85px;
+                            margin-bottom: 7px;
+                        }
+                        .radio td:nth-child(2) input{
+                            margin-left: 15px;
+                        }
+                        .action a{
+                            width: 55px;
+                        }
+                        form{
+                            margin: 0px;
+                        }
+                        p{
+                            font-size: 13px;
+                        }
+                        .err_message{
+                            font-size: 14px;
+                            color: red;
+                        }
+                        .success_message{
+                            font-size: 14px;
+                            color: green;
+                        }
+
+                    </style>
+                    <div class="content section">
+                        <div id="pad-wrapper">
+
+                            <div class="row-fluid two-baseline-margin-bottom">
+                                <div class="span12" style="padding-left: 15%;padding-top: 5%;">
+                                    <div class="table-wrapper" style="height: 800px;">
+                                        <h:panelGroup id="modify" rendered="#{!paymentController.paymentReponse}"> 
+                                            <table >
+                                                <thead> 
+                                                    <tr class="top">
+                                                        <th align="center"> <div class="field-box" style="text-align: left;">
+                                                                <h2 class="page-title two-baseline-margin-bottom" style="
+                                                                    font-weight: bold;">
+                                                                    MAKE PAYMENT
+                                                                </h2>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr><td style="width: 600px;">
+                                                            <div class="field-box">
+                                                                <label style="width: 150px;">Amount</label>
+
+                                                                <h:inputText readonly="true" id="amount" maxlength="10" style="width: 200px;"                                                     
+                                                                             validatorMessage="Please enter valid Amount"
+                                                                             styleClass="span4" value="2"  required="True"
+                                                                             requiredMessage="Enter Amount">
+
+                                                                </h:inputText>
+                                                                <h:message for="amount" styleClass="err_message"></h:message> 
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <td align="center" width="600px">
+                                                            <div class="field-box" style="text-align: left;padding-left: 115px;">
+                                                                <h:commandButton styleClass="btn-flat success" value="Make Payment" id="payment"
+                                                                                 actionListener="#{paymentController.saveUserProfile}"          
+                                                                                 action="#{paymentController.save()}">
+                                                                </h:commandButton>
+                                                            </div>
+                                                        </td>
+                                                    </tr>           
+                                                </tbody>
+
+                                            </table>
+
+                                        </h:panelGroup>        <h:panelGroup rendered="#{paymentController.paymentReponse}">
+                                            <table >
+                                                <thead> 
+                                                    <tr class="top">
+                                                        <th align="center"> <div class="field-box" style="text-align: left;">
+                                                                <h2 class="page-title two-baseline-margin-bottom" style="
+                                                                    font-weight: bold;">
+                                                                    MAKE PAYMENT
+                                                                </h2>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr><td style="width: 600px;">
+                                                            <div class="field-box">
+                                                                <label style="width: 150px;">Customer ID</label>
+                                                                <label style="width: 150px;">#{paymentController.transactionResponseVo.customerID}</label>
+                                                            </div>    
+                                                        </td> 
+                                                    </tr>
+
+                                                    <tr><td style="width: 600px;">
+                                                            <div class="field-box">
+                                                                <label style="width: 150px;">Transaction Amount</label>
+                                                                <label style="width: 150px;">#{paymentController.transactionResponseVo.txnAmount}</label> 
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr><td style="width: 600px;">
+                                                            <div class="field-box">
+                                                                <label style="width: 150px;">Transaction Reference Number</label>
+                                                                <label style="width: 150px;">#{paymentController.transactionResponseVo.txnReferenceNo}</label> 
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr><td style="width: 600px;">
+                                                            <div class="field-box">
+                                                                <label style="width: 150px;">Bank ID</label>
+                                                                <label style="width: 150px;">#{paymentController.transactionResponseVo.bankID}</label> 
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr><td style="width: 600px;">
+                                                            <div class="field-box">
+                                                                <label style="width: 150px;">#{paymentController.transactionResponseVo.authStatusMsg}</label>
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>          
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+                            </div>                                                       
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

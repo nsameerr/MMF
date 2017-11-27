@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 20, 2014 10:41:04 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+ <class catalog="mmfdb" name="com.gtl.mmf.entity.CustomerRiskScoreTb" table="customer_risk_score_tb">
+  <id name="risk_score_id" type="java.lang.Integer">
+   <column name="risk_score_id"/>
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="customer_id" type="long">
+   <column name="customer_id" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="risk_score" type="java.lang.Integer">
+   <column name="risk_score" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="date_of_rp" type="date">
+   <column name="date_of_rp"/>
+  </property>
+ </class>
+</hibernate-mapping>

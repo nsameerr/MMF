@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25 Aug, 2016 4:15:43 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerTransactionAcquisitionDetailsTb" table="customer_transaction_acquisition_details_tb" catalog="mmfdb">
+        <id name="customerTransactionAcquisitionId" type="java.lang.Integer">
+            <column name="customer_transaction_acquisition_id" />
+            <generator class="identity" />
+        </id>
+        <property name="customerId" type="int">
+            <column name="customer_id" not-null="true" />
+        </property>
+        <property name="portfolioId" type="int">
+            <column name="portfolio_id" not-null="true" />
+        </property>
+        <property name="customerPortfolioId" type="int">
+            <column name="customer_portfolio_id" not-null="true" />
+        </property>
+        <property name="orderId" type="java.lang.Long">
+            <column name="order_id" />
+        </property>
+        <property name="securityId" type="string">
+            <column name="security_id" length="100" not-null="true" />
+        </property>
+        <property name="venueCode" type="string">
+            <column name="venue_code" length="100" />
+        </property>
+        <property name="venueScriptCode" type="string">
+            <column name="venue_script_code" length="100" />
+        </property>
+        <property name="transactionUnit" type="big_decimal">
+            <column name="transaction_unit" precision="11" scale="4" not-null="true" />
+        </property>
+        <property name="boughtOrSoldPrice" type="big_decimal">
+            <column name="boughtOrSold_price" precision="11" scale="4" not-null="true" />
+        </property>
+        <property name="acquisitionCost" type="big_decimal">
+            <column name="acquisition_cost" precision="11" scale="4" not-null="true" />
+        </property>
+        <property name="transactionDate" type="timestamp">
+            <column name="transaction_date" length="19" not-null="true" />
+        </property>
+        <property name="omsId" type="string">
+            <column name="oms_id" length="50" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

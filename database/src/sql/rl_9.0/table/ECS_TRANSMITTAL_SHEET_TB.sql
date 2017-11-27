@@ -1,0 +1,20 @@
+CREATE TABLE ecs_transmittal_sheet_tb(
+	id INT NOT NULL AUTO_INCREMENT,
+	registration_id VARCHAR (20),
+	serial_no VARCHAR(5) ,
+	lotno VARCHAR(20),
+	debit_type VARCHAR(20) ,
+	amount VARCHAR(20) ,
+	frequency VARCHAR(25) ,
+	start_date VARCHAR(20) ,
+	end_date VARCHAR(20) ,
+	ac_holder_name VARCHAR(150) ,
+	bank_name VARCHAR(100),
+	ac_type VARCHAR(20) ,
+	acno VARCHAR(30) ,
+	micr VARCHAR(30) ,
+	ifsc VARCHAR(30) ,
+	ecs_send BOOLEAN DEFAULT FALSE,
+	verified BOOLEAN DEFAULT FALSE,
+	PRIMARY KEY (Id)
+);

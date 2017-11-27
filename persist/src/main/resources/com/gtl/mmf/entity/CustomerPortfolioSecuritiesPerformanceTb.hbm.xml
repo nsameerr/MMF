@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Dec, 2015 1:20:59 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerPortfolioSecuritiesPerformanceTb" table="customer_portfolio_securities_performance_tb" catalog="mmfdb">
+        <id name="customerPortfolioSecuritiesPerformanceId" type="java.lang.Integer">
+            <column name="customer_portfolio_securities_performance_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="customerPortfolioDetailsTb" class="com.gtl.mmf.entity.CustomerPortfolioDetailsTb" fetch="select">
+            <column name="customer_portfolio_details_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customerPortfolioDetailsPerformanceTb" class="com.gtl.mmf.entity.CustomerPortfolioDetailsPerformanceTb" fetch="select">
+            <column name="customer_portfolio_details_allocation_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="masterAssetTb" class="com.gtl.mmf.entity.MasterAssetTb" fetch="select">
+            <column name="asset_class_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customerPortfolioTb" class="com.gtl.mmf.entity.CustomerPortfolioTb" fetch="select">
+            <column name="customer_portfolio_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customerPortfolioSecuritiesTb" class="com.gtl.mmf.entity.CustomerPortfolioSecuritiesTb" fetch="select">
+            <column name="customer_portfolio_securities_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customerPortfolioPerformanceTb" class="com.gtl.mmf.entity.CustomerPortfolioPerformanceTb" fetch="select">
+            <column name="customer_portfolio_allocation_id" not-null="true" />
+        </many-to-one>
+        <property name="securityCode" type="string">
+            <column name="security_code" length="65535" not-null="true" />
+        </property>
+        <property name="datetime" type="timestamp">
+            <column name="datetime" length="19" not-null="true" />
+        </property>
+        <property name="closingValue" type="big_decimal">
+            <column name="closing_value" precision="12" not-null="true" />
+        </property>
+        <property name="existingUnits" type="big_decimal">
+            <column name="existing_units" precision="12" not-null="true" />
+        </property>
+        <property name="closingPrice" type="big_decimal">
+            <column name="closing_price" precision="12" not-null="true" />
+        </property>
+        <property name="marketValue" type="big_decimal">
+            <column name="market_value" precision="12" />
+        </property>
+        <property name="cashFlow" type="big_decimal">
+            <column name="cash_flow" precision="12" />
+        </property>
+        <property name="marketValueAfterCashFlow" type="big_decimal">
+            <column name="market_value_after_cash_flow" precision="12" />
+        </property>
+        <property name="subPeriodReturn" type="big_decimal">
+            <column name="sub_period_return" precision="7" />
+        </property>
+    </class>
+</hibernate-mapping>

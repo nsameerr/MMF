@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"           
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title></title>        
+    </head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout.xhtml"
+                        xmlns:compo="http://java.sun.com/jsf/composite/composite">
+            <ui:define name="title">Advisory Service Contract | ManageMyFortune.com</ui:define>
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_user.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+                <h:form id="invt_plicy_stm_form">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div id="pad-wrapper" class="user-profile">
+                                <!-- header -->
+                                <h2 class="page-title no-margin-bottom">Investment Policy Statement</h2>
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <h3 class="title no-margin-bottom">Personal Details</h3>
+                                        <table class="table one-pixel-border">
+                                            <thead style="border-top: none;">
+                                                <tr class="top-row">
+                                                    <th class="span4 align_center">Client Name</th>
+                                                    <th class="span4 right-border align_center">Asset Allocated</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- row -->
+                                                <tr class="first">
+                                                    <td>
+                                                        <img class="img-circle avatar hidden-phone" id="user_img"
+                                                             src="#{investmentPolicyStmtControlller.investorProfile.pictureURL}"
+                                                             alt="Image not available" onerror="this.src='#{request.contextPath}/img/contact-img_3.jpg'"/>
+                                                        <a class="name" href="#" style="cursor: default;text-decoration: none;">
+                                                            #{investmentPolicyStmtControlller.investorProfile.firstName}
+                                                        </a>
+
+                                                        <div class="label label-success">
+                                                            #{investmentPolicyStmtControlller.investorProfile.portFolioStyle}
+                                                        </div>
+                                                    </td>
+                                                    <td class="align_center" style="font-size:14px;font-weight:600;"><i class="rupees"><span class="WebRupee">Rs.</span></i>#{investmentPolicyStmtControlller.investorProfile.allocatedInvestments}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <h3 class="title no-margin-bottom">Professional Details</h3>
+                                        <table class="table one-pixel-border">
+                                            <thead style="border-top: none;">
+                                                <tr>
+                                                    <th class="span6 align_center">Company</th>
+                                                    <th class="span6 align_center">Title</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="first">
+                                                    <td>#{investmentPolicyStmtControlller.investorProfile.workOrganization}</td>
+                                                    <td> #{investmentPolicyStmtControlller.investorProfile.jobTitle}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="pad-wrapper" class="form-page" style="margin-top: -10px;">
+                                <div class="row-fluid form-wrapper">
+                                    <div class="span6">
+                                        <h3 class="title">Response to Questionnaire</h3>
+                                        <div class="row-fluid">
+                                            <div class="span11"> 
+                                                <c:forEach items="#{investmentPolicyStmtControlller.responseQuestions}" var="questionList" varStatus="rowStatus">
+                                                    <div class="row question-block">
+                                                        <div class="q-no span1 offset1">
+                                                            <h2>#{rowStatus.count}.</h2>
+                                                        </div>
+                                                        <div class="question span10" style="padding-left: 10px;">
+                                                            #{questionList.questionName}
+                                                        </div>
+                                                        <div style="margin-left: 100px;">
+                                                            <h:outputLabel
+                                                                rendered="#{not empty questionList.img_path}"
+                                                                style="width: 450px;height:320px;">
+                                                                <img id="quest_img"
+                                                                     src="#{request.contextPath}/#{questionList.img_path}"
+                                                                     width="450px" height="320px" />
+                                                            </h:outputLabel>
+
+                                                        </div>
+
+                                                        <div class="answer offset2 span10" style="padding-left: 10px;">
+                                                            <p>#{questionList.oprtionname}</p>
+                                                        </div>
+                                                    </div>
+                                                </c:forEach>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="span6">
+                                        <h3 class="title">Investment Policy Statement</h3>
+                                        <div class="field-box">
+                                            <label>Risk Profile</label>
+                                            <h:inputText styleClass="span4 speedometer" value="#{investmentPolicyStmtControlller.customerRiskProfileVO.riskScore}" readonly="true" style="width:60px !important;" />
+                                            <span class="label label-success changeSpeedometer">#{investmentPolicyStmtControlller.investorProfile.portFolioStyle}</span>
+
+                                            <div>
+                                                <div id="test"></div>
+                                                <label style="clear:both; float:none;">Riskometer</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="field-box">
+                                            <label>Annual Return Expected</label>
+                                            <h:inputText class="span3 align_right" value="#{investmentPolicyStmtControlller.customerRiskProfileVO.expReturn}" 
+                                                         onfocus="zeroCheckFocus(this);" onblur="zeroCheckOut(this);" 
+                                                         id="expReturn" maxlength="5" required="true" requiredMessage="Number value is required" converterMessage="Value is not valid number">
+                                                <f:convertNumber  type="number" maxFractionDigits="2"/>
+                                            </h:inputText> 
+                                            <span>%<h:message for="expReturn" styleClass="err_message"/></span>
+                                        </div>
+                                        <div class="field-box">
+                                            <label>Benchmark Index</label>
+                                            <span class="ui-select align_right" style="margin-left: auto">
+                                                <h:selectOneMenu value="#{investmentPolicyStmtControlller.customerRiskProfileVO.benchMark}">
+                                                    <f:selectItems value="#{investmentPolicyStmtControlller.benchMarksdata.entrySet()}" var="benchmarks"
+                                                                   itemLabel="#{benchmarks.value}" itemValue="#{benchmarks.key}"/>
+                                                </h:selectOneMenu> 
+                                            </span>
+                                        </div>
+                                        <div class="field-box">
+                                            <label>Liquidity Retirement</label>
+                                            <h:inputText class="span1 align_right" value="#{investmentPolicyStmtControlller.customerRiskProfileVO.liquidityRetd}" 
+                                                         onfocus="zeroCheckFocus(this);" onblur="zeroCheckOut(this);" style="min-width: 35px;"
+                                                         id="liquidityRetd" maxlength="5" required="true" requiredMessage="Number value is required" converterMessage="Value is not valid number">
+                                                <f:convertNumber type="number" maxFractionDigits="2"/>
+                                            </h:inputText>
+                                            <span>% of portfolio annually</span>
+                                            <span><h:message for="liquidityRetd" styleClass="err_message"/></span>
+                                        </div>
+                                        <div class="field-box">
+                                            <label>Income Retirement</label>
+                                            <h:inputText class="span1 align_right" value="#{investmentPolicyStmtControlller.customerRiskProfileVO.incomeRetd}" style="min-width: 35px;"
+                                                         onfocus="zeroCheckFocus(this);" onblur="zeroCheckOut(this);"
+                                                         id="incomeRetd" maxlength="5" required="true" requiredMessage="Number value is required" converterMessage="Value is not valid number">
+                                                <f:convertNumber type="number" maxFractionDigits="2"/>
+                                            </h:inputText>
+                                            <span>% of portfolio annually</span>
+                                            <span><h:message for="incomeRetd" styleClass="err_message"/></span>
+                                        </div>
+                                        <div class="field-box">
+                                            <label>Investment Horizon</label>
+                                            <h:inputText class="span1 align_right" value="#{investmentPolicyStmtControlller.customerRiskProfileVO.investHorizon}" style="min-width: 35px;"
+                                                         onfocus="zeroCheckFocus(this);" onblur="zeroCheckOut(this);"
+                                                         id="investHorizon" maxlength="2" required="true" requiredMessage="Number value is required" converterMessage="Value is not valid number">
+                                                <f:convertNumber type="number" integerOnly="true" maxIntegerDigits="2"/>
+                                            </h:inputText>
+                                            <span>years</span>
+                                            <span><h:message for="investHorizon" styleClass="err_message"/></span>
+                                        </div>
+                                        <div class="field-box">
+                                            <label> Review Frequency</label>
+                                            <span class="ui-select" style="margin-left: auto">
+                                                <h:selectOneMenu value="#{investmentPolicyStmtControlller.customerRiskProfileVO.reviewFreequency}">
+                                                    <f:selectItems value="#{investmentPolicyStmtControlller.reviewFreequencyData}"/>
+                                                </h:selectOneMenu>  
+                                            </span>
+                                        </div>
+                                        <div class="field-box">
+                                            <label for=""> Portfolio Style </label>
+                                            <span class="ui-select" style="margin-left: auto">
+                                                <h:selectOneMenu value="#{investmentPolicyStmtControlller.customerRiskProfileVO.portfolioStyle}">
+                                                    <f:selectItems value="#{investmentPolicyStmtControlller.protfolioStyleData.entrySet()}" var="protfoliostyle" 
+                                                                   itemValue="#{protfoliostyle.key}" itemLabel="#{protfoliostyle.value.investorProfile}"/>
+                                                    <f:ajax event="change" listener="#{investmentPolicyStmtControlller.portflioStyleChangeListner}" render="allocation-table"/>
+                                                </h:selectOneMenu>
+                                            </span>
+                                        </div>
+                                        <div class="field-box">
+                                            <label for=""> Portfolio Size </label>
+                                            <span class="ui-select" style="margin-left: auto">
+                                                <h:selectOneMenu value="#{investmentPolicyStmtControlller.customerRiskProfileVO.portfolioSize}" >
+                                                    <f:selectItems value="#{investmentPolicyStmtControlller.protfolioSizeData.entrySet()}" var="protfoliosize" 
+                                                                   itemValue="#{protfoliosize.key}" itemLabel="#{protfoliosize.value.portfolioSize}"/>
+                                                    <f:ajax event="change" render="allocation-table"/>
+                                                </h:selectOneMenu>
+                                            </span>
+                                        </div>
+
+                                        <h:panelGrid id="allocation-table">
+                                            <div class="row-fluid limits clearfix">
+                                                <div class="span12 no-margin-left">
+                                                    <h3 class="title" style="margin-bottom: 0;">
+                                                        Allocation
+                                                    </h3>
+                                                    <table class="table table-hover" style="width: 500px;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="align_center">Asset Class</th>
+                                                                <th class="align_center">Range</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody align="center">
+                                                            <c:if test="#{investmentPolicyStmtControlller.equityDiversifiedRange ne ''}">
+                                                                <tr>
+                                                                    <td>Equity Diversified</td>
+                                                                    <td>#{investmentPolicyStmtControlller.equityDiversifiedRange}</td>
+                                                                </tr>
+                                                            </c:if>
+                                                            <c:if test="#{investmentPolicyStmtControlller.indexRange ne ''}">
+                                                                <tr>
+                                                                    <td>Index</td>
+                                                                    <td>#{investmentPolicyStmtControlller.indexRange}</td>
+                                                                </tr>
+                                                            </c:if>
+                                                            <c:if test="#{investmentPolicyStmtControlller.midcapRange ne ''}">
+                                                                <tr>
+                                                                    <td>MidCap</td>
+                                                                    <td>#{investmentPolicyStmtControlller.midcapRange}</td>
+                                                                </tr>
+                                                            </c:if>
+                                                            <c:if test="#{investmentPolicyStmtControlller.balancedRange ne ''}">
+                                                                <tr>
+                                                                    <td>Balanced</td>
+                                                                    <td>#{investmentPolicyStmtControlller.balancedRange}</td>
+                                                                </tr>
+                                                            </c:if>
+                                                            <c:if test="#{investmentPolicyStmtControlller.goldRange ne ''}">
+                                                                <tr>
+                                                                    <td>Gold</td>
+                                                                    <td>#{investmentPolicyStmtControlller.goldRange}</td>
+                                                                </tr>    
+                                                            </c:if>
+                                                            <c:if test="#{investmentPolicyStmtControlller.internationalRange ne ''}">
+                                                                <tr>
+                                                                    <td>International</td>
+                                                                    <td>#{investmentPolicyStmtControlller.internationalRange}</td>
+                                                                </tr>     
+                                                            </c:if>
+                                                            <c:if test="#{investmentPolicyStmtControlller.debtRange ne ''}">
+                                                                <tr>
+                                                                    <td>Debt - Medium/Long</td>
+                                                                    <td>#{investmentPolicyStmtControlller.debtRange}</td>
+                                                                </tr>
+                                                            </c:if>
+                                                            <c:if test="#{investmentPolicyStmtControlller.debtRange ne ''}">
+                                                                <tr>
+                                                                    <td>Debt - Liquid/Short</td>
+                                                                    <td>#{investmentPolicyStmtControlller.debtLiquidRange}</td>
+                                                                </tr>
+                                                            </c:if>
+                                                            <c:if test="#{investmentPolicyStmtControlller.FORange ne ''}">
+                                                                <tr>
+                                                                    <td>Derivatives</td>
+                                                                    <td>#{investmentPolicyStmtControlller.FORange}</td>
+                                                                </tr>   
+                                                            </c:if>
+                                                            <c:if test="#{investmentPolicyStmtControlller.cashRange ne ''}">
+                                                                <tr>
+                                                                    <td>Cash</td>
+                                                                    <td>#{investmentPolicyStmtControlller.cashRange}</td>
+                                                                </tr>    
+                                                            </c:if>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </h:panelGrid>
+                                        <div class="button-row">
+                                            <h:commandLink value="Save" actionListener="#{investmentPolicyStmtControlller.savePolicyStatement()}" 
+                                                           action="#{investmentPolicyStmtControlller.redirectionPage()}" styleClass="btn-flat  btn-flat-short success"/>   
+                                            <h:commandLink value="Cancel" actionListener="#{investmentPolicyStmtControlller.resetPage()}" action="#"
+                                                           styleClass="btn-flat btn-flat-short  inverse"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </h:form>
+                <style type="text/css">
+                    .form-page .form-wrapper label {
+                        margin-bottom: 0;
+                    }
+
+                    .form-page .form-wrapper .field-box {
+                        margin-bottom: 20px;
+                    }
+
+                    .form-wrapper span {
+                        margin-left: 12px;
+                        position: relative;
+                        top: -6px;
+                    }
+
+                    .question-block .answer {
+                        margin-left: 17%;
+                    }
+
+                    ul {
+                        list-style: none;
+                        margin-left: 0;
+                    }
+
+                    .statement li {
+                        margin-bottom: 12px;
+                    }
+
+                    .statement label {
+                        width: 180px;
+                        font-weight: 600;
+                    }
+
+                    .statement span {
+                        margin: 0 0 0 42px;
+                    }
+
+                    .limits li {
+                        margin-bottom: 12px;
+                    }
+
+                    .limits label {
+                        font-weight: 600;
+                    }
+
+                    .limits span {
+                        font-size: 14px;
+                        color: #666;
+                        margin: 0 24px;
+                        display: inline-block;
+                    }
+
+                    .limits .head {
+                        font-weight: 600;
+                        border-bottom: 1px solid #eee;
+                        border-top: 1px solid #eee;
+                        padding: 8px 0 2px;
+                        color: #111;
+                        text-transform: uppercase;
+                        margin-bottom: 12px;
+                        width: 126%;
+                        font-size: 11px;
+
+                    }
+
+                    .limits .head span {
+                        color: #111;
+                        font-size: 11px;
+                    }
+
+                    .limits .head label {
+                        font-size: 14px;
+                        width: 170px;
+                    }
+
+                    table th span.line {
+                        left: -28px;
+                    }
+
+                </style>
+                <script type="text/javascript">
+                    function zeroCheckFocus(elm) {
+                        if (elm.value === 0) {
+                            elm.value = '';
+                        }
+                    }
+
+                    function zeroCheckOut(elm) {
+                        if (elm.value === '') {
+                            elm.value = 0;
+                        }
+                    }
+                    if (document.getElementById('user_img').src === '' || document.getElementById('user_img').src === null) {
+                        document.getElementById('user_img').src = "#{request.contextPath}/img/contact-img_3.jpg";
+                    }
+                </script>
+                <script type="text/javascript">
+                    $(function() {
+                        $('#test').speedometer({percentage: $('.speedometer').val() || 0});
+                    });
+                </script>
+                <!-- scripts for this page -->
+                <script src="#{request.contextPath}/js/jquery.speedometer.js"></script>
+                <script src="#{request.contextPath}/js/jquery.jqcanvas-modified.js"></script>
+                <script src="#{request.contextPath}/js/jquery.excanvas-modified.js"></script>
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

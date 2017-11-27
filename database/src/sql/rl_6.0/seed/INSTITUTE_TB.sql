@@ -1,0 +1,1 @@
+INSERT INTO `mmfdb`.`institute_tb`(`id`,`institute`) VALUES ( NULL,'Others');

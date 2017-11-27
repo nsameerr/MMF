@@ -1,0 +1,890 @@
+<!doctype html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+        	body{
+        	padding-top: 60px;
+        	padding-bottom: 25px;
+        	}
+	       .tab-pane {
+			    border-left: 1px solid #ddd;
+			    border-right: 1px solid #ddd;
+			    border-bottom: 1px solid #ddd;
+			    border-radius: 0px 0px 5px 5px;
+			    padding: 10px;
+			}
+			.nav-tabs {
+			    margin-bottom: 0;
+			}
+
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme-paper.min.css">
+        <link rel="stylesheet" href="css/bootstrap-wrapper.css">
+        
+        <link rel="stylesheet" href="css/iCheck.css" />
+        <link rel="stylesheet" href="css/ion.rangeSlider.css"/>
+        <link rel="stylesheet" href="css/ion.rangeSlider.skinHTML5.css"/>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css"/>
+        <link href="https://cdn.jsdelivr.net/jquery.roundslider/1.0/roundslider.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link href="css/bootstrap-switch.css" rel="stylesheet">
+        <link href="css/jquery.raty.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="css/SelectBoxIt.css" />
+        <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" href="css/bootstrap-submenu.min.css" />
+        <link href="https://cdn.jsdelivr.net/jquery.roundslider/1.0/roundslider.min.css" rel="stylesheet" />
+        
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/angular.min.js"></script>
+        
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        
+        <script src="js/vendor/iCheck.js"></script>
+        <script src="js/vendor/ion.rangeSlider.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.roundslider/1.0/roundslider.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/js/bootstrap-select.min.js"></script>
+        <script src="js/vendor/bootstrap-switch.js"></script>
+        <script src="http://gregfranko.com/jquery.selectBoxIt.js/js/jquery.selectBoxIt.min.js"></script>
+        <script src="js/vendor/moment.js"></script>
+        <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
+        <script src="js/vendor/autoNumeric-min.js"></script>
+        <script src="js/vendor/bootstrap-submenu.min.js"></script>
+        <script src="js/vendor/jquery.raty.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.roundslider/1.0/roundslider.min.js"></script>
+        
+        
+        
+        <script src="js/main.js"></script>
+        
+	</head>
+    <body  ng-app="appMMF" ng-controller="PortfolioSearch">
+	    <mmf-header></mmf-header>
+
+	    <div class="container-fluid" >
+			<style>
+				lable{
+					margin-left: 12px !important;
+				}
+				
+				#riskoMeter .rs-handle  {
+				    background-color: transparent;
+				    border: 8px solid transparent;
+				    border-right-color: black;
+				    margin: -6px 0px 0px 14px !important;
+				    border-width: 6px 104px 6px 4px;
+				}
+				#riskoMeter .rs-handle:before  {
+				    display: block;
+				    content: " ";
+				    position: absolute;
+				    height: 22px;
+				    width: 22px;
+				    background: black;
+				    right: -11px;
+				    bottom: -11px;
+				    border-radius: 100px;
+				}
+				#riskoMeter .rs-tooltip  {
+				    top: 120%;
+				    font-size: 20px;
+				}
+				#riskoMeter .rs-tooltip div  {
+				    text-align: center;
+				    background: orange;
+				    color: white;
+				    border-radius: 4px;
+				    padding: 1px 5px 2px;
+				    margin-top: 4px;
+				}
+				#riskoMeter .rs-range-color  {
+				    background-color: #DB5959;
+				}
+				#riskoMeter .rs-path-color  {
+				    background-color: #F0C5C5;
+				}
+				
+				#riskoMeter{
+					margin-top:9px;
+				}
+				
+				.dataTables_scroll
+				{
+				    overflow:auto;
+				    width: 100%;
+				}
+				
+				.dataTables_filter{
+					display: none !important;
+				}
+				
+				.highcharts-range-selector-buttons{
+					display: none !important;
+				}
+				
+				.rs-range-color{
+					background-color: #7BDB7B !important;
+				}
+				.rs-path-color{
+					background-color: #ECECEC !important;
+				}
+				
+				.rs-control{
+					display: inline-block;
+				}
+				
+				#datatable thead tr th {
+				background-image:url('img/thumbs.png');
+				}
+				
+				.rs-inner {
+				display:none !important;
+					border:0px !important;
+				}
+				
+				.rs-container{
+					background-color: rgba(0,0,0,0)  !important;
+					border:0px !important;
+				}
+				
+				.rs-inne{
+				
+					background-color: rgba(0,0,0,0)  !important;
+					border:0px !important;
+				}
+				.rs-block{
+					background-color: rgba(0,0,0,0)  !important;
+					border:0px !important;
+				}
+				
+				.rs-path{
+				
+					background-color: rgba(0,0,0,0)  !important;
+					border:0px !important;
+				}
+				
+				.rs-handle{
+					margin-top: 20px !important
+				}
+				
+				
+				#divRiskProfile{
+					background-image:url('img/riskometer_bg.png');
+					background-size: 500px;
+					background-repeat: no-repeat;
+					background-position: center;
+				}
+				
+				
+				
+				.rs-seperator{
+					border: 0px;
+				}
+				
+				select{
+					background-color: rgba(0,0,0,0);
+					padding:5px;
+					margin:5px;
+				}
+				
+				td{
+					padding-right :5px;
+				}
+				th{
+					padding-right :5px;
+				}
+				
+				.txtRupee{
+					background-image: url('img/icon_rupee.png');
+					background-repeat: no-repeat;
+					background-position: left center; 
+					background-size: auto 20px;
+					padding-left: 25px !important;
+					padding-bottom: 30px;
+				}
+				
+				.rs-tooltip-text{
+					margin-left: -180px !important;
+				    margin-top: -170px !important;
+				    padding: 5px !important;
+				    background-color: #2E709F !important;
+				    border-radius: 25px;
+				    color: white;
+				    height: 50px;
+				    width: 50px;
+				}
+				
+				
+				.txtRupee{
+						background-image: url('img/icon_rupee.png');
+						background-repeat: no-repeat;
+						background-position: left center; 
+						background-size: auto 20px;
+						padding-left: 25px !important;
+						padding-bottom: 30px;
+					}
+					.calender{
+						background-image: url('img/icon_calender.png');
+						background-repeat: no-repeat;
+						background-position: right center; 
+						background-size: auto 20px;
+						padding-right: 25px !important;
+						padding-bottom: 30px;
+					}
+					
+					table.dataTable.no-footer {
+				    border-bottom: 0px solid #111 !important;
+				}
+				
+				.nav-tabs li a {
+				    color: gray;
+				}
+				
+				
+				.active a {
+				    font-weight: bold;
+				}
+				
+				
+				.col-fixed-400{
+				    width:400px;
+				    position:fixed;
+				    height:8000px;
+				    border-right: 1px solid #EEEEEE;
+				    overflow: visible;
+				}
+				
+				.col-offset-400{
+				    padding-left:415px;
+				    height:9000px;
+				}
+				
+				#tblAdvisorResults{
+					margin: 10px;
+				}
+				
+				#tblAdvisorResults th{
+					font-size: 15px;
+					margin-right: 25px;
+					padding:15px;
+				    border-bottom: 4px solid #00B7EB
+				}
+				
+				#tblAdvisorResults td{
+					vertical-align: top;
+					margin-right: 25px;
+					padding:15px;
+				    border-top: 1px solid #00B7EB
+				}
+				.filterContent ul li{
+					border: solid;
+					border-width: 1px;
+					padding: 2px;
+					padding-left: 5px;
+					border-top: none;
+					/* border-top-left-radius: 5px; */
+					/* border-top-right-radius: 5px; */
+				}
+				.filterContent ul li:first-child{
+					border: solid;
+					border-width: 1px;
+					padding: 2px;
+					padding-left: 5px;
+					border-top-left-radius: 5px;
+					border-top-right-radius: 5px;
+				}
+				.filterContent ul li:last-child{
+					border: solid;
+					border-width: 1px;
+					padding: 2px;
+					padding-left: 5px;
+					border-bottom-left-radius: 5px;
+					border-bottom-right-radius: 5px;
+					border-top: none;
+				}
+				.riskprofile-low{
+					color:#107E66; /*low*/
+					
+				}
+				.riskprofile-moderate-low{
+					color:#7BDB7B;
+					
+				}
+				.riskprofile-moderate{
+					color:#FFFD4B;
+					
+				}
+				.riskprofile-moderate-high{
+					color:#FD752C;
+					
+				}
+				.riskprofile-high{
+					color:#EB3E42;
+
+				}
+				.riskProfile-1-checked
+			    {
+			    	background: rgba(16,126,102,0.6);	
+			    }
+			    .riskProfile-2-checked
+			    {
+			    	background: rgba(123,219,123,0.6);	
+			    }
+			    .riskProfile-3-checked
+			    {
+			    	background: rgba(255,253,75,0.6);	
+			    }
+			    .riskProfile-4-checked
+			    {
+			    	background: rgba(253,117,44,0.6);	
+			    }
+			    .riskProfile-5-checked
+			    {
+			    	background: rgba(235,62,66,0.6);	
+			    }
+						
+				.range {
+				  width: 160px;
+				  position: relative;
+				  margin: 50px auto;
+				  -webkit-transform: translate(-50%, -50%);
+				  -moz-transform: translate(-50%, -50%);
+				  -o-transform: translate(-50%, -50%);
+				  -ms-transform: translate(-50%, -50%);
+				  transform: translate(-50%, -50%);
+				  border: 0;
+				  height: 2px;
+				  background: #959799;
+				  outline: none;
+				}
+
+				.range .ui-slider-handle {
+				  position: absolute;
+				  margin: -3px 0 0 -9px;
+				  -webkit-border-radius: 100%;
+				  border-radius: 100%;
+				  background: #4AAE43;
+				  border: 0;
+				  height: 18px;
+				  width: 18px;
+				  outline: none;
+				  cursor: pointer;
+				}
+
+				.range .ui-slider-handle:hover,
+				.range .ui-slider-handle:focus {
+				  -webkit-transform: scale(1.1);
+				  -moz-transform: scale(1.1);
+				  -o-transform: scale(1.1);
+				  -ms-transform: scale(1.1);
+				  transform: scale(1.1);
+				}
+
+				.range .ui-slider-range { background: #007aff; }
+
+				.range #currentVal {
+				  position: absolute;
+				  font-size: 12px;
+				  font-weight: bold;
+				  color: #b8b8b8;
+				  width: 160px;
+				  text-align: center;
+				  margin-top: -40px;
+				}			
+				</style>
+				<div class="row-fluid">
+					<h2 class="page-title"> Search Advisor</h2>
+				</div>
+				<div id="divLoading"  style="display:none">Loading...</div>
+				
+				<div id="divContent">
+					<div class="container-fluid">
+						<table>
+							<tr>
+							    <td style="width:400px !important;vertical-align: top;padding-right:10px">
+							    	<div class="col-md-8" style="font-size: 20px;">
+							    		Filter Results
+							    	</div>
+							    	<div class="col-md-4" style="font-size: 14px;;margin-top: 8px;">
+							    		Reset All
+							    	</div>
+							    </td>
+							    <td> 
+							    	<div class="col-md-8" style="font-size: 20px;">
+							    		Showing Result
+							    	</div>
+							    	<div class="col-md-4" style="font-size: 14px;;margin-top: 8px;">
+							    		Sort By
+							    	</div>
+							    </td>
+							</tr>
+							<tr>
+								<td style="width:400px !important;vertical-align: top;padding-right:10px">
+									<!-- filter starts here -->
+									<div class="panel panel-default col-md-12">
+								        <!-- <div class="panel-heading">
+								            <h3 class="panel-title">Filters</h3>
+								        </div>    -->
+								        <ul class="list-group">
+								            <li class="list-group-item">
+								                <div class="row toggle" id="dropdown-detail-1" data-toggle="detail-1">
+								                    <div class="col-xs-10">
+								                        <b>Risk Profile</b>
+								                    </div>
+								                    <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
+								                </div>
+								                <div id="detail-1">
+								                    <hr></hr>
+								                    <div class="">
+								                        <div class="fluid-row">
+								                         <div class="filterContent" aria-hidden="false">
+													        <ul style="list-style-type: none;">
+													        	<li>
+													        		<input type="checkbox" id="1" class="riskProfileCheckbox pull-right">
+													        		<label for="1" class="riskProfileLabel1">
+													        			<span class="fa fa-circle riskprofile-low"></span> Low
+													        		</label>
+													        		
+													        	</li>
+													        	<li>
+													        		<input type="checkbox" id="2" class="riskProfileCheckbox pull-right">
+													        		<label for="2" class="riskProfileLabel2">
+													        		<span class="fa fa-circle riskprofile-moderate-low"></span> Moderate Low</label>
+													        		
+													        	</li>
+													        	<li>
+													        		<input type="checkbox" id="3" class="riskProfileCheckbox pull-right">
+													        		<label for="3" class="riskProfileLabel3">
+													        		<span class="fa fa-circle riskprofile-moderate"></span> Moderate</label>	
+													        		
+													        	</li>
+													        	<li>
+													        		<input type="checkbox" id="4" class="riskProfileCheckbox pull-right">
+													        		<label for="4" class="riskProfileLabel4">
+													        		<span class="fa fa-circle riskprofile-moderate-high"></span> Moderate High</label>	
+													        		
+													        	</li>
+													        	<li>
+													        		<input type="checkbox" id="5"  class="riskProfileCheckbox pull-right">
+													        		<label for="5" class="riskProfileLabel5">
+													        		<span class="fa fa-circle riskprofile-high"></span> High</label>	
+													        		
+													        	</li>
+													        </ul>
+													   </div>
+								                        </div>
+								                    </div>
+								                </div>
+								            </li>
+								            <li class="list-group-item">
+								                <div class="row toggle" id="dropdown-detail-2" data-toggle="detail-2">
+								                    <div class="col-xs-10">
+								                        <b>Ratings</b>
+								                    </div>
+								                    <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
+								                </div>
+								                <div id="detail-2">
+								                    <hr></hr>
+								                    <div class="">
+								                        <div class="fluid-row">
+								                          <div id="divRatings" style="display:inline-block;"></div>
+								        					<script>$('#divRatings').raty({ scoreName: 'entity[score]'});</script>
+								                        </div>
+								                    </div>
+								                </div>
+								            </li>
+								            <li class="list-group-item">
+								                <div class="row toggle" id="dropdown-detail-3" data-toggle="detail-3">
+								                    <div class="col-xs-10">
+								                       <b>Minimum Investment</b>
+								                       
+								                    </div>
+								                    <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
+								                </div>
+								                <div id="detail-3">
+								                    <hr></hr>
+								                    <div class="">
+								                        <div class="fluid-row">
+								                           <div id="rangeMinInv" class="range">
+															  <span id="currentVal">30</span>
+															</div>
+								                        </div>
+								                    </div>
+								                </div>
+								            </li>
+								            <li class="list-group-item">
+								                <div class="row toggle" id="dropdown-detail-4" data-toggle="detail-4">
+								                    <div class="col-xs-10">
+								                       <b>City</b>
+								                       
+								                    </div>
+								                    <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
+								                </div>
+								                <div id="detail-4">
+								                    <hr></hr>
+								                    <div class="">
+								                        <div class="fluid-row">
+								                           <select><option>Select City</option></select>
+								                        </div>
+								                    </div>
+								                </div>
+								            </li>
+								            <li class="list-group-item">
+								                <div class="row toggle" id="dropdown-detail-5" data-toggle="detail-5">
+								                    <div class="col-xs-10">
+								                       <b>Advisor Type</b>
+								                       
+								                    </div>
+								                    <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
+								                </div>
+								                <div id="detail-5">
+								                    <hr></hr>
+								                    <div class="">
+								                        <div class="fluid-row">
+								                           <div class="col-md-4 ">
+																<div class="input-group">
+																	<span class="input-group-addon"><input type="radio"  id="Q0A0" name="Q0" value="1"></span>
+																	<label for="Q0A0"><h6>Individual</h6></label>
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="input-group">
+																	<span class="input-group-addon"><input type="radio"  id="Q0A1" name="Q0" value="2"></span>
+																	<label for="Q0A1"><h6>Corporate</h6></label>
+																</div>
+															</div>
+								                        </div>
+								                    </div>
+								                </div>
+								            </li>
+								            <li class="list-group-item">
+								                <div class="row toggle" id="dropdown-detail-6" data-toggle="detail-6">
+								                    <div class="col-xs-10">
+								                       <b>Contract Horizon</b>
+								                       
+								                    </div>
+								                    <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
+								                </div>
+								                <div id="detail-6">
+								                    <hr></hr>
+								                    <div class="">
+								                        <div class="fluid-row">
+								                           <div id="rangeContractHorizon" class="range">
+															  <span id="currentVal">30</span>
+															</div>
+								                        </div>
+								                    </div>
+								                </div>
+								            </li>
+								            <li class="list-group-item">
+								                <div class="row toggle" id="dropdown-detail-7" data-toggle="detail-7">
+								                    <div class="col-xs-10">
+								                       <b>Portfolio Type</b>
+								                       
+								                    </div>
+								                    <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
+								                </div>
+								                <div id="detail-7">
+								                    <hr></hr>
+								                    <div class="">
+								                        <div class="fluid-row">
+								                           <div class="filterContent" aria-hidden="false">
+													        	<ul style="list-style-type: none;">
+													        		<li>
+													        			<input type="checkbox" id="pt1"  class="pull-right">
+													        			<label for="1" class="1">Mutal Funds Only</label>
+													        		</li>
+													        		<li>
+													        			<input type="checkbox" id="pt2"  class="pull-right">
+													        			<label for="2" class="2">Equatity Only</label>
+													        		</li>
+													        		<li>
+													        			<input type="checkbox" id="pt3"  class="pull-right">
+													        			<label for="3" class="3">Hybrid</label>
+													        		</li>
+													        	</ul>
+													        </div>
+								                        </div>
+								                    </div>
+								                </div>
+								            </li>
+								        </ul>
+									</div>	
+									<!-- end -->
+								
+									<div class="panel panel-default container-fluid" style="padding:0px;margin:0px;display:none;">
+						        		<div class="panel-heading">
+											<b>Filters</b>
+										</div>
+										<div class="panel-body" style="padding:0px;margin:0px" >
+								        	<div class="col-md-12"><b>Risk Score :</b><br></div>
+								        	<div class="col-md-12" style="padding:0px;margin:0px">
+								        		<div id="divRiskProfile" style="height: 285px; padding-top: 100px; width: 100%; text-align: center; margin-top:-50px;margin-bottom: -60px;">
+													<div id="riskoMeter" style="height: 320px !important; width:500px !important;"></div>
+												</div>
+								        	</div>
+								        	<div class="col-md-12"><hr></div>
+								        	<div class="col-md-12">
+								        		<div style="display:inline-block;"><b>Ratings :</b></div>
+								        		<div id="divRatings" style="display:inline-block;"></div>
+								        		<script>$('#divRatings').raty({ scoreName: 'entity[score]'});</script>
+								        	</div>
+								        	<div class="col-md-12"><hr></div>
+								        	<div class="col-md-12"><b>Minimum Investment :</b></div>
+								        	<div class="col-md-12">
+								        		<input id="range_allocationMMF"/>
+								        	</div>
+								        	<div class="col-md-12"><hr></div>
+								        	<div class="col-md-12"><b>Advisor Type :</b></div>
+											<div class="col-md-4 ">
+												<div class="input-group">
+													<span class="input-group-addon"><input type="radio"  id="Q0A0" name="Q0" value="1"></span>
+													<label for="Q0A0"><h6>Individual</h6></label>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="input-group">
+													<span class="input-group-addon"><input type="radio"  id="Q0A1" name="Q0" value="2"></span>
+													<label for="Q0A1"><h6>Corporate</h6></label>
+												</div>
+											</div>
+						        			<div class="col-md-12"><hr></div>
+											<div class="col-md-12"><b>Location :</b></div>
+											<div class="col-md-6"><select><option>Select State</option></select></div>
+											<div class="col-md-6"><select><option>Select City</option></select></div>
+						        			<div class="col-md-12"><hr></div>
+								        	<div class="col-md-12"><b>Payment Type :</b></div>
+											<div class="col-md-4 ">
+												<div class="input-group">
+													<span class="input-group-addon"><input type="radio"  id="Q0A0" name="Q0" value="1"></span>
+													<label for="Q0A0"><h6>Absolute</h6></label>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="input-group">
+													<span class="input-group-addon"><input type="radio"  id="Q0A1" name="Q0" value="2"></span>
+													<label for="Q0A1"><h6>Percentage of AUM</h6></label>
+												</div>
+											</div>
+										</div>
+						        	</div>
+									<img src="img/spacer.png" style="width:400px;">
+								</td>
+								<td style="vertical-align: top;width:100%">
+									<!-- profile search result start -->
+
+									  <div class="panel-group">
+									    <div class="panel " ng-repeat="item in portfolioData">
+									      <div class="panel-heading container-fluid">
+									        
+									        <div class="col-md-2 ">
+										  			<img src="./img/avatar.png" style="width: 75px;height: 75px"></img>
+										  	</div>
+										  	<div class="col-md-9 ">
+										  			<div style="font-size: 18px">{{item.portfolioName}}</div>
+										  			<div style="font-size: 16px">{{item.advisorName}}
+										  				<div id="divAdvisorRatings" class="divAdvisorRatings" style="display:inline-block;"></div>
+										  			</div>
+										  	</div>
+										  	<div class="col-md-1 ">
+										  			<i class="fa fa-chevron-down pull-right" data-toggle="collapse" href=#collapse{{$index}}></i>
+										  	</div>
+									      </div>
+									      <div id=collapse{{$index}} class="panel-collapse collapse">
+									        <div class="panel-body">{{item.advisorDesc}}</div>
+									        
+									      </div>
+										  <div class="panel-heading container-fluid row " style="text-align: center;">
+										  		<!-- Portfolio type -->
+										  		<div class="col-md-2 ">
+										  			<div><b>Protfolio Type</b></div>
+										  			<div>{{item.portfolioType}}</div>
+										  		</div>
+										  		<div class="col-md-2 ">
+										  			<div><b>Risk Type</b></div>
+										  			<div> {{item.riskType}}</div>
+										  		</div>
+										  		<div class="col-md-6 ">
+										  			<div><b>Returns</b></div>
+										  			<div class="row">
+										  				<div class="col-md-3">1 Month</div>
+										  				<div class="col-md-3">3 Months</div>
+										  				<div class="col-md-3">6 Months</div>
+										  				<div class="col-md-3">Since Start</div>
+										  			</div>
+										  			<div class="row">
+										  				<div class="col-md-3">{{item.returns.oneMonth}}</div>
+										  				<div class="col-md-3">{{item.returns.threeMonth}}</div>
+										  				<div class="col-md-3">{{item.returns.sixMonth}}</div>
+										  				<div class="col-md-3">{{item.returns.sinceInception}}</div>
+										  			</div>
+										  		</div>
+										  		<div class="col-md-2 ">
+										  			<div><b>Fee</b></div>
+										  			<div>{{item.fee}}</div>
+										  		</div>
+										  		
+										  </div>
+									    </div>
+									    <!-- panel 1 end -->
+										<br>
+										<!--	
+										<div class="panel ">
+									      <div class="panel-heading container-fluid">
+									        
+									        <div class="col-md-2 ">
+										  			<img src="./img/avatar.png" style="width: 75px;height: 75px"></img>
+										  	</div>
+										  	<div class="col-md-9 ">
+										  			<div style="font-size: 18px">Portfolio name 1</div>
+										  			<div style="font-size: 16px">Advisor name 1
+										  				<div id="divAdvisorRatings" class="divAdvisorRatings" style="display:inline-block;"></div>
+										  			</div>
+										  	</div>
+										  	<div class="col-md-1 ">
+										  			<i class="fa fa-chevron-down pull-right" data-toggle="collapse" href="#collapse2"></i>
+										  	</div>
+									      </div>
+									      <div id="collapse2" class="panel-collapse collapse">
+									        <div class="panel-body">Panel Body</div>
+									        
+									      </div>
+										  <div class="panel-heading container-fluid row">
+										  		<!-- Portfolio type 
+										  		<div class="col-md-2 ">
+										  			<div><b>Protfolio Type</b></div>
+										  			<div>Muatual Funds</div>
+										  		</div>
+										  		<div class="col-md-2 ">
+										  			<div><b>Risk Type</b></div>
+										  			<div> Moderate High</div>
+										  		</div>
+										  		<div class="col-md-6 ">
+										  			<div><b>Returns</b></div>
+										  			<div class="row">
+										  				<div class="col-md-3">1 Month</div>
+										  				<div class="col-md-3">3 Months</div>
+										  				<div class="col-md-3">6 Months</div>
+										  				<div class="col-md-3">Since Start</div>
+										  			</div>
+										  			<div class="row">
+										  				<div class="col-md-3">l1</div>
+										  				<div class="col-md-3">l2</div>
+										  				<div class="col-md-3">l3</div>
+										  				<div class="col-md-3">l4</div>
+										  			</div>
+										  		</div>
+										  		<div class="col-md-2 ">
+										  			<div><b>Fee<b/></div>
+										  			<div>0.5% </div>
+										  		</div>
+										  		
+										  </div>
+									    </div>
+									    -->
+									    <!-- panel 2 end -->
+									  </div>
+
+
+
+									<!-- profile search result end -->
+
+									<div class="panel panel-default container-fluid" style="padding:0px;margin:0px; width:100% ;display:none">
+										<div class="panel-body" style="padding:0px;margin:0px" >
+								        	<table id="tblAdvisorResults">
+							            		<tr>
+							            			<th>Name</th>
+							            			<th>Type</th>
+							            			<th>Portfolio Type</th>
+							            			<th>Risk Score</th>
+							            			<th>Returns</th>
+							            			<th>Ratings</th>
+							            			<th>Min. Investment</th>
+							            		</tr>
+							            		<tr>
+							            			<td>ManageMyFortune</td>
+							            			<td>Corporate</td>
+							            			<td>Moderate</td>
+							            			<td>50</td>
+							            			<td>10% last month<br>15% 3 months<br>14% last year</td>
+							            			<td><div id="divAdvisorRatings" class="divAdvisorRatings" style="display:inline-block;"></div></td>
+							            			<td>3,00,000</td>
+							            		</tr>
+							            		<tr>
+							            			<td>ManageMyFortune</td>
+							            			<td>Corporate</td>
+							            			<td>Moderate</td>
+							            			<td>50</td>
+							            			<td>10% last month<br>15% 3 months<br>14% last year</td>
+							            			<td><div id="divAdvisorRatings" class="divAdvisorRatings" style="display:inline-block;"></div></td>
+							            			<td>3,00,000</td>
+							            		</tr>
+							            		<tr>
+							            			<td>ManageMyFortune</td>
+							            			<td>Corporate</td>
+							            			<td>Moderate</td>
+							            			<td>50</td>
+							            			<td>10% last month<br>15% 3 months<br>14% last year</td>
+							            			<td><div id="divAdvisorRatings" class="divAdvisorRatings" style="display:inline-block;"></div></td>
+							            			<td>3,00,000</td>
+							            		</tr>
+							            	</table>
+							            	<script>
+							            		$('.divAdvisorRatings').raty({'readOnly': true,score: 3 });
+							            		
+							            	</script>
+										</div>
+						        	</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+					
+					
+					<!-- Modal -->
+					<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h4 class="modal-title" id="myModalLabel"></h4>
+					      </div>
+					      <div class="modal-body">
+					        this is modalbody
+					      </div>
+					      <div class="modal-footer">
+					      	<button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</div>
+		</div>
+		<!-- Modules -->
+        <script src="js/app.js"></script>
+    
+        <!-- Controllers -->
+        <script src="js/controllers/PortfolioSearch.js" charset="UTF-8"></script>
+        <script src="js/directives/portfolioSearch.js" charset="UTF-8"></script>
+        <script type="text/javascript">
+        	$("select").selectBoxIt();
+        	$("select").css("width","100%");
+        </script>
+        <script type="text/javascript">
+
+        </script>
+    </body>
+</html>

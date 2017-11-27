@@ -1,0 +1,14 @@
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('1','2016-01-26','Republic Day');
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('2','2016-03-07','Mahashivratri');
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('3','2016-03-24','Holi');
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('5','2016-04-14','Ambedkar Jayanti');
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('6','2016-04-15','Ram Navami');
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('7','2016-04-19','Mahavir Jayanti');
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('10','2016-07-06','Ramzan');
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('11','2016-08-15','Independence');
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('12','2016-09-05','Ganesh Chaturthi');
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('13','2016-09-13','Bakrid');
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('14','2016-10-11','Dasera');
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('15','2016-10-12','MoharRam');
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('16','2016-10-31','Diwali');
+insert into `exchange_holiday_tb` (`id`, `hdate`, `hevent`) values('17','2016-11-14','Gurunanak Jayanti');

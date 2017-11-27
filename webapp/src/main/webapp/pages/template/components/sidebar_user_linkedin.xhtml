@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+
+    </head>
+    <body>
+        <ui:composition>
+            <h:form>
+                <p:remoteCommand name="redirectHome" action="{sidebarUserController.onClickHome()}"
+                                 onstart="javascript:startSpinner();"/>
+                <p:remoteCommand name="redirectNetwork" action="#{sidebarUserController.onClickNetwork()}"
+                                 onstart="javascript:startSpinner();"/>
+                <script type="text/javascript">
+                    function startSpinner() {
+                        $("#dashboard-menu li:eq(3) a").attr("style", "cursor : wait;");
+                        $("#dashboard-menu li:eq(3) a").attr("onclick", "false");
+                        $("#dashboard-menu li:eq(3)").attr("class", "spinner-blackbg");
+                        startPageSpinner();
+                    }
+                    function stopSpinner() {
+                        $("#dashboard-menu li:eq(3) a").attr("style", "cursor : pointer;");
+                        $("#dashboard-menu li:eq(3) a").attr("onclick", "redirectNetwork();");
+                        $("#dashboard-menu li:eq(3) a").attr("class", "");
+                    }
+                </script>
+
+                <style type="text/css">
+                    .spinner-blackbg{
+                        background: url("../img/select2/spiffygif_30x30.gif")no-repeat;
+                        background-position: center;
+                    }
+                </style>
+                <div id="sidebar-nav">
+                    <div class="beta-tag"></div>
+                    <ul id="dashboard-menu">
+                        <li>
+
+                        </li>
+                        <li class="active">
+                            <div class="pointer">
+                            </div>
+                        </li>
+                        <li>
+
+                        </li>
+                        <li>
+
+                        </li>
+                        <li>
+
+                        </li>
+                        <li>
+
+                        </li>
+                        <li>
+
+                        </li>
+                    </ul>
+                </div>
+            </h:form>
+        </ui:composition>
+    </body>
+</html>

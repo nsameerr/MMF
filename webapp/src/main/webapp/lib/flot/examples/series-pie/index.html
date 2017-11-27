@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Flot Examples: Pie Charts</title>
+	<style type="text/css">
+
+		.donut-placeholder {		    
+		    height: 450px;   
+		}
+
+		.legendLabel, .pielabel div{
+			font-family: 'OpenSans', Arial, sans-serif;
+		}
+	
+	</style>	
+	<script language="javascript" type="text/javascript" src="../../jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="../../jquery.flot.js"></script>
+	<script language="javascript" type="text/javascript" src="../../jquery.flot.pie.js"></script>
+	<script type="text/javascript">
+
+	$(function() {
+
+		var data = [
+			{ label: "Equity",  data: 70, color: '#669900'},
+			{ label: "Commodities",  data: 30, color: '#8ABD00'},
+			{ label: "Debt",  data: 10, color: '#C5E26D'}
+		];	
+		
+
+		$(document).ready(function() {			
+
+			$.plot('#donut-placeholder', data, {
+				series: {
+					pie: { 
+						innerRadius: 0.5,
+						show: true,
+						label: {
+							show: true,
+							formatter: labelFormatter,
+							background: {
+								opacity: 1
+							},
+							threshold: 0.05
+						}
+					}
+				}, 
+				grid:{
+					hoverable: true
+				}
+			});
+		});
+
+
+		function labelFormatter(label, series) {
+		return "<div style='font-size:8pt; text-align:center; padding:2px; color:#222; font-family: OpenSans, arial, sans-serif'>" + label + "<br/>" + Math.round(series.percent) + "%</div>";
+												}
+		
+
+		
+
+		
+	});
+	</script>
+</head>
+<body>		
+		
+			<div id="donut-placeholder" class="donut-placeholder"></div>			
+		
+</body>
+</html>

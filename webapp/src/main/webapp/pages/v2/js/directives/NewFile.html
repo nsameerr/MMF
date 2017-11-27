@@ -1,0 +1,49 @@
+
+			
+			<!-- Carousal item Q6 start -->
+			<div  id="cItem6" class="item container-fluid">
+				<div class="row">
+					<div class="pull-left">
+						<span class="questionBullet ">06</span>
+					</div>
+					<div class="block">
+						<div class="question" id="divMonthlySavings">What is your monthly savings?<br></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="answerIndent pull-left">
+					</div>
+					<div class="col-md-11">
+						<div style="text-align: center;"><img alt="" src="img/savings.png" style="    min-height: auto !important; height: 150px;"><br></div>
+						<div style="margin-left: 200px; margin-right:200px"><input id="range_savings"/></div>
+						<script type="text/javascript">
+							var rangeSavings = $("#range_savings");
+							rangeSavings.ionRangeSlider({
+						         min:0,
+						         max:100,
+						         from:50,
+						         grid: true,
+						         grid_num: 10,
+						         onStart: function (data) {
+						             console.log('onStart');
+						         },
+						         onChange: function (data) {
+						             console.log('onChange');
+						             
+						         },
+						         onFinish: function (data) {
+						        	 console.log('onFinish');
+						         },
+						         onUpdate: function (data) {
+						             console.log('onUpdate');
+						         }
+						     });
+						     sliderSavings = rangeSavings.data("ionRangeSlider");
+						     $(".irs-single").css("display","block");
+						</script>
+					</div>
+				</div>
+			</div>
+			<!-- Carousal item Q6 end -->
+			
+			

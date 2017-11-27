@@ -1,0 +1,118 @@
+      <!--Financial Planner : Total Networth-->
+        <div class="content_box_finance questionnaire">
+            <div class="content_box_finance_hd"><h2>Total Assets <br> </h2></div>           
+            <div class="content_box_finance_row minheight">
+              <div class="questionnaire-sec"> 
+                <span ng-if="userFpData.relationStatus == 'married'">
+                	<span class="bold">What is your combined </span> (your + spouse's) <span class="bold"> current networth?</span> <br> <br>
+                </span>
+                <span ng-if="userFpData.relationStatus == 'single'">
+                	<span class="bold">What is your current networth?</span> <br> <br>
+                </span>                 
+                <div class="questionnaire-row">
+                	<div class="questionnaire-c1 networthValue">Cash, Bank Deposits &amp; Liquid Debt Mutual Funds </div> <div class="questionnaire-c2"> <!--<i class="fa fa-inr"></i> <input type="text" value="200,000" name="fpq1" id="fpq1" >-->
+                        
+                    <div class="age1">           
+                            <div id="sliderprice-range-networth-0" class="fpq_price_bar" ></div> <i class="fa fa-inr"></i>
+                            <input type="text" id="price-networth-0" readonly> 
+                            <label for="price-networth-0"> <!--<a href="#">X</a>--> </label> 
+                    </div>
+                    </div>
+                </div>
+                <div class="questionnaire-row">
+                	<div class="questionnaire-c1 networthValue">Fixed Income <br> <span>(Provident Funds, Debt Mutual Funds, Bonds, KVP, NSC,etc.)</span> </div> 
+                    <div class="questionnaire-c2"> 
+                    	<div class="age1">
+                            <div id="sliderprice-range-networth-1" class="fpq_price_bar" ></div> <i class="fa fa-inr"></i>
+                            <input type="text" id="price-networth-1" readonly> 
+                            <label for="price-networth-1"></label>
+                    	</div>
+                    </div>
+                </div>
+                <div class="questionnaire-row">
+                	<div class="questionnaire-c1 networthValue"> Gold <span>( ETF, Physical )</span> </div> 
+                    <div class="questionnaire-c2">  
+                        <div class="age1">
+                            <div id="sliderprice-range-networth-2" class="fpq_price_bar" ></div> <i class="fa fa-inr"></i>
+                            <input type="text" id="price-networth-2" readonly>
+                            <label for="price-networth-2"></label> 
+                    	</div>
+                    </div>
+                </div>
+                <div class="questionnaire-row">
+                	<div class="questionnaire-c1 networthValue"> Equity (Mutual Funds, Shares)  </div>
+                    <div class="questionnaire-c2"> 
+                    	<div class="age1">
+                            <div id="sliderprice-range-networth-3" class="fpq_price_bar" ></div> <i class="fa fa-inr"></i>
+                            <input type="text" id="price-networth-3" readonly> 
+                            <label for="price-networth-3"></label>
+                    	</div>    
+                    </div>
+                </div>
+                <div class="questionnaire-row">
+                	<div class="questionnaire-c1 networthValue"> Total Real Estate </div> 
+                    <div class="questionnaire-c2"> 
+                    	<div class="age1">
+                            <div id="sliderprice-range-networth-4" class="fpq_price_bar" ></div> <i class="fa fa-inr"></i>
+                            <input type="text" id="price-networth-4" readonly>
+                            <label for="price-networth-4"></label> 
+                    	</div>    
+                    </div>
+                </div>
+                <!-- additional row code start -->
+                  <div class="append-div-networth"></div>
+                <!-- additional row code end  -->
+                <div class="questionnaire-row">
+                	<div class="fpq_addrowbtn"><a href="javascript:void(0)" id="btn2" >+</a></div>
+                </div>
+                <div class="questionnaire-row questionnaire-row-total">
+                	<div class="questionnaire-c1">Total Assets </div> 
+                  <div class="questionnaire-c2"> 
+                      <i class="fa fa-inr"></i> 
+                      <input type="text"  id="totalNetworth" > <!--value="1,21,000,000"-->
+                  </div>
+                </div>
+              </div>              
+            </div>  
+            <div class="registration_row content_box_finance_row text-center">   
+                <input type="button" value="Back" class="buttonFpBack btnPrev" ng-click="gotoPrev()"> &nbsp; 
+                <input type="button" value="NEXT" class="buttonFpNext btnNext" ng-click="saveFpNetworth();gotoNext()"> 
+            </div>                         
+        </div>    
+
+
+
+<link rel="stylesheet" href="css/jquery-ui.css">
+<script src="js/jquery-ui.js"></script>
+<!-- additional row add start -->
+<script>
+$(document).ready(function(){
+    $("#btn2").click(function(){
+  		var randNo = Math.floor((Math.random() * 100000) + 1);
+  		//$("p").append("<b>Appended text</b>");
+  		$(".append-div-networth").append('<div class="questionnaire-row" id="row-id-networth-'+randNo+'"><div class="questionnaire-c1"> <textarea name="aa2" id="aa2-'+randNo+'" placeholder="Type Asset Details Here..." class="networthValue alphaSpaceOnly"></textarea></div><div class="questionnaire-c2"> <div class="age1"><div id="sliderprice-range-networth-'+randNo+'" class="fpq_price_bar" ></div> <i class="fa fa-inr"></i> <input type="text" id="price-networth-'+randNo+'" readonly><label for="price-networth-'+randNo+'"> <a href="javascript:;" class="delrowAsset" alt="networth-'+randNo+'">X</a> </label> </div></div></div>');
+  	  // $('#aa2-'+randNo).focus();  //Commented autofocus from textarea
+
+      //Other Asset 
+  	  $( "#sliderprice-range-networth-"+randNo ).slider({
+        range: "min",
+        value:0,
+        min:0,
+        max:1000000,
+        slide: function( event, ui ) {
+          $( "#price-networth-"+randNo  ).val( format(ui.value));
+          var total = 0;
+          $("[id^=sliderprice-range-networth]").not('#sliderprice-range-networth-'+randNo).each(function(index,element){ 
+           total += $(this).slider('value');     
+          });
+          total = ui.value + total;    
+          $('#totalNetworth').val(format(total)); 
+        }
+      });
+      $( "#price-networth-"+randNo  ).val( format($( "#sliderprice-range-networth-"+randNo ).slider( "value" ))); 		
+    }); 
+	
+
+  });
+</script>
+<!-- additional row add end -->

@@ -1,0 +1,2 @@
+\. rl_16.0/seed/CUSTOMER_LOCKED_SECURITIES_TB.sql 
+SELECT "rl_16.0/seed/CUSTOMER_LOCKED_SECURITIES_TB.sql completed" AS "";

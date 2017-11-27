@@ -1,0 +1,6 @@
+CREATE TABLE `questionoptionsmaster_tb` (                                                                                                                                                                                                
+	`id` INT(11) NOT NULL AUTO_INCREMENT,                                                                                                                                                                                                  
+	`q_option` VARCHAR(100) NOT NULL,                                                                                                                                                                                                      
+	`q_optionvalue` INT(11) NOT NULL,                                                                                                                                                                                                      
+	PRIMARY KEY (`id`)                                                                                                                                                                                                                     
+);

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 16, 2014 2:18:16 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.MasterSecurityClassificationTb" table="master_security_classification_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="amc" type="string">
+            <column name="amc" length="100" />
+        </property>
+        <property name="codeNo" type="string">
+            <column name="code_no" length="10" />
+        </property>
+        <property name="schemeName" type="string">
+            <column name="scheme_name" length="100" />
+        </property>
+        <property name="schemeType" type="string">
+            <column name="scheme_type" length="20" />
+        </property>
+        <property name="schemeCategory" type="string">
+            <column name="scheme_category" length="20" />
+        </property>
+        <property name="schemeNavName" type="string">
+            <column name="scheme_nav_name" length="100" />
+        </property>
+        <property name="schemeMinimumAmount" type="string">
+            <column name="scheme_minimum_amount" length="100" />
+        </property>
+        <property name="launchDate" type="timestamp">
+            <column name="launch_date" length="19" />
+        </property>
+        <property name="closureDDate" type="timestamp">
+            <column name="closure_dDate" length="19" />
+        </property>
+        <property name="closedFlag" type="string">
+            <column name="closed_flag" length="1" />
+        </property>
+        <property name="schemeLoad" type="string">
+            <column name="scheme_load" length="100" />
+        </property>
+        <property name="isinDivReinvestment" type="string">
+            <column name="isin_div_reinvestment" length="50" />
+        </property>
+        <property name="isinDivPayout" type="string">
+            <column name="isin_div_payout" length="50" />
+        </property>
+        <property name="isinGrowth" type="string">
+            <column name="isin_growth" length="50" />
+        </property>
+        <property name="mmfClassification" type="string">
+            <column name="mmf_classification" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

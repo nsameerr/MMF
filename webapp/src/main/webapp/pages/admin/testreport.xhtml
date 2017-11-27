@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core">
+	<head>
+		<title>My First JasperReports</title>
+	</head>
+	<body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+		<f:view>			
+			<h:form id="form">
+				<h:selectOneRadio value="#{testJasperBean.exportOption}">
+					<f:selectItem itemValue="PDF" itemLabel="PDF"/>
+					<f:selectItem itemValue="HTML" itemLabel="HTML"/>
+				</h:selectOneRadio>
+				<h:commandButton  action="#{testJasperBean.execute}" value="Get Report" />
+			</h:form>
+		</f:view>
+	</body>
+</html>

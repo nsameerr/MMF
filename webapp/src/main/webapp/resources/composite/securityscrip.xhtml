@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:cc="http://java.sun.com/jsf/composite"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="securities" type="java.util.ArrayList" required="true"/>
+        <cc:attribute name="asset" type="java.lang.String" required="true"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <ui:repeat value="#{cc.attrs.securities}"
+                   var="security" id="repeat-security" varStatus="securityStatus">
+            <h:panelGroup rendered="#{security.status}">
+                <tr>
+                    <!-- Ticker -->
+                    <td style="color: #{security.priceNotInRange ? 'red' : '#555'}" 
+                        title="#{security.securityId}" class="pad-left">
+                        <div>
+                            <h:outputText value="#{security.securityCode}"/>
+                        </div>
+                        <p:autoComplete completeMethod="#{createEditPortfolioController.completeTicker}"
+                                        style="width: 160px;position: relative;" forceSelection="true" id="ticker-equity_auto"
+                                        minQueryLength="2" label="ticker_msg" immediate="true" rendered="#{!security.allocatedPreviously}" 
+                                        scrollHeight="350" readonly="#{security.allocatedPreviously}" >
+                            <f:attribute name="asset" value="#{cc.attrs.asset}" />
+                            <p:ajax event="itemSelect" async="true"
+                                    onstart="passModifiedTickerIndex([{name: 'security', value: '#{securityStatus.index}'}, {name: 'asset', value: '#{cc.attrs.asset}'}]);"/>
+                            <p:ajax event="itemSelect" async="true" listener="#{createEditPortfolioController.reciveNewTicker}"
+                                    oncomplete="updateWatches();"/>
+                        </p:autoComplete>
+                    </td>
+
+                    <!-- Asset Class -->
+                    <td  style="color: #{security.priceNotInRange ? 'red' : '#555'};padding: 0px;" >
+                        <div style="max-width: 210px;">
+                            <h:outputText value="#{security.securityLabel}"/>
+                        </div>
+                    </td>
+                    
+                    <!-- Range -->
+                    <td></td>
+                    
+                    <!-- New Allocatiom -->
+                    <td style="color: #{security.priceNotInRange ? 'red' : '#555'}">
+                        <h:inputText value="#{security.newAllocation}" maxlength="3" onfocus="this.value=parseInt(this.value)" onchange="if (this.value === '') { this.value = 0.0; }
+                                             newAllocationChange([{name: 'security', value: '#{securityStatus.index}'}, {name: 'asset', value: '#{cc.attrs.asset}'}
+                                                 , {name: 'newAllocationChange', value: this.value}]);" styleClass="new-allocation-txt" >
+                        </h:inputText>
+                        <span>&nbsp;%</span>
+                    </td>
+                    
+                    <!-- CMP -->
+                    <td class="align_right">
+                        <!-- style="float: right;color:{security.currentPrice eq 0?'red':security.cmpTextColor};font-weight: bolder;" -->
+                        <i class="rupees" ><span class="WebRupee">Rs.</span></i>
+                        <h:outputText value="#{security.currentPrice eq 0?'Price Not available':security.currentPrice}" style="font-weight: bolder;">
+                            <f:convertNumber pattern="##,##0.0000"/>
+                        </h:outputText>
+                    </td>
+                    
+                    <!-- Minimum fresh nav/cmp -->
+                    <td class="align_right" style="color: #{security.priceNotInRange ? 'red' : '#555'}">
+                        <!-- New Price Tolerance -->
+                        <!--
+                        <span class="ui-select" style="width: 70px; margin-right: 18px;margin-left: 15px;">
+                            <h:selectOneMenu value="{security.newTolerancePositiveRange}" styleClass="price-tolerance-combo" id="tolerance">
+                                <f:selectItems value="{createEditPortfolioController.priceToleranceList}" var="tolerance"
+                                               itemLabel="{tolerance}%" itemValue="{tolerance}"/>
+                            </h:selectOneMenu>
+                        </span>
+                        -->
+                        <i class="rupees" ><span class="WebRupee">Rs.</span></i>
+                        <h:outputText value="#{security.minInvestment}" style="font-weight: bolder;">
+                            <f:convertNumber pattern="##,##0.00"/>
+                        </h:outputText>
+                    </td>
+                    
+                    <!-- Tradability -->
+                    <td>
+                        <h:graphicImage id="trade_signal" style="height: 16px;width:16px;margin-left: 10px" 
+                                        url="#{security.tradeSignal eq 'green' ?'/img/green_tick.png' 
+                                               :security.tradeSignal eq 'orange'? '/img/orange_tick.png':'/img/red_cross.png'}">
+                        </h:graphicImage>
+                    </td>    
+                    
+                    <!-- Existing weight -->
+                    <td style="color: #{security.priceNotInRange ? 'red' : '#555'}">
+                        <h:outputText value="#{security.currentWeight}%" class="existing-weight">
+                            <f:convertNumber pattern="##,##0.00"/>
+                        </h:outputText>
+                    </td>
+                    
+                    <!-- Initial Allocation -->
+                    <td style="color: #{security.priceNotInRange ? 'red' : '#555'}">
+                        <h:outputText value="#{security.initialAllocation}%" style="float: right;padding-right: 45px;">
+                            <f:convertNumber pattern="##"/>
+                        </h:outputText>
+                    </td>
+                    
+                    <!-- Initial Set price -->
+                    <td class="align_right" style="color: #{security.priceNotInRange ? 'red' : '#555'}">
+                        <i class="rupees" ><span class="WebRupee">Rs.</span></i>
+                        <h:outputText value="#{security.initialPrice}">
+                            <f:convertNumber pattern="##,##0.00"/>
+                        </h:outputText>
+                    </td>
+                    
+                    <!-- Initial Price Tolerance -->
+                    <!--
+                    <td style="color: {security.priceNotInRange ? 'red' : '#555'}">
+                        <h:outputText value="{security.initialTolerancePositiveRange}" style="float: right;padding-right: 65px;"/>
+                    </td> 
+                    -->
+                    
+                    <!-- Add button -->
+                    <td style="color: #{security.priceNotInRange ? 'red' : '#555'}">
+                        <h:commandLink styleClass="icon-remove" actionListener="#{createEditPortfolioController.doActionRemoveSecurity}"
+                                       action="#{createEditPortfolioController.actionAddRemoveSecurity}"
+                                       style="text-decoration: none;color: #555;float: right;font-weight: bolder;">
+                            <f:param name="securityIndex" value="#{securityStatus.index}"/>
+                            <f:param name="assetClass" value="#{cc.attrs.asset}"/>
+                        </h:commandLink>
+                    </td>
+                </tr>
+            </h:panelGroup>
+        </ui:repeat>
+    </cc:implementation>
+</ui:composition>

@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Sep, 2016 5:47:11 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerPortfolioTb" table="customer_portfolio_tb" catalog="mmfdb">
+        <id name="customerPortfolioId" type="java.lang.Integer">
+            <column name="customer_portfolio_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="masterAdvisorTb" class="com.gtl.mmf.entity.MasterAdvisorTb" fetch="select">
+            <column name="advisor_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="masterCustomerTb" class="com.gtl.mmf.entity.MasterCustomerTb" fetch="select">
+            <column name="customer_id" not-null="true" unique="true" />
+        </many-to-one>
+        <many-to-one name="customerAdvisorMappingTb" class="com.gtl.mmf.entity.CustomerAdvisorMappingTb" fetch="select">
+            <column name="relation_id" not-null="true" unique="true" />
+        </many-to-one>
+        <many-to-one name="portfolioTb" class="com.gtl.mmf.entity.PortfolioTb" fetch="select">
+            <column name="portfolio_id" not-null="true" />
+        </many-to-one>
+        <property name="omsLoginId" type="string">
+            <column name="oms_login_id" length="40" />
+        </property>
+        <property name="currentValue" type="java.lang.Float">
+            <column name="current_value" precision="12" scale="0" />
+        </property>
+        <property name="portfolio90DayReturns" type="java.lang.Float">
+            <column name="portfolio_90_day_returns" precision="10" />
+        </property>
+        <property name="portfolio1YearReturns" type="java.lang.Float">
+            <column name="portfolio_1_year_returns" precision="10" />
+        </property>
+        <property name="adviserComment" type="string">
+            <column name="adviser_comment" length="65535" />
+        </property>
+        <property name="customerComment" type="string">
+            <column name="customer_comment" length="65535" />
+        </property>
+        <property name="outperformance" type="java.lang.Integer">
+            <column name="outperformance" />
+        </property>
+        <property name="advisorPortfolioStartValue" type="big_decimal">
+            <column name="advisor_portfolio_start_value" precision="12" />
+        </property>
+        <property name="benchmarkStartValue" type="big_decimal">
+            <column name="benchmark_start_value" precision="12" />
+        </property>
+        <property name="advisorPortfolioReturnsFromStart" type="big_decimal">
+            <column name="advisor_portfolio_returns_from_start" precision="10" />
+        </property>
+        <property name="benchmarkReturnsFromStart" type="big_decimal">
+            <column name="benchmark_returns_from_start" precision="10" />
+        </property>
+        <property name="rebalanceRequired" type="java.lang.Boolean">
+            <column name="rebalance_required" />
+        </property>
+        <property name="rebalanceReqdDate" type="timestamp">
+            <column name="rebalance_reqd_date" length="19" />
+        </property>
+        <property name="lastUpdated" type="timestamp">
+            <column name="last_updated" length="19" />
+        </property>
+        <property name="status" type="java.lang.Boolean">
+            <column name="status" />
+        </property>
+        <property name="portfolioValue" type="java.lang.Float">
+            <column name="portfolio_value" precision="10" />
+        </property>
+        <property name="commentFreq" type="java.lang.Integer">
+            <column name="comment_freq" />
+        </property>
+        <property name="noRebalanceStatus" type="java.lang.Boolean">
+            <column name="no_rebalance_status" />
+        </property>
+        <property name="cashAmount" type="java.lang.Float">
+            <column name="cash_amount" precision="13" />
+        </property>
+        <property name="portfolioModified" type="java.lang.Boolean">
+            <column name="portfolio_modified" />
+        </property>
+        <property name="lastExecutionUpdate" type="timestamp">
+            <column name="LastExecutionUpdate" length="19" />
+        </property>
+        <property name="isFirstDayPerfmanceCalc" type="boolean">
+            <column name="is_first_day_perfmance_calc" not-null="true" />
+        </property>
+        <property name="portfolioAssigned" type="timestamp">
+            <column name="portfolio_assigned" length="19" />
+        </property>
+        <property name="rebalanceViewed" type="java.lang.Boolean">
+            <column name="rebalanceViewed" />
+        </property>
+        <property name="portfolioChangeViewed" type="java.lang.Boolean">
+            <column name="portfolioChangeViewed" />
+        </property>
+        <property name="benchmarkUnit" type="big_decimal">
+            <column name="benchmark_unit" precision="12" />
+        </property>
+        <property name="allocatedFund" type="java.lang.Double">
+            <column name="allocatedFund" precision="22" scale="0" />
+        </property>
+        <property name="venueName" type="string">
+            <column name="venue_name" length="10" />
+        </property>
+        <property name="cashFlowDflag" type="java.lang.Boolean">
+            <column name="cashFlowDFlag" />
+        </property>
+        <property name="cashFlow" type="big_decimal">
+            <column name="cashFlow" precision="15" />
+        </property>
+        <property name="buyingPower" type="java.lang.Float">
+            <column name="buyingPower" precision="11" />
+        </property>
+        <property name="recomendedCashBal" type="java.lang.Float">
+            <column name="recomended_cash_bal" precision="11" />
+        </property>
+        <property name="blockedCash" type="java.lang.Float">
+            <column name="blocked_cash" precision="15" scale="4" />
+        </property>
+        <property name="tempBlockedCash" type="java.lang.Float">
+            <column name="temp_blocked_cash" precision="15" scale="4" />
+        </property>
+        <property name="blockedCount" type="java.lang.Float">
+            <column name="blocked_count" precision="15" scale="4" />
+        </property>
+        <property name="tempBlockedCount" type="java.lang.Float">
+            <column name="temp_blocked_count" precision="15" scale="4" />
+        </property>
+         <property name="portfolioStatus" type="string">
+            <column name="portfolio_status" length="50" />
+        </property>
+        <set name="customerPortfolioDetailsTbs" table="customer_portfolio_details_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_portfolio_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerPortfolioDetailsTb" />
+        </set>
+        <set name="customerPortfolioLogTbs" table="customer_portfolio_log_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_portfolio_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerPortfolioLogTb" />
+        </set>
+        <set name="customerPortfolioDetailsPerformanceTbs" table="customer_portfolio_details_performance_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_portfolio_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerPortfolioDetailsPerformanceTb" />
+        </set>
+        <set name="customerPortfolioPerformanceTbs" table="customer_portfolio_performance_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_portfolio_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerPortfolioPerformanceTb" />
+        </set>
+        <set name="addRedeemLogTbs" table="add_redeem_log_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_portfolio_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.AddRedeemLogTb" />
+        </set>
+        <set name="customerPortfolioSecuritiesPerformanceTbs" table="customer_portfolio_securities_performance_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_portfolio_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerPortfolioSecuritiesPerformanceTb" />
+        </set>
+        <set name="customerDailyCashBalanceTbs" table="customer_daily_cash_balance_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_portfolio_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerDailyCashBalanceTb" />
+        </set>
+        <set name="recomendedCustomerPortfolioSecuritiesTbs" table="recomended_customer_portfolio_securities_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_portfolio_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.RecomendedCustomerPortfolioSecuritiesTb" />
+        </set>
+        <set name="recomendedCustomerPortfolioPerformanceTbs" table="recomended_customer_portfolio_performance_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_portfolio_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.RecomendedCustomerPortfolioPerformanceTb" />
+        </set>
+        <set name="customerPortfolioSecuritiesTbs" table="customer_portfolio_securities_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_portfolio_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gtl.mmf.entity.CustomerPortfolioSecuritiesTb" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 15, 2016 5:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.FpOutstandingloansUserInputsTb" table="fp_outstandingloans_user_inputs_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="customerId" type="string">
+            <column name="customer_id" length="50" />
+        </property>
+        <property name="loanDescription" type="string">
+            <column name="loan_description" length="25" />
+        </property>
+        <property name="loanAmount" type="java.lang.Integer">
+            <column name="loan_amount" />
+        </property>
+        <property name="monthlyEmiAmount" type="java.lang.Integer">
+            <column name="monthly_EMI_amount" />
+        </property>
+        <property name="finalYear" type="java.lang.Integer">
+            <column name="final_year" />
+        </property>
+    </class>
+</hibernate-mapping>

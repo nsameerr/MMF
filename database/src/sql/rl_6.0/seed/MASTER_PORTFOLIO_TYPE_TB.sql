@@ -1,0 +1,20 @@
+DELETE FROM `master_portfolio_type_tb`;
+
+INSERT  INTO `master_portfolio_type_tb`(`id`,`investor_profile`,`portfolio_type`,`min_score`,`max_score`,`cash`,`gold`,`debt`,`equities_index`,`equities_bluechip`,`equities_midcap`,`equities_small_cap`,`fando`,`international`,`commodities`,`mutual_funds`,`range_min__equity`,`range_min_cash`,`range_min_gold`,`range_min_debt`,`range_min_international`,`range_min_fo`,`range_min_mutual_funds`,`range_max_equity`,`range_max_cash`,`range_max_gold`,`range_max_debt`,`range_max_fo`,`range_max_international`,`range_max_mutual_funds`,`equity_diverisied`,`range_max_equity_diverisied`,`range_min_equity_diverisied`,`midcap`,`range_min_micap`,`range_max_midcap`) VALUES 
+(1,'Aggressive','Aggressive Growth',81,100,3,4,3,10,10,0,20,5,20,18,0,8,2,3,2,16,0,0,12,5,5,5,10,24,0,30,36,24,30,24,36);
+
+INSERT  INTO `master_portfolio_type_tb`(`id`,`investor_profile`,`portfolio_type`,`min_score`,`max_score`,`cash`,`gold`,`debt`,`equities_index`,`equities_bluechip`,`equities_midcap`,`equities_small_cap`,`fando`,`international`,`commodities`,`mutual_funds`,`range_min__equity`,`range_min_cash`,`range_min_gold`,`range_min_debt`,`range_min_international`,`range_min_fo`,`range_min_mutual_funds`,`range_max_equity`,`range_max_cash`,`range_max_gold`,`range_max_debt`,`range_max_fo`,`range_max_international`,`range_max_mutual_funds`,`equity_diverisied`,`range_max_equity_diverisied`,`range_min_equity_diverisied`,`midcap`,`range_min_micap`,`range_max_midcap`) VALUES
+
+(2,'Moderately Aggressive','Growth',61,80,3,4,13,15,20,0,20,5,15,16,0,12,2,3,10,12,0,0,18,5,5,16,5,18,0,25,30,20,25,20,30);
+
+INSERT  INTO `master_portfolio_type_tb`(`id`,`investor_profile`,`portfolio_type`,`min_score`,`max_score`,`cash`,`gold`,`debt`,`equities_index`,`equities_bluechip`,`equities_midcap`,`equities_small_cap`,`fando`,`international`,`commodities`,`mutual_funds`,`range_min__equity`,`range_min_cash`,`range_min_gold`,`range_min_debt`,`range_min_international`,`range_min_fo`,`range_min_mutual_funds`,`range_max_equity`,`range_max_cash`,`range_max_gold`,`range_max_debt`,`range_max_fo`,`range_max_international`,`range_max_mutual_funds`,`equity_diverisied`,`range_max_equity_diverisied`,`range_min_equity_diverisied`,`midcap`,`range_min_micap`,`range_max_midcap`) VALUES
+
+(3,'Moderate','GARP',41,60,3,4,23,20,30,0,10,0,10,14,0,16,2,3,18,8,0,0,24,5,5,28,0,12,0,20,24,16,20,16,24);
+
+INSERT  INTO `master_portfolio_type_tb`(`id`,`investor_profile`,`portfolio_type`,`min_score`,`max_score`,`cash`,`gold`,`debt`,`equities_index`,`equities_bluechip`,`equities_midcap`,`equities_small_cap`,`fando`,`international`,`commodities`,`mutual_funds`,`range_min__equity`,`range_min_cash`,`range_min_gold`,`range_min_debt`,`range_min_international`,`range_min_fo`,`range_min_mutual_funds`,`range_max_equity`,`range_max_cash`,`range_max_gold`,`range_max_debt`,`range_max_fo`,`range_max_international`,`range_max_mutual_funds`,`equity_diverisied`,`range_max_equity_diverisied`,`range_min_equity_diverisied`,`midcap`,`range_min_micap`,`range_max_midcap`) VALUES
+
+(4,'Moderately Conservative','Value',21,40,3,4,33,25,35,0,0,0,5,12,0,20,2,3,26,4,0,0,30,5,5,40,0,6,0,15,18,12,15,12,18);
+
+INSERT  INTO `master_portfolio_type_tb`(`id`,`investor_profile`,`portfolio_type`,`min_score`,`max_score`,`cash`,`gold`,`debt`,`equities_index`,`equities_bluechip`,`equities_midcap`,`equities_small_cap`,`fando`,`international`,`commodities`,`mutual_funds`,`range_min__equity`,`range_min_cash`,`range_min_gold`,`range_min_debt`,`range_min_international`,`range_min_fo`,`range_min_mutual_funds`,`range_max_equity`,`range_max_cash`,`range_max_gold`,`range_max_debt`,`range_max_fo`,`range_max_international`,`range_max_mutual_funds`,`equity_diverisied`,`range_max_equity_diverisied`,`range_min_equity_diverisied`,`midcap`,`range_min_micap`,`range_max_midcap`) VALUES
+
+(5,'Conservative','Income',0,20,3,4,43,30,30,0,0,0,0,10,0,24,2,3,34,0,0,0,36,5,5,52,0,0,0,10,12,8,10,8,12);

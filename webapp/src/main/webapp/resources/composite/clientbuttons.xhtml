@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:cc="http://java.sun.com/jsf/composite"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:ui="http://java.sun.com/jsf/facelets">
+    <cc:interface>
+        <cc:attribute name="buttonsList" type="java.util.ArrayList" required="true"/>
+        <cc:attribute name="paramActionListner"  method-signature="void action(javax.faces.event.ActionEvent)" required="true"/>
+        <cc:attribute name="paramAction" method-signature="java.lang.String action()" required="true"/>
+    </cc:interface>
+    <cc:implementation>
+        <script type="text/javascript">
+            function onClickEvent(showConfirm) {
+                if (showConfirm === 'true') {
+                    if (confirm("Are you sure you want to continue?")) {
+                        disableButtons();
+                        startPageSpinner();
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    disableButtons();
+                    startPageSpinner();
+                    return true;
+                }
+            }
+            function disableButtons() {
+                $("#btns a").attr("onclick", "return false;");
+                $("#btns a").css("color", "gray");
+            }
+        </script>
+        <div id="btns">
+            <center>
+                <ui:repeat value="#{cc.attrs.buttonsList}" var="button">
+                    <h:commandLink styleClass="#{button.buttonStyleClass}"
+                                   value="#{button.buttonText}"
+                                   actionListener="#{cc.attrs.paramActionListner}"
+                                   action="#{cc.attrs.paramAction}"
+                                   immediate="#{button.immediate}"
+                                   onclick="return onClickEvent('#{button.confirm}');"/>
+                </ui:repeat>
+            </center>
+        </div>
+    </cc:implementation>
+</ui:component>

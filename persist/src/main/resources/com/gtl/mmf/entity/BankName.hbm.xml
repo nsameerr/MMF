@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 26, 2015 5:12:17 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.BankName" table="bank_name" catalog="mmfdb">
+        <id name="bankId" type="java.lang.Integer">
+            <column name="bank_id" />
+            <generator class="identity" />
+        </id>
+        <property name="bankName" type="string">
+            <column name="bank_name" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 15, 2016 5:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.FpLoanRelatedAssumptionsTb" table="fp_loan_related_assumptions_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="assumptionId" type="java.lang.Integer">
+            <column name="assumption_id" />
+        </property>
+        <property name="customerId" type="string">
+            <column name="customer_id" length="50" />
+        </property>
+        <property name="loanAssumptionId" type="java.lang.Integer">
+            <column name="loan_assumption_id" />
+        </property>
+        <property name="loanTypeDescription" type="string">
+            <column name="loan_type_description" length="25" />
+        </property>
+        <property name="loanDuration" type="java.lang.Integer">
+            <column name="loan_duration" />
+        </property>
+        <property name="interestRate" type="java.lang.Float">
+            <column name="interest_rate" precision="12" scale="0" />
+        </property>
+        <property name="downPaymentPercent" type="java.lang.Float">
+            <column name="down_payment_percent" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

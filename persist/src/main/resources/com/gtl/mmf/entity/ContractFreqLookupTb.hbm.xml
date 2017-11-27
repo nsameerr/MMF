@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 Apr, 2014 5:56:05 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.ContractFreqLookupTb" table="contract_freq_lookup_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="fieldType" type="string">
+            <column name="field_type" length="45" not-null="true" />
+        </property>
+        <property name="fieldLabel" type="string">
+            <column name="field_label" length="45" not-null="true" />
+        </property>
+        <property name="fieldValue" type="int">
+            <column name="field_value" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

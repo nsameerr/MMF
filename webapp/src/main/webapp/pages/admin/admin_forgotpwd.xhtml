@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>ManageMyFortune.com - Forgot Password</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!-- bootstrap -->
+        <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico" type="image/x-icon"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/custom.css" type="text/css" rel="stylesheet"/>
+
+        <!-- global styles -->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/layout.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/elements.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/icons.css"/>
+
+        <!-- libraries -->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/lib/font-awesome.css"/>
+
+        <!-- this page specific styles -->
+        <link rel="stylesheet" href="#{request.contextPath}/css/compiled/signin.css" type="text/css" media="screen"/>
+
+        <!-- open sans font -->
+        <link
+            href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800'
+            rel='stylesheet' type='text/css'/>
+        
+        <style>
+            .action a{
+                width: 72px;
+            }
+        </style>
+
+    </h:head>
+
+    <h:body style="background: url('#{request.contextPath}/img/bgs/bg.jpg') repeat; height: 200px;">
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        <h:form id="frm_reset" onkeypress="if (event.keyCode === 13) {
+                            document.getElementById('frm_reset:reset_btn').click();
+                            return false;}">
+            <div class="row-fluid login-wrapper">
+                <a href="#{request.contextPath}/faces/pages/admin/index.xhtml">
+                    <img class="logo" src="#{request.contextPath}/img/logo.png"/>
+                </a>
+                <div class="span4 box">
+                    <div class="content-wrap">
+                         <h6>Reset Your Password</h6>
+                            <h:inputText  styleClass="span12" id="uname" required="true" maxlength="100"
+                                                        requiredMessage="Please enter username"
+                                                        validatorMessage="Please enter valid username"
+                                                        value="#{forgotPasswordController.username}">
+                            <f:validateRegex pattern="[a-zA-Z\s.]+"/>
+                            </h:inputText>
+                            <p:watermark for="uname" value="Enter username"/>
+                            <h:message for="uname" styleClass="err_message"></h:message> 
+                            <h:inputText styleClass="span12" value="#{forgotPasswordController.email}" maxlength="50"
+                                                    validatorMessage="Invalid email format"
+                                                    requiredMessage="Please enter email id." id="user_txt" required="true" >
+
+                            <f:validateRegex
+                                                    pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />            
+                            </h:inputText >
+                            <p:watermark for="user_txt" value="Enter Email"/>
+                            <h:message for="user_txt" styleClass="err_message"/>
+                            <h:inputText styleClass="span12" value="#{forgotPasswordController.mobile}" maxlength="15"
+                                                       validatorMessage="Invalid mobile number format"
+                                                       requiredMessage="Please enter mobile number" id="mobile_num_txt" required="true" >
+                            <f:validateRegex pattern="^([+]?[\d]+)?$"/>
+                            </h:inputText>
+                            <p:watermark for="mobile_num_txt" value="Your Mobile Number"/>
+                            <h:message for="mobile_num_txt" styleClass="err_message"/>                                
+                            <br/>
+                            <h:message for="reset_btn" styleClass="err_message"/>                                
+                            <div class="action">
+                                <h:commandLink styleClass="btn-flat success" value="Reset" id="reset_btn"
+                                                           actionListener="#{forgotPasswordController.doActionFindPasswordAdminListener}"
+                                                           action="#{forgotPasswordController.forgotPwdRedirectAdmin()}"> 
+                                </h:commandLink>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</html>

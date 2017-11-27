@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 6, 2015 2:08:13 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.MandateFormTb" table="mandate_form_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="registrationId" type="string">
+            <column name="registration_id" length="50" not-null="true" />
+        </property>
+        <property name="umrn" type="string">
+            <column name="umrn" length="20" />
+        </property>
+        <property name="actionType" type="string">
+            <column name="action_type" length="20" />
+        </property>
+        <property name="sponserBankCode" type="string">
+            <column name="sponser_bank_code" length="20" />
+        </property>
+        <property name="utilityCode" type="string">
+            <column name="utility_code" length="20" />
+        </property>
+        <property name="nameOfBiller" type="string">
+            <column name="name_of_biller" length="100" not-null="true" />
+        </property>
+        <property name="debtAccountType" type="string">
+            <column name="debt_account_type" length="20" />
+        </property>
+        <property name="accountNo" type="string">
+            <column name="account_no" length="30" not-null="true" />
+        </property>
+        <property name="bankName" type="string">
+            <column name="bank_name" length="100" />
+        </property>
+        <property name="ifscOrMicr" type="java.lang.Boolean">
+            <column name="ifsc_or_micr" />
+        </property>
+        <property name="ifscNumber" type="string">
+            <column name="ifsc_number" length="30" />
+        </property>
+        <property name="amountWords" type="string">
+            <column name="amount_words" length="100" />
+        </property>
+        <property name="amount" type="big_decimal">
+            <column name="amount" precision="10" />
+        </property>
+        <property name="frequency" type="string">
+            <column name="frequency" length="20" />
+        </property>
+        <property name="debtType" type="string">
+            <column name="debt_type" length="20" />
+        </property>
+        <property name="reference1" type="string">
+            <column name="reference1" length="100" />
+        </property>
+        <property name="customerPhone" type="string">
+            <column name="customer_phone" length="20" />
+        </property>
+        <property name="reference2" type="string">
+            <column name="reference2" length="100" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" />
+        </property>
+        <property name="mandateCreatedDate" type="timestamp">
+            <column name="mandate_created_date" length="19" />
+        </property>
+        <property name="fromDate" type="timestamp">
+            <column name="from_date" length="19" />
+        </property>
+        <property name="toDate" type="timestamp">
+            <column name="to_date" length="19" />
+        </property>
+        <property name="toOrUntill" type="java.lang.Boolean">
+            <column name="to_or_untill" />
+        </property>
+        <property name="micrNumber" type="string">
+            <column name="micr_number" length="30" />
+        </property>
+    </class>
+</hibernate-mapping>

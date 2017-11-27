@@ -1,0 +1,448 @@
+<!doctype html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+        	body{
+	        	padding-top: 80px;
+	        	padding-bottom: 25px;
+        	}
+	       .tab-pane {
+			    border-left: 1px solid #ddd;
+			    border-right: 1px solid #ddd;
+			    border-bottom: 1px solid #ddd;
+			    border-radius: 0px 0px 5px 5px;
+			    padding: 10px;
+			}
+			.nav-tabs {
+			    margin-bottom: 0;
+			}
+			
+			
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme-paper.min.css">
+        <link rel="stylesheet" href="css/bootstrap-wrapper.css">
+        
+        <link rel="stylesheet" href="css/iCheck.css" />
+        <link rel="stylesheet" href="css/ion.rangeSlider.css"/>
+        <link rel="stylesheet" href="css/ion.rangeSlider.skinHTML5.css"/>
+        <link rel="stylesheet" href="css/jquery.dataTables.min.css"/>
+        <link rel="stylesheet" href="css/roundslider.min.css"/>
+        <link rel="stylesheet" href="css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/bootstrap-switch.css" >
+        
+        <link rel="stylesheet" href="css/jquery-ui.css">
+        <link rel="stylesheet" href="css/SelectBoxIt.css" />
+        <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" href="css/bootstrap-submenu.min.css" />
+        <link rel="stylesheet" href="css/roundslider.min.css"  />
+        <link rel="stylesheet" href="css/jquery.FloatLabel.css"/>
+        <link href="css/jquery.raty.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="app.css">
+        
+
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/vendor/jquery-ui.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/angular.min.js"></script>
+        
+        
+        <script src="js/vendor/iCheck.js"></script>
+        <script src="js/vendor/ion.rangeSlider.min.js"></script>
+        <script src="js/vendor/jquery.dataTables.min.js"></script>
+        <script src="js/vendor/roundslider.min.js"></script>
+        <script src="js/vendor/bootstrap-select.min.js"></script>
+        <script src="js/vendor/bootstrap-switch.js"></script>
+        <script src="js/vendor/jquery.selectBoxIt.min.js"></script>
+        <script src="js/vendor/moment.js"></script>
+        <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
+        <script src="js/vendor/autoNumeric-min.js"></script>
+        <script src="js/vendor/bootstrap-submenu.min.js"></script>
+        <script src="js/vendor/underscore-min.js"></script>
+        <script src="js/vendor/jquery.FloatLabel.js"></script>
+        <script src="js/vendor/jquery.raty.js"></script>
+        
+        <script src="js/constants.js"></script>
+        <script src="js/main.js"></script>
+        <style>
+			lable{
+				margin-left: 12px !important;
+			}
+			
+			#tblPerformance td{
+			}
+			
+			#tblPerformance th{
+				vertical-align: middle !important;
+				
+				border:0px  !important;
+			}
+			
+			.panel-heading b{
+				font-size:  medium;
+			}
+			
+			.txtRupee{
+				background-image: url('img/icon_rupee.png');
+				background-repeat: no-repeat;
+				background-position: left center; 
+				background-size: auto 20px;
+				padding-left: 25px !important;
+				padding-bottom: 30px;
+			}
+			
+			.calender{
+				background-image: url('img/icon_calender.png');
+				background-repeat: no-repeat;
+				background-position: right center; 
+				background-size: auto 20px;
+				padding-right: 25px !important;
+				padding-bottom: 30px;
+			}
+			
+		</style>
+	</head>
+    <body  ng-app="appMMF" ng-controller="AdvisorPortfolio" data-ng-init="init()">
+	    <mmf-header></mmf-header>
+
+	    <div class="container-fluid" >
+			<div class="row-fluid">
+				<h2 class="page-title"> Advisor Portfolio</h2>
+			</div>
+			<div id="divLoading"  style="display:none">Loading...</div>
+			<div id="divContent">
+				<div class="container">
+					<div id="divProfileEdit" class="panel panel-default" style="display: none">
+							<div class="panel-heading">
+								<b>Edit Profile</b>
+								<span class="pull-right">
+									<button type="button" class="btn-flat inverse small" ng-click="saveAdvisorProfile()">Save</button>
+								</span>
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="mandatory" for="">First Name</label>
+										<input type="text" class="form-control" style="text-transform:capitalize;" ng-model="advisor.profile.firstName">
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="mandatory" for="">Middle Name</label>
+										<input type="text" class="form-control" style="text-transform:capitalize;" ng-model="advisor.profile.middleName">
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="mandatory" for="">Last Name</label>
+										<input type="text" class="form-control" style="text-transform:capitalize;" ng-model="advisor.profile.lastName">
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="mandatory" for="">Last Name</label>
+										<input type="text" class="form-control" style="text-transform:capitalize;" ng-model="advisor.profile.sebiCertificateNo">
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-4 ">
+										<label for="" class="mandatory">Date Of Birth</label>
+										<input type="text" class="form-control  calender MMDDYYYY mandatory" placeholder="Validity" ng-model="advisor.profile.sebiCertificateValidity">
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="mandatory" for="">Location</label>
+										<input type="text" class="form-control" style="text-transform:capitalize;" ng-model="advisor.profile.sebiCertificateValidity">
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="mandatory" for="">Current Job Title</label>
+										<input type="text" class="form-control" style="text-transform:capitalize;" ng-model="advisor.profile.currentJobTitle">
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-4" >
+										<label class="mandatory" for="">Current Organization</label>
+										<input type="text" class="form-control" style="text-transform:capitalize;" ng-model="advisor.profile.currentOrg">
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group js-float-label-wrapper col-md-12" >
+										<label class="mandatory" for="">About Me</label>
+										<input type="text" class="form-control" style="text-transform:capitalize;" ng-model="advisor.profile.aboutMe">
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-12" >
+										<label class="mandatory" for="">Investment Philosophy</label>
+										<input type="text" class="form-control" style="text-transform:capitalize;" ng-model="advisor.profile.philosophy">
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-12" >
+										<label class="mandatory" for="">Linkedin Profile URL</label>
+										<input type="text" class="form-control" style="text-transform:capitalize;" ng-model="advisor.profile.linkedInProfileLink">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<br><b>Previous Organization(s) : </b>
+										<table style="width: 100%">
+											<tr>
+												<th style="border-bottom:1px solid black; margin-right: 10px;">From</th>
+												<th style="border-bottom:1px solid black; margin-right: 10px;">To</th>
+												<th style="border-bottom:1px solid black; margin-right: 10px;">Organization</th>
+												<th style="border-bottom:1px solid black; margin-right: 10px;">Title</th>
+											</tr>
+											<tr ng-repeat="item in advisor.profile.previousOrg">
+												<td><input type="text" class="form-control" style="text-transform:capitalize;" ng-model="item.fromDate"></td>
+												<td><input type="text" class="form-control" style="text-transform:capitalize;" ng-model="item.toDate"></td>
+												<td><input type="text" class="form-control" style="text-transform:capitalize;" ng-model="item.orgName"></td>
+												<td><input type="text" class="form-control" style="text-transform:capitalize;" ng-model="item.title"></td>
+											</tr>
+											<tr><td><br><img src="img/addRow.png" width="30px" style="cursor: pointer;" ng-click="addPreviousOrg()"></td></tr>
+										</table>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<br><b>Qualifications : </b>
+										<table style="width: 100%">
+											<tr>
+												<th style="border-bottom:1px solid black; margin-right: 10px;">Degree</th>
+												<th style="border-bottom:1px solid black; margin-right: 10px;">Institute</th>
+												<th style="border-bottom:1px solid black; margin-right: 10px;">Year</th>
+											</tr>
+											<tr ng-repeat="item in advisor.profile.qualificationDetails">
+												<td><input type="text" class="form-control" style="text-transform:capitalize;" ng-model="item.degree"></td>
+												<td><input type="text" class="form-control" style="text-transform:capitalize;" ng-model="item.institute"></td>
+												<td><input type="text" class="form-control" style="text-transform:capitalize;" ng-model="item.year"></td>
+											</tr>
+											<tr><td><br><img src="img/addRow.png" width="30px" style="cursor: pointer;" ng-click="addQualification()"></td></tr>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="panel-footer" style="height: 45px;">
+								<span class="pull-right">
+									<button type="button" class="btn-flat inverse small" ng-click="saveAdvisorProfile()">Save</button>
+								</span>
+							</div>
+						</div>
+					<div  id="divProfileReadOnly" class="row">
+						<table border=0>
+							<tr>
+								<td rowspan=2 class="well" style="padding:15px;margin-right:20px;vertical-align: top;">
+									<div  style="display: inline-block;text-align: center;">
+										<img src="{{advisor.profile.userProfilePic}}" style="width:150px">
+										<br>
+										<br>
+										<div id="divRatings" style="text-align: center;"></div>
+										<script>$('#divRatings').raty({ 'readOnly': true,score: 3});</script>
+										(In 365 votes)
+									</div>
+								</td>
+								<td colspan=2 class="row" style="vertical-align: top; padding-left:20px">
+									<div class="col-md-12" style="text-transform:capitalize;">
+										<h4>{{advisor.profile.firstName}} {{advisor.profile.middleName}} {{advisor.profile.lastName}}</h4>
+									</div>
+									<div class="col-md-12">{{advisor.profile.oneLineDesc}}<br><br></div>
+								</td>
+								<td><img src="img/edit.png" style="width: 20px; cursor: pointer;" ng-click="showEditProfile()"></td>
+							</tr>
+							<tr>
+								<td class="row" style="vertical-align: top; padding-left:20px">
+									<div class="col-md-12"><b>SEBI RIA Certification No : </b>{{advisor.profile.sebiCertificateNo}}</div>
+									<div class="col-md-12"><b>Validity : </b>{{advisor.profile.sebiCertificateValidity}}</div>
+									<div class="col-md-12"><b>Location : </b>{{advisor.profile.sebiCertificateValidity}}</div>
+									<div class="col-md-12"><b>Current Job Title : </b>{{advisor.profile.currentJobTitle}}</div>
+									<div class="col-md-12"><b>Current Organization : </b>{{advisor.profile.currentOrg}}</div>
+									<div class="col-md-12">
+										<br><b>Previous Organization(s) : </b>
+										<table cellspacing=10>
+											<tr>
+												<th style="border-bottom:1px solid black; margin-right: 10px; min-width: 100px">From</th>
+												<th style="border-bottom:1px solid black; margin-right: 10px; min-width: 100px">To</th>
+												<th style="border-bottom:1px solid black; margin-right: 10px; min-width: 100px">Organization</th>
+												<th style="border-bottom:1px solid black; margin-right: 10px; min-width: 100px">Title</th>
+											</tr>
+											<tr ng-repeat="item in advisor.profile.previousOrg">
+												<td>{{item.fromDate}}</td>
+												<td>{{item.toDate}}</td>
+												<td>{{item.orgName}}</td>
+												<td>{{item.title}}</td>
+											</tr>
+										</table>
+									</div>
+									<div class="col-md-12">
+										<br><b>Qualifications : </b> 
+										<table cellspacing=10>
+											<tr>
+												<th style="border-bottom:1px solid black; margin-right: 10px; min-width: 100px">Degree</th>
+												<th style="border-bottom:1px solid black; margin-right: 10px; min-width: 100px">Institute</th>
+												<th style="border-bottom:1px solid black; margin-right: 10px; min-width: 100px">Year</th>
+											</tr>
+											<tr ng-repeat="item in advisor.profile.qualificationDetails">
+												<td>{{item.degree}}</td>
+												<td>{{item.institute}}</td>
+												<td>{{item.year}}</td>
+											</tr>
+										</table>
+									</div>
+									<div class="col-md-12">
+										<br><a href="{{advisor.profile.linkedInProfileLink}}" target="blank"><img src="img/my-linkedin-profile-button-hugo-descalzo-gree.gif" style="height: 25px"></a>
+									</div>
+								</td>
+								<td class="row" style="width:100%; vertical-align: top; padding-left:20px">
+									<div class="col-md-12">
+										<b>About Me :<br></b>
+										{{advisor.profile.aboutMe}}<br><br>
+									</div> 
+									<div class="col-md-12">
+										<b>Investment Philosophy :</b><br>
+										{{advisor.profile.philosophy}}
+									</div> 
+								</td>
+							</tr>
+						</table>
+					</div>
+					<hr>
+					
+					<div class="row">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<b>Performance</b>
+							</div>
+							<div class="panel-body">
+								<table id="tblPerformance" class="table" >
+									<tr>
+										<th rowspan=2 style="border-bottom: 1px solid !important">Portfolio Name</th>
+										<th rowspan=2 style="border-bottom: 1px solid !important">Risk Rating</th>
+										<th rowspan=2 style="border-bottom: 1px solid !important">Start Date</th>
+										<th colspan=4 style="text-align: center; border-bottom: 1px solid !important">Returns</th>
+									</tr>
+									<tr>
+										<th style="border-bottom: 1px solid !important">Since Inception</th>
+										<th style="border-bottom: 1px solid !important">3 Months</th>
+										<th style="border-bottom: 1px solid !important">6 Months</th>
+										<th style="border-bottom: 1px solid !important">1 Year</th>
+									</tr>
+									<tr ng-repeat="item in advisor.portfolios">
+										<td>{{item.name}}</td>
+										<td>{{item.style}}</td>
+										<td>{{item.createdOn}}</td>
+										<td>{{item.SIReturns}}</td>
+										<td>{{item.threeMonthsReturns}}</td>
+										<td>{{item.sixMonthsReturns}}</td>
+										<td>{{item.oneYearReturns}}</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<b>Testimonials</b>
+								<span class="pull-right">more>></span>
+							</div>
+							<div class="panel-body row">
+								<div class="col-md-4 row" style="text-align: center;" ng-repeat="item in advisor.testimonials">
+									<div class="col-md-12">
+										<img alt="" src="{{item.pic}}" style="width:150px;vertical-align: top;padding-right: 20px">
+									</div>
+									<div class="col-md-12">
+										"{{item.msg}}"
+										<br>
+										<b style="text-transform: capitalize; font-size: 15px;">-- {{item.name}} --<br></b>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div id="divPublicationEdit" style="display: none">
+						<div class="panel panel-default" >
+							<div class="panel-heading">
+								<b>Publications</b>
+								<span class="pull-right">
+									<button type="button" class="btn-flat inverse small" ng-click="saveAdvisorPublications()">Save</button>
+								</span>
+							</div>
+							<div class="panel-body">
+								<div class="row" ng-repeat="item in advisor.publications">
+									<div class="form-group js-float-label-wrapper col-md-6" >
+										<label class="mandatory" for="">Title</label>
+										<input type="text" class="form-control" style="text-transform:capitalize;" ng-model="item.name">
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-6" >
+										<label class="mandatory" for="">Link</label>
+										<input type="text" class="form-control" style="text-transform:capitalize;" ng-model="item.link">
+									</div>
+								</div>
+								<div class="form-group js-float-label-wrapper col-md-12" >
+										<br><img src="img/addRow.png" width="30px" style="cursor: pointer;" ng-click="addPublications()">
+								</div>
+							</div>
+							<div class="panel-footer" style="height: 45px;">
+								<span class="pull-right">
+									<button type="button" class="btn-flat inverse small" ng-click="saveAdvisorPublications()">Save</button>
+								</span>
+							</div>
+						</div>
+					</div>
+					
+					<div id="divPublicationReadOnly" class="row">
+						<div class="panel panel-default" >
+							<div class="panel-heading">
+								<b>Publications</b>
+								<span class="pull-right">
+									<img src="img/edit.png" style="width: 20px; cursor: pointer;" ng-click="showEditPublications()">
+								</span>
+							</div>
+							<div class="list-group" style="max-height: 200px; overflow: scroll;">
+								<div class="list-group-item" ng-repeat="item in advisor.publications">
+									<a href="{{item.link}}" style="color: black;" target="blank">{{item.name}}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<b>Shares</b>
+								<span class="pull-right">more>></span>
+							</div>
+							<div class="list-group">
+								<div href="#"  class="list-group-item">The quick, brown fox jumps over a lazy dog.</div>
+								<div href="#"  class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</div>
+								<div href="#" class="list-group-item">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+								<b class="modal-title" id="myModalLabel"></b>
+							</div>
+							<div class="modal-body">
+								this is modalbody
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modules -->
+        <script src="js/app.js"></script>
+    
+        <!-- Controllers -->
+        <script src="js/controllers/AdvisorPortfolio.js" charset="UTF-8"></script>
+        <script src="js/directives/advisorPortfolio.js" charset="UTF-8"></script>
+    </body>
+</html>

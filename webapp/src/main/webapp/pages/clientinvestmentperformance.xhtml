@@ -1,0 +1,832 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>TODO supply a title</title>
+    </head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+	</script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout.xhtml">
+            <ui:define name="title">
+                <h:outputText value="Assign Portfolio | ManageMyFortune.com"/>
+            </ui:define>
+            <ui:define name="sidebar" >
+                <ui:include src="/pages/template/components/sidebar_user.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+                <!-- flot charts -->
+                <script src="#{request.contextPath}/js/jquery.flot.js"></script>
+                <script src="#{request.contextPath}/js/jquery.flot.stack.js"></script>
+                <script src="#{request.contextPath}/js/jquery-1.8.3.min.js"></script>
+                <script src="#{request.contextPath}/js/jquery.flot.min.js"></script>    
+                <script src="#{request.contextPath}/js/jquery.flot.selection.js"></script>
+                <script src="#{request.contextPath}/js/jquery.flot.symbol.js"></script>
+                <script src="#{request.contextPath}/js/jquery.flot.time.js"></script>
+                <script src="#{request.contextPath}/js/jquery.flot.crosshair.js"></script>
+                <script src="#{request.contextPath}/js/jquery.flot.axislabels.js"></script>
+                <script src="#{request.contextPath}/js/curvedLines.js"></script>
+                <script src="#{request.contextPath}/js/jquery.flot.navigationControl.js"></script>
+                <script src="#{request.contextPath}/js/jquery.flot.navigate.js"></script>
+                <script src="#{request.contextPath}/js/jquery.flot.rangeselection.js"></script>
+                <script src="#{request.contextPath}/js/jquery.flot.resize.js"></script>
+                <style TYPE="text/css">
+                    .pan-left{
+                        left:0px;
+                        top: 0px;
+                    }
+                    .pan-right{
+                        left:480px;
+                        top: 0px;
+                    }
+                    #flotTip 
+                    {
+                        padding: 3px 5px;
+                        background-color: #2E8E0C;
+                        z-index: 100;
+                        color: #fff;
+                        box-shadow: 0 0 10px #555;
+                        opacity: .7;
+                        filter: alpha(opacity=70);
+                        border: 2px solid #fff;
+                        -webkit-border-radius: 4px;
+                        -moz-border-radius: 4px;
+                        border-radius: 4px;
+                    }
+                    #legendContainer {
+                        background-color: #f5f5f5;
+                        padding: 2px;
+                        margin-bottom: 8px;
+                        border-radius: 3px 3px 3px 3px;
+                        border: 1px solid #E6E6E6;
+                        display: inline-block;
+                        margin: 0 auto;
+                    }
+                    .demo-container {
+                        box-sizing: border-box;
+                        width: 100%;
+                        height: 400px;
+                        padding: 10px 10px 10px 10px;
+                        margin: 10px auto 10px auto;
+                        border: 1px solid #ddd;
+                        background: #fff;
+                        background: linear-gradient(#f6f6f6 0, #fff 50px);
+                        background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
+                        background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
+                        background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
+                        background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
+                        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+                        -o-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                        -ms-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                        -moz-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                        -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                    }
+                </style>
+                <h:form>
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div id="pad-wrapper">
+                                <h2 class="page-title" style="border-bottom: none; margin-bottom: 0;">Client Investment Performance</h2>
+
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <div class="table-wrapper users-table" style="margin-bottom: -60px;">
+                                            <table class="table" style="border: 1px solid #eee; padding: 10px;">
+                                                <thead style="border-top: none;">
+                                                    <tr>
+                                                        <th class="span4 align_center">Client Name</th>
+                                                        <th class="span3 align_center" >Organization</th>
+                                                        <th class="span2 align_center">CIN</th>
+                                                        <th class="span3 align-right">Job Title</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- row -->
+                                                    <tr class="first">
+                                                        <td>
+                                                            <img class="img-circle avatar hidden-phone" src="#{clientInvestmentPerformanceController.investorDetailsVO.pictureURL}"/>
+                                                            <h:outputText value="#{clientInvestmentPerformanceController.investorDetailsVO.firstName}"/>
+                                                            <span class="label label-success">
+                                                                <h:outputText value="#{clientInvestmentPerformanceController.investorDetailsVO.portFolioStyle}"/>
+                                                            </span>
+                                                        </td>
+                                                        <td class="align_center">#{clientInvestmentPerformanceController.investorDetailsVO.workOrganization}</td>
+                                                        <td class="align-right">#{clientInvestmentPerformanceController.investorDetailsVO.regId}</td>
+                                                        <td class="align-right">#{clientInvestmentPerformanceController.investorDetailsVO.jobTitle}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                    function  onClickDateButton(elm) {
+                                        var dayValue = elm.value;
+                                        clickdatebutton([{name: 'dayValue', value: dayValue}]);
+                                    }
+
+                                    function getCurrentDayOfyer() {
+                                        var timestmp = new Date().setFullYear(new Date().getFullYear(), 0, 1);
+                                        var yearFirstDay = Math.floor(timestmp / 86400000);
+                                        var today = Math.ceil((new Date().getTime()) / 86400000);
+                                        clickdatebutton([{name: 'dayValue', value: (today - yearFirstDay)}]);
+                                    }
+                                </script> 
+                                <div class="row-fluid section">
+                                    <div class="span6" style="margin-top: 2%;">
+                                        <p:remoteCommand  name="clickdatebutton" actionListener="#{clientInvestmentPerformanceController.onClickReturnDays()}" update="linechartGraph"/>
+                                        <h4 class="title">Performance
+                                            <div class="btn-group pull-right" style="margin-top: 2px;">
+                                                <button type="button" class="glow left" id="five-day">5d</button>
+                                                <button type="button" class="glow middle" id="one-month" >1m</button>
+                                                <button type="button" class="glow middle" id="three-month">3m</button>
+                                                <button type="button" class="glow middle" id="six-month">6m</button>
+                                                <button type="button" class="glow middle" id="year-to-date">YTD</button>
+                                                <button type="button" class="glow middle" id="one-year">1y</button>
+                                                <button type="button" class="glow middle" id="five-year">5y</button>
+                                                <button type="button" class="glow middle" id="ten-year">10y</button>
+                                                <button type="button" class="glow right" id="whole">All</button> 
+                                            </div>
+                                        </h4>
+                                        <div class="demo-container" >
+                                            <div id="statsChart" style="height: 300px;margin:0 auto"></div>
+                                            <div id="legendContainer" style="margin-left: 2%;margin-top:1%"></div> 
+                                            <p id="choices" style="float:right; width:150px;"/>
+                                        </div>
+
+                                    </div>
+                                    <div class="span6 chart" style="margin-top: 2%;">
+
+                                        <h3 class="title" style="width:auto;">Recommended Portfolio 
+                                            <span class="pull-right">
+                                                <code>#{clientInvestmentPerformanceController.portfolioVO.portfolioName}</code>
+                                                <code>#{clientInvestmentPerformanceController.portfolioVO.benchmarkName}</code>
+                                            </span>
+                                        </h3>
+                                        <div class="donut-placeholder" id="donut-placeholder"></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-row" style="margin-top: 24px;">
+                            <h:commandLink styleClass="btn-flat success" value="Change Assigned Portfolio" style="width: 200px;"
+                                           actionListener="#{clientInvestmentPerformanceController.onClickChangeAssignPF()}"
+                                           action="#{clientInvestmentPerformanceController.reDirect()}" rendered="#{clientInvestmentPerformanceController.chgAssignPFVisisble}"/>
+                            <h:commandLink   styleClass="btn-flat inverse" value="Back"
+                                             actionListener="#{clientInvestmentPerformanceController.onClickBack()}" 
+                                             action="#{clientInvestmentPerformanceController.reDirect()}"/>
+                        </div>
+                    </div>
+                    <h:panelGroup id="linechartGraph">
+                        <script type="text/javascript">
+                            //<![CDATA[	
+                            $(document).ready(function() {
+                                var plot;
+                                var legends;
+                                var benchmark = #{clientInvestmentPerformanceController.benchMarkLineChartData};
+                                var self = #{clientInvestmentPerformanceController.selfLineChartData};
+                                var recommended = #{clientInvestmentPerformanceController.recommendedLineChartData};
+                                var days = #{clientInvestmentPerformanceController.nodays};
+                                var category = #{clientInvestmentPerformanceController.jsonCategory};
+                                var dateformat = #{clientInvestmentPerformanceController.jsonDateFormat};
+                                var mxYvalue = #{clientInvestmentPerformanceController.maxYavalue};
+                                var portfolioAssigneddate = #{clientInvestmentPerformanceController.portfolioAssignedDate};
+                                var portfoliodate = #{clientInvestmentPerformanceController.portfolioDate};
+                                var fiveDays = #{clientInvestmentPerformanceController.fivedays};
+                                var oneMonth = #{clientInvestmentPerformanceController.oneMonth};
+                                var threeMonth = #{clientInvestmentPerformanceController.threeMonth};
+                                var sixMonth = #{clientInvestmentPerformanceController.sixMonth};
+                                var oneYear = #{clientInvestmentPerformanceController.oneYear};
+                                var fiveYear = #{clientInvestmentPerformanceController.fiveYear};
+                                var tenYear = #{clientInvestmentPerformanceController.tenYear};
+                                var axes;
+                                var dataset = [{
+                                        yaxis: 1,
+                                        label: "Benchmark ",
+                                        data: benchmark, color: "#000000"
+                                    }, {
+                                        yaxis: 1,
+                                        label: "Self ",
+                                        data: self, color: "#008000"
+                                    },
+                                    {
+                                        yaxis: 1,
+                                        label: "Recommended ",
+                                        data: recommended, color: "#A9A9A9"
+                                    }
+                                ];
+                                function gd(year, month, day) {
+                                    return new Date(year, month, day).getTime();
+                                }
+                                var ccommenSeries = {
+                                    lines: {
+                                        show: true,
+                                        lineWidth: 2,
+                                        fill: true,
+                                        fillColor: {
+                                            colors: [{opacity: 0
+                                                }, {
+                                                    opacity: 0
+                                                }, {
+                                                    opacity: 0
+                                                }]
+                                        }
+                                    },
+                                    points: {
+                                        show: false,
+                                        lineWidth: 3,
+                                        radius: 1
+                                    },
+                                    shadowSize: 0,
+                                    stack: true
+                                };
+                                var ccurvedLines = {
+                                    apply: true,
+                                    active: true,
+                                    monotonicFit: true
+                                };
+                                var ccrosshair = {
+                                    mode: "xy",
+                                    lineWidth: 2
+                                };
+                                var cgrid = {
+                                    hoverable: true,
+                                    clickable: true,
+                                    tickColor: '#FFE4B5',
+                                    borderWidth: 1,
+                                    autoHighlight: true
+                                };
+                                var czoom = {
+                                    interactive: false,
+                                    trigger: "dblclick", // or "click" for single click
+                                    amount: 1.5         // 2 = 200% (zoom in), 0.5 = 50% (zoom out)
+                                };
+                                var cyaxes = [
+                                    {
+                                        position: "left",
+                                        color: "#008000",
+                                        // axisLabel: "Self",
+                                        axisLabelUseCanvas: true,
+                                        axisLabelFontSizePixels: 14,
+                                        axisLabelPadding: 3, //
+                                        panRange: false,
+                                        zoomRange: false
+                                    }];
+                                var wholeXaxis = {
+                                    color: '#000000',
+                                    timeformat: "%d/%m/%Y",
+                                    mode: "time",
+                                    min: parseInt(portfolioAssigneddate),
+                                    max: new Date().getTime(),
+                                    panRange: [new Date(parseInt(portfolioAssigneddate)), new Date()],
+                                    zoomRange: [null, new Date()],
+                                    ticks: 5
+                                };
+                                var oneYearXaxis = {
+                                    mode: "time",
+                                    minTickSize: [1, "day"],
+                                    min: parseInt(oneYear),
+                                    max: new Date().getTime(),
+                                    timeformat: "%d/%m/%Y",
+                                    panRange: [new Date(parseInt(portfolioAssigneddate)), new Date()],
+                                    zoomRange: [null, new Date()],
+                                    ticks: 5
+                                };
+                                var fiveDayXaxis = {
+                                    mode: "time",
+                                    minTickSize: [1, "day"],
+                                    min: parseInt(fiveDays),
+                                    max: new Date().getTime(),
+                                    timeformat: "%d/%m/%Y",
+                                    panRange: [new Date(parseInt(portfolioAssigneddate)), new Date()],
+                                    zoomRange: [null, new Date()],
+                                    ticks: 5
+                                };
+                                var oneMonthDayXaxis = {
+                                    mode: "time",
+                                    min: parseInt(oneMonth),
+                                    max: new Date().getTime(),
+                                    timeformat: "%d/%m/%Y",
+                                    panRange: [new Date(parseInt(portfolioAssigneddate)), new Date()],
+                                    zoomRange: [null, new Date()],
+                                    ticks: 5
+                                };
+                                var threeMonthDayXaxis = {
+                                    mode: "time",
+                                    min: parseInt(threeMonth),
+                                    max: new Date().getTime(),
+                                    timeformat: "%d/%m/%Y",
+                                    panRange: [new Date(parseInt(portfolioAssigneddate)), new Date()],
+                                    zoomRange: [null, new Date()],
+                                    ticks: 5
+                                };
+                                var sixMonthDayXaxis = {
+                                    mode: "time",
+                                    minTickSize: [1, "day"],
+                                    min: parseInt(sixMonth),
+                                    max: new Date().getTime(),
+                                    timeformat: "%d/%m/%Y",
+                                    panRange: [new Date(parseInt(portfolioAssigneddate)), new Date()],
+                                    zoomRange: [null, new Date()]
+                                };
+                                var fiveYearDayXaxis = {
+                                    mode: "time",
+                                    minTickSize: [1, "day"],
+                                    min: parseInt(fiveYear),
+                                    max: new Date().getTime(),
+                                    timeformat: "%d/%m/%Y",
+                                    panRange: [new Date(parseInt(portfolioAssigneddate)), new Date()],
+                                    zoomRange: [null, new Date()],
+                                    ticks: 5
+
+                                };
+                                var tenYearDayXaxis = {
+                                    mode: "time",
+                                    minTickSize: [1, "day"],
+                                    min: parseInt(tenYear),
+                                    max: new Date().getTime(),
+                                    timeformat: "%d/%m/%Y",
+                                    panRange: [new Date(parseInt(portfolioAssigneddate)), new Date()],
+                                    zoomRange: [null, new Date()],
+                                    ticks: 5
+                                };
+                                var ytdXaxis = {
+                                    mode: "time",
+                                    minTickSize: [1, "day"],
+                                    min: (new Date(new Date().getFullYear(), 0, 1)).getTime(),
+                                    max: new Date().getTime(),
+                                    timeformat: "%d/%m/%Y",
+                                    panRange: [new Date(parseInt(portfolioAssigneddate)), new Date()],
+                                    zoomRange: [null, new Date()],
+                                    ticks: 5
+                                };
+                                var clegend = {
+                                    noColumns: 1,
+                                    labelFormatter: function(label, series) {
+                                        return  label;
+                                    },
+                                    container: $("#legendContainer"),
+                                    backgroundColor: "white",
+                                    backgroundOpacity: 0.9,
+                                    labelBoxBorderColor: "#000000",
+                                    position: "sw"
+                                };
+                                var options = {
+                                    series: ccommenSeries,
+                                    curvedLines: ccurvedLines,
+                                    crosshair: ccrosshair,
+                                    grid: cgrid,
+                                    yaxes: cyaxes,
+                                    xaxis: wholeXaxis,
+                                    legend: clegend,
+                                    zoom: czoom,
+                                    pan: {
+                                        interactive: true
+                                    }
+                                };
+
+
+
+                                var choiceContainer = $("#choices");
+                                choiceContainer.empty();
+                                $.each(dataset, function(key, val) {
+                                    choiceContainer.append("<input type='checkbox' name='" + key +
+                                            "' checked='checked' id='id" + key + "'></input>" +
+                                            "<label for='id" + key + " ' style ='color:" + dataset[key].color + "'>"
+                                            + val.label + "</label></br>");
+                                });
+
+                                choiceContainer.find("input").click(plotAccordingToChoices);
+                                // this function is used for togging the data series
+                                function plotAccordingToChoices() {
+
+                                    var data = [];
+
+                                    choiceContainer.find("input:checked").each(function() {
+                                        var key = $(this).attr("name");
+                                        if (key && dataset[key]) {
+                                            data.push(dataset[key]);
+                                        }
+                                    });
+                                    if (data.length > 0) {
+                                        plot = $.plot("#statsChart", data, options);
+                                        legends = $("#legendContainer .legendLabel");
+
+                                    }
+                                }
+                                plotAccordingToChoices();
+                                plot = $.plot($("#statsChart"), dataset, options);
+                                $("#statsChart").UseTooltip();
+                                $("#whole").click(function() {
+                                    options = {
+                                        series: ccommenSeries,
+                                        curvedLines: ccurvedLines,
+                                        crosshair: ccrosshair,
+                                        grid: cgrid,
+                                        yaxes: cyaxes,
+                                        xaxis: wholeXaxis,
+                                        legend: clegend, zoom: czoom,
+                                        pan: {
+                                            interactive: true
+                                        }
+                                    };
+                                    plot = $.plot("#statsChart", dataset, options);
+                                    legends = $("#legendContainer .legendLabel");
+                                    plotAccordingToChoices();
+                                    $("#statsChart").resize(function() {
+                                        legends = $("#legendContainer .legendLabel");
+                                    });
+                                });
+
+                                //function for showing different time period data      
+                                $("#five-day").click(function() {
+                                    options = {
+                                        series: ccommenSeries,
+                                        curvedLines: ccurvedLines,
+                                        crosshair: ccrosshair,
+                                        grid: cgrid,
+                                        yaxes: cyaxes,
+                                        xaxis: fiveDayXaxis,
+                                        legend: clegend,
+                                        pan: {
+                                            interactive: true
+                                        }, zoom: czoom
+                                    };
+                                    plot = $.plot("#statsChart", dataset, options);
+                                    legends = $("#legendContainer .legendLabel");
+                                    plotAccordingToChoices();
+                                    $("#statsChart").resize(function() {
+                                        legends = $("#legendContainer .legendLabel");
+                                    });
+                                });
+                                $("#one-month").click(function() {
+                                    options = {
+                                        series: ccommenSeries,
+                                        curvedLines: ccurvedLines,
+                                        crosshair: ccrosshair,
+                                        grid: cgrid,
+                                        yaxes: cyaxes,
+                                        xaxis: oneMonthDayXaxis,
+                                        legend: clegend,
+                                        pan: {
+                                            interactive: true
+                                        }, zoom: czoom
+                                    };
+                                    plot = $.plot("#statsChart", dataset, options);
+                                    legends = $("#legendContainer .legendLabel");
+                                    plotAccordingToChoices();
+                                    $("#statsChart").resize(function() {
+                                        legends = $("#legendContainer .legendLabel");
+                                    });
+                                });
+                                $("#three-month").click(function() {
+                                    options = {
+                                        series: ccommenSeries,
+                                        curvedLines: ccurvedLines,
+                                        crosshair: ccrosshair,
+                                        grid: cgrid,
+                                        yaxes: cyaxes,
+                                        xaxis: threeMonthDayXaxis,
+                                        legend: clegend,
+                                        pan: {
+                                            interactive: true
+                                        }, zoom: czoom
+                                    };
+                                    plot = $.plot("#statsChart", dataset, options);
+                                    legends = $("#legendContainer .legendLabel");
+                                    plotAccordingToChoices();
+                                    $("#statsChart").resize(function() {
+                                        legends = $("#legendContainer .legendLabel");
+                                    });
+                                });
+                                $("#six-month").click(function() {
+                                    options = {
+                                        series: ccommenSeries,
+                                        curvedLines: ccurvedLines,
+                                        crosshair: ccrosshair,
+                                        grid: cgrid,
+                                        yaxes: cyaxes,
+                                        xaxis: sixMonthDayXaxis,
+                                        legend: clegend,
+                                        pan: {
+                                            interactive: true
+                                        }, zoom: czoom
+                                    };
+                                    plot = $.plot("#statsChart", dataset, options);
+                                    legends = $("#legendContainer .legendLabel");
+                                    plotAccordingToChoices();
+                                    $("#statsChart").resize(function() {
+                                        legends = $("#legendContainer .legendLabel");
+                                    });
+                                });
+                                $("#one-year").click(function() {
+                                    options = {
+                                        series: ccommenSeries,
+                                        curvedLines: ccurvedLines,
+                                        crosshair: ccrosshair,
+                                        grid: cgrid,
+                                        yaxes: cyaxes,
+                                        xaxis: oneYearXaxis,
+                                        legend: clegend,
+                                        pan: {
+                                            interactive: true
+                                        }, zoom: czoom
+                                    };
+                                    plot = $.plot("#statsChart", dataset, options);
+                                    legends = $("#legendContainer .legendLabel");
+                                    plotAccordingToChoices();
+                                    $("#statsChart").resize(function() {
+                                        legends = $("#legendContainer .legendLabel");
+                                    });
+                                });
+                                $("#year-to-date").click(function() {
+                                    options = {
+                                        series: ccommenSeries,
+                                        curvedLines: ccurvedLines,
+                                        crosshair: ccrosshair,
+                                        grid: cgrid,
+                                        yaxes: cyaxes,
+                                        xaxis: ytdXaxis,
+                                        legend: clegend,
+                                        pan: {
+                                            interactive: true
+                                        }, zoom: czoom
+                                    };
+                                    plot = $.plot("#statsChart", dataset, options);
+                                    legends = $("#legendContainer .legendLabel");
+                                    plotAccordingToChoices();
+                                    $("#statsChart").resize(function() {
+                                        legends = $("#legendContainer .legendLabel");
+                                    });
+                                });
+                                $("#five-year").click(function() {
+                                    options = {
+                                        series: ccommenSeries,
+                                        curvedLines: ccurvedLines,
+                                        crosshair: ccrosshair,
+                                        grid: cgrid,
+                                        yaxes: cyaxes,
+                                        xaxis: fiveYearDayXaxis,
+                                        legend: clegend,
+                                        pan: {
+                                            interactive: true
+                                        }, zoom: czoom
+                                    };
+                                    plot = $.plot("#statsChart", dataset, options);
+                                    legends = $("#legendContainer .legendLabel");
+                                    plotAccordingToChoices();
+                                    $("#statsChart").resize(function() {
+                                        legends = $("#legendContainer .legendLabel");
+                                    });
+                                });
+                                $("#ten-year").click(function() {
+                                    options = {
+                                        series: ccommenSeries,
+                                        curvedLines: ccurvedLines,
+                                        crosshair: ccrosshair,
+                                        grid: cgrid,
+                                        yaxes: cyaxes,
+                                        xaxis: tenYearDayXaxis,
+                                        legend: clegend,
+                                        pan: {
+                                            interactive: true
+                                        }, zoom: czoom
+                                    };
+                                    plot = $.plot("#statsChart", dataset, options);
+                                    legends = $("#legendContainer .legendLabel");
+                                    plotAccordingToChoices();
+                                    $("#statsChart").resize(function() {
+                                        legends = $("#legendContainer .legendLabel");
+                                    });
+                                });
+                                var rangeselectionCallback = function(o) {
+                                    console.log("New selection:" + o.start + "," + o.end);
+                                    var xaxis = plot.getAxes().xaxis;
+                                    xaxis.options.min = o.start;
+                                    xaxis.options.max = o.end;
+                                    plot.setupGrid();
+                                    plot.draw();
+                                    legends = $("#legendContainer .legendLabel");
+                                };
+                                var sData = $.extend(true, [], dataset);
+                                for (var i = 0; i < sData.length; i++) {
+                                    sData[i].color = '#ccc';
+                                    sData[i].label = undefined;
+                                }
+
+                                //cross hair label updation   
+                                var legends = $("#legendContainer .legendLabel");
+                                var updateLegendTimeout = null;
+                                var latestPosition = null;
+                                function updateLegend() {
+                                    updateLegendTimeout = null;
+                                    var pos = latestPosition;
+                                    axes = plot.getAxes();
+                                    if (pos.x < axes.xaxis.min || pos.x > axes.xaxis.max || pos.y < axes.yaxis.min || pos.y > axes.yaxis.max)
+                                        return;
+                                    var i, j, dataset = plot.getData();
+                                    for (i = 0; i < dataset.length; ++i) {
+                                        var series = dataset[i];
+                                        // find the nearest points, x-wise
+                                        for (j = 0; j < series.data.length; ++j)
+                                            if (series.data[j][0] > pos.x)
+                                                break;
+                                        var date;
+                                        // now interpolate
+                                        var y, x, p1 = series.data[j - 1],
+                                                p2 = series.data[j];
+                                        if (p1 == null) {
+                                            y = parseFloat(p2[1]);
+                                            x = new Date(parseInt(p2[0]));
+                                        }
+                                        else if (p2 == null) {
+                                            y = parseFloat(p1[1]);
+                                            x = new Date(parseInt(p1[0]));
+                                        }
+                                        else {
+                                            y = parseFloat(p1[1]) + (parseFloat(p2[1]) - parseFloat(p1[1])) * (parseFloat(pos.x) - parseFloat(p1[0])) / (parseFloat(p2[0]) - parseFloat(p1[0]));
+                                            x = new Date(parseInt(p1[0]));
+                                        }
+                                        legends.eq(i).text("-" + series.label.replace(/ .*/, "= " + parseFloat(y).toFixed(2)) + "-[" + x.toDateString() + "]");
+                                    }
+                                }
+                                $("#statsChart").bind("plothover", function(event, pos, item) {
+                                    latestPosition = pos;
+                                    if (!updateLegendTimeout)
+                                        updateLegendTimeout = setTimeout(updateLegend, 50);
+                                });
+                                $("#statsChart").bind('plotpan plotzoom', function(event, plot) {
+                                    axes = plot.getAxes();
+                                    axes = plot.getAxes();
+                                    axes.xaxis.options.mode = "time";
+                                    axes.xaxis.options.minTickSize = null;
+                                    axes.xaxis.options.timeformat = "%d/%m/%Y";
+                                    axes.xaxis.options.tickDecimals = 3;
+                                    plot.setupGrid();
+                                    plot.draw();
+                                    legends = $("#legendContainer .legendLabel");
+                                });
+                                panning = false;
+                                $("#statsChart" + ' canvas').bind('drag', function() {
+                                    panning = true;
+                                });
+                                $("#statsChart" + ' canvas').bind('dragend', function() {
+                                    function stopPan() {
+                                        panning = false;
+                                    }
+                                    setTimeout(stopPan, 100);
+                                });
+
+                                $("#statsChart").resize(function() {
+                                    legends = $("#legendContainer .legendLabel");
+                                });
+
+                                $("#statsChart").dblclick(function() {
+                                    plot = $.plot("#statsChart", dataset, options);
+                                    legends = $("#legendContainer .legendLabel");
+                                    plotAccordingToChoices();
+                                    $("#statsChart").resize(function() {
+                                        legends = $("#legendContainer .legendLabel");
+                                    });
+                                });
+
+                            });
+                            var previousPoint = null;
+                            var format = "";
+                            //tooltip
+                            $.fn.UseTooltip = function() {
+                                $("#statsChart").bind("plothover", function(event, pos, item) {
+                                    if (item) {
+                                        if (previousPoint != item.dataIndex) {
+                                            previousPoint = item.dataIndex;
+                                            $("#tooltip").remove();
+                                            var x = item.datapoint[0].toFixed(0),
+                                                    y = parseInt(item.datapoint[1].toFixed(0)) - parseInt(item.datapoint[2].toFixed(0));
+                                            z = item.series.color;
+                                            var d = new Date(parseInt(x));
+                                            var dateValue;
+                                            dateValue = d.toDateString();
+                                            console.log("date:  " + dateValue);
+                                            showTooltip(item.pageX, item.pageY, dateValue + " : " + y + "(" + item.series.label.replace(/ .*/, "") + ")", z);
+
+                                        }
+                                    }
+                                    else {
+                                        $("#tooltip").remove();
+                                        previousPoint = null;
+                                    }
+                                });
+                            };
+
+                            function showTooltip(x, y, contents, z) {
+                                $('<div id="tooltip">' + contents + '</div>').css({
+                                    position: 'absolute',
+                                    display: 'none',
+                                    top: y - 30,
+                                    left: x - 100,
+                                    color: '#FFF8DC',
+                                    padding: '2px 5px',
+                                    border: '2px solid #4572A7',
+                                    'border-radius': '10px 10px 10px 10px',
+                                    'background-color': '#000',
+                                    opacity: 0.80,
+                                    'border-color': z,
+                                    'font-weight': 'bold',
+                                    'font-size': 14,
+                                    'font-family': 'Times New Roman'
+
+                                }).appendTo('body').fadeIn(200);
+                            }
+                            //]]>
+                        </script>
+
+                    </h:panelGroup>
+                    <script src="#{request.contextPath}/lib/flot/jquery.flot.pie.js"></script>
+                    <script src="#{request.contextPath}/js/jquery.flot.tooltip.js"></script>
+                    <h:panelGroup id="pnl-pie-chart">
+                        <script>
+                            //<![CDATA[	        
+                            var data = JSON.parse('#{clientInvestmentPerformanceController.portfolioAllocationJSON}');
+                            $.plot('#donut-placeholder', data, {
+                                series: {
+                                    pie: {
+                                        innerRadius: 0.5,
+                                        show: true,
+                                        label: {
+                                            show: true,
+                                            radius: 0.99,
+                                            formatter: labelFormatter,
+                                            background: {
+                                                opacity: 1,
+                                                color: 'transparent'
+                                            },
+                                            threshold: 0
+                                        },
+                                        stroke: {
+                                            width: 5,
+                                            color: '#ffffff'
+                                        }
+
+                                    }
+                                }, legend: {
+                                    show: true
+                                },
+                                grid: {
+                                    hoverable: true
+                                },
+                                tooltip: true,
+                                tooltipOpts: {
+                                    content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+                                    shifts: {
+                                        x: 20,
+                                        y: 0
+                                    },
+                                    defaultTheme: false
+                                }
+                            });
+                            function labelFormatter(label, series) {
+                                return "<div class='donut-label'>" + label + "<br/>" + Math.round(series.percent) + "%</div>";
+                            }
+                            //]]>
+                        </script>
+                    </h:panelGroup>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

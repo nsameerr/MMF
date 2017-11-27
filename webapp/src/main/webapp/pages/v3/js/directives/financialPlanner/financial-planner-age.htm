@@ -1,0 +1,117 @@
+
+            <!--Financial Planner Age-->
+                <div class="content_box_finance">
+                    <div class="content_box_finance_hd"><h2>Personal Information <br> </h2> </div>                       
+                    <!--Scenario 1 a: Married Male-->
+                    <div class="content_box_finance_row minheight" ng-if="userFpData.gender == 'male' && userFpData.relationStatus == 'married'">             
+                        <div class="content_box_finance_c1"> <h3> What's your age? </h3> <br>
+                            <!--Age one slider design start -->
+                            <div class="agecolumn"> 
+                            	<div class="agecolumn_photo"> <img src="images/male-off.png" alt=""> </div>
+                                <div class="agecolumn_data"> 
+                                    <div class="age1">
+                                        <div class="agerow"> 
+                                            <input type="text" id="age" readonly style="border:0;" ng-model="userFpData.userAge"> 
+                                            <label for="age">Years</label> 
+                                        </div>
+                                        <div id="slider-range-min-age" class="agebar" ></div>
+                                    </div>    	
+                                </div>
+                            </div>
+                            <!--Age slider design end  -->
+                        </div>
+                        <div class="content_box_finance_c1"> <h3> What's your Spouse's age? </h3> <br>
+                            <div class="agecolumn"> 
+                            	<div class="agecolumn_photo"> <img src="images/female-off.png" alt=""> </div>
+                                <div class="agecolumn_data"> 
+                                    <div class="age1">
+                                        <div class="agerow"> 
+                                            <input type="text" id="age2" readonly style="border:0;" ng-model="userFpData.spouseAge"> 
+                                            <label for="age2">Years</label> 
+                                        </div>
+                                        <div id="slider-range-min-age2" class="agebar" ></div>
+                                    </div>    	
+                                </div>
+                            </div>
+                        </div>                      
+                    </div>  
+                    <!--Scenario 1 b: Married Female-->
+                    <div class="content_box_finance_row minheight" ng-if="userFpData.gender == 'female' && userFpData.relationStatus == 'married'">             
+                        <div class="content_box_finance_c1"> <h3> What's your age? </h3> <br>
+                            <!--Age one slider design start -->
+                            <div class="agecolumn"> 
+                                <div class="agecolumn_photo"> <img src="images/female-off.png" alt=""> </div>
+                                <div class="agecolumn_data"> 
+                                    <div class="age1">
+                                        <div class="agerow"> 
+                                            <input type="text" id="age3" readonly style="border:0;" ng-model="userFpData.userAge"> 
+                                            <label for="age">Years</label> 
+                                        </div>
+                                        <div id="slider-range-min-age3" class="agebar" ></div>
+                                    </div>      
+                                </div>
+                            </div>
+                            <!--Age slider design end  -->
+                        </div>
+                        <div class="content_box_finance_c1"> <h3> What's your Spouse's age? </h3> <br>
+                            <div class="agecolumn"> 
+                                <div class="agecolumn_photo"> <img src="images/male-off.png" alt=""> </div>
+                                <div class="agecolumn_data"> 
+                                    <div class="age1">
+                                        <div class="agerow"> 
+                                            <input type="text" id="age4" readonly style="border:0;" ng-model="userFpData.spouseAge"> 
+                                            <label for="age2">Years</label> 
+                                        </div>
+                                        <div id="slider-range-min-age4" class="agebar" ></div>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>                      
+                    </div>  
+                    <!--Scenario 2 : Male Single -->
+                    <div class="content_box_finance_row minheight" ng-if="userFpData.gender == 'male' && userFpData.relationStatus == 'single'">
+                        <div class="content_box_finance_c1 content_box_finance_full"> <h3> What's your age? </h3> <br>
+                            <!--Age one slider design start -->
+                            <div class="agecolumn"> 
+                                <div class="agecolumn_photo"> <img src="images/male-off.png" alt=""> </div>
+                                <div class="agecolumn_data"> 
+                                    <div class="age1">
+                                        <div class="agerow"> 
+                                            <input type="text" id="ageMale" readonly style="border:0;" ng-model="userFpData.userAge"> 
+                                            <label for="ageMale">Years</label> 
+                                        </div>
+                                        <div id="slider-range-min-ageMale" class="agebar" ></div>
+                                    </div>      
+                                </div>
+                            </div>
+                            <!--Age slider design end  -->
+                         </div>          
+                    </div>
+                    <!--Scenario 3 : Female Single -->
+                    <div class="content_box_finance_row minheight" ng-if="userFpData.gender == 'female' && userFpData.relationStatus == 'single'">
+                        <div class="content_box_finance_c1 content_box_finance_full"> <h3> What's your age? </h3> <br>
+                            <!--Age one slider design start -->
+                            <div class="agecolumn"> 
+                                <div class="agecolumn_photo"> <img src="images/female-off.png" alt=""> </div>
+                                <div class="agecolumn_data"> 
+                                    <div class="age1">
+                                        <div class="agerow"> 
+                                            <input type="text" id="ageFemale" readonly style="border:0;" ng-model="userFpData.userAge"> 
+                                            <label for="ageFemale">Years</label> 
+                                        </div>
+                                        <div id="slider-range-min-ageFemale" class="agebar" ></div>
+                                    </div>      
+                                </div>
+                            </div>
+                            <!--Age slider design end  -->
+                        </div>          
+                    </div>
+
+                    <div class="registration_row content_box_finance_row text-center">  
+                        <input type="button" value="Back" class="buttonFpBack btnPrev" ng-click="gotoPrev()"> &nbsp; <!--back-->
+                        <input type="button" value="NEXT" class="buttonFpNext btnNext" ng-click="saveFpAge();gotoNext()"> 
+                    </div> 
+                </div>
+<!--age slider script start-->
+<link rel="stylesheet" href="css/jquery-ui.css">
+<script src="js/jquery-ui.js"></script>

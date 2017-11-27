@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Adding Rows To Table with AngularJS</title>
+</head>
+
+<body>
+	<html ng-app="MyApp">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<title>Add Rows</title>
+		<link href="http://cdn.foundation5.zurb.com/foundation.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
+	</head>
+	<body ng-controller="MainController"> <a href="#" class="button" ng-click="addRow()">Add Row {{counter}}</a>
+		<table>
+			<thead>
+				<tr>
+					<th width="200">Some Header</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="rowContent in rows">
+					<td>{{rowContent}}</td>
+					<td><a href="#" class="button" ng-click="removeRow($index)">Remove {{$index}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+
+	</html>
+	<script src="js/index.js"></script>
+</body>
+
+</html>

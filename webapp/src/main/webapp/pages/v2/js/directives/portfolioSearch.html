@@ -1,0 +1,346 @@
+<style>
+lable{
+	margin-left: 12px !important;
+}
+
+#riskoMeter .rs-handle  {
+    background-color: transparent;
+    border: 8px solid transparent;
+    border-right-color: black;
+    margin: -6px 0px 0px 14px !important;
+    border-width: 6px 104px 6px 4px;
+}
+#riskoMeter .rs-handle:before  {
+    display: block;
+    content: " ";
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    background: black;
+    right: -11px;
+    bottom: -11px;
+    border-radius: 100px;
+}
+#riskoMeter .rs-tooltip  {
+    top: 120%;
+    font-size: 20px;
+}
+#riskoMeter .rs-tooltip div  {
+    text-align: center;
+    background: orange;
+    color: white;
+    border-radius: 4px;
+    padding: 1px 5px 2px;
+    margin-top: 4px;
+}
+#riskoMeter .rs-range-color  {
+    background-color: #DB5959;
+}
+#riskoMeter .rs-path-color  {
+    background-color: #F0C5C5;
+}
+
+#riskoMeter{
+	margin-top:9px;
+}
+
+.dataTables_scroll
+{
+    overflow:auto;
+    width: 100%;
+}
+
+.dataTables_filter{
+	display: none !important;
+}
+
+.highcharts-range-selector-buttons{
+	display: none !important;
+}
+
+.rs-range-color{
+	background-color: #7BDB7B !important;
+}
+.rs-path-color{
+	background-color: #ECECEC !important;
+}
+
+.rs-control{
+	display: inline-block;
+}
+
+#datatable thead tr th {
+background-image:url('img/thumbs.png');
+}
+
+.rs-inner {
+display:none !important;
+	border:0px !important;
+}
+
+.rs-container{
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-inne{
+
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+.rs-block{
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-path{
+
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-handle{
+	margin-top: 20px !important
+}
+
+
+#divRiskProfile{
+	background-image:url('img/riskometer_bg.png');
+	background-size: 500px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+
+.rs-seperator{
+	border: 0px;
+}
+
+select{
+	background-color: rgba(0,0,0,0);
+	padding:5px;
+	margin:5px;
+}
+
+td{
+	padding-right :5px;
+}
+th{
+	padding-right :5px;
+}
+
+.txtRupee{
+	background-image: url('img/icon_rupee.png');
+	background-repeat: no-repeat;
+	background-position: left center; 
+	background-size: auto 20px;
+	padding-left: 25px !important;
+	padding-bottom: 30px;
+}
+
+.rs-tooltip-text{
+	margin-left: -180px !important;
+    margin-top: -170px !important;
+    padding: 5px !important;
+    background-color: #2E709F !important;
+    border-radius: 25px;
+    color: white;
+    height: 50px;
+    width: 50px;
+}
+
+
+.txtRupee{
+		background-image: url('img/icon_rupee.png');
+		background-repeat: no-repeat;
+		background-position: left center; 
+		background-size: auto 20px;
+		padding-left: 25px !important;
+		padding-bottom: 30px;
+	}
+	.calender{
+		background-image: url('img/icon_calender.png');
+		background-repeat: no-repeat;
+		background-position: right center; 
+		background-size: auto 20px;
+		padding-right: 25px !important;
+		padding-bottom: 30px;
+	}
+	
+	table.dataTable.no-footer {
+    border-bottom: 0px solid #111 !important;
+}
+
+.nav-tabs li a {
+    color: gray;
+}
+
+
+.active a {
+    font-weight: bold;
+}
+
+
+.col-fixed-400{
+    width:400px;
+    position:fixed;
+    height:8000px;
+    border-right: 1px solid #EEEEEE;
+    overflow: visible;
+}
+
+.col-offset-400{
+    padding-left:415px;
+    height:9000px;
+}
+
+#tblAdvisorResults{
+	margin: 10px;
+}
+
+#tblAdvisorResults th{
+	font-size: 15px;
+	margin-right: 25px;
+	padding:15px;
+    border-bottom: 4px solid #00B7EB
+}
+
+#tblAdvisorResults td{
+	vertical-align: top;
+	margin-right: 25px;
+	padding:15px;
+    border-top: 1px solid #00B7EB
+}
+
+
+</style>
+<div class="row-fluid">
+	<h2 class="page-title"> Search Advisor</h2>
+</div>
+<div id="divLoading"  style="display:none">Loading...</div>
+
+<div id="divContent">
+	<div class="container-fluid">
+		<table>
+			<tr>
+				<td style="width:400px !important;vertical-align: top;padding-right:10px">
+					<div class="panel panel-default container-fluid" style="padding:0px;margin:0px; ">
+		        		<div class="panel-heading">
+							<b>Filters</b>
+						</div>
+						<div class="panel-body" style="padding:0px;margin:0px" >
+				        	<div class="col-md-12"><b>Risk Score :</b><br></div>
+				        	<div class="col-md-12" style="padding:0px;margin:0px">
+				        		<div id="divRiskProfile" style="height: 285px; padding-top: 100px; width: 100%; text-align: center; margin-top:-50px;margin-bottom: -60px;">
+									<div id="riskoMeter" style="height: 320px !important; width:500px !important;"></div>
+								</div>
+				        	</div>
+				        	<div class="col-md-12"><hr></div>
+				        	<div class="col-md-12">
+				        		<div style="display:inline-block;"><b>Ratings :</b></div>
+				        		<div id="divRatings" style="display:inline-block;"></div>
+				        		<script>$('#divRatings').raty({ scoreName: 'entity[score]'});</script>
+				        	</div>
+				        	<div class="col-md-12"><hr></div>
+				        	<div class="col-md-12"><b>Minimum Investment :</b></div>
+				        	<div class="col-md-12">
+				        		<input id="range_allocationMMF"/>
+				        	</div>
+				        	<div class="col-md-12"><hr></div>
+				        	<div class="col-md-12"><b>Advisor Type :</b></div>
+							<div class="col-md-4 ">
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A0" name="Q0" value="1"></span>
+									<label for="Q0A0"><h6>Individual</h6></label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="input-group">
+									<span class="input-group-addon"><input type="radio"  id="Q0A1" name="Q0" value="2"></span>
+									<label for="Q0A1"><h6>Corporate</h6></label>
+								</div>
+							</div>
+						</div>
+		        	</div>
+					<img src="img/spacer.png" style="width:400px;">
+				</td>
+				<td style="vertical-align: top;width:100%">
+					<div class="panel panel-default container-fluid" style="padding:0px;margin:0px; width:100%">
+						<div class="panel-body" style="padding:0px;margin:0px" >
+				        	<table id="tblAdvisorResults">
+			            		<tr>
+			            			<th>Name</th>
+			            			<th>Type</th>
+			            			<th>Portfolio Type</th>
+			            			<th>Risk Score</th>
+			            			<th>Returns</th>
+			            			<th>Ratings</th>
+			            			<th>Min. Investment</th>
+			            		</tr>
+			            		<tr>
+			            			<td>ManageMyFortune</td>
+			            			<td>Corporate</td>
+			            			<td>Moderate</td>
+			            			<td>50</td>
+			            			<td>10% last month<br>15% 3 months<br>14% last year</td>
+			            			<td><div id="divAdvisorRatings" class="divAdvisorRatings" style="display:inline-block;"></div></td>
+			            			<td>3,00,000</td>
+			            		</tr>
+			            		<tr>
+			            			<td>ManageMyFortune</td>
+			            			<td>Corporate</td>
+			            			<td>Moderate</td>
+			            			<td>50</td>
+			            			<td>10% last month<br>15% 3 months<br>14% last year</td>
+			            			<td><div id="divAdvisorRatings" class="divAdvisorRatings" style="display:inline-block;"></div></td>
+			            			<td>3,00,000</td>
+			            		</tr>
+			            		<tr>
+			            			<td>ManageMyFortune</td>
+			            			<td>Corporate</td>
+			            			<td>Moderate</td>
+			            			<td>50</td>
+			            			<td>10% last month<br>15% 3 months<br>14% last year</td>
+			            			<td><div id="divAdvisorRatings" class="divAdvisorRatings" style="display:inline-block;"></div></td>
+			            			<td>3,00,000</td>
+			            		</tr>
+			            	</table>
+			            	<script>
+			            		$('.divAdvisorRatings').raty({'readOnly': true,score: 3 });
+			            		
+			            	</script>
+						</div>
+		        	</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	
+	<!-- Modal -->
+	<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel"></h4>
+	      </div>
+	      <div class="modal-body">
+	        this is modalbody
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+
+
+
+
+
+
+

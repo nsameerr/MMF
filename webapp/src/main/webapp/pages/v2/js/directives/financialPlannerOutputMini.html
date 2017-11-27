@@ -1,0 +1,864 @@
+<style>
+lable{
+	margin-left: 12px !important;
+}
+
+#rsSalarySavingsRate .rs-handle  {
+    background-color: transparent;
+    border: 8px solid transparent;
+    border-right-color: black;
+    margin: -6px 0px 0px 14px !important;
+    border-width: 6px 104px 6px 4px;
+}
+#rsSalarySavingsRate .rs-handle:before  {
+    display: block;
+    content: " ";
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    background: black;
+    right: -11px;
+    bottom: -11px;
+    border-radius: 100px;
+}
+#rsSalarySavingsRate .rs-tooltip  {
+    top: 120%;
+    font-size: 20px;
+}
+#rsSalarySavingsRate .rs-tooltip div  {
+    text-align: center;
+    background: orange;
+    color: white;
+    border-radius: 4px;
+    padding: 1px 5px 2px;
+    margin-top: 4px;
+}
+#rsSalarySavingsRate .rs-range-color  {
+    background-color: #DB5959;
+}
+#rsSalarySavingsRate .rs-path-color  {
+    background-color: #F0C5C5;
+}
+
+#rsSalarySavingsRate{
+	margin-top:9px;
+}
+
+.dataTables_scroll
+{
+    overflow:auto; 
+    width: 100%;
+}
+
+.dataTables_filter{
+	display: none !important;
+}
+
+.highcharts-range-selector-buttons{
+	display: none !important;
+}
+
+.rs-range-color{
+	background-color: #7BDB7B !important;
+}
+.rs-path-color{
+	background-color: #ECECEC !important;
+}
+
+.rs-control{
+	display: inline-block;
+}
+
+#datatable thead tr th {
+background-image:url('img/thumbs.png');
+}
+
+.rs-inner {
+display:none !important;
+	border:0px !important;
+}
+
+.rs-container{
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-inne{
+
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+.rs-block{
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-path{
+
+	background-color: rgba(0,0,0,0)  !important;
+	border:0px !important;
+}
+
+.rs-handle{
+	margin-top: 20px !important
+}
+
+
+#divRiskProfile{
+	background-image:url('img/riskometer_bg.png');
+	background-size: 500px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+
+.rs-seperator{
+	border: 0px;
+}
+
+select{
+	background-color: rgba(0,0,0,0);
+	padding:5px;
+	margin:5px;
+}
+
+td{
+	padding-right :5px;
+}
+th{
+	padding-right :5px;
+}
+
+.txtRupee{
+	background-image: url('img/icon_rupee.png');
+	background-repeat: no-repeat;
+	background-position: left center; 
+	background-size: auto 20px;
+	padding-left: 25px !important;
+	padding-bottom: 30px;
+}
+
+.rs-tooltip-text{
+	margin-left: -180px !important;
+    margin-top: -170px !important;
+    padding: 5px !important;
+    background-color: #2E709F !important;
+    border-radius: 25px;
+    color: white;
+    height: 50px;
+    width: 50px;
+}
+
+.irs-single {
+    display: none !important;
+}
+
+.txtRupee{
+		background-image: url('img/icon_rupee.png');
+		background-repeat: no-repeat;
+		background-position: left center; 
+		background-size: auto 20px;
+		padding-left: 25px !important;
+		padding-bottom: 30px;
+	}
+	.calender{
+		background-image: url('img/icon_calender.png');
+		background-repeat: no-repeat;
+		background-position: right center; 
+		background-size: auto 20px;
+		padding-right: 25px !important;
+		padding-bottom: 30px;
+	}
+	
+	table.dataTable.no-footer {
+    border-bottom: 0px solid #111 !important;
+}
+
+.nav-tabs li a {
+    color: gray;
+}
+
+
+.active a {
+    font-weight: bold;
+}
+
+
+svg {
+	font: 10px sans-serif;
+}
+
+.area {
+	fill: rgba(244, 93, 76, 0.8);
+	clip-path: url(#clip);
+}
+
+.areaAsset {
+	fill: rgba(161, 219, 178, 0.8);
+	clip-path: url(#clip);
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+.axis {
+    background: #000;
+}
+
+.axis line, .axis path {
+    fill: none;
+    stroke: #333;
+}
+
+.brush .extent {
+	stroke: #fff;
+	fill-opacity: .125;
+	shape-rendering: crispEdges;
+}
+
+.lolipop.marker.goalDesc{
+	position:absolute;
+	background-color: #ffffff;
+	border: 1px solid black;
+	padding: 10px;
+	display: none;
+	box-shadow: 1px 1px 3px #888;
+	border-radius: 5px;
+}
+	
+	
+</style>
+<script>
+
+var userDataInput = localStorage.getItem("userDataInput");
+userDataInput = JSON.parse(userDataInput);
+console.log(userDataInput);
+
+var userDataOutput = localStorage.getItem("userDataOutput");
+userDataOutput = JSON.parse(userDataOutput);
+console.log(userDataOutput);
+
+var scoreRate = userDataOutput;
+
+
+</script>
+<div class="row-fluid">
+	<h2 class="page-title">Financial Planner Output</h2>
+</div>
+<div id="divLoading"  style="display:none">Loading...</div>
+<div id="divContent">
+	<div class="row">
+		<div class="col-md-8" style="margin-bottom: 20px;">
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" onClick="">Chart</a></li>
+				<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onClick="">Table</a></li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane fade in active" id="home">
+					<div id="chartRangeFilter_dashboard_div" style="border: 0px solid #ccc; text-align: left;">
+						<table class="columns" style="width:100%">
+				            <tr><td style="text-align: center; font-size: large;"><b>Assets vs Expenditure</b></td></tr>
+				            <tr>
+				            	<td style="text-align: center; padding:auto">
+				            		<table style=" margin-left: auto;margin-top: -30px; display:none">
+				            			<tr>
+				            				<td style="border-left: 20px solid #C8F1C8;">&nbsp;Assets</td>
+				            				<td style="width:10px"></td>
+				            				<td style="border-left: 20px solid #FBBEBC;">&nbsp;Expenditure</td>
+				            			</tr>
+				            		</table>
+				            	</td>
+				            </tr>
+				            <tr>
+				            	<td id="box">
+					            	<div id="financialOutputChart" style="width: 100%; height: 370px;"></div>
+				            	</td>
+				            </tr>
+				        </table>
+			        </div>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="profile">
+					<div id="table_div"  style="width:100% ; height: 380px;  margin: 0 auto;overflow:auto;">Loading ...</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-4">
+			<div class="panel panel-default container-fluid">
+				<div class="panel-heading row">
+					<b>Edit Inputs</b>
+				</div>
+				<div class="panel-body">
+					<div id="divRiskProfile" style="height: 285px; padding-top: 100px; width: 100%; text-align: center; margin-top:-50px">
+						<div id="rsSalarySavingsRate" style="height: 320px !important; width:500px !important;"></div>
+					</div>
+					<a href="userProfile.html" class="btn-flat inverse" style="width:100%; text-align: center;">
+					<h6 style="color:#ffffff">Edit your response</h6>
+				</a>
+				<br><br>
+				<a href="javascript:alert('Goto next page')" class="btn-flat success" style="width:100%; text-align: center;">
+					<h6 style="color:#ffffff">Save and Submit</h6>
+				</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel"></h4>
+					</div>
+					<div class="modal-body">
+						this is modalbody
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+					</div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<script>
+	$(function() {
+	
+	    var selectBox = $("select").selectBoxIt();
+	
+	  });
+		
+		$("[name='my-checkbox']").bootstrapSwitch({
+			'size':'mini',
+			'onText':'Yes',
+			'offText':'No'
+		});
+	</script>
+
+	<script type="text/javascript">
+		var index=1;
+		$(document).ready(function(){
+			$("#btnAddRow").click(function(){
+		        $("#lifegoals").append('<tr><td><select id="lgOptions" class="lgOptions" name="test"> <option value="1" data-iconurl="img/icon_selfMarriage.png">Self Marriage</option> <option value="8" data-iconurl="img/icon_selfStudy.png">Self Higher study</option> <option value="3" data-iconurl="img/icon_bike.png">Two Wheeler</option> <option value="4" data-iconurl="img/icon_car.png">Car</option> <option value="5" data-iconurl="img/icon_home.png">House</option> <option value="6" data-iconurl="img/icon_vacation.png">Domestic vacation</option> <option value="7" data-iconurl="img/icon_vacation.png">International vacation</option> <option value="9" data-iconurl="img/icon_selfStudy.png">Children Higher Study</option> <option value="2" data-iconurl="img/icon_childrenMarriage.png">Children Marriage</option> <option value="0" data-iconurl="img/icon_others.png">Others</option></select><input id="lgOther" class="lgOther" type="text" id="txtOthers" style="display:none"></td><td><select id="lgFrequency" class="lgFrequency" name="testx"> <option value="0" >Only once</option> <option value="1" >Once every year</option> <option value="2" >Once in two year</option> <option value="3" >Once in three year</option> <option value="4" >Once in four year</option> <option value="5" >Once in five year</option> </select></td><td><input type="text" class="form-control lgYear calender" aria-describedby="basic-addon1"></td><td width=400><input type="text" class="form-control lgAmount txtRupee" aria-describedby="basic-addon1"></td><td><input type="checkbox" class="lgLoan" name="my-checkbox"></td><td width=100><img src="img/x.png" id="btnRemoveRow" width="30px"></td></tr>');
+		        
+		        $("[name='my-checkbox']").bootstrapSwitch({
+		    		'size':'mini',
+		    		'onText':'Yes',
+		    		'offText':'No'
+		    	});
+		        
+		        $(function() {
+		        	var selectBox = $("select").selectBoxIt();
+				});
+		        addEventToLoanDropDown();
+		        $('.clFinalYear').datetimepicker();
+			    $('.lgYear').datetimepicker({
+			    	viewMode: 'years',
+			    	format: 'YYYY'
+			    });
+			});
+			
+			addEventToLoanDropDown = function(){
+		    	//alert();
+		    	$('select.lgOptions').each(function( index ) {
+			    	$(this).on('change', function (e) {
+			    	    var optionSelected = $("option:selected", this);
+			    	    var valueSelected = this.value;
+			    	    toggleOthers(index,valueSelected)
+			    	});
+		    	});
+		    }
+		    addEventToLoanDropDown();
+		    
+		    
+		    toggleOthers = function(opIndex,valueSelected){
+		    	$('.lgOther').each(function(index) {
+	    	    	if(opIndex == index){
+	    	    		if(valueSelected == 0){
+	    	    	    	$(this).css('display','block');
+	    	    	    }
+	    	    	    else{
+	    	    	    	$(this).css('display','none');
+	    	    	    }
+	    	    	}
+	        	});
+		    }
+		    
+		    if(localStorage.getItem("lifeGoalsTable") != null){
+				//$('#lifegoals').html('');
+				//$('#lifegoals').html(localStorage.getItem("lifeGoalsTable"));
+			}
+		    
+		    
+		    $("#lifegoals").on('click', '#btnRemoveRow', function(){
+		        $(this).parent().parent().remove();
+		    });
+		    
+		    $('.calender').datetimepicker({
+		    	viewMode: 'years',
+		    	format: 'YYYY'
+		    });
+		    
+		});
+		
+		$('.txtRupee').autoNumeric('init',{vMin: '0',vMax: '9999999999'}); 
+		$('[data-submenu]').submenupicker();
+	</script>
+
+<script>
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "data.json",
+  "method": "POST",
+  "headers": {
+    "cache-control": "no-cache",
+    "postman-token": "3f58b7bb-cb50-0bc9-1c87-450fc9005806"
+  }
+}
+
+var rdata;
+var	assetJson;
+var	expenditureJson;
+var	xStart;
+var	xEnd;
+		
+$.ajax(settings).done(function (data) {
+	data = JSON.parse(data);
+	rdata = data;
+	//console.log(data);
+	xStart = data.age[0];
+	xEnd = data.age[data.age.length-1];
+	
+	assetJson = "";
+	expenditureJson = "";
+	ligoalsJson = "";
+	
+	for(i=0; i<data.age.length; i++){
+		if(assetJson!=""){
+			assetJson = assetJson + ",";
+			expenditureJson = expenditureJson + ",";
+		}
+		
+		tempAsset = data.totalFinAsset[i];
+		if(tempAsset<0){
+			tempAsset=0;
+		}
+		
+		assetJson = assetJson + '{"x": ' + data.age[i] + ', "y" : ' + tempAsset + ',"asset" : ' + tempAsset + ',"expense" : ' + data.totalLiabilities[i] + ',  "goal": null, "name": "Torstein worked alone", "image": "Torstein", "text": "Highcharts version 1.0 released", "title": "1.0"}';
+		expenditureJson = expenditureJson + '{"x": ' + data.age[i] + ', "y" : ' + data.totalLiabilities[i] + ', "asset" : ' + tempAsset + ',"expense" : '+ data.totalLiabilities[i] + ', "goal": null, "name": "Torstein worked alone", "image": "Torstein", "text": "Highcharts version 1.0 released", "title": "1.0"}';
+	}
+	assetJson = JSON.parse("["+assetJson+"]");
+	expenditureJson = JSON.parse("["+expenditureJson+"]");
+	console.log(assetJson);
+	console.log(expenditureJson);
+	
+	ligoalsJson = "";
+	for(i=0; i<data.lifeGoals.length; i++){
+		if(ligoalsJson!=""){
+			ligoalsJson = ligoalsJson + ",";
+		}
+		ligoalsJson = ligoalsJson + '{"x": ' + data.lifeGoals[i].age + ', "title":"G", "frequency": '+data.lifeGoals[i].frequency+',"goalDescriptionId": '+data.lifeGoals[i].goalDescriptionId+',  "goalDescription" : "'+data.lifeGoals[i].goalDescription+'", "loanYesNo" : '+data.lifeGoals[i].loanYesNo+', "yearofRealization": '+data.lifeGoals[i].yearofRealization+'}';
+	}
+	ligoalsJson = JSON.parse("["+ligoalsJson+"]");
+	console.log(ligoalsJson);
+	
+	something();
+}); 
+
+function something(){
+	var options = {
+	        chart: {
+	            events: {
+	                //load: onChartLoad
+	            },
+	            zoomType : 'x',
+	            	
+	            	renderTo:'financialOutputChart'
+	        },
+	        rangeSelector: {
+                selected: 1
+            },
+	        credits : false,
+	        exporting : {
+	        	enabled : false
+	        },
+
+	        xAxis: {
+	            type: 'linear',
+	            allowDecimals: false,
+	            lineColor: '#000',
+	            lineWidth: 1,
+	            tickWidth: 1,
+	            tickColor: '#000',
+	            minTickInterval: 1,
+	            title: {
+	                text: 'Age',
+	                align: 'left'
+	            },
+	            labels: {
+	                align: 'left'
+	            },
+	            plotBands: [
+	        				{
+	        	                from: 0,
+	        	                to: 28,
+	        	                color: 'rgba(255,172,129,0.5)',
+	        	                label: {
+	        	                    text: '0-28',
+	        	                    style: {
+	        	                        color: '#999999'
+	        	                    },
+	        	                    y: 380
+	        	                }
+	        	            },
+	        				{
+	        	                from: 28,
+	        	                to: 35,
+	        	                color: 'rgba(255,146,139,0.5)',
+	        	                label: {
+	        	                    text: '29-35',
+	        	                    style: {
+	        	                        color: '#999999'
+	        	                    },
+	        	                    y: 180
+	        	                }
+	        	            },
+	        				{
+	        	                from: 35,
+	        	                to: 50,
+	        	                color: 'rgba(254,195,166,0.5)',
+	        	                label: {
+	        	                    text: '35-50',
+	        	                    style: {
+	        	                        color: '#999999'
+	        	                    },
+	        	                    y: 180
+	        	                }
+	        	            },
+	        				{
+	        	                from: 50,
+	        	                to: 60,
+	        	                color: 'rgba(239,233,174,0.5)',
+	        	                label: {
+	        	                    text: '50-60',
+	        	                    style: {
+	        	                        color: '#999999'
+	        	                    },
+	        	                    y: 180
+	        	                }
+	        	            },
+	        				{
+	        	                from: 60,
+	        	                to: 80,
+	        	                color: 'rgba(231,223,198,0.5)',
+	        	                label: {
+	        	                    text: '60-80',
+	        	                    style: {
+	        	                        color: '#999999'
+	        	                    },
+	        	                    y: 180
+	        	                }
+	        	            },
+	        				{
+	        	                from: 80,
+	        	                to: 86,
+	        	                color: 'rgba(205,234,192,0.5)',
+	        	                fillOpacity: 0.1,
+	        	                label: {
+	        	                    text: '80-86',
+	        	                    style: {
+	        	                        color: '#999999'
+	        	                    },
+	        	                    y: 180
+	        	                }
+	        	            }]
+	        },
+
+	        title: {
+	            text: ''
+	        },
+
+	        tooltip: {
+	            style: {
+	                width: '250px'
+	            }
+	        },
+
+	        yAxis: [{
+	            allowDecimals: false,
+	            //max: 100,
+	            lineColor: '#000',
+	            lineWidth: 1,
+	            tickWidth: 1,
+	            tickColor: '#000',
+	            
+	            
+	            title: {
+	                text: 'Expenses'
+	            },
+	            //opposite: true,
+	            gridLineWidth: 0
+	        }],
+
+	        plotOptions: {
+	            series: {
+	                marker: {
+	                    enabled: false,
+	                    symbol: 'circle',
+	                    radius: 2
+	                },
+	                fillOpacity: 0.9
+	            },
+	            flags: {
+	                tooltip: {
+	                    xDateFormat: '%B %e, %Y'
+	                }
+	            }
+	        },
+
+	        series: [{
+	            yAxis: 0,
+	            name: 'Assets',
+	            id: 'employees',
+	            type: 'area',
+	            linecap: "round",
+	            //step: 'left',
+	            color: '#7BDB7B',
+	            radius: 2,
+	            tooltip: {
+	                headerFormat: '<b>Age : </b>{point.x}<br>',
+	                pointFormat: '<b>Assets : </b>{point.asset}<br><b>Expenses : </b>{point.expense}<br>',
+	                valueSuffix: ' '
+	            },
+	            data: assetJson
+	        },{yAxis: 0,
+	            id: 'google-trends',
+	            type: 'column',
+	            linecap: "round",
+	            name: 'Expenditure',
+	            data: expenditureJson,
+	            color: '#EB3E42',
+	            radius: 2,
+	            tooltip: {
+	            	headerFormat: '<b>Age : </b>{point.x}<br>',
+	                pointFormat: '<b>Assets : </b>{point.asset}<br><b>Expenses : </b>{point.expense}<br>',
+	                valueSuffix: ' '
+	            }
+	        }]
+	    };
+
+	    // Add flags for important milestones. This requires Highstock.
+	    if (Highcharts.seriesTypes.flags) {
+	        options.series.push({
+	            type: 'flags',
+	            name: 'Highcharts',
+	            color: '#333333',
+	            shape: 'circlepin',
+	            y:-185,
+	            tooltip: {
+	                headerFormat: '<span style="font-size: 11px;color:#666"><b>Age : </b>{point.x}</span><br>',
+	                pointFormat: '<b>Goal : </b>{point.goalDescription}<br></b><b>Frequency : </b>{point.frequency}<br></b><b>Loan : </b>{point.loanYesNo}<br></b><b>Year of realization : </b>{point.yearofRealization}<br></b>',
+	                valueSuffix: ''
+	            },
+	            data: ligoalsJson,
+	            showInLegend: false
+	        });
+	    }
+
+	    //chartx = $('#financialOutputChart').highcharts(options);
+	    chartx = new Highcharts.Chart(options);
+	    chartx.xAxis[0].setExtremes(
+	            19,
+	            81
+	        );
+}
+var chartx;
+function onChartLoad() {
+
+    var centerX = 140,
+        centerY = 110,
+        path = [],
+        angle,
+        radius,
+        badgeColor = Highcharts.Color(Highcharts.getOptions().colors[0]).brighten(-0.2).get(),
+        spike,
+        empImage,
+        big5,
+        label,
+        left,
+        right,
+        years,
+        renderer;
+
+    if (this.chartWidth < 530) {
+        return;
+    }
+
+    // Draw the spiked disc
+    for (angle = 0; angle < 2 * Math.PI; angle += Math.PI / 24) {
+        radius = spike ? 80 : 70;
+        path.push(
+            'L',
+            centerX + radius * Math.cos(angle),
+            centerY + radius * Math.sin(angle)
+        );
+        spike = !spike;
+    }
+    path[0] = 'M';
+    path.push('z');
+    this.renderer.path(path)
+        .attr({
+            fill: badgeColor,
+            zIndex: 6
+        })
+        .add();
+
+    // Employee image overlay
+    empImage = this.renderer.path(path)
+        .attr({
+            zIndex: 7,
+            opacity: 0,
+            stroke: badgeColor,
+            'stroke-width': 1
+        })
+        .add();
+
+    // Big 5
+    big5 = this.renderer.text('50')
+        .attr({
+            zIndex: 6
+        })
+        .css({
+            color: 'white',
+            fontSize: '100px',
+            fontStyle: 'italic',
+            fontFamily: '\'Brush Script MT\', sans-serif'
+        })
+        .add();
+    big5.attr({
+        x: centerX - big5.getBBox().width / 2,
+        y: centerY + 14
+    });
+
+    // Draw the label
+    label = this.renderer.text('Highcharts Anniversary')
+        .attr({
+            zIndex: 6
+        })
+        .css({
+            color: '#FFFFFF'
+        })
+        .add();
+
+    left = centerX - label.getBBox().width / 2;
+    right = centerX + label.getBBox().width / 2;
+
+    label.attr({
+        x: left,
+        y: centerY + 44
+    });
+
+    // The band
+    left = centerX - 90;
+    right = centerX + 90;
+    this.renderer
+        .path([
+            'M', left, centerY + 30,
+            'L', right, centerY + 30,
+            right, centerY + 50,
+            left, centerY + 50,
+            'z',
+            'M', left, centerY + 40,
+            'L', left - 20, centerY + 40,
+            left - 10, centerY + 50,
+            left - 20, centerY + 60,
+            left + 10, centerY + 60,
+            left, centerY + 50,
+            left + 10, centerY + 60,
+            left + 10, centerY + 50,
+            left, centerY + 50,
+            'z',
+            'M', right, centerY + 40,
+            'L', right + 20, centerY + 40,
+            right + 10, centerY + 50,
+            right + 20, centerY + 60,
+            right - 10, centerY + 60,
+            right, centerY + 50,
+            right - 10, centerY + 60,
+            right - 10, centerY + 50,
+            right, centerY + 50,
+            'z'
+        ])
+        .attr({
+            fill: badgeColor,
+            stroke: '#FFFFFF',
+            'stroke-width': 1,
+            zIndex: 5
+        })
+        .add();
+
+    // 2009-2014
+    years = this.renderer.text('2009-2014')
+        .attr({
+            zIndex: 6
+        })
+        .css({
+            color: '#FFFFFF',
+            fontStyle: 'italic',
+            fontSize: '10px'
+        })
+        .add();
+    years.attr({
+        x: centerX - years.getBBox().width / 2,
+        y: centerY + 62
+    });
+
+
+    // Prepare mouseover
+    renderer = this.renderer;
+    if (renderer.defs) { // is SVG
+        $.each(this.get('employees').points, function () {
+            var point = this,
+                pattern;
+            if (point.image) {
+                pattern = renderer.createElement('pattern').attr({
+                    id: 'pattern-' + point.image,
+                    patternUnits: 'userSpaceOnUse',
+                    width: 400,
+                    height: 400
+                }).add(renderer.defs);
+                renderer.image(
+                    'https://www.highcharts.com/images/employees2014/' + point.image + '.jpg',
+                    centerX - 80,
+                    centerY - 80,
+                    160,
+                    213
+                ).add(pattern);
+
+                Highcharts.addEvent(point, 'mouseOver', function () {
+                    empImage
+                        .attr({
+                            fill: 'url(#pattern-' + point.image + ')'
+                        })
+                        .animate({ opacity: 1 }, { duration: 500 });
+                });
+                Highcharts.addEvent(point, 'mouseOut', function () {
+                    empImage.animate({ opacity: 0 }, { duration: 500 });
+                });
+            }
+        });
+    }
+}
+
+//FinancialPlannerOutput.... editRiskScore, editSavingsRate, editAllocationToMMF, editRetirmentAge, editAssumptions, editLifeGoals,  
+</script>
+	

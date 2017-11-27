@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body onload="stopPageSpinner();">
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+        
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout.xhtml"
+                        xmlns:compo="http://java.sun.com/jsf/composite/composite">
+            <ui:define name="title">Portfolio Details</ui:define>
+            <ui:define name="sidebar">
+                <ui:include src="/pages/template/components/sidebar_user.xhtml" />
+            </ui:define>           
+            <ui:define name="content">
+
+                <h:form id="portfolio_details_form">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div id="pad-wrapper">
+                                <h2 class="page-title">Portfolio Details</h2>
+                                <div class="row-fluid" style="text-align: center;">
+                                    <div class="span4 chart float_none">
+                                        <h3>My Portfolio</h3>
+                                        <div class="donut-placeholder" id="portfolio-donut"></div>
+                                        <h:commandLink styleClass="btn-flat inverse" value="Sell Portfolio"
+                                                       title="#{!portfoliodetailscontroller.enableAddRedeem ? 'you have no stocks in hand to sell portfolio' : ''}"
+                                                       disabled="#{!portfoliodetailscontroller.enableAddRedeem}"
+                                                       actionListener="#{portfoliodetailscontroller.onclickAddOrRedeem()}"
+                                                       action="#{portfoliodetailscontroller.getreDirectionUrl()}"/>
+                                    </div>
+                                    <div class="span4 chart float_none">
+                                        <h3>Recommended</h3>
+
+                                        <div class="donut-placeholder" id="recommended-donut"></div>
+                                        <h:commandLink styleClass="btn-flat inverse" value="Replicate Portfolio"
+                                                       actionListener="#{portfoliodetailscontroller.onClickReplictePF()}"
+                                                       action="#{portfoliodetailscontroller.getreDirectionUrl()}"/>
+                                    </div>
+
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="table-wrapper orders-table">
+                                        <div class="row-fluid">
+                                            <h3 class="title no-margin-bottom" style="margin:48px 0 0 0;margin-bottom: 12px">
+                                                Asset Allocation
+                                                <!--
+                                                <div class="btn-group pull-right">
+                                                    <div class="btn-group pull-left">
+                                                        <button type="button" class="glow middle" id="five-day" value="5" onclick="onClickDateButton(this.value, this, this.value)">5d</button>
+                                                        <button type="button" class="glow middle" id="one-month" value="30" onclick="onClickDateButton(this.value, this, this.value)">1m</button>
+                                                        <button type="button" class="glow middle" id="three-month" value="90" onclick="onClickDateButton(this.value, this, this.value)">3m</button>
+                                                        <button type="button" class="glow middle" id="six-month" value="180" onclick="onClickDateButton(this.value, this, this.value)">6m</button>
+                                                        <button type="button" class="glow middle" id="year-to-date" value="ytd" onclick="getCurrentDayOfyer(this, this.value)">YTD</button>
+                                                        <button type="button" class="glow middle" id="one-year" value="365" onclick="onClickDateButton(this.value, this, this.value)">1y</button>
+                                                        <button type="button" class="glow middle" id="five-year" value="1825" onclick="onClickDateButton(this.value, this, this.value)">5y</button>
+                                                        <button type="button" class="glow middle" id="ten-year" value="3650" onclick="onClickDateButton(this.value, this, this.value)">10y</button>
+                                                        <button type="button" class="glow right" id="all" value="0" onclick="onClickDateButton(this.value, this, this.value)">All</button>
+                                                    </div>
+                                                    <p:remoteCommand  name="clickdatebutton" actionListener="{portfoliodetailscontroller.onClickReturnDays()}" update="assetClassTable"/>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="">5D</a></li>
+                                                        <li><a href="#">1 week</a></li>
+                                                        <li><a href="#">1 month</a></li>
+                                                        <li><a href="#">3 months</a></li>
+                                                        <li><a href="#">6 months</a></li>
+                                                        <li><a href="#">1 year</a></li>
+                                                        <li><a href="">YTD</a></li>
+                                                        <li><a href="">5 years</a></li>
+                                                        <li><a href="">10 years</a></li>
+
+                                                    </ul>
+                                                </div>
+                                                -->
+                                            </h3>
+                                            <h:panelGroup id="assetClassTable">
+                                                <table class="table table-hover" style="position: relative; top: -19px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="span2 align_center">
+                                                                Asset Class
+                                                            </th>
+                                                            <th class="span3 align_center">
+                                                                Current Value
+                                                            </th>
+                                                            <!-- Changes made on 30-09-2016 To Display Acquisition, Gains/Losses values-->
+                                                            <!--
+                                                            <th class="span3 align_center">
+                                                                My Portfolio Returns
+                                                            </th>
+                                                            <th class="span3 align_center">
+                                                                Recommended Returns
+                                                            </th> 
+                                                            -->
+                                                            <th class="span3 align_center">
+                                                                Acquisition Value
+                                                            </th>
+                                                            <th class="span3 align_center">
+                                                                Gains/Losses
+                                                            </th> 
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!--  row  -->
+                                                        <c:set var="total" value="0"/>
+                                                        <c:set var="portfolio" value="0"/>
+                                                        <c:set var="rcmd" value="0"/>
+                                                        <c:set var="totalAquiVal" value="0"/>
+                                                        <c:set var="totalgainOrLoss" value="0"/>
+                                                        <c:forEach items="#{portfoliodetailscontroller.portfolioDetailsVOList}" var="assetclasslist">
+                                                            <c:set var="total" value="#{total + assetclasslist.marketValue}"/>
+                                                            <c:set var="totalAquiVal" value="#{totalAquiVal + assetclasslist.acquisitionCost}"/>
+                                                            <c:set var="totalgainOrLoss" value="#{totalgainOrLoss + assetclasslist.totalgainrLoss}"/>
+                                                            <!-- Changes made on 30-09-2016 To Display Acquisition, Gains/Losses values
+                                                            <c:set var="portfolio" value="{portfolio + assetclasslist.customerTWR}"/>
+                                                             <c:set var="rcmd" value="{rcmd + assetclasslist.recommmendedTWR}"/> -->
+
+                                                            <tr class="first" style="cursor: pointer;"
+                                                                onclick="if (#{assetclasslist.assetClassName ne portfoliodetailscontroller.returnCasHText()}) {
+                                                                            selectAssetClass([
+                                                                                {name: 'assetClassId', value:#{assetclasslist.assetId}},
+                                                                                {name: 'assetClassName', value: '#{assetclasslist.assetClassName}'},
+                                                                                {name: 'noOfDays', value:#{portfoliodetailscontroller.dateperiod}},
+                                                                                {name: 'customerTWR', value:#{assetclasslist.customerTWR}},
+                                                                                {name: 'recommmendedTWR', value:#{assetclasslist.recommmendedTWR}}]);
+                                                                        }">
+                                                                <td>
+                                                                    #{assetclasslist.assetClassName}
+                                                                    
+                                                                </td>
+                                                                <td class="align_right">
+                                                                    <i class="rupees"><span class="WebRupee">Rs.</span></i>  
+                                                                    <h:outputText
+                                                                        value="#{assetclasslist.marketValue}">
+                                                                        <f:convertNumber pattern="##,##0.00"/>
+                                                                    </h:outputText>
+                                                                    
+                                                                </td>
+                                                                <!-- Changes made on 30-09-2016 To Display Acquisition, Gains/Losses values-->
+                                                                <!--
+                                                                <td class="align_right">
+                                                                    <h:outputText value="{assetclasslist.customerTWR}">
+                                                                        <f:convertNumber pattern="#0.00"/>
+                                                                    </h:outputText> %
+                                                                </td>
+                                                                
+                                                                <td class="align_right">
+                                                                    <h:outputText value="{securityList.recommmendedTWR}">
+                                                                        <f:convertNumber pattern="#0.00"/>
+                                                                    </h:outputText> %
+                                                                </td>
+                                                                -->
+                                                                <td class="align_right">
+                                                                    <i class="rupees"><span class="WebRupee">Rs.</span></i>  
+                                                                    <h:outputText value="#{assetclasslist.acquisitionCost}">
+                                                                        <f:convertNumber pattern="#0.00"/>
+                                                                    </h:outputText> 
+                                                                </td>
+                                                                <td class="align_right">
+                                                                    <i class="rupees"><span class="WebRupee">Rs.</span></i>  
+                                                                    <h:outputText value="#{assetclasslist.totalgainrLoss}">
+                                                                        <f:convertNumber pattern="#0.00"/>
+                                                                    </h:outputText> 
+                                                                </td>
+                                                            </tr>
+
+                                                        </c:forEach>
+
+                                                        <tr>
+                                                            <td>TOTAL</td>
+                                                            
+                                                            <td class="align_right">
+                                                                <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                                <h:outputText value="#{total}">
+                                                                    <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2"/>
+                                                                </h:outputText>
+                                                            </td>
+                                                            <!--Changes made on 30-09-2016 To Display Acquisition, Gains/Losses values
+                                                            <td class="align_right">
+                                                                <h:outputText value="{portfoliodetailscontroller.customerPortfolioVO.pfTwrReturn}">
+                                                                    <f:convertNumber pattern="#0.00"/>
+                                                                </h:outputText> %
+                                                            </td>
+                                                            <td class="align_right">
+                                                                <h:outputText value="{portfoliodetailscontroller.customerPortfolioVO.rcmdPfTwrReturn}">
+                                                                    <f:convertNumber pattern="#0.00"/>
+                                                                </h:outputText> %
+                                                            </td>
+                                                            -->
+                                                            <td class="align_right">
+                                                                <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                                <h:outputText value="#{totalAquiVal}">
+                                                                    <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2"/>
+                                                                </h:outputText>
+                                                            </td>
+                                                            <td class="align_right">
+                                                                <i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                                <h:outputText value="#{totalgainOrLoss}">
+                                                                    <f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2"/>
+                                                                </h:outputText>
+                                                            </td>
+                                                        </tr>
+                                                        <p:remoteCommand  name="selectAssetClass" actionListener="#{portfoliodetailscontroller.onSelectAssetClass()}" 
+                                                                          action="#{portfoliodetailscontroller.getreDirectionUrl()}">
+                                                        </p:remoteCommand>
+                                                    </tbody>
+                                                </table>
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <span style="color:red">*</span>
+                                                            <h:outputText value="Cash Include blocked amount" class="align_left">
+                                                            </h:outputText>
+                                                        </td>  
+                                                    </tr>
+                                                </table>		 
+                                            </h:panelGroup>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+                <style type="text/css">
+                    .dropdown-menu {
+                        min-width: 128px;
+                    }
+
+                    .table th {
+                        position: relative;
+                    }
+
+                    .donut-placeholder {
+                        height: 250px;
+                    }
+                    #flotTip 
+                    {
+                        padding: 3px 5px;
+                        background-color: #2E8E0C;
+                        z-index: 100;
+                        color: #fff;
+                        box-shadow: 0 0 10px #555;
+                        opacity: .7;
+                        filter: alpha(opacity=70);
+                        border: 2px solid #fff;
+                        -webkit-border-radius: 4px;
+                        -moz-border-radius: 4px;
+                        border-radius: 4px;
+                    }   
+
+                </style>
+                <!-- this page specific styles -->
+                <link rel="stylesheet" href="#{request.contextPath}/css/compiled/chart-showcase.css" type="text/css" media="screen"/>
+                <link rel="stylesheet" href="#{request.contextPath}/css/compiled/tables.css" type="text/css" media="screen"/>
+
+                <!-- scripts for this page -->
+                <script src="#{request.contextPath}/js/jquery.js"></script>
+                <script src="#{request.contextPath}/js/bootstrap.min.js"></script>
+                <script type="text/javascript">
+                                                                    $(function() {
+                                                                        $('.dropdown-toggle').dropdown();
+                                                                    });
+                                                                    $(function() {
+                                                                        $('#sidebar-nav.').addClass('display');
+                                                                    });
+                </script>
+                <script src="#{request.contextPath}/js/jquery-ui-1.10.2.custom.min.js"></script>            
+
+                <!-- call all plugins -->
+                <script src="#{request.contextPath}/js/theme.js"></script>
+
+                <!-- pie-chart -->
+                <script src="#{request.contextPath}/js/jquery.flot.js"></script>
+                <script src="#{request.contextPath}/lib/flot/jquery.flot.pie.js"></script>
+                <script src="#{request.contextPath}/js/jquery.flot.tooltip.js"></script>
+
+                <script type="text/javascript">
+                                                                    $("#five-day").css('color', 'blue');
+                                                                    function  onClickDateButton(dayValue, selection, option) {
+                                                                        makeSelectionVisible(selection);
+                                                                        clickdatebutton([{name: 'dayValue', value: dayValue}, {name: 'option', value: option}]);
+                                                                    }
+
+                                                                    function  onSelectAssetClass(assetClassId, noOfDays) {
+                                                                        selectAssetClass([{name: 'assetClassId', value: assetClassId}, {name: 'noOfDays', value: noOfDays}]);
+                                                                    }
+
+                                                                    function getCurrentDayOfyer(selection, option) {
+                                                                        var timestmp = new Date().setFullYear(new Date().getFullYear(), 0, 1);
+                                                                        var yearFirstDay = Math.floor(timestmp / 86400000);
+                                                                        var today = Math.ceil((new Date().getTime()) / 86400000);
+                                                                        onClickDateButton((today - yearFirstDay), selection, option);
+                                                                    }
+
+                                                                    var data = JSON.parse('#{portfoliodetailscontroller.customerPieChartDataVOList}');
+                                                                    $.plot('#portfolio-donut', data, {
+                                                                        series: {
+                                                                            pie: {
+                                                                                innerRadius: 0.5,
+                                                                                show: true,
+                                                                                label: {
+                                                                                    show: true,
+                                                                                    radius: 0.85,
+                                                                                    formatter: labelFormatter,
+                                                                                    background: {
+                                                                                        opacity: 1,
+                                                                                        color: 'transparent'
+                                                                                    },
+                                                                                    threshold: 0.05
+                                                                                },
+                                                                                stroke: {
+                                                                                    width: 5,
+                                                                                    color: '#ffffff'
+                                                                                }
+
+                                                                            }
+                                                                        }, legend: {
+                                                                            show: false
+                                                                        },
+                                                                        grid: {
+                                                                            hoverable: true
+                                                                        },
+                                                                        tooltip: true,
+                                                                        tooltipOpts: {
+                                                                            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+                                                                            shifts: {
+                                                                                x: 20,
+                                                                                y: 0
+                                                                            },
+                                                                            defaultTheme: false
+                                                                        }
+                                                                    });
+
+                                                                    var data1 = JSON.parse('#{portfoliodetailscontroller.tragetPieChartDataVOList}');
+                                                                    $.plot('#recommended-donut', data1, {
+                                                                        series: {
+                                                                            pie: {
+                                                                                innerRadius: 0.5,
+                                                                                show: true,
+                                                                                label: {
+                                                                                    show: true,
+                                                                                    radius: 0.85,
+                                                                                    formatter: labelFormatter,
+                                                                                    background: {
+                                                                                        opacity: 1,
+                                                                                        color: 'transparent'
+                                                                                    },
+                                                                                    threshold: 0.05
+                                                                                },
+                                                                                stroke: {
+                                                                                    width: 5,
+                                                                                    color: '#ffffff'
+                                                                                }
+
+                                                                            }
+                                                                        }, legend: {
+                                                                            show: false
+                                                                        },
+                                                                        grid: {
+                                                                            hoverable: true
+                                                                        },
+                                                                        tooltip: true,
+                                                                        tooltipOpts: {
+                                                                            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+                                                                            shifts: {
+                                                                                x: 20,
+                                                                                y: 0
+                                                                            },
+                                                                            defaultTheme: false
+                                                                        }
+                                                                    });
+
+                                                                    var data2 = [
+                                                                        {label: "Equity", data: 0.7, color: '#669900'},
+                                                                        {label: "Commodities", data: 0.2, color: '#8ABD00'},
+                                                                        {label: "Debt", data: 0.1, color: '#C5E26D'}
+                                                                    ];
+
+
+                                                                    $.plot('#benchmark-donut', data2, {
+                                                                        series: {
+                                                                            pie: {
+                                                                                innerRadius: 0.5,
+                                                                                show: true,
+                                                                                label: {
+                                                                                    show: true,
+                                                                                    radius: 0.85,
+                                                                                    formatter: labelFormatter,
+                                                                                    background: {
+                                                                                        opacity: 1,
+                                                                                        color: 'transparent'
+                                                                                    },
+                                                                                    threshold: 0.05
+                                                                                },
+                                                                                stroke: {
+                                                                                    width: 5,
+                                                                                    color: '#ffffff'
+                                                                                }
+
+                                                                            }
+                                                                        }, legend: {
+                                                                            show: false
+                                                                        },
+                                                                        grid: {
+                                                                            hoverable: true
+                                                                        },
+                                                                        tooltip: true,
+                                                                        tooltipOpts: {
+                                                                            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+                                                                            shifts: {
+                                                                                x: 20,
+                                                                                y: 0
+                                                                            },
+                                                                            defaultTheme: false
+                                                                        }
+                                                                    });
+
+
+                                                                    function labelFormatter(label, series) {
+                                                                        return '<div class="donut-label">' + label + '<br/>' + Math.round(series.percent) + '%</div>';
+                                                                    }
+
+                                                                    function makeSelectionVisible(selection) {
+                                                                        $("#five-day").css('color', 'black');
+                                                                        $("#one-month").css('color', 'black');
+                                                                        $("#three-month").css('color', 'black');
+                                                                        $("#six-month").css('color', 'black');
+                                                                        $("#one-year").css('color', 'black');
+                                                                        $("#year-to-date").css('color', 'black');
+                                                                        $("#five-year").css('color', 'black');
+                                                                        $("#ten-year").css('color', 'black');
+                                                                        $("#all").css('color', 'black');
+                                                                        $(selection).css('color', 'blue');
+                                                                    }
+                                                                    current
+                </script>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

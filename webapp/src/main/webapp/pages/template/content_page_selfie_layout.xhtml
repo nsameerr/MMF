@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title><ui:insert name="title"></ui:insert></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!-- bootstrap -->
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-overrides.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/custom.css" type="text/css" rel="stylesheet"/>
+
+        <!-- global styles -->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/layout.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/elements.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/icons.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/rupees.css"/>
+
+        <!-- libraries -->
+        <link href="#{request.contextPath}/css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css"/>
+        <link href="#{request.contextPath}/css/lib/font-awesome.css" type="text/css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/lib/morris.css" type="text/css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/lib/uniform.default.css" type="text/css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet"/>
+
+        <link rel="stylesheet" href="#{request.contextPath}/css/compiled/user-profile.css" type="text/css" media="screen"/>
+
+        <!-- custom style -->
+        <link rel="stylesheet" href="#{request.contextPath}/css/compiled/form-showcase.css" type="text/css" media="screen"/>
+        <link id="skin-file" href="#{request.contextPath}/css/skins/dark.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="#{request.contextPath}/css/custom.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/css/compiled/tables.css" type="text/css" media="screen"/>
+        <link rel="stylesheet" href="#{request.contextPath}/css/style.css" type="text/css"/>
+
+        <!-- open sans font -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600' rel='stylesheet' type='text/css'/>
+
+        <!--[if lt IE 9]>-->
+        <script src="#{request.contextPath}/js/modernizr.js"></script>
+        
+
+        <style type="text/css">
+            p {
+                font-size: 16px;
+                line-height: 24px;
+                margin-bottom: 20px;
+            }
+            form{
+                margin: 0px;
+            }
+            .spinner-start{
+                width: 100%;
+                background-color: red;
+                height: 100%;
+                position: fixed;
+                z-index: 1;
+                background: url("../img/select2/spiffygif_180x180.gif")no-repeat;
+                background-position: center;
+            }
+            .spinner-stop{
+                width: 0%;
+                background-color: red;
+                height: 0%;
+                position: fixed;
+                z-index: 0;
+                background: url("")no-repeat;
+            }
+            .content {
+                min-width: 400px;
+                min-height: 620px;
+                margin-bottom: 0;
+                padding-bottom: 50px;
+                position: relative;
+                background: #fff;
+                margin-left: 0px;
+                border-left: 1px solid #dae3e9;
+                height: 100%;
+            }
+        </style>
+        <ui:insert name="scripts">
+            <ui:include src="/pages/template/components/scripts.xhtml" />
+        </ui:insert>
+        <script type="text/javascript">
+            function startPageSpinner() {
+                $("#spinner").attr("class", "spinner-start");
+                $("#spinner").show();
+            }
+            function stopPageSpinner() {
+                $("#spinner").attr("class", "spinner-stop");
+                $("#spinner").hide();
+            }
+        </script>
+        
+    </h:head>
+    <body onload="onLoadBody();" class="common">
+        <div id="spinner"></div>
+        <ui:insert name="content" >
+            <ui:include src="/pages/template/components/content_area.xhtml" />
+        </ui:insert>
+    </body>
+</html>

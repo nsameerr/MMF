@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>        
+        <title></title>        
+    </head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WV7G82"
+                    height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&amp;l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WV7G82');        
+        </script>
+         <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-69307705-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+        <!-- End Google Tag Manager -->
+        
+        <ui:composition template="/pages/template/content_page_layout.xhtml"
+                        xmlns:compo="http://java.sun.com/jsf/composite/composite">
+            <ui:define name="title">Assign Portfolio | ManageMyFortune.com</ui:define>
+            <ui:define name="sidebar">
+                <ui:include src="/pages/template/components/sidebar_user.xhtml" />
+            </ui:define>           
+            <ui:define name="content">                 
+
+                <h:form id="assign_portfolio_form">
+
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div id="pad-wrapper" class="user-profile">
+                                <!-- header -->
+                                <h2 class="page-title">Assign Portfolio</h2>
+
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <h3 class="title no-margin-bottom">Personal Details</h3>
+
+                                        <table class="table one-pixel-border" >
+                                            <thead style="border-top: none;">
+                                                <tr class="top-row">
+                                                    <th class="span4 align_center">Client Name</th>
+                                                    <th class="span4 left-border align_center">Asset Allocated</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- row -->
+                                                <tr class="first">
+                                                    <td>
+                                                        <img class="img-circle avatar hidden-phone" id="user_img"
+                                                             src="#{assignPortfolioController.investorProfile.pictureURL}"
+                                                             alt="Image not available" onerror="this.src='#{request.contextPath}/img/contact-img_3.jpg'">
+                                                        </img>
+                                                        <a class="name" href="#" style="cursor: default;text-decoration: none;">
+                                                            #{assignPortfolioController.investorProfile.firstName}
+                                                        </a>
+                                                        <div class="label label-success">
+                                                            #{assignPortfolioController.investorProfile.portFolioStyle}
+                                                        </div>
+                                                    </td>
+                                                    <td class="align_center"  style="font-size:14px;font-weight:600;"><i class="rupees"><span class="WebRupee">Rs.</span></i>
+                                                        <h:panelGroup id="alloctd_asset" >
+                                                            #{assignPortfolioController.investorProfile.allocatedInvestments}
+                                                        </h:panelGroup> </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <h3 class="title no-margin-bottom">Professional Details</h3>
+                                        <table class="table one-pixel-border">
+                                            <thead style="border-top: none;">
+                                                <tr>
+                                                    <th class="span6 align_center">Company</th>
+                                                    <th class="span6 align_center">Title</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="first">
+                                                    <td>#{assignPortfolioController.investorProfile.workOrganization}</td>
+                                                    <td> #{assignPortfolioController.investorProfile.jobTitle}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="row-fluid main-content">
+                                    <div class="span6">
+                                        <h3 class="title">
+                                            Investment Policy Statement
+                                        </h3>
+
+                                        <ul class="statement">
+                                            <li><label for="">Risk Profile</label>
+                                                <span>#{assignPortfolioController.customerRiskProfileVO.riskScore} %</span>&#160;
+                                                #{assignPortfolioController.customerRiskProfileVO.portfolioType_text}
+                                            </li>
+
+                                            <li><label for="">Annual Return Expected</label>
+                                                <span>#{assignPortfolioController.customerRiskProfileVO.expReturn} %</span>
+                                            </li>
+
+                                            <li><label for="">Benchmark Index</label>
+                                                <span>#{assignPortfolioController.customerRiskProfileVO.benchMark_text}</span>
+                                            </li>
+
+                                            <li><label for="">Liquidity Requirement</label>
+                                                <span>#{assignPortfolioController.customerRiskProfileVO.liquidityRetd} % of portfolio</span>
+                                            </li>
+
+                                            <li><label for="">Income Requirement</label>
+                                                <span>#{assignPortfolioController.customerRiskProfileVO.incomeRetd} % of portfolio</span>
+                                            </li>
+
+                                            <li><label for="">Investment Horizon</label>
+                                                <span>#{assignPortfolioController.customerRiskProfileVO.investHorizon} years</span>
+                                            </li>
+
+                                            <li><label for="">Review Frequency</label>
+                                                <span>#{assignPortfolioController.customerRiskProfileVO.reviewFreequency_text}</span>
+                                            </li>
+
+                                            <li><label for="">Portfolio Style</label>
+                                                <span>#{assignPortfolioController.customerRiskProfileVO.portfolioStyleOpted}</span>
+                                            </li>
+                                        </ul>
+                                        <div>
+                                            <ui:repeat var="reviews" value="#{assignPortfolioController.customerPortfolioVO.previousReviews}">#{reviews}<br/></ui:repeat>                                                                            
+                                        </div>                        
+                                        <h:inputTextarea value="#{assignPortfolioController.customerPortfolioVO.advisorComment}" id="review"
+                                                         style="width: 80%; height: 150px; margin-top: 46px; font-size: 14px;"/>
+                                        <br><h:message for="review" styleClass="err_message"/></br>
+                                    </div>
+                                    <div class="span6">
+                                        <div class="field-box">
+                                            <h3 class="title">
+                                                Portfolio
+                                                <span class="ui-select pull-right" style="width: 200px; margin-right: 18px;">
+                                                    <h:selectOneMenu value="#{assignPortfolioController.customerPortfolioVO.portfolioId}" id="porfoliosList">
+                                                        <f:selectItem noSelectionOption="true" itemValue="0" itemLabel="     Select Portfolio     "/>
+                                                        <f:selectItems value="#{assignPortfolioController.portfoliosmap.entrySet()}" var="portfolios"
+                                                                       itemLabel="#{portfolios.value.portfolioName}" itemValue="#{portfolios.key}"/>
+                                                        <p:ajax event="change" listener="#{assignPortfolioController.refreshPieChartData()}" 
+                                                                update="pie_chart_div,assetAlloction_table,assign_portfolio_form:alloctd_asset"/>                                   
+                                                    </h:selectOneMenu> 
+                                                </span>
+                                                <h:message for="porfoliosList" styleClass="err_message" style="font-size: 12px;"/>
+                                            </h3>
+
+                                        </div>
+                                        <div id="recommended-donut" style="height: 280px"></div>
+
+                                        <div class="row-fluid limits">
+                                            <div class="span12">
+                                                <h3 class="title" style="margin-bottom: 0; width: 98%;">
+                                                    Investment Limits
+                                                </h3>
+
+                                                <h:dataTable value="#{assignPortfolioController.pieChartDataVOList}" var="assetAlloction"
+                                                             styleClass="table table-hover" id="assetAlloction_table">
+                                                    <h:column class="line">
+                                                        <f:facet name="header">Asset Class</f:facet>
+                                                            #{assetAlloction.label}
+                                                    </h:column>
+                                                    <h:column class="line">
+                                                        <f:facet name="header">Range</f:facet>  
+                                                        <h:outputLabel rendered="#{assetAlloction.label == assignPortfolioController.equityRange}" 
+                                                                       style="width: 100%;font-weight: normal;font-size: 12px;">
+                                                            #{assignPortfolioController.assetClassRanges().range_min_equity}% to
+                                                            #{assignPortfolioController.assetClassRanges().range_max_equity}%   
+                                                        </h:outputLabel>
+
+                                                        <h:outputLabel rendered="#{assetAlloction.label == assignPortfolioController.diversifiedEquity}" 
+                                                                       style="width: 100%;font-weight: normal;font-size: 12px;">
+                                                            #{assignPortfolioController.assetClassRanges().range_max_diversifiedEquity}% to
+                                                            #{assignPortfolioController.assetClassRanges().range_min_diversifiedEquity}%   
+                                                        </h:outputLabel>
+
+
+                                                        <h:outputLabel rendered="#{assetAlloction.label == assignPortfolioController.index}" 
+                                                                       style="width: 100%;font-weight: normal;font-size: 12px;">
+                                                            #{assignPortfolioController.assetClassRanges().range_min_equity}% to
+                                                            #{assignPortfolioController.assetClassRanges().range_max_equity}%   
+                                                        </h:outputLabel>
+
+                                                        <h:outputLabel rendered="#{assetAlloction.label == assignPortfolioController.midcap}" 
+                                                                       style="width: 100%;font-weight: normal;font-size: 12px;">
+                                                            #{assignPortfolioController.assetClassRanges().range_max_midcap}% to
+                                                            #{assignPortfolioController.assetClassRanges().range_min_midcap}%   
+                                                        </h:outputLabel>
+
+                                                        <h:outputLabel rendered="#{assetAlloction.label == assignPortfolioController.balanced}" 
+                                                                       style="width: 100%;font-weight: normal;font-size: 12px;">
+                                                            #{assignPortfolioController.assetClassRanges().range_min_balanced}% to
+                                                            #{assignPortfolioController.assetClassRanges().range_max_balanced}%   
+                                                        </h:outputLabel>
+
+                                                        <h:outputLabel rendered="#{assetAlloction.label == assignPortfolioController.cashRange}" 
+                                                                       style="width: 100%;font-weight: normal;font-size: 12px;">
+                                                            #{assignPortfolioController.assetClassRanges().range_min_cash}% to
+                                                            #{assignPortfolioController.assetClassRanges().range_max_cash}%   
+                                                        </h:outputLabel> 
+                                                        <h:outputLabel rendered="#{assetAlloction.label == assignPortfolioController.FORange}" 
+                                                                       style="width: 100%;font-weight: normal;font-size: 12px;">
+                                                            #{assignPortfolioController.assetClassRanges().range_min_fo}% to
+                                                            #{assignPortfolioController.assetClassRanges().range_max_fo}%   
+                                                        </h:outputLabel> 
+                                                        <h:outputLabel rendered="#{assetAlloction.label == assignPortfolioController.goldRange}" 
+                                                                       style="width: 100%;font-weight: normal;font-size: 12px;">
+                                                            #{assignPortfolioController.assetClassRanges().range_min_gold}% to
+                                                            #{assignPortfolioController.assetClassRanges().range_max_gold}%   
+                                                        </h:outputLabel> 
+                                                        <h:outputLabel rendered="#{assetAlloction.label == assignPortfolioController.internationalRange}" 
+                                                                       style="width: 100%;font-weight: normal;font-size: 12px;">
+                                                            #{assignPortfolioController.assetClassRanges().range_min_international}% to
+                                                            #{assignPortfolioController.assetClassRanges().range_max_international}%   
+                                                        </h:outputLabel> 
+
+                                                        <h:outputLabel rendered="#{assetAlloction.label == assignPortfolioController.debtRange}" 
+                                                                       style="width: 100%;font-weight: normal;font-size: 12px;">
+                                                            #{assignPortfolioController.assetClassRanges().range_min_debt}% to
+                                                            #{assignPortfolioController.assetClassRanges().range_max_debt}%   
+                                                        </h:outputLabel>
+                                                        
+                                                        <h:outputLabel rendered="#{assetAlloction.label == assignPortfolioController.debtLiquidRange}" 
+                                                                       style="width: 100%;font-weight: normal;font-size: 12px;">
+                                                            #{assignPortfolioController.assetClassRanges().range_min_debt_liquid}% to
+                                                            #{assignPortfolioController.assetClassRanges().range_max_debt_liquid}%   
+                                                        </h:outputLabel>
+                                                        
+                                                    </h:column>
+                                                    <h:column class="line">
+                                                        <f:facet name="header">Current Allocation</f:facet>
+                                                        <h:outputText value=" #{assetAlloction.data}"> 
+                                                            <f:convertNumber pattern="#00.00"/>
+                                                        </h:outputText>%
+                                                    </h:column>
+                                                </h:dataTable>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid button-row">
+                            <compo:clientbuttons buttonsList="#{assignPortfolioController.buttonsList}"
+                                                 paramActionListner="#{assignPortfolioController.doActions}" 
+                                                 paramAction="#{assignPortfolioController.redirectionURL()}"/> 
+                        </div>
+                    </div> 
+
+                    <style type="text/css">
+                        ul {
+                            list-style: none;
+                            margin-left: 0;
+                        }
+
+                        .statement li {
+                            margin-bottom: 12px;
+                        }
+
+                        .statement label {
+                            width: 180px;
+                            font-weight: 600;
+                        }
+
+                        .statement span {
+                            margin: 0 0 0 42px;
+                        }
+
+                        .limits label {
+                            width: 26%;
+                            font-weight: 600;
+                        }
+
+                        .limits span {
+                            font-size: 14px;
+                            color: #666;
+                            margin: 0 24px;
+                            display: inline-block;
+                            width: 33.33%;
+                        }
+
+                        .limits input[class*="span"] {
+                            margin-left: -30px;
+                            width: 16%;
+                        }
+
+                        .limits .head {
+                            font-weight: 600;
+                            border-bottom: 1px solid #eee;
+                            border-top: 1px solid #eee;
+                            padding: 8px 0 2px;
+                            color: #111;
+                            text-transform: uppercase;
+                            margin-bottom: 12px;
+                            width: 126%;
+                            font-size: 11px;
+
+                        }
+
+                        .limits .head span {
+                            color: #111;
+                            width: 24%;
+                            font-size: 11px;
+                        }
+
+                        .limits .head label {
+                            font-size: 11px;
+                        }
+
+                        .td2{
+                            width: 30%;
+                        }
+
+                        table th span.line {
+                            left: -28px;
+                        }
+                    </style>
+
+                    <!-- scripts for this page -->
+                    <script src="#{request.contextPath}/js/jquery.js"></script>
+                    <script src="#{request.contextPath}/js/bootstrap.min.js"></script>
+                    <script src="#{request.contextPath}/js/jquery-ui-1.10.2.custom.min.js"></script>
+
+                    <!-- pie-chart -->
+                    <script src="#{request.contextPath}/lib/flot/jquery.flot.js"></script>
+                    <script src="#{request.contextPath}/lib/flot/jquery.flot.pie.js"></script>
+
+
+                    <script type="text/javascript">
+
+                        $(document).ready(function() {
+                            stopSpinner();
+                        });
+
+                        var watermark = 'Enter your comments';
+
+                        //init, set watermark text and class
+                        $('#assign_portfolio_form\\:review').val(watermark).addClass('watermark');
+
+                        //if blur and no value inside, set watermark text and class again.
+                        $('#assign_portfolio_form\\:review').blur(function() {
+                            if ($(this).val().length === 0) {
+                                $(this).val(watermark).addClass('watermark');
+                                $(this).attr('type', 'text');
+                            }
+                        });
+
+                        //if focus and text is watermrk, set it to empty and remove the watermark class
+                        $('#assign_portfolio_form\\:review').focus(function() {
+                            if ($(this).val() === watermark) {
+                                $(this).val('').removeClass('watermark');
+                            }
+                        });
+
+                        if (document.getElementById('user_img').src === '' || document.getElementById('user_img').src === null) {
+                            document.getElementById('user_img').src = "#{request.contextPath}/img/contact-img_3.jpg";
+                        }
+
+                    </script>
+
+                    <script src="#{request.contextPath}/js/theme.js"></script>                   
+
+                    <h:panelGroup id="pie_chart_div">
+                        <script type="text/javascript">
+                        data = JSON.parse('#{assignPortfolioController.pieChartData()}');
+                        $.plot('#recommended-donut', data, {
+                            series: {
+                                pie: {
+                                    innerRadius: 0.5,
+                                    radius: 0.65,
+                                    show: true,
+                                    label: {
+                                        show: true,
+                                        radius: 0.99,
+                                        formatter: labelFormatter,
+                                        background: {
+                                            opacity: 1,
+                                            color: 'transparent'
+                                        },
+                                        threshold: 0
+                                    }
+                                }
+                            },
+                            grid: {
+                                hoverable: true
+                            }
+                        });
+
+                        function labelFormatter(label, series) {
+                            return '<div class="donut-label">' + label + '<br/>' + Math.round(series.percent) + '%</div>';
+                        }
+
+                        </script>
+                    </h:panelGroup>
+
+                </h:form> 
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

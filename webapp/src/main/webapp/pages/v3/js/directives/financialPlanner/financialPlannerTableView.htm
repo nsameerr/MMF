@@ -1,0 +1,113 @@
+    <div class="list_table" id="high_table" style="overflow-y:auto; height:300px;">
+        <div class="list_row head">
+            <div class="column1 column">
+                <h5>Age</h5>
+            </div>
+            <div class="column2 column">
+                <h5>Life Goals</h5>
+            </div>
+            <div class="column3 column">
+                <h5>Annual Expense</h5>
+                <!-- (in K) -->                
+            </div>
+            <div class="column4 column">
+<!--                 <h5>Wealth with MMF</h5> -->
+                <h5>Total Wealth</h5>
+                <!-- (in K) -->
+            </div>
+        </div>
+        <!--Chart Data-->
+        <!-- <div > -->
+            <div ng-class="$index % 2 == 0 ? 'list_row body odd ' : 'list_row body even'" ng-repeat="item in userFpArray | limitTo : ( 1 - userFpArray.length) ">
+                <!-- {{item.length}} -->
+                    <div class="column1 column">
+                        <h5>{{item[0]}} <!-- 45 --> Yrs</h5>
+                    </div>
+                    <div class="column2 column">
+                        <img ng-src = "{{getGoalDescriptionId(userFpData.lifeGoals,item[0], (item[1] < item[2] ? true : false )) }}"  ng-if="item.length == 4" ng-cloak> <!-- If FD is plotted change to 5 -->
+                    </div>
+                    <div class="column3 column">
+                        <h5>{{ item[1]  > 1000 ? ((item[1]/1000 | number : 0) + ' K') : item[1] }}<!-- 350 K--></h5> 
+                    </div>
+                    <div class="column4 column">
+                        <h5>{{ item[2]  > 1000 ? ((item[2]/1000 | number : 0) + ' K') : item[2] }}<!-- 25 K--> </h5> 
+                    </div>                
+            </div>
+        <!-- </div> -->
+        <!--SampleData :  Start-->
+        <!-- <div class="list_row body odd">
+            <div class="column1 column">
+                <h5>45 Yrs</h5>
+            </div>
+            <div class="column2 column">
+                <span class="goal_icon" style="background-image: url('images/car_goal_icon.png')"></span>
+                <span class="status_ok"></span> 
+                <a class="more_details" tabindex="0" data-html="true" data-toggle="popover" data-trigger="focus" title="Life Goal" data-content="<div><h4 class='goal_name' style='background-image: url(images/car_goal_icon.png)'>Car</h4><h3 class='goal_duration'>25 Years</h3><h6>Estimated Amount</h6><h2 class='goal_amount'><i class='fa fa-inr'></i>35000000</h2><h5 class='goal_loan'>Loan : Yes</h5></div>"></a>
+            </div>
+            <div class="column3 column">
+                <h5>350K</h5>
+            </div>
+            <div class="column4 column">
+                <h5>25K</h5>
+            </div>
+        </div>
+        <div class="list_row body even">
+            <div class="column1 column">
+                <h5>46 Yrs</h5>
+            </div>
+            <div class="column2 column">
+                <h5></h5>
+            </div>
+            <div class="column3 column">
+                <h5>22K</h5>
+            </div>
+            <div class="column4 column">
+                <h5>25K</h5>
+            </div>
+        </div>
+        <div class="list_row body odd">
+            <div class="column1 column">
+                <h5>47 Yrs</h5>
+            </div>
+            <div class="column2 column">
+                <h5></h5>
+            </div>
+            <div class="column3 column">
+                <h5>23K</h5>
+            </div>
+            <div class="column4 column">
+                <h5>30K</h5>
+            </div>
+        </div>
+        <div class="list_row body even">
+            <div class="column1 column">
+                <h5>48 Yrs</h5>
+            </div>
+            <div class="column2 column">
+                <h5></h5>
+            </div>
+            <div class="column3 column">
+                <h5>2800K</h5>
+            </div>
+            <div class="column4 column">
+                <h5>35K</h5>
+            </div>
+        </div>
+        <div class="list_row body odd">
+            <div class="column1 column">
+                <h5>49 Yrs</h5>
+            </div>
+            <div class="column2 column">
+                <span class="goal_icon" style="background-image: url('images/home_goal_icon.png')"></span>
+                <a class="more_details" tabindex="0" data-html="true" data-toggle="popover"  data-trigger="focus" title="Life Goal" data-content="<div><h4 class='goal_name' style='background-image: url(images/home_goal_icon.png)'>Home</h4><h3 class='goal_duration'>25 Years</h3><h6>Estimated Amount</h6><h2 class='goal_amount'><i class='fa fa-inr'></i>35000000</h2><h5 class='goal_loan'>Loan : Yes</h5></div>"></a>
+            </div>
+            <div class="column3 column">
+                <h5>30K</h5>
+            </div>
+            <div class="column4 column">
+                <h5>55K</h5>
+            </div>
+        </div> -->
+        <!--SampleData :  End-->
+    </div>
+    <!-- <pre id="preview"></pre> -->

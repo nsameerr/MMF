@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Developers</title>
+    <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+        	body{
+        	padding-top: 55px;
+        	padding-bottom: 250px;
+        	}
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme-paper.min.css">
+        <link rel="stylesheet" href="css/bootstrap-wrapper.css">
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        
+        
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/angular.min.js"></script>
+        
+        <script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+        
+        
+        <script src="js/main.js"></script>
+  
+   
+
+
+  </head>
+  <body class="devsite-layout-docs devsite-framebox">
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    $('#containerx').highcharts({
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: ''
+        },
+        navigator: {
+            enabled: true,
+            xAxis: {
+                tickWidth: 0,
+                lineWidth: 0,
+                gridLineWidth: 1,
+                tickPixelInterval: 200,
+                labels: {
+                	enabled: false,
+                    align: 'left',
+                    style: {
+                        color: '#888'
+                    },
+                    x: 3,
+                    y: -4
+                },
+                
+            },
+            yAxis: {
+            	gridLineWidth: 0,
+            	startOnTick: false,
+            	endOnTick: false,
+            	minPadding: 0.1,
+            	maxPadding: 0.1,
+            	labels: {
+            		enabled: false
+            	},
+            	title: {
+            		text: null
+            	},
+            	tickWidth: 0
+            },
+            series: {
+            	type: 'areaspline',
+            	color: '#4572A7',
+            	fillOpacity: 0.05,
+            	dataGrouping: {
+            		smoothed: true
+            	},
+            	lineWidth: 1,
+            	marker: {
+            		enabled: false
+            	}
+            }
+        },
+        xAxis: [{
+            crosshair: true
+        }],
+        yAxis: [
+			{ // Primary yAxis
+	            labels: {
+	                style: {
+	                    color: Highcharts.getOptions().colors[1]
+	                }
+	            },
+	            title: {
+	                text: 'Temperature',
+	                style: {
+	                    color: Highcharts.getOptions().colors[1]
+	                }
+	            }
+	        }, 
+	        { // Secondary yAxis
+	            title: {
+	                text: 'Rainfall',
+	                style: {
+	                    color: Highcharts.getOptions().colors[0]
+	                }
+	            },
+	            labels: {
+	                style: {
+	                    color: Highcharts.getOptions().colors[0]
+	                }
+	            }
+			}
+		],
+        tooltip: {
+            shared: true
+        },
+        series: [{
+            name: 'Rainfall',
+            type: 'column',
+            yAxis: 1,
+            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+            tooltip: {
+                valueSuffix: ''
+            }
+
+        }, {
+            name: 'Temperature',
+            type: 'spline',
+            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+            tooltip: {
+                valueSuffix: ''
+            }
+        }]
+    });
+});
+
+$(function () {
+    $('#container').highcharts({
+        title: {
+            text: 'Combination chart'
+        },
+
+        navigator: {
+            enabled: true,
+            xAxis: {
+                tickWidth: 0,
+                lineWidth: 0,
+                gridLineWidth: 1,
+                tickPixelInterval: 200,
+                labels: {
+                	format:'{value}',
+                    align: 'left',
+                    style: {
+                        color: '#888'
+                    },
+                    x: 3,
+                    y: -4
+                },
+                
+            }
+        },
+        xAxis: {
+        },
+        series: [{
+            type: 'column',
+            name: 'Liabilities',
+            colors: ['#FF4E50'],
+            colorByPoint : true,
+            data: [3, 2, 1, 3, 4,3, 2, 1, 3, 4,3, 2, 1, 3, 4,3, 2, 1, 3, 4,3, 2, 1, 3, 4,3, 2, 1, 3, 4,3, 2, 1, 3, 4,3, 2, 1, 3, 4,3, 2, 1, 3, 4]
+        }, {
+            type: 'spline',
+            name: 'Assets',
+            color: 'green',
+            data: [3, 2.67, 3, 6.33, 3.33,3, 2.67, 3, 6.33, 3.33,3, 2.67, 3, 6.33, 3.33,3, 2.67, 3, 6.33, 3.33,3, 2.67, 3, 6.33, 3.33,3, 2.67, 3, 6.33, 3.33,3, 2.67, 3, 6.33, 3.33,3, 2.67, 3, 6.33, 3.33,3, 2.67, 3, 6.33, 3.33],
+            marker: {
+                lineWidth: 2,
+                lineColor: Highcharts.getOptions().colors[3],
+                fillColor: 'white'
+            }
+        }]
+    });
+});
+
+
+</script>
+
+  </body>
+</html>
+

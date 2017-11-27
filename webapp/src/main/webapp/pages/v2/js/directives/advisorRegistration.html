@@ -1,0 +1,610 @@
+<style>
+lable{
+	margin-left: 12px !important;
+}
+item{
+	padding-top:10px;
+}
+.mandatory::-webkit-input-placeholder:after {
+    content:' *';
+    color: red;
+}
+.mandatory:-moz-placeholder:after {
+    /* Firefox 18- */
+    content:' *';
+    color: red;
+}
+.mandatory::-moz-placeholder:after {
+    /* Firefox 19+ */
+    content:' *';
+    color: red;
+}
+.mandatory:-ms-input-placeholder:after {
+    content:' *';
+    color: red;
+}
+
+label.mandatory:after{
+	content:' *';
+    color: red;
+}
+
+
+
+.breadcrumb{
+	padding:2px !important;
+	padding-left:5px  !important;
+}
+
+.breadcrumb li{
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.txtRupee{
+	background-image: url('img/icon_rupee.png');
+	background-repeat: no-repeat;
+	background-position: left center; 
+	background-size: auto 20px;
+	padding-left: 25px !important;
+	padding-bottom: 30px;
+}
+.calender{
+	background-image: url('img/icon_calender.png');
+	background-repeat: no-repeat;
+	background-position: right center; 
+	background-size: auto 20px;
+	padding-right: 25px !important;
+	padding-bottom: 30px;
+}
+
+#tblQualification td{
+	padding-right: 10px;
+}
+#tblQualification th{
+	padding-right: 10px;
+}
+a:hover{
+	color: #0C95BE !important
+}
+</style>
+<div class="row-fluid">
+	<h2 class="page-title"> Registration </h2>
+</div>
+<div id="divLoading">Loading...</div>
+
+<div id="divContent" style="display:none">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false" data-wrap="false">
+		<div class="carousel-inner" role="listbox">
+			<!-- Carousal item Q0 start -->
+			<div class="item active container-fluid">
+				<ol class="breadcrumb">
+					<li>Personal Details</li>
+				</ol>
+				<div class="row">
+					<div class="col-md-1">
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q0A0" name="Q0" value="1"></span>
+							<label for="Q0A0"><h6>Individual</h6></label>
+						</div>
+					</div>
+					<div class="col-md-1">
+						<div class="input-group">
+							<span class="input-group-addon"><input type="radio"  id="Q0A1" name="Q0" value="2"></span>
+							<label for="Q0A1"><h6>Corporate</h6></label>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="row">
+					<div class="form-group js-float-label-wrapper col-md-4">
+						<label for="" class="mandatory">First Name</label>
+						<input id="fname" ng-model="data.fname" type="text" class="form-control mandatory alphaOnly" placeholder="First Name"  value="">
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-4">
+						<label for="">Middle Name</label>
+						<input id="middle_name" type="text" class="form-control alphaOnly" placeholder="Middle Name">
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-4">
+						<label for="" class="mandatory">Last Name</label>
+						<input id="last_name" type="text" class="form-control mandatory alphaOnly" placeholder="Last Name">
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label for="">PAN Number</label>
+						<input id="pan" type="text" class="form-control numericOnly" maxlength="12" placeholder="PAN Number">
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-4 ">
+						<label for="" class="mandatory">Date Of Birth</label>
+						<span class="form-control-feedback" aria-hidden="true"></span>
+						<input id="dob" type="text" class="form-control  calender MMDDYYYY mandatory" placeholder="Date of Birth" value="">
+					</div>
+				</div>
+				
+				
+				
+				
+				<div class="row" style="margin-top: 20px">
+					<div class="form-group js-float-label-wrapper col-md-4">
+						<label for="" class="mandatory">SEBI Investment Advisor Registration No</label>
+						<input id="regNO" type="text" class="form-control mandatory" placeholder="SEBI Investment Advisor Registration No">
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-4 ">
+						<label for="" class="">Validity of Registration</label>
+						<span class="form-control-feedback" aria-hidden="true"></span>
+						<input id="sebi_validity" type="text" class="form-control  calender MMDDYYYY mandatory" placeholder="Validity of Registration" value="">
+					</div>
+					<div class="input-group  col-md-4">
+						<span class="input-group-btn">
+							<span class="btn btn-primary btn-file">
+								Attach File… <input type="file" multiple="">
+							</span>
+						</span>
+						<input id="sebiPath" type="text" class="form-control" readonly=""  style="margin-left: 10px;" placeholder="Upload Scanned Copy of SEBI Investment Advisor Certification">
+					</div>
+					<div  class="  col-md-4">
+						Upload Scanned Copy of SEBI Investment Advisor Certification <br>(Max allowable size is 2MB. Supported formats- jpeg, png and pdf)
+					</div>
+				</div>
+			</div>
+			<!-- Carousal item Q0 end -->
+			
+			
+			
+			
+			<!-- Carousal item Q1 start -->
+			<div class="item container-fluid" >
+				<ol class="breadcrumb">
+					<li>Office Details</li>
+				</ol>
+				<div class="row">
+					<div class="form-group js-float-label-wrapper col-md-4">
+						<label for="" class="mandatory">Organization</label>
+						<input id="organization" type="text" class="form-control mandatory alphaOnly" placeholder="Organization">
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label class="mandatory" for="">Job Title</label>
+						<input id="jobTitle" type="text" maxlength="37" class="form-control mandatory" placeholder="Job Title">
+					</div>
+					
+				</div>
+				<div class="row">
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label class="mandatory" for="">Address line 1</label>
+						<input id="oaddressLine1" type="text" maxlength="37" class="form-control mandatory" placeholder="Address line 1">
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label for="">Address line 2</label>
+						<input id="oaddressLine2" type="text" maxlength="37" class="form-control" placeholder="Address line 2">
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-2" >
+						<label class="mandatory" for="">PIN code</label>
+						<input id="opincode" type="text" maxlength="6" class="form-control numericOnly mandatory" placeholder="PIN code">
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label class="mandatory">Country</label>
+						<select id="ocountry" class="form-control mandatory selectCountry" disabled="disabled"></select>
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label class="mandatory">State</label>
+						<select id="ostate" class="form-control mandatory selectState"></select>
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-3" >
+						<label class="mandatory">City</label>
+						<select id="offCity" class="form-control mandatory selectCity"></select>
+					</div>
+				</div>
+				
+				<h1></h1><h1></h1>
+				<div class="row">
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label class="mandatory" for="">Mobile Number</label>
+						<input id="omobile" type="text" maxlength="37" class="form-control mandatory" placeholder="Mobile Number">
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-2" >
+						<label class="mandatory" for="">Email</label>
+						<input id="regEmail" type="text" maxlength="6" class="form-control mandatory" placeholder="Email">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						Landline
+						<table style="margin-top: 10px">
+							<tr>
+								<td>
+									<div class="form-group js-float-label-wrapper" >
+										<label for="" style="left:0px">ISD</label>
+										<input id="oisd" type="text" size="5", maxlength="5" class="form-control numericOnly"  placeholder="">
+									</div>
+								</td>
+								<td>&nbsp;</td>
+								<td>
+									<div class="form-group js-float-label-wrapper" >
+										<label for="" style="left:0px">STD</label>
+										<input id="ostd" type="text" size="5" maxlength="5" class="form-control numericOnly"  placeholder="">
+									</div>
+								</td>
+								<td>&nbsp;</td>
+								<td>
+									<div class="form-group js-float-label-wrapper" >
+										<label for="" style="left:0px">Landline Number</label>
+										<input id="otnumber" type="text" maxlength="10" class="form-control numericOnly"  placeholder="">
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!-- Carousal item Q1 end -->
+			
+			
+			
+			
+			
+			
+			
+			<!-- Carousal item Q3 start -->
+			<div class="item container-fluid">
+				<ol class="breadcrumb">
+					<li>Bank Details</li>
+				</ol>
+				<div class="row">
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label class="mandatory">Bank</label>
+						<select id="bankName" class="form-control selectBank"></select>
+						
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label class="mandatory">Account Type</label>
+						<select id="accountType" class="form-control">
+							<option value="">Select</option>
+							<option value="Savings Account" selected="selected">Savings Account</option>
+							<option value="Current Account">Current Account</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label  class="mandatory" for="">Bank Account Number</label>
+						<input id="accountNumber" type="text" class="form-control password" placeholder="Bank Account Number"  onchange="javascript:togglePasswordType(this);" onfocus="javascript:togglePasswordType(this);" onblur="javascript:togglePasswordType(this);" onclick="javascript:togglePasswordType(this);">
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label  class="mandatory" for="">Re enter Bank Account Number</label>
+						<input id="raccountNumber" type="text" class="form-control mandatory" placeholder="Re enter Bank Account Number" onblur="javascript:reValidateAccno(this);">
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label class="mandatory" for="">IFSC No.</label>
+						<input id="ifscNo" type="text" class="form-control mandatory" placeholder="IFSC No." maxlength="11"  onblur="javascript:validateIFSC(this);">
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label class="mandatory" for="">MICR No.</label>
+						<input id="micrNo" type="text" class="form-control mandatory numericOnly" placeholder="MICR No." maxlength="9">
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label  class="mandatory" for="">Address line 1</label>
+						<input id="baddressLine1" type="text" maxlength="37" class="form-control mandatory" placeholder="Address line 1">
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label for="">Address line 2</label>
+						<input id="baddressLine2" type="text" maxlength="37" class="form-control" placeholder="Address line 2">
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-2" >
+						<label class="mandatory" for="">PIN code</label>
+						<input id="bpincode" type="text" maxlength="6" class="form-control numericOnly mandatory" placeholder="PIN code">
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label class="mandatory">Country</label>
+						<select id="bcountry" class="form-control mandatory selectCountry" disabled="disabled"></select>
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-4" >
+						<label class="mandatory">State</label>
+						<select id="bstate" class="form-control mandatory selectState"></select>
+					</div>
+					<div class="form-group js-float-label-wrapper col-md-3" >
+						<label class="mandatory">City</label>
+						<select id="bcity" class="form-control mandatory selectCity"></select>
+					</div>
+				</div>
+			</div>
+			<!-- Carousal item Q3 end -->
+			
+			<!-- Carousal item Q3 start -->
+			<div class="itemx container-fluid" style="display:none">
+				<ol class="breadcrumb">
+					<li>Qualification Information</li>
+				</ol>
+				<table style="width: auto;" >	
+					
+					<tr>
+						<th>Qualification</th>
+						<th>Institute</th>
+						<th>Year</th>
+						<th>Qualification ID</th>
+					</tr>
+					<tbody id="tblQualification" class="tblQualification">
+						<tr>
+							<td>
+								<input id="qQualification" type="text" class="form-control qQualification" placeholder="Please Enter Qualification">
+							</td>
+							<td>
+								<input id="qInstitute" type="text" class="form-control qInstitute" placeholder="Please Enter Institute">
+							</td>
+							<td>
+								<input id="qYear" type="text" class="form-control  calender YYYY mandatory qYear" placeholder="Year" value="">
+							</td>
+							<td>
+								<input id="qQualificationId" type="text" class="form-control qQualificationId" placeholder="Please Enter Qualification ID">
+							</td>
+							<td width=100>
+								<img src="img/x.png" id="btnRemoveRow" width="30px">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<br><img id="btnAddQualification" src="img/addRow.png" style="width:40px;min-height:40px; cursor: pointer;" data-toggle="tooltip" data-delay=0  data-trigger="hover" data-placement="left" title="Tooltip on left">
+			</div>
+			<!-- Carousal item Q3 end -->
+			
+			
+			<!-- Carousal item Q3 start -->
+			<div class="itemx container-fluid" style="display:none">
+				<ol class="breadcrumb">
+					<li>Profile Details</li>
+				</ol>
+				<table>
+					<tbody id="tblProfileDetails" class="tblProfileDetails">
+						<tr>
+							<td  style="vertical-align: top"><img alt="" src="img/addphoto.png" style="width:200px;margin-right: 25px;"></td>
+							<td style="vertical-align: top">
+								<div class="row">
+									<div class="form-group js-float-label-wrapper col-md-2" >
+										<label  class="mandatory" for="">Minimum AUM</label>
+										<input id="" type="text" class="form-control txtRupee numericOnly mandatory" placeholder="0 = No Limits">
+									</div>
+									
+									<div class="form-group js-float-label-wrapper col-md-2" >
+										<label class="mandatory">Investment Horizinon</label>
+										<select class="form-control" style="width:100px">
+											<option value="">1 Year</option>
+											<option value="">2 Years</option>
+											<option value="">3 Years</option>
+											<option value="">4 Years</option>
+											<option value="">5 Years</option>
+											<option value="">6 Years</option>
+											<option value="">7 Years</option>
+											<option value="">8 Years</option>
+											<option value="">9 Years</option>
+											<option value="">10 Years</option>
+											<option value="">11 Years</option>
+											<option value="">12 Years</option>
+											<option value="">13 Years</option>
+											<option value="">14 Years</option>
+											<option value="">15 Years</option>
+											<option value="">16 Years</option>
+											<option value="">17 Years</option>
+											<option value="">18 Years</option>
+											<option value="">19 Years</option>
+											<option value="">20 Years</option>
+										</select>
+									</div>
+									
+									<div class="col-md-12">&nbsp;</div>
+									<div class="form-group js-float-label-wrapper col-md-12" >
+										<label  class="mandatory" for=""> One-line profile description</label>
+										<input id="" type="text" class="form-control password" placeholder=" one-line profile description">
+									</div>
+									<div class="col-md-12">&nbsp;</div>
+									<div class="form-group js-float-label-wrapper col-md-12" >
+										<label  class="mandatory" for="">About me</label>
+										<textarea rows="1"  class="form-control mandatory" placeholder="About me"></textarea>
+									</div>
+									<div class="form-group js-float-label-wrapper col-md-12" >
+										<label  class="mandatory" for="">My Investment Strategy</label>
+										<textarea rows="1" class="form-control mandatory" placeholder="My Investment Strategy"></textarea>
+									</div>
+									<div class="col-md-12">&nbsp;</div>
+									
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- Carousal item Q3 end -->
+			
+		</div>
+	 </div>
+	 
+	<style>
+		.stepProgress .bar {
+			width: 20px;
+		}
+	</style>
+
+	<div style="position: fixed;bottom:5px; width:100%; background-color: #ffffff">
+		
+		<div style="margin-right: 20px; background-color: #F5F5F5; padding:10px;border-radius: 10px;">
+			<div class="stepProgress">
+				<div id="spc0" class="circle active">
+					<a><span class="label">1</span></a>
+				</div>
+				<span class="bar"></span>
+				<div id="spc1" class="circle">
+					<a><span class="label">2</span></a>
+				</div>
+				<span class="bar"></span>
+				<div id="spc2" class="circle">
+					<a><span class="label">3</span></a>
+				</div>
+				<div style="display: none">
+					<span class="bar"></span>
+					<div id="spc3" class="circle">
+						<a><span class="label">4</span></a>
+					</div>
+					<span class="bar"></span>
+					<div id="spc4" class="circle">
+						<a><span class="label">5</span></a>
+					</div>
+				</div>
+			</div>
+			<div style="margin-top: 36px; width: 500px;    height: 35px; margin: auto;">
+				<h6>&nbsp;<span id="divAggrement" style="margin-top: -15px; display: none">
+				<input id="cbSubscriberAgreement " type="checkbox" name="my-checkbox"></span>
+				I/We hereby Accept ManageMyFortune.com 
+				<a href="http://managemyfortune.com/faces/pages/advisor_agreement.xhtml" target="_blank">Advisor Agreement </a> 
+				</h6>
+			</div>
+			<div class="text-right"  style="margin-right:0px !important; ">
+				<div class="text-right"  style="margin-right:10px !important;margin-top: -45px; ">
+		   			<button type="button" id="btnPrev" class="btn-flat inverse large" href="#myCarousel" role="button" data-slide="prev" style="display: none">Previous</button>
+			        <button type="button" id="btnNext" class="btn-flat inverse large" href="#myCarousel" role="button" data-slide="next">Next</button>
+			   		<button type="button" id="btnSubmit" class="btn-flat success large" href="#myCarousel">Submit</button>
+			    </div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="modalShowError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel"></h4>
+	      </div>
+	      <div class="modal-body">
+	        this is modalbody
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn-flat inverse" data-dismiss="modal">OK</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+
+<script>
+	initSelectBox();
+	
+	$( '.js-float-label-wrapper' ).FloatLabel();
+	togglePasswordType = function(obj){
+		if(obj.value==''){
+			obj.setAttribute('type', 'text');
+		}
+		else{
+			obj.setAttribute('type', 'password');
+		}
+		return;
+	}
+
+	$(document).on('change', '.btn-file :file', function () {
+		var input = $(this), numFiles = input.get(0).files ? input.get(0).files.length : 1, label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		input.trigger('fileselect', [
+			numFiles,
+			label
+		]);
+	});
+	
+	$(document).ready(function () {
+		$('.btn-file :file').on('fileselect', function (event, numFiles, label) {
+			var input = $(this).parents('.input-group').find(':text'), log = numFiles > 1 ? numFiles + ' files selected' : label;
+			if (input.length) {
+				input.val(log);
+			} else {
+				if (log)
+					alert(log);
+			}
+		});
+	});
+	
+	$("[type='checkbox']").bootstrapSwitch({
+		'size':'mini',
+		'onText':'Yes',
+		'offText':'No'
+	});
+	
+	$('#cbSubscriberAgreement').bootstrapSwitch('destroy');
+
+	$( ".datepicker" ).datepicker();
+	
+	function togglePermanantAddressVisibility(){
+		if ($('#cbPermanantAddress').is(":checked"))
+		{
+			$('#divPermanantAddress').css('display','block');
+		}
+		else{
+			$('#divPermanantAddress').css('display','none');
+			
+		}
+	}
+	
+	$(".numericOnly").keypress(function (e) {
+	    if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+	});
+
+	$(".alphaNumericOnly").keypress(function (e) {
+		var regex = new RegExp("^[a-zA-Z0-9\b]+$");
+	    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+	    if (!regex.test(key)) {
+	       event.preventDefault();
+	       return false;
+	    }
+	});
+	$(".alphaOnly").keypress(function (e) {
+		var regex = new RegExp("^[a-zA-Z\b]+$");
+	    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+	    if (!regex.test(key)) {
+	       event.preventDefault();
+	       return false;
+	    }
+	});
+	
+	$('.calender.YYYY').datetimepicker({
+    	viewMode: 'years',
+    	format: 'YYYY'
+    });
+	$('.calender.MMDDYYYY').datetimepicker({
+    	//viewMode: 'yea',
+    	format: 'MM/DD/YYYY'
+    });
+	$('.calender').css('cursor','pointer');
+	
+	$('.txtRupee').autoNumeric('init',{vMin: '0',vMax: '99999999999'}); 
+	
+	$('#txtNetworth').val(moment().format('MM/DD/YYYY'));
+	
+	
+	$("#btnAddQualification").click(function(){
+        $("#tblQualification").append('<tr><td> <input id="qQualification" type="text" class="form-control qQualification" placeholder="Please Enter Qualification"></td><td> <input id="qInstitute" type="text" class="form-control qInstitute" placeholder="Please Enter Institute"></td><td> <input id="qYear" type="text" class="form-control calender YYYY mandatory qYear" placeholder="Year" value=""></td><td> <input id="qQualificationId" type="text" class="form-control qQualificationId" placeholder="Please Enter Qualification ID"></td><td width=100> <img src="img/x.png" id="btnRemoveRow" width="30px"></td></tr>');
+
+        
+        $(function() {
+			var selectBox = $("select").selectBoxIt();
+		});
+        
+        
+	    $('.qYear').datetimepicker({
+	    	viewMode: 'years',
+	    	format: 'YYYY'
+	    });
+        
+	});
+	
+	$("#tblQualification").on('click', '#btnRemoveRow', function(){
+        $(this).parent().parent().remove();
+    });
+	
+	autosize($('textarea'));
+	
+</script>

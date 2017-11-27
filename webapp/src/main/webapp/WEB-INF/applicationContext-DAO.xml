@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+    <bean id="createUserDAO" class="com.gtl.mmf.dao.impl.CreateUserDAOImpl"></bean>
+    <bean id="updateUserDAO" class="com.gtl.mmf.dao.impl.UpdateUserDAOImpl"></bean>
+    <bean id="lookupDataLoaderDAO" class="com.gtl.mmf.dao.impl.LookupDataLoaderDAOImpl"></bean>
+    <bean id="userProfileDAO" class="com.gtl.mmf.dao.impl.UserProfileDAOImpl"></bean>
+    <bean id="userLoginDAO" class="com.gtl.mmf.dao.impl.UserLoginDAOImpl"></bean>
+    <bean id="userLogoutDAO" class="com.gtl.mmf.dao.impl.UserLogoutDAOImpl"></bean>
+    <bean id="advisorNetworkViewDAO" class="com.gtl.mmf.dao.impl.AdvisorNetworkViewDAOImpl"></bean>
+    <bean id="advisorMappingDAO" class="com.gtl.mmf.dao.impl.AdvisorMappingDAOImpl"></bean>
+    <bean id="investorNetworkViewDAO" class="com.gtl.mmf.dao.impl.InvestorNetworkViewDAOImpl"></bean>
+    <bean id="investorMappingDAO" class="com.gtl.mmf.dao.impl.InvestorMappingDAOImpl"></bean>
+    <bean id="advisoryServiceContractDAO" class="com.gtl.mmf.dao.impl.AdvisoryServiceContractDAOImpl"></bean>
+    <bean id="advisorDashBoardDAO" class="com.gtl.mmf.dao.impl.AdvisorDashBoardDAOImpl"></bean>
+    <bean id="investorDashBoardDAO" class="com.gtl.mmf.dao.impl.InvestorDashBoardDAOImpl"></bean>
+    <bean id="investmentAdvProfileDAO" class="com.gtl.mmf.dao.impl.InvestmentAdvProfileDAOImpl"></bean>
+    <bean id="userForgotPwdDAO" class="com.gtl.mmf.dao.impl.UserForgotPwdDAOImpl"></bean>
+    <bean id="rateAdvisorDAO" class="com.gtl.mmf.dao.impl.RateAdvisorDAOImpl"></bean>
+    <bean id="investmentPolicyStmtDAO" class="com.gtl.mmf.dao.impl.InvestmentPolicyStmtDAOImpl"></bean>
+    <bean id="createEditPortfolioDAO" class="com.gtl.mmf.dao.impl.CreateEditPortfolioDAOImpl"></bean>
+    <bean id="investorPortfolioDAO" class="com.gtl.mmf.dao.impl.InvestorPortfolioDAOImpl"></bean>
+    <bean id="iAuditDAO" class="com.gtl.mmf.dao.impl.AuditDAOImpl"></bean>
+    <bean id="rebalancePortfolioDAO" class="com.gtl.mmf.dao.impl.RebalancePortfolioDAOImpl"></bean>
+    <bean id="portfolioRebalanceDAO" class="com.gtl.mmf.dao.impl.PortfolioRebalanceDAOImpl"></bean>
+    <bean id="addRedeemFundsDAO" class="com.gtl.mmf.dao.impl.AddRedeemFundsDAOImpl"></bean>
+    <bean id="eodPortfolioReturnsDAO" class="com.gtl.mmf.dao.impl.EODPortfolioReturnsDAOImpl"></bean>
+    <bean id="benchmarkDetailsDAO" class="com.gtl.mmf.dao.impl.BenchmarkDetailsDAOImpl"></bean>
+    <bean id="portfolioDetailsDAO" class="com.gtl.mmf.dao.impl.PortfolioDetailsDAOImpl"></bean>
+    <bean id="clientInvestmentPerformanceDAO" class="com.gtl.mmf.dao.impl.ClientInvestmentPerformanceDAOImpl"></bean>
+    <bean id="boDataLoaderDAO" class="com.gtl.mmf.dao.impl.BODataLoaderDAOImpl"></bean>
+    <bean id="exceptionLogDAO" class="com.gtl.mmf.dao.impl.ExceptionLogDAOImpl"></bean>
+    <bean id="eodAdvisorRatingDAO" class="com.gtl.mmf.dao.impl.EODAdvisorRatingDAOImpl"></bean>
+    <bean id="customerPortfolioAuditDAO" class="com.gtl.mmf.dao.impl.CustomerPortfolioAuditDAOImpl"></bean>
+    <bean id="iMailStatusDAO" class="com.gtl.mmf.dao.impl.MailStatusDAOImpl"></bean>
+    <bean id="iECSTransactionProcessingDAO" class="com.gtl.mmf.dao.impl.ECSTransactionProcessingDAOImpl"></bean>
+    <bean id="iUpdateCashFlowDAO" class="com.gtl.mmf.dao.impl.IUpdateCashFlowDAOImpl"></bean>
+    <bean id="iFeeCalculationDAO" class="com.gtl.mmf.dao.impl.FeeCalculationDAOImpl"></bean>
+    <bean id="iKitAllocationDAOImpl" class="com.gtl.mmf.dao.impl.KitAllocationDAOImpl"></bean>
+    <bean id="eodUpdateHolidayCalenderDAO" class="com.gtl.mmf.dao.impl.EODUpdateHolidayCalenderDAOImpl"></bean>
+    <bean id="uploadBenchmarkDAO" class="com.gtl.mmf.dao.impl.UploadBenchmarkDAOImpl"></bean>
+    
+    <bean id="FinancialPlannerDAO" class="com.gtl.mmf.dao.impl.FinancialPlannerDAOImpl"></bean>
+    <bean id="RiskProfilDAO" class="com.gtl.mmf.dao.impl.RiskProfileDAOImpl"></bean>
+
+    <bean id="RoboAdvisorDAO" class="com.gtl.mmf.dao.impl.RoboAdvisorDAOImpl"></bean>
+    <bean id="PortfolioSearchDAO" class="com.gtl.mmf.dao.impl.PortfolioSearchDAOImpl"></bean>
+
+	<bean id="UserProfileV2BAO" class="com.gtl.mmf.dao.impl.UserProfileV2DAOImpl"></bean>    
+	<bean id="LinkedInDetailsDAO" class="com.gtl.mmf.dao.impl.LinkedInDetailsDAOImpl"></bean>
+	<bean id="QuickBooksDAO" class="com.gtl.mmf.dao.impl.QuickBooksDAOImpl"></bean>
+	<bean id="portfolioAllocationDAO" class="com.gtl.mmf.dao.impl.PortfolioAllocationDAOImpl"></bean>    
+    <bean id="advisorPayoutDAO" class="com.gtl.mmf.dao.impl.AdvisorPayoutDAOImpl"></bean>
+</beans>

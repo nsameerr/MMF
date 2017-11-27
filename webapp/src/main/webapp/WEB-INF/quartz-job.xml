@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+       
+    <!--<bean id="testTask" class="com.gtl.mmf.quartz.job.TestTask"></bean>-->
+    <!--
+    This task is used to check whether the portfolios created by the advisor require rebalancing.
+    #identify whether a given security require rebalancing this is done by checking 
+    current price for security is in specified range
+    #Checking asset class  current weight is in range.It should be betweeen maximum 
+    Range and minimum Range of weiight otherwise rebalance required
+    -->
+    <bean id="recomdPortfolioRebalanceTask" class="com.gtl.mmf.quartz.job.RecomdPortfolioRebalanceTask"></bean>
+    
+    <!--
+    This task is used to check whether the portfolios assigned to investor need  rebalancing.
+    #identify whether a given security require rebalancing this is done by checking 
+    current price for security is in specified range
+    #Checking asset class  current weight is in range.It should be betweeen maximum 
+    Range and minimum Range of weiight otherwise rebalance required
+    -->
+    <bean id="clientPortfolioRebalanceTask" class="com.gtl.mmf.quartz.job.ClientPortfolioRebalanceTask"></bean>
+    
+    <!-- Updating NSE and BSE benchmark details -->
+    <bean id="updateBenchmarkDetailsTask" class="com.gtl.mmf.quartz.job.UpdateBenchmarkDetailsTask"></bean>
+    
+    <!-- Job that perform 1 year and 90 day returns calculation  -->
+    <bean id="portfolioPerformanceTask" class="com.gtl.mmf.quartz.job.PortfolioPerformanceTask"></bean>
+    
+    <!-- Downloading Symbol files and creating Map based on asset class -->
+    <bean id="symbolDownloadingTask" class="com.gtl.mmf.quartz.job.SymbolDownloadingTask"></bean>
+    
+    <!--
+    This method calls for the calculation of Client portfolio returns
+    1.Portfolio Returns Calculation 2.recomended customer Portfolio Returns
+    3.Asset Class Portfolio Returns Calculation 4.Portfolio Securites Returns
+    Calculations.
+    -->
+    <bean id="portfolioReturnsTask" class="com.gtl.mmf.quartz.job.PortfolioReturnsTask"></bean>
+    <bean id="txnAndCashBalTask" class="com.gtl.mmf.quartz.job.TxnAndCashBalTask"></bean>
+    <bean id="feeCalculationTask" class="com.gtl.mmf.quartz.job.FeeCalculationTask"></bean>  
+    <bean id="eodMMFTransactoionTransferTask" class="com.gtl.mmf.quartz.job.EODMMFTransactoionTransferTask"></bean>
+    
+    <!-- Updating status of those who placed order for execution   -->
+    <bean id="eodClientStatusChangeTask" class="com.gtl.mmf.quartz.job.EODClientStatusChangeTask"></bean> 
+   
+    <!-- Checking venue holidays   -->
+    <bean id="checkingVenueHolidayTask" class="com.gtl.mmf.quartz.job.CheckingVenueHolidayTask"></bean> 
+    
+    <!--This task is used for creating debt file for paying Fee to ECS -->
+    <bean id="eCSTransactionsTask" class="com.gtl.mmf.quartz.job.ECSTransactionsTask"></bean> 
+    
+     <!--This task is used for creating advisor payout file for paying Fee to ECS -->
+    <bean id="advisorPayoutTask" class="com.gtl.mmf.quartz.job.AdvisorPayoutTask"></bean> 
+       
+    <bean id="advisorRatingComputationTask" class="com.gtl.mmf.quartz.job.AdvisorRatingComputationTask"></bean> 
+    
+    <!-- This task is used for clearing all exchanges status at the end of day -->
+    <bean id="ResetExchangeStatusTask" class="com.gtl.mmf.quartz.job.ResetExchangeStatusTask"></bean>
+    
+    <!-- This task is used for updating allocated fund  -->
+    <bean id="updateCashFlowTask" class="com.gtl.mmf.quartz.job.UpdateCashFlowTask"></bean>
+    
+    <!-- This task is used to notify admin to update Exchange holiday calender  -->
+    <bean id="holidayUpdationTask" class="com.gtl.mmf.quartz.job.HolidayUpdationTask"></bean>
+        
+    <bean name="rebalanceJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="com.gtl.mmf.quartz.job.EODRebalanceJob" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="recomdPortfolioRebalanceTask" value-ref="recomdPortfolioRebalanceTask" />
+                <entry key="updateBenchmarkDetailsTask" value-ref="updateBenchmarkDetailsTask" />
+                <entry key="advisorRatingComputationTask" value-ref="advisorRatingComputationTask" />
+                <entry key="eodClientStatusChangeTask" value-ref="eodClientStatusChangeTask" />
+            </map>
+        </property>
+    </bean>
+                                     
+    <bean name="symbolDwnldJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="com.gtl.mmf.quartz.job.SymbolDownloadingJob" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="symbolDownloadingTask" value-ref="symbolDownloadingTask" />
+            </map>
+        </property>
+    </bean>
+    
+    <!-- Transaction and Cash data processing -->
+    <bean name="txnAndCashBalDataProcessingJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="com.gtl.mmf.quartz.job.TxnAndCashBalDataProcessingJob" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="txnAndCashBalTask" value-ref="txnAndCashBalTask" />
+                <entry key="portfolioReturnsTask" value-ref="portfolioReturnsTask" />
+                <entry key="txnAndCashBalTask" value-ref="txnAndCashBalTask" />
+                <entry key="updateCashFlowTask" value-ref="updateCashFlowTask" />
+                <entry key="clientPortfolioRebalanceTask" value-ref="clientPortfolioRebalanceTask" />
+                <entry key="portfolioPerformanceTask" value-ref="portfolioPerformanceTask" />
+                <entry key="feeCalculationTask" value-ref="feeCalculationTask" />
+                <entry key="eodMMFTransactoionTransferTask" value-ref="eodMMFTransactoionTransferTask" />
+                <entry key="txnAndCashBalTask" value-ref="txnAndCashBalTask" />
+            </map>
+        </property>
+    </bean>
+
+    <bean name="ecsTransactionDataProcessingJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="com.gtl.mmf.quartz.job.ECSTransactionDataProcessingJob" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="eCSTransactionsTask" value-ref="eCSTransactionsTask" />
+            </map>
+        </property>
+    </bean>
+    
+     <bean name="advisorPayoutDataProcessingJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="com.gtl.mmf.quartz.job.AdvisorPayoutDataProcessingJob" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="advisorPayoutTask" value-ref="advisorPayoutTask" />
+            </map>
+        </property>
+    </bean>
+    
+    <bean name="readDebtCsvFileForUpdateTransactionJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="com.gtl.mmf.quartz.job.ReadDebtCsvFileForUpdateTransactionJob" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="eCSTransactionsTask" value-ref="eCSTransactionsTask" />
+            </map>
+        </property>
+    </bean>
+     
+    <bean name="ExchangeResetJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="com.gtl.mmf.quartz.job.EODExchangeStatusResetJob" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="ResetExchangeStatusTask" value-ref="ResetExchangeStatusTask" />
+            </map>
+        </property>
+    </bean>
+
+    <bean name="holidayCalenderUpdationJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="com.gtl.mmf.quartz.job.HolidayCalenderUpdationJob" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="holidayUpdationTask" value-ref="holidayUpdationTask" />
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="rebalanceJob" />
+        <property name="cronExpression" value="0 00 08 * * ?" />
+    </bean>
+                
+    <bean id="cronTriggerSymbolDwnld" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="symbolDwnldJob" />
+        <property name="cronExpression" value="00 00 09 * * ?" />
+    </bean>
+    
+    <bean id="cronTriggerTxnAndCashBalDataProcessingJob" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="txnAndCashBalDataProcessingJob" />
+        <property name="cronExpression" value="0 03 09 * * ?" />
+    </bean>
+    <bean id="cronTriggerECSTransactinProcessing" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="ecsTransactionDataProcessingJob" />
+        <property name="cronExpression" value="0 00 22 * * ?" />
+    </bean>
+    
+    <bean id="cronTriggerAdvisorPayoutProcessing" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="advisorPayoutDataProcessingJob" />
+        <property name="cronExpression" value="0 0 1 1,4,7,10 * ?" />
+    </bean>
+    
+    
+	
+    <bean id="cronTriggerReadDebtCsvFileForUpdateTransactionJob" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="readDebtCsvFileForUpdateTransactionJob" />
+        <property name="cronExpression" value="0 0 23 * * ?"/>
+    </bean>
+    
+    <bean id="cronTriggerEODExchangeStatusResetJob" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="ExchangeResetJob" />
+        <property name="cronExpression" value="00 30 08 * * ?" />
+    </bean>
+    
+    <bean id="cronTriggerHolidayCalenderUpdationJob" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="holidayCalenderUpdationJob" />
+        <property name="cronExpression" value="00 00 4 1 12 ?" />
+    </bean>
+		
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+                <ref bean="rebalanceJob" />
+                <ref bean="symbolDwnldJob" />
+                <ref bean="txnAndCashBalDataProcessingJob" />
+                <ref bean="ecsTransactionDataProcessingJob" />
+                <ref bean="advisorPayoutDataProcessingJob" />
+                <ref bean="readDebtCsvFileForUpdateTransactionJob" />
+                <ref bean="ExchangeResetJob" />
+                <ref bean="holidayCalenderUpdationJob" />
+            </list>
+        </property>
+	
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger" />
+                <ref bean="cronTriggerSymbolDwnld" />
+                <ref bean="cronTriggerTxnAndCashBalDataProcessingJob" />
+                <ref bean="cronTriggerECSTransactinProcessing" />
+                <ref bean="cronTriggerAdvisorPayoutProcessing" />
+                <ref bean="cronTriggerReadDebtCsvFileForUpdateTransactionJob" />
+                <ref bean="cronTriggerEODExchangeStatusResetJob" />
+                <ref bean="cronTriggerHolidayCalenderUpdationJob" />
+            </list>
+        </property>
+    </bean>
+	
+</beans>

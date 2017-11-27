@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:h="http://java.sun.com/jsf/html">
+    
+    <h:head>
+        <title> <ui:insert name="title"></ui:insert></title>
+
+        <!-- bootstrap -->
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/custom.css" type="text/css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/style.css" type="text/css" rel="stylesheet"/>
+
+        <!-- global styles -->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/layout.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/elements.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/icons.css"/>
+        <link href="#{request.contextPath}/css/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet"/>
+
+        <!-- libraries -->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/lib/font-awesome.css"/>
+
+        <!-- this page specific styles -->
+        <link rel="stylesheet" href="#{request.contextPath}/css/compiled/signup.css" type="text/css" media="screen" />
+
+        <!-- open sans font -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'/>
+        <script type="text/javascript">window.history.forward();function noBack(){window.history.forward();}</script>
+        <script src="https://www.google.com/recaptcha/api.js"></script>  
+
+    </h:head>
+    <body class="login_pg" onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="">
+        <ui:insert name="login_header">
+            <ui:include src="/pages/template/components/login_header.xhtml"/>
+        </ui:insert>
+        <ui:insert name="login_body"></ui:insert>
+    </body>
+</html>

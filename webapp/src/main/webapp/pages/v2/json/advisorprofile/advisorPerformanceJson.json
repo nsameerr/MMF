@@ -1,0 +1,24 @@
+{
+  "portfolios": [
+    {
+      "name": "abc",
+      "minInvestment": "1000",
+      "style": "modrately aggresive",
+      "createdOn": "16-08-2016",
+      "SIReturns": "+10%",
+      "threeMonthsReturns": "+11%",
+      "sixMonthsReturns": "-2%",
+      "oneYearReturns": "+12%"
+    },
+    {
+      "name": "abcd",
+      "minInvestment": "2000",
+      "style": "highly aggresive",
+      "createdOn": "12-09-2013",
+      "SIReturns": "+13%",
+      "threeMonthsReturns": "+11%",
+      "sixMonthsReturns": "-21%",
+      "oneYearReturns": "+12%"
+    }
+  ]
+}

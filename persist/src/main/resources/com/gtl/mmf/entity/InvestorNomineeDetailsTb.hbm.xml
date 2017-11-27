@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 2, 2015 11:31:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.InvestorNomineeDetailsTb" table="investor_nominee_details_tb" catalog="mmfdb">
+        <id name="nomineeDetailsId" type="java.lang.Integer">
+            <column name="nominee_details_id" />
+            <generator class="identity" />
+        </id>
+        <property name="registrationId" type="string">
+            <column name="registration_id" length="15" not-null="true" unique="true" />
+        </property>
+        <property name="nameNominee" type="string">
+            <column name="name_nominee" length="100" not-null="true" />
+        </property>
+        <property name="relationshipApplicant" type="string">
+            <column name="relationship_applicant" length="50" />
+        </property>
+        <property name="dobNominee" type="date">
+            <column name="dob_nominee" length="10" />
+        </property>
+        <property name="addressNominee" type="string">
+            <column name="address_nominee" length="100" />
+        </property>
+        <property name="placeNominee" type="string">
+            <column name="place_nominee" length="100" />
+        </property>
+        <property name="pincodeNominee" type="string">
+            <column name="pincode_nominee" length="10" />
+        </property>
+        <property name="stateNominee" type="string">
+            <column name="state_nominee" length="50" />
+        </property>
+        <property name="countryNominee" type="string">
+            <column name="country_nominee" length="50" />
+        </property>
+        <property name="telOfficeNominee" type="string">
+            <column name="tel_office_nominee" length="20" />
+        </property>
+        <property name="telResidenceNominee" type="string">
+            <column name="tel_residence_nominee" length="20" />
+        </property>
+        <property name="faxNominee" type="string">
+            <column name="fax_nominee" length="20" />
+        </property>
+        <property name="mobileNominee" type="string">
+            <column name="mobile_nominee" length="15" />
+        </property>
+        <property name="emailNominee" type="string">
+            <column name="email_nominee" length="50" />
+        </property>
+        <property name="panNomine" type="string">
+            <column name="pan_nomine" length="12" />
+        </property>
+        <property name="nomineeMinor" type="java.lang.Boolean">
+            <column name="nominee_minor" />
+        </property>
+        <property name="dobNomineeMinor" type="date">
+            <column name="dob_nominee_minor" length="10" />
+        </property>
+        <property name="nameGuardianNominee" type="string">
+            <column name="name_guardian_nominee" length="50" />
+        </property>
+        <property name="addressNomineeMinor" type="string">
+            <column name="address_nominee_minor" length="100" />
+        </property>
+        <property name="placeNomineeMinor" type="string">
+            <column name="place_nominee_minor" length="100" />
+        </property>
+        <property name="pincodeNomineeMinor" type="string">
+            <column name="pincode_nominee_minor" length="10" />
+        </property>
+        <property name="stateNomineeMinor" type="string">
+            <column name="state_nominee_minor" length="50" />
+        </property>
+        <property name="countryNomineeMinor" type="string">
+            <column name="country_nominee_minor" length="50" />
+        </property>
+        <property name="telOfficeNomineeMinor" type="string">
+            <column name="tel_office_nominee_minor" length="20" />
+        </property>
+        <property name="telResidenceNomineeMinor" type="string">
+            <column name="tel_residence_nominee_minor" length="20" />
+        </property>
+        <property name="faxNomineeMinor" type="string">
+            <column name="fax_nominee_minor" length="20" />
+        </property>
+        <property name="mobileNomineeMinor" type="string">
+            <column name="mobile_nominee_minor" length="15" />
+        </property>
+        <property name="emailNomineeMinor" type="string">
+            <column name="email_nominee_minor" length="50" />
+        </property>
+        <property name="relationshipGuardianMinor" type="string">
+            <column name="relationship_guardian_minor" length="50" />
+        </property>
+        <property name="nomineeProof" type="string">
+            <column name="nominee_proof" length="50" />
+        </property>
+        <property name="nomineeAadhar" type="string">
+            <column name="nominee_aadhar" length="20" />
+        </property>
+        <property name="minorProof" type="string">
+            <column name="minor_proof" length="50" />
+        </property>
+        <property name="minorPan" type="string">
+            <column name="minor_pan" length="20" />
+        </property>
+        <property name="minorAadhar" type="string">
+            <column name="minor_aadhar" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

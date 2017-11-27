@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 13, 2015 10:58:19 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.gtl.mmf.entity.CustomerPerformanceFeeTb" table="customer_performance_fee_tb" catalog="mmfdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="customerAdvisorMappingTb" class="com.gtl.mmf.entity.CustomerAdvisorMappingTb" fetch="select">
+            <column name="relation_id" not-null="true" />
+        </many-to-one>
+        <property name="customerId" type="int">
+            <column name="customer_id" not-null="true" />
+        </property>
+        <property name="advisorId" type="java.lang.Integer">
+            <column name="advisor_id" />
+        </property>
+        <property name="feeCalculateDate" type="timestamp">
+            <column name="fee_calculate_date" length="19" not-null="true" />
+        </property>
+        <property name="perfFee" type="big_decimal">
+            <column name="perf_fee" precision="10" />
+        </property>
+        <property name="perfFeeFreq" type="java.lang.Short">
+            <column name="perf_fee_freq" />
+        </property>
+        <property name="ecsPayDate" type="timestamp">
+            <column name="ecs_pay_date" length="19" not-null="true" />
+        </property>
+        <property name="ecsPaid" type="java.lang.Boolean">
+            <column name="ecs_paid" />
+        </property>
+        <property name="regId" type="string">
+            <column name="reg_id" length="15" />
+        </property>
+        <property name="submittedEcs" type="java.lang.Boolean">
+            <column name="submitted_ecs" />
+        </property>
+    </class>
+</hibernate-mapping>
